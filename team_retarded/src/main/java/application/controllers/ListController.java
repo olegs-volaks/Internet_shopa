@@ -1,6 +1,6 @@
-package application.controller;
+package application.controllers;
 
-import application.item.Product;
+import application.items.Product;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package application.item;
+package application.items;
 
 import java.util.Objects;
 
