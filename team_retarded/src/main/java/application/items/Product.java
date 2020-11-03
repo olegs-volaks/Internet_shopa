@@ -1,5 +1,6 @@
 package application.items;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Product {
@@ -7,9 +8,9 @@ public class Product {
     private final long id;
     private String productName;
     private String specification;
-    private double price;
+    private BigDecimal price;
 
-    public Product(long id, String productName, String specification, double price) {
+    public Product(long id, String productName, String specification, BigDecimal price) {
         this.id = id;
         this.productName = productName;
         this.specification = specification;
@@ -37,11 +38,11 @@ public class Product {
         this.specification = specification;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void changePrice(double price) {
+    public void changePrice(BigDecimal price) {
         this.price = price;
     }
 
@@ -61,9 +62,9 @@ public class Product {
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
         return id == product.id &&
-                Double.compare(product.price, price) == 0 &&
                 Objects.equals(productName, product.productName) &&
-                Objects.equals(specification, product.specification);
+                Objects.equals(specification, product.specification) &&
+                Objects.equals(price, product.price);
     }
 
     @Override

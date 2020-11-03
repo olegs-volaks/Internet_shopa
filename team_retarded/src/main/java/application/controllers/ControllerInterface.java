@@ -2,13 +2,14 @@ package application.controllers;
 
 import application.items.Product;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 public interface ControllerInterface {
 
-    boolean add(String productName, String specification, double price);
+    boolean add(String productName, String specification, BigDecimal price);
 
     boolean delete(long id);
 
@@ -21,13 +22,13 @@ public interface ControllerInterface {
 
     boolean delete(String productName);
 
-    boolean deleteWithPrice(double price);
+    boolean deleteWithPrice(BigDecimal price);
 
     Optional<Product> findById (long id);
 
     List<Product> findByProductName (String productName);
 
-    List<Product> findByPrice (double price);
+    List<Product> findByPrice (BigDecimal price);
 
     List<Product> findByPredicate(Predicate<Product> predicate);
 

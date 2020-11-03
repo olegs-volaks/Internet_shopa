@@ -2,6 +2,7 @@ package application.controllers;
 
 import application.items.Product;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +14,7 @@ public class ListController implements ControllerInterface {
     private long id;
 
     @Override
-    public boolean add(String productName, String specification, double price) {
+    public boolean add(String productName, String specification, BigDecimal price) {
         db.add(new Product(id, productName, specification, price));
         id++;
         return true;
@@ -45,7 +46,7 @@ public class ListController implements ControllerInterface {
     }
 
     @Override
-    public boolean deleteWithPrice(double price) {
+    public boolean deleteWithPrice(BigDecimal price) {
         return false;
     }
 
@@ -60,7 +61,7 @@ public class ListController implements ControllerInterface {
     }
 
     @Override
-    public List<Product> findByPrice(double price) {
+    public List<Product> findByPrice(BigDecimal price) {
         return null;
     }
 
