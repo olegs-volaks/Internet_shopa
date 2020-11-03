@@ -2,7 +2,7 @@ package main.java.application;
 
 import java.util.List;
 
-public interface OperationalFunctional {
+public interface OperationInterface {
 
     long add (Product product);  // добавляет продукт в ArrayList, возвращает id (id генерится при добавлении продукта в список)
                                     // либо -1 в случае, если товар не был добавлен (не обязательно)

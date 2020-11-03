@@ -1,6 +1,6 @@
 package main.java.application;
 
-public interface ChangingFunctional {
+public interface EditingInterface {
 
     long changeId (Product product);  // изменяет id, возвращает новый id - насколько это рационально?
 
@@ -15,11 +15,5 @@ public interface ChangingFunctional {
     void changePriceById (long id, double newPrice);
 
     long reducePrice (String productName, double percentage);
-
-
-    void reIdentifying ();  // при удалении продукта id других продуктов не изменяются. для непрерывной идентификации (нумерации)
-    // время от времени нужно запускать этот метод. он переписывает id всех продуктов непрерывно
-    // возможно этому методу стоит чего-то возвращать - например максимальный id
-
 
 }

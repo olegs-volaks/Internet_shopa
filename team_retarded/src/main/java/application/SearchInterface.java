@@ -2,7 +2,7 @@ package main.java.application;
 
 import java.util.List;
 
-public interface SearchFunctional {
+public interface SearchInterface {
 
     Product findById (long id);
 
