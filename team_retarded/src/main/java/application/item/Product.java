@@ -1,15 +1,16 @@
-package application;
+package application.item;
 
 import java.util.Objects;
 
 public class Product {
 
-    private long id;
+    private final long id;
     private String productName;
     private String specification;
     private double price;
 
-    public Product(String productName, String specification, double price) {
+    public Product(long id, String productName, String specification, double price) {
+        this.id = id;
         this.productName = productName;
         this.specification = specification;
         this.price = price;
@@ -19,15 +20,12 @@ public class Product {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getProductName() {
         return productName;
     }
 
-    public void setProductName(String productName) {
+    public void changeProductName(String productName) {
         this.productName = productName;
     }
 
@@ -35,7 +33,7 @@ public class Product {
         return specification;
     }
 
-    public void setSpecification(String specification) {
+    public void changeSpecification(String specification) {
         this.specification = specification;
     }
 
@@ -43,7 +41,7 @@ public class Product {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void changePrice(double price) {
         this.price = price;
     }
 
