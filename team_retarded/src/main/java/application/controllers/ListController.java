@@ -17,8 +17,7 @@ public class ListController implements ControllerInterface {
 
     @Override
     public boolean add(String productName, String specification, double price) {
-        BigDecimal bigDecimal = new BigDecimal(price);
-        db.add(new Product(id, productName, specification, bigDecimal));
+        db.add(new Product(id, productName, specification, new BigDecimal(Double.toString(price))));
         id++;
         return true;
     }
