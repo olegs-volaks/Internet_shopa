@@ -51,7 +51,7 @@ public class ListController implements application.controllers.ControllerInterfa
 
     @Override
     public boolean deleteWithPrice(BigDecimal price) {
-        return db.removeIf(x -> x.getPrice() == price);
+        return db.removeIf(x -> x.getPrice().equals(price));
     }
 
     @Override
