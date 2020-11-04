@@ -129,5 +129,9 @@ class ListControllerTest {
     @Test
     void findByPredicate() {
     }
+
+    @Test
+    void getList() {
+    }
 }
 
