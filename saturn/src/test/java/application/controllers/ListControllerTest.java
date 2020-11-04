@@ -18,12 +18,10 @@ class ListControllerTest {
 
 
 
-
-
     @Test
     void add1() {
         boolean actual=subject.add("BMW", "211", new BigDecimal("10000.0"));
-        assertFalse(actual);
+        assertTrue(actual);
     }
 
 
