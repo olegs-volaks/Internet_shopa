@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
-public class ListController implements application.controllers.ControllerInterface {
+public class ListController implements ControllerInterface {
 
     private final List<Product> db = new ArrayList<>();
     private long id=1L;
 
     @Override
-    public boolean add(String productName, String specification, BigDecimal price) {
-        db.add(new Product(id, productName, specification, price));
+    public boolean add(String productName, String specification, double price) {
+        db.add(new Product(id, productName, specification, new BigDecimal(Double.toString(price))));
         id++;
         return true;
     }
@@ -35,7 +35,7 @@ public class ListController implements application.controllers.ControllerInterfa
 
     @Override
     public boolean delete(Predicate<Product> predicate) {
-        return db.removeIf(t -> t.equals(predicate));
+        return db.removeIf(predicate);
     }
 
     @Override
@@ -78,7 +78,12 @@ public class ListController implements application.controllers.ControllerInterfa
     @Override
     public List<Product> findByPredicate(Predicate<Product> predicate) {
         return db.stream()
-                .filter(t -> t.equals(predicate))
+                .filter(predicate)
                 .collect(toList());
+    }
+
+    @Override
+    public List<Product> getList() {
+        return db;
     }
 }
