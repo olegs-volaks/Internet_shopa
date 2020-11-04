@@ -40,7 +40,8 @@ public class ListController implements ControllerInterface {
 
     @Override
     public boolean deleteAll() {
-        return false;
+        db.clear();
+        return db.isEmpty();
     }
 
     @Override

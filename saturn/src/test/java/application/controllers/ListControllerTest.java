@@ -14,9 +14,7 @@ class ListControllerTest {
 
     private final ListController subject = new ListController();
 
-    //List <Product> products = new ArrayList<>();
-
-
+    List <Product> products = new ArrayList<>();
 
     @Test
     void add1() {
@@ -25,4 +23,47 @@ class ListControllerTest {
     }
 
 
+    @Test
+    void add() {
+    }
+
+    @Test
+    void delete() {
+    }
+
+    @Test
+    void testDelete() {
+    }
+
+    @Test
+    void testDelete1() {
+    }
+
+    @Test
+    void deleteAll() {
+    }
+
+    @Test
+    void testDelete2() {
+    }
+
+    @Test
+    void deleteWithPrice() {
+    }
+
+    @Test
+    void findById() {
+    }
+
+    @Test
+    void findByProductName() {
+    }
+
+    @Test
+    void findByPrice() {
+    }
+
+    @Test
+    void findByPredicate() {
+    }
 }
