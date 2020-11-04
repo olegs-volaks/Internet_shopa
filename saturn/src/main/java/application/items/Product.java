@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Product {
 
-    private final long id;
+    private long id;
     private String productName;
     private String specification;
     private BigDecimal price;

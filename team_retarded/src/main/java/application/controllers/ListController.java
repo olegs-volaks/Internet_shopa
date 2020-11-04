@@ -14,7 +14,7 @@ import static java.util.stream.Collectors.toSet;
 public class ListController implements ControllerInterface {
 
     private final List<Product> db = new ArrayList<>();
-    private long id;
+    private long id=1L;
 
     @Override
     public boolean add(String productName, String specification, BigDecimal price) {
