@@ -4,6 +4,7 @@ import application.items.Product;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,6 +23,7 @@ class ListControllerTest {
         subject.delete(product -> product.getProductName().equals("name") || product.getProductName().equals("name2"));
         assertThat(subject.getList()).isEmpty();
     }
+
     @Test
     void delete_by_predicate_by_price() {
         ListController subject = new ListController();
@@ -33,16 +35,16 @@ class ListControllerTest {
 
     @Test
     void add() {
-        boolean actual=subject.add("BMW", "211", 10000.0);
+        boolean actual = subject.add("BMW", "211", 10000.0);
         assertTrue(actual);
     }
 
     @Test
     void delete() {
         subject.add("BMW", "323", 10000.0);
-        subject.add("BMW", "530",20000.0);
-        subject.add("BMW", "740",30000.0);
-        boolean actual=subject.delete(2);
+        subject.add("BMW", "530", 20000.0);
+        subject.add("BMW", "740", 30000.0);
+        boolean actual = subject.delete(2);
         assertTrue(actual);
     }
 
@@ -51,7 +53,7 @@ class ListControllerTest {
         subject.add("BMW", "323", 10000.0);
         subject.add("BMW", "530", 20000.0);
         subject.add("BMW", "740", 30000.0);
-        boolean actual=subject.delete(5);
+        boolean actual = subject.delete(5);
         assertFalse(actual);
     }
 
@@ -60,7 +62,7 @@ class ListControllerTest {
         subject.add("BMW", "323", 10000.0);
         subject.add("BMW", "530", 20000.0);
         subject.add("BMW", "740", 30000.0);
-        boolean actual=subject.delete(new Product(3,"BMW", "740", new BigDecimal("30000.0")));
+        boolean actual = subject.delete(new Product(3, "BMW", "740", new BigDecimal("30000.0")));
         assertTrue(actual);
     }
 
@@ -69,7 +71,7 @@ class ListControllerTest {
         subject.add("BMW", "323", 10000.0);
         subject.add("BMW", "530", 20000.0);
         subject.add("BMW", "740", 30000.0);
-        boolean actual=subject.delete(new Product(5,"BMW", "740", new BigDecimal("30000.0")));
+        boolean actual = subject.delete(new Product(5, "BMW", "740", new BigDecimal("30000.0")));
         assertFalse(actual);
     }
 
@@ -78,7 +80,7 @@ class ListControllerTest {
         subject.add("BMW", "323", 10000.0);
         subject.add("BMW", "530", 20000.0);
         subject.add("BMW", "740", 30000.0);
-        boolean actual=subject.delete(Predicate.isEqual(new Product(3,"BMW", "740", new BigDecimal("30000.0"))));
+        boolean actual = subject.delete(Predicate.isEqual(new Product(3, "BMW", "740", new BigDecimal("30000.0"))));
         assertTrue(actual);
     }
 
@@ -87,7 +89,7 @@ class ListControllerTest {
         subject.add("BMW", "323", 10000.0);
         subject.add("BMW", "530", 20000.0);
         subject.add("BMW", "740", 30000.0);
-        boolean actual=subject.deleteAll();
+        boolean actual = subject.deleteAll();
         assertTrue(actual);
     }
 
@@ -96,7 +98,7 @@ class ListControllerTest {
         subject.add("BMW", "323", 10000.0);
         subject.add("BMW", "530", 20000.0);
         subject.add("BMW", "740", 30000.0);
-        boolean actual=subject.delete("BMW");
+        boolean actual = subject.delete("BMW");
         assertTrue(actual);
     }
 
@@ -105,7 +107,7 @@ class ListControllerTest {
         subject.add("BMW", "323", 10000.0);
         subject.add("BMW", "530", 20000.0);
         subject.add("BMW", "740", 30000.0);
-        boolean actual=subject.deleteWithPrice(new BigDecimal("10000.0"));
+        boolean actual = subject.deleteWithPrice(new BigDecimal("10000.0"));
         assertTrue(actual);
     }
 
@@ -114,24 +116,44 @@ class ListControllerTest {
         subject.add("BMW", "323", 10000.0);
         subject.add("BMW", "530", 20000.0);
         subject.add("BMW", "740", 30000.0);
-        boolean actual=subject.deleteWithPrice(new BigDecimal("10000.0"));
+        boolean actual = subject.deleteWithPrice(new BigDecimal("10000.0"));
         assertTrue(actual);
     }
 
     @Test
-    void findByProductName() {
+    void findByProductName() {   // DG
+        subject.add("BMW", "323", 10000.0);
+        subject.add("Honda", "2.0", 5000.0);
+        subject.add("Opel", "1.6", 4000.0);
+        subject.add("Mazda", "3.0", 3500.0);
+        List<Product> actual = subject.findByProductName("BMW");
+        assertThat(actual);
+
+
     }
 
     @Test
-    void findByPrice() {
+    void findByPrice() { // DG
+        subject.add("BMW","323",10000.0);
+        subject.add("Honda","2.0",5000.0);
+        subject.add("Mazda","3.0",3500.0);
+        List<Product> actual = subject.findByPrice(new BigDecimal("5000.0"));
+        assertThat(actual);
     }
 
     @Test
-    void findByPredicate() {
+    void findByPredicate() { // DG не уверен что правильно
+        subject.add("Honda","2.0",5000.0);
+        subject.add("Mazda","3.0",3500.0);
+        subject.add("Opel","1.6",4000.0);
+        List<Product> actual = subject.findByPredicate(Predicate.isEqual("Mazda"));
+        assertThat(actual);
     }
 
     @Test
-    void getList() {
+    void getList() { // DG
+        List<Product> actual = subject.getList();
+        assertThat(actual);
     }
 }
 
