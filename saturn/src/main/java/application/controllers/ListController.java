@@ -40,7 +40,8 @@ public class ListController implements application.controllers.ControllerInterfa
 
     @Override
     public boolean deleteAll() {
-        return false;
+        db.clear();
+        return db.isEmpty();
     }
 
     @Override
@@ -50,7 +51,7 @@ public class ListController implements application.controllers.ControllerInterfa
 
     @Override
     public boolean deleteWithPrice(BigDecimal price) {
-        return db.removeIf(x -> x.getPrice() == price);
+        return db.removeIf(x -> x.getPrice().equals(price));
     }
 
     @Override
