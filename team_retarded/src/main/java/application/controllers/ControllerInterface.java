@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 
 public interface ControllerInterface {
 
-    boolean add(String productName, String specification, BigDecimal price);
+    boolean add(String productName, String specification, double price);
 
     boolean delete(long id);
 
@@ -24,12 +24,14 @@ public interface ControllerInterface {
 
     boolean deleteWithPrice(BigDecimal price);
 
-    Optional<Product> findById (long id);
+    Optional<Product> findById(long id);
 
-    List<Product> findByProductName (String productName);
+    List<Product> findByProductName(String productName);
 
-    List<Product> findByPrice (BigDecimal price);
+    List<Product> findByPrice(BigDecimal price);
 
     List<Product> findByPredicate(Predicate<Product> predicate);
+
+    List<Product> getList();
 
 }
