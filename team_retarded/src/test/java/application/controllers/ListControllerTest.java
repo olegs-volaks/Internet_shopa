@@ -126,6 +126,10 @@ class ListControllerTest {
         subject.add("Honda", "2.0", 5000.0);
         subject.add("Opel", "1.6", 4000.0);
         subject.add("Mazda", "3.0", 3500.0);
+        subject.add("Iphone", "Xpro", 1000.0);
+        subject.add("PS4", "Pro", 350.0);
+        subject.add("BeatsByDRE", "", 100.0);
+        subject.add("AppleMac", "Pro", 555.0);
         List<Product> actual = subject.findByProductName("BMW");
         assertThat(actual);
 
@@ -134,18 +138,26 @@ class ListControllerTest {
 
     @Test
     void findByPrice() { // DG
-        subject.add("BMW","323",10000.0);
-        subject.add("Honda","2.0",5000.0);
-        subject.add("Mazda","3.0",3500.0);
-        List<Product> actual = subject.findByPrice(new BigDecimal("5000.0"));
+        subject.add("BMW", "323", 10000.0);
+        subject.add("Honda", "2.0", 5000.0);
+        subject.add("Mazda", "3.0", 3500.0);
+        subject.add("Iphone", "Xpro", 1000.0);
+        subject.add("PS4", "Pro", 350.0);
+        subject.add("BeatsByDRE", "", 100.0);
+        subject.add("AppleMac", "Pro", 555.0);
+        List<Product> actual = subject.findByPrice(new BigDecimal("250.0"));
         assertThat(actual);
     }
 
     @Test
     void findByPredicate() { // DG не уверен что правильно
-        subject.add("Honda","2.0",5000.0);
-        subject.add("Mazda","3.0",3500.0);
-        subject.add("Opel","1.6",4000.0);
+        subject.add("Honda", "2.0", 5000.0);
+        subject.add("Mazda", "3.0", 3500.0);
+        subject.add("Opel", "1.6", 4000.0);
+        subject.add("Iphone", "Xpro", 1000.0);
+        subject.add("PS4", "Pro", 350.0);
+        subject.add("BeatsByDRE", "", 100.0);
+        subject.add("AppleMac", "Pro", 555.0);
         List<Product> actual = subject.findByPredicate(Predicate.isEqual("Mazda"));
         assertThat(actual);
     }
