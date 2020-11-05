@@ -15,14 +15,14 @@ public class ListController implements ControllerInterface {
     private final List<Product> db = new ArrayList<>();
     private long id=1L;
 
-    @Override
+    @Override   //+
     public boolean add(String productName, String specification, double price) {
         db.add(new Product(id, productName, specification, new BigDecimal(Double.toString(price))));
         id++;
         return true;
     }
 
-    @Override
+    @Override   //+
     public boolean delete(long id) {
         return db.removeIf(x -> x.getId() == id);
     }

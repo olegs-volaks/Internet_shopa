@@ -13,7 +13,7 @@ public interface ControllerInterface {
 
     boolean delete(long id);
 
-    //Нужен ли?
+    //For deleting?
     boolean delete(Product product);
 
     boolean delete(Predicate<Product> predicate);
