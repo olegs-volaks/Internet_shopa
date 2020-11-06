@@ -5,14 +5,18 @@ import java.util.Scanner;
 public class ConsoleApplication {
 
     public static void main(String[] args) {
+        //System.out.println("1. Add new item.");
+
 
         Scanner scanner = new Scanner(System.in);
-        while (scanner.nextInt() != 0) {
-            printMenu();
-            scanner.nextInt();
+        //if (scanner.nextInt() != 0) {
+            do {
+                printMenu();
+                scanner.nextInt();
 
 
-        }
+            } while (scanner.nextInt() != 0);
+        //}
 
     }
 
