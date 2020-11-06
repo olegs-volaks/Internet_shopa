@@ -1,59 +1,52 @@
 package application.items;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Product {
-
     private final long id;
-    private String productName;
-    private String specification;
+    private String name;
+    private String description;
     private BigDecimal price;
 
-    public Product(long id, String productName, String specification, BigDecimal price) {
+    public Product(long id, String name, String description, double price) {
         this.id = id;
-        this.productName = productName;
-        this.specification = specification;
-        this.price = price;
+        this.name = name;
+        this.description = description;
+//      price from double convert to BigDecimal and rounded to two decimal places
+        BigDecimal tmp = new BigDecimal(Double.toString(price));
+        this.price = tmp.setScale(2, RoundingMode.DOWN);
     }
 
     public long getId() {
         return id;
     }
 
-
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void changeProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getSpecification() {
-        return specification;
-    }
-
-    public void changeSpecification(String specification) {
-        this.specification = specification;
+    public String getDescription() {
+        return description;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void changePrice(BigDecimal price) {
-        this.price = price;
+    public void editName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", productName='" + productName + '\'' +
-                ", specification='" + specification + '\'' +
-                ", price=" + price +
-                '}';
+    public void editDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(double price) {
+//      price from double convert to BigDecimal and rounded to two decimal places
+        BigDecimal tmp = new BigDecimal(Double.toString(price));
+        this.price = tmp.setScale(2, RoundingMode.DOWN);
     }
 
     @Override
@@ -62,13 +55,23 @@ public class Product {
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
         return id == product.id &&
-                Objects.equals(productName, product.productName) &&
-                Objects.equals(specification, product.specification) &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(description, product.description) &&
                 Objects.equals(price, product.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, productName, specification, price);
+        return Objects.hash(id, name, description, price);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                '}';
     }
 }
