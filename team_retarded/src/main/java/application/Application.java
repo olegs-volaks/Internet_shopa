@@ -26,30 +26,29 @@ public class Application {
                     break;
                 }
                 case 1: {
-                    showAllProduct(db.getList());
+                    db.getList();
                     break;
                 }
-               /* case 2: {
-                    searchById(db.getById(1L));
+                case 2: {
+                    db.getById(1L);
                     break;
-                }*/
-                case 3:
-
-                    break;
+                }
+                // case 3: {
+                //     db.filter();
+                //    break;
+                // }
                 case 4: {
                     addProductUIAction.execute();
                     break;
                 }
                 case 5: {
-                    deleteProduct();
+                    db.delete(1L);
                     break;
                 }
             }
-
         }
 
     }
-
 
 
     private static void initialization() {
@@ -82,43 +81,9 @@ public class Application {
     }
 
     private static void exit() {
-        System.out.println("Good Bye!");
+        System.out.println("Good bye!");
         System.exit(0);
     }
 
-    private static void showAllProduct(List<Product> products) {
-        System.out.println("Show all product list");
-        for (Product product : products) {
-            System.out.println(product);
-        }
-        System.out.println("Product list end ");
-    }
 
-   /* private static void searchById(Optional<Product> byId) {
-        System.out.println("Search product by ID");
-        for (Product product : byId) {
-            System.out.println(product);
-        }
-        System.out.println("ID search end ");
-    }*/
-
-    private static void filter() {
-
-    }
-
-    private static void addProduct() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your product ");
-        String addProduct = scanner.nextLine();
-        db.add("Iphone","X ",350);
-        System.out.println("Your product was added to list.");
-    }
-
-    private static void deleteProduct() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your product title");
-        String deleteProduct = scanner.nextLine();
-        db.delete(2l);
-        System.out.println("Your product was removed from list.");
-    }
 }

@@ -2,6 +2,8 @@ package application.ui;
 
 import application.services.AddProductService;
 
+import java.util.Scanner;
+
 public class AddProductUIAction implements UIAction {
 
     private final AddProductService service;
