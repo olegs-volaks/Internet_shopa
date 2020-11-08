@@ -14,11 +14,11 @@ public class Application {
 
     private static UIAction addProductUIAction;
     private static Database db;
-    private static UIAction filter = new FilterUIAction(db);
-    private static UIAction getById = new GetByIdUIAction(db);
-    private static UIAction delete = new DeleteProductUIAction(db);
-    private static UIAction exit = new ExitUIAction();
-    private static UIAction getList = new ShowAllProductUIAction(db);
+    private static UIAction filter;
+    private static UIAction getById;
+    private static UIAction delete;
+    private static UIAction exit;
+    private static UIAction getList;
 
 
     public static void main(String[] args) {
@@ -61,6 +61,11 @@ public class Application {
         db = new ProductListDatabase();
         AddProductService addProductService = new AddProductService(db);
         addProductUIAction = new AddProductUIAction(addProductService);
+        UIAction filter = new FilterUIAction(db);
+        UIAction getById = new GetByIdUIAction(db);
+        UIAction delete = new DeleteProductUIAction(db);
+        UIAction exit = new ExitUIAction();
+        UIAction getList = new ShowAllProductUIAction(db);
     }
 
     private static void showMenu() {
