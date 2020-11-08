@@ -14,11 +14,11 @@ public class Application {
 
     private static Database db;
     private static UIAction addProductUIAction;
-    private static UIAction filter;
-    private static UIAction getById;
-    private static UIAction delete;
-    private static UIAction exit;
-    private static UIAction getList;
+    private static UIAction filterUIAction;
+    private static UIAction getByIdUIAction;
+    private static UIAction deleteUIAction;
+    private static UIAction exitUIAction;
+    private static UIAction getListUIAction;
 
 
     public static void main(String[] args) {
@@ -28,19 +28,19 @@ public class Application {
             int menuNumber = getChoice();
             switch (getChoice()) {
                 case 0 : {
-                    exit.execute();
+                    exitUIAction.execute();
                     break;
                 }
                 case 1 : {
-                    getList.execute();
+                    getListUIAction.execute();
                     break;
                 }
                 case 2 : {
-                    getById.execute();
+                    getByIdUIAction.execute();
                     break;
                 }
                 case 3 : {
-                    filter.execute();
+                    filterUIAction.execute();
                     break;
                 }
                 case 4 :{
@@ -48,7 +48,7 @@ public class Application {
                     break;
                 }
                 case 5 : {
-                    delete.execute();
+                    deleteUIAction.execute();
                     break;
                 }
             }
@@ -61,11 +61,11 @@ public class Application {
         db = new ProductListDatabase();
         AddProductService addProductService = new AddProductService(db);
         addProductUIAction = new AddProductUIAction(addProductService);
-        UIAction filter = new FilterUIAction(db);
-        UIAction getById = new GetByIdUIAction(db);
-        UIAction delete = new DeleteProductUIAction(db);
-        UIAction exit = new ExitUIAction();
-        UIAction getList = new ShowAllProductUIAction(db);
+        filterUIAction= new FilterUIAction(db);
+        getByIdUIAction= new GetByIdUIAction(db);
+        deleteUIAction = new DeleteProductUIAction(db);
+        exitUIAction = new ExitUIAction();
+        getListUIAction = new ShowAllProductUIAction(db);
     }
 
     private static void showMenu() {
@@ -90,6 +90,4 @@ public class Application {
         }
         return -1;
     }
-
-
 }
