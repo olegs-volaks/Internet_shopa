@@ -12,8 +12,8 @@ import java.util.Scanner;
 
 public class Application {
 
-    private static UIAction addProductUIAction;
     private static Database db;
+    private static UIAction addProductUIAction;
     private static UIAction filter;
     private static UIAction getById;
     private static UIAction delete;
