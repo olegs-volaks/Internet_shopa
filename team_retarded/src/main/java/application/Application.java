@@ -25,7 +25,6 @@ public class Application {
         initialization();
         while (true) {
             showMenu();
-            int menuNumber = getChoice();
             switch (getChoice()) {
                 case 0 : {
                     exitUIAction.execute();
