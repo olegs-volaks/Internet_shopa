@@ -17,10 +17,25 @@ public class AddProductUIAction implements UIAction {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please, enter new product name:");
         String name = scanner.nextLine();
-        System.out.print("Please, enter new product name:");
+        System.out.print("Please, enter new product description:");
         String description = scanner.nextLine();
-        System.out.print("Please, enter new product name:");
-        double price = scanner.nextDouble();
+        double price;
+        do {
+            price = getPrice();
+        } while (price < 0);
         service.addProduct(name, description, price);
+    }
+
+    private double getPrice() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Please, enter new product price:");
+        String price = scanner.nextLine();
+        price = price.replaceAll("\\s+","");
+        try {
+            return Double.parseDouble(price);
+        } catch (NumberFormatException ex) {
+            System.out.println("Incorrect value, try again");
+        }
+        return -1;
     }
 }

@@ -83,7 +83,7 @@ public class Application {
         System.out.print("Please, enter menu item number: ");
         Scanner scanner = new Scanner(System.in);
         try {
-            return Integer.parseInt(scanner.nextLine());
+            return Integer.parseInt(scanner.nextLine().replaceAll("\\s+",""));
         } catch (NumberFormatException ex) {
             System.out.println("Incorrect value, try again");
         }
