@@ -15,8 +15,8 @@ public class ClearUIAction implements UIAction {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Clear list : ");
+        System.out.println("Please, clear your list : ");
         db.clear();
-        System.out.println("Your clear a list");
+        System.out.println("Your list is successfully cleared .  ");
     }
 }

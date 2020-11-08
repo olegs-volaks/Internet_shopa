@@ -85,7 +85,7 @@ public class Application {
         try {
             return Integer.parseInt(scanner.nextLine().replaceAll("\\s+",""));
         } catch (NumberFormatException ex) {
-            System.out.println("Incorrect value, try again");
+            System.out.println("Incorrect value, try again ");
         }
         return -1;
     }

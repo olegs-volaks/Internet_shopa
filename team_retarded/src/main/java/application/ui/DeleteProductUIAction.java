@@ -15,9 +15,10 @@ public class DeleteProductUIAction  implements UIAction {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter product id to remove:  ");
-        Long productId = Long.parseLong(scanner.nextLine());
+        System.out.println("Please, enter product id to remove:  ");
+        long productId = Long.parseLong(scanner.nextLine());
         db.delete(productId);
-        System.out.println("Your product was removed from list.");
+        System.out.println("Your product was successfully removed.");
+
     }
 }
