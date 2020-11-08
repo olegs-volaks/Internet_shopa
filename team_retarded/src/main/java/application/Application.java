@@ -4,8 +4,7 @@ import application.bd.Database;
 import application.bd.ProductListDatabase;
 import application.items.Product;
 import application.services.AddProductService;
-import application.ui.AddProductUIAction;
-import application.ui.UIAction;
+import application.ui.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,34 +14,41 @@ public class Application {
 
     private static UIAction addProductUIAction;
     private static Database db;
+    private static UIAction filter = new FilterUIAction(db);
+    private static UIAction getById = new GetByIdUIAction(db);
+    private static UIAction delete = new DeleteProductUIAction(db);
+    private static UIAction exit = new ExitUIAction();
+    private static UIAction getList = new ShowAllProductUIAction(db);
+
 
     public static void main(String[] args) {
         initialization();
         while (true) {
             showMenu();
+            int menuNumber = getChoice();
             switch (getChoice()) {
-                case 0: {
-                    exit();
+                case 0 : {
+                    exit.execute();
                     break;
                 }
-                case 1: {
-                    db.getList();
+                case 1 : {
+                    getList.execute();
                     break;
                 }
-                case 2: {
-                    db.getById(1L);
+                case 2 : {
+                    getById.execute();
                     break;
                 }
-                // case 3: {
-                //     db.filter();
-                //    break;
-                // }
-                case 4: {
+                case 3 : {
+                    filter.execute();
+                    break;
+                }
+                case 4 :{
                     addProductUIAction.execute();
                     break;
                 }
-                case 5: {
-                    db.delete(1L);
+                case 5 : {
+                    delete.execute();
                     break;
                 }
             }
@@ -78,11 +84,6 @@ public class Application {
             System.out.println("Incorrect value, try again");
         }
         return -1;
-    }
-
-    private static void exit() {
-        System.out.println("Good bye!");
-        System.exit(0);
     }
 
 
