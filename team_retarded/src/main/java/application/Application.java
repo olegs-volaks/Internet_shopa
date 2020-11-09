@@ -2,12 +2,9 @@ package application;
 
 import application.bd.Database;
 import application.bd.ProductListDatabase;
-import application.items.Product;
-import application.services.AddProductService;
+import application.services.*;
 import application.ui.*;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class Application {
@@ -19,6 +16,7 @@ public class Application {
     private static UIAction deleteUIAction;
     private static UIAction exitUIAction;
     private static UIAction getListUIAction;
+    private static UIAction clearUIAction;
 
 
     public static void main(String[] args) {
@@ -60,12 +58,25 @@ public class Application {
         db = new ProductListDatabase();
         AddProductService addProductService = new AddProductService(db);
         addProductUIAction = new AddProductUIAction(addProductService);
+
         filterUIAction= new FilterUIAction(db);
-        getByIdUIAction= new GetByIdUIAction(db);
-        deleteUIAction = new DeleteProductUIAction(db);
+
+
+        GetByIdService getByIdService= new GetByIdService(db);
+        getByIdUIAction =new GetByIdUIAction(getByIdService);
+
+        DeleteProductService deleteProductService = new DeleteProductService(db);
+        deleteUIAction = new DeleteProductUIAction(deleteProductService);
+
         exitUIAction = new ExitUIAction();
-        getListUIAction = new ShowAllProductUIAction(db);
+
+        ShowAllProductService showAllProductService= new ShowAllProductService(db);
+        getListUIAction = new ShowAllProductUIAction(showAllProductService);
+
+        ClearService clearService = new ClearService(db);
+        clearUIAction = new ClearUIAction(clearService);
     }
+
 
     private static void showMenu() {
         System.out.println("==========================");
@@ -75,6 +86,7 @@ public class Application {
         System.out.println("[3] - Filter");
         System.out.println("[4] - Add product");
         System.out.println("[5] - Delete product");
+        System.out.println("[6] - Delete All products");
         System.out.println("[0] - Exit");
         System.out.println("==========================");
     }
