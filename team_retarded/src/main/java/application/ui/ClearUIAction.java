@@ -18,7 +18,7 @@ public class ClearUIAction implements UIAction {
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please, clear your list : ");
-        service.clearProductList("", "");
+        service.clearProductList();
         System.out.println("Your list is successfully cleared .  ");
     }
 }

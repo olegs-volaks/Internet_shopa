@@ -2,14 +2,17 @@ package application.ui;
 
 import application.services.AddProductService;
 
+
 import java.util.Scanner;
 
 public class AddProductUIAction implements UIAction {
 
     private final AddProductService service;
 
+
     public AddProductUIAction(AddProductService service) {
         this.service = service;
+
     }
 
     @Override
@@ -31,7 +34,7 @@ public class AddProductUIAction implements UIAction {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please, enter new product price: ");
         String price = scanner.nextLine();
-        price = price.replaceAll("\\s+","");
+        price = price.replaceAll("\\s+", "");
         try {
             return Double.parseDouble(price);
         } catch (NumberFormatException ex) {
@@ -40,3 +43,4 @@ public class AddProductUIAction implements UIAction {
         return -1;
     }
 }
+

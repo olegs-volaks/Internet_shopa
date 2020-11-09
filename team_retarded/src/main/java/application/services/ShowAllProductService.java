@@ -10,7 +10,7 @@ public class ShowAllProductService {
         this.db = db;
     }
 
-    public void showAllProduct(Long id, String name) {
+    public void showAllProduct() {
         db.getList();
     }
 }

@@ -10,7 +10,7 @@ public class ClearUIActionService {
         this.db = db;
     }
 
-    public void clearProductList(String name, String Id ) {
+    public void clearProductList() {
         db.clear();
     }
 
