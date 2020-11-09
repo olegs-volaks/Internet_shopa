@@ -2,6 +2,7 @@ package application.ui;
 
 import application.bd.Database;
 import application.items.Product;
+import application.services.GetByIDService;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -9,10 +10,10 @@ import java.util.Scanner;
 
 public class GetByIdUIAction implements UIAction {
 
-    private final Database db;
+    private final GetByIDService service;
 
-    public GetByIdUIAction(Database db) {
-        this.db = db;
+    public GetByIdUIAction(GetByIDService service) {
+        this.service = service;
     }
 
     @Override
@@ -20,7 +21,7 @@ public class GetByIdUIAction implements UIAction {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Get product by ID: ");
         long productId = Long.parseLong(scanner.nextLine());
-        db.getById(productId);
+        service.getById(productId);
         System.out.println("Your product was got by ID");
 
     }

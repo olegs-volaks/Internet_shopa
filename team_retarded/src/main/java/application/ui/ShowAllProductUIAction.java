@@ -1,15 +1,16 @@
 package application.ui;
 
 import application.bd.Database;
+import application.services.ShowAllProductService;
 
 import java.util.Scanner;
 
 public class ShowAllProductUIAction  implements UIAction {
 
-    private Database db;
+    private ShowAllProductService service;
 
-    public ShowAllProductUIAction(Database db) {
-        this.db = db;
+    public ShowAllProductUIAction(ShowAllProductService service) {
+        this.service = service;
     }
 
     @Override
@@ -17,10 +18,7 @@ public class ShowAllProductUIAction  implements UIAction {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please, enter ID product: ");
         long productId = Long.parseLong(scanner.nextLine());
-        db.getById(productId);
-        System.out.println("Please, enter product name: ");
-        String name = scanner.nextLine();
-        db.getList();
+        service.showAllProduct(productId,"");
         System.out.println("All products are successfully found  ");
 
     }

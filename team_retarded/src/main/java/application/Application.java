@@ -4,6 +4,9 @@ import application.bd.Database;
 import application.bd.ProductListDatabase;
 import application.items.Product;
 import application.services.AddProductService;
+import application.services.DeleteProductService;
+import application.services.GetByIDService;
+import application.services.ShowAllProductService;
 import application.ui.*;
 
 import java.util.List;
@@ -59,12 +62,15 @@ public class Application {
     private static void initialization() {
         db = new ProductListDatabase();
         AddProductService addProductService = new AddProductService(db);
+        DeleteProductService deleteProductService = new DeleteProductService(db);
+        GetByIDService getByIDService = new GetByIDService(db);
+        ShowAllProductService showAllProductService = new ShowAllProductService(db);
         addProductUIAction = new AddProductUIAction(addProductService);
         filterUIAction= new FilterUIAction(db);
-        getByIdUIAction= new GetByIdUIAction(db);
-        deleteUIAction = new DeleteProductUIAction(db);
+        getByIdUIAction= new GetByIdUIAction(getByIDService);
+        deleteUIAction = new DeleteProductUIAction(deleteProductService);
         exitUIAction = new ExitUIAction();
-        getListUIAction = new ShowAllProductUIAction(db);
+        getListUIAction = new ShowAllProductUIAction(showAllProductService);
     }
 
     private static void showMenu() {

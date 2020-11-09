@@ -1,23 +1,25 @@
 package application.ui;
 
 import application.bd.Database;
+import application.services.DeleteProductService;
 
 import java.util.Scanner;
 
 public class DeleteProductUIAction  implements UIAction {
 
-    private  final Database db;
+    private  final DeleteProductService service;
 
-    public DeleteProductUIAction(Database db) {
-        this.db = db;
+    public DeleteProductUIAction(DeleteProductService service) {
+        this.service = service;
     }
+
 
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please, enter product id to remove:  ");
         long productId = Long.parseLong(scanner.nextLine());
-        db.delete(productId);
+        service.deleteProduct(productId);
         System.out.println("Your product was successfully removed.");
 
     }

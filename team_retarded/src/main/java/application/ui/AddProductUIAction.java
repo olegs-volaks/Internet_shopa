@@ -24,6 +24,7 @@ public class AddProductUIAction implements UIAction {
             price = getPrice();
         } while (price < 0);
         service.addProduct(name, description, price);
+        System.out.println("Your product was successfully added.");
     }
 
     private double getPrice() {
