@@ -1,6 +1,5 @@
 package application.ui;
 
-import java.util.Scanner;
 
 public class ExitUIAction  implements UIAction {
 

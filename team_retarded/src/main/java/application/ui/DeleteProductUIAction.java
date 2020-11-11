@@ -1,7 +1,6 @@
 package application.ui;
 
-import application.bd.Database;
-import application.services.ClearService;
+
 import application.services.DeleteProductService;
 
 import java.util.Scanner;

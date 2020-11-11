@@ -1,15 +1,14 @@
 package application.ui;
 
-import application.items.Product;
 import application.services.FilterService;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
-import java.util.function.Predicate;
+
 
 public class FilterByPriceMinMaxUIAction implements UIAction {
     private final FilterService filterService;
-    public Predicate<Product> predicate ;
+
 
     public FilterByPriceMinMaxUIAction(FilterService filterService) {
         this.filterService = filterService;
@@ -17,23 +16,21 @@ public class FilterByPriceMinMaxUIAction implements UIAction {
 
     @Override
     public void execute() {
-
-       /* Scanner scanner = new Scanner(System.in);
-        System.out.print("Please, enter new product min price: ");
         double priceMin;
         double priceMax;
         do {
             priceMin = getPriceMin();
             priceMax = getPriceMax();
         } while (priceMin < 0 && priceMax < priceMin);
-        System.out.print("Please, enter another product max price: ");
-        String name1 = scanner.nextLine();
+
         System.out.println("All products are successfully found:  ");
-        for (int i = 0; i < filterService.Filter(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(priceMin)) > 0 &&
-                product.getPrice().compareTo(new BigDecimal(Double.toString(priceMin)) < 0))).size(); i++) {
-            System.out.println(filterService.Filter(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(priceMin)) > 0 &&
-                            product.getPrice().compareTo(new BigDecimal(Double.toString(priceMin)) < 0))).toString());
-        }*/
+        double finalPriceMax = priceMax;
+        double finalPriceMin = priceMin;
+        for (int i = 0; i < filterService.Filter(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMin))) > 0 &&
+                product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMax))) < 0).size(); i++) {
+            System.out.println(filterService.Filter(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMin))) > 0 &&
+                    product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMax))) < 0).get(i));
+        }
     }
 
     private double getPriceMin() {

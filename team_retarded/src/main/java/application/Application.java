@@ -9,10 +9,7 @@ import java.util.Scanner;
 
 public class Application {
 
-    //private static Database db;
-    private static Database db = new ProductListDatabase();
-    private static  AddProductService addProductService = new AddProductService(db);
-    private static UIAction addProductUIAction = new AddProductUIAction(addProductService);
+    private static UIAction addProductUIAction;
     private static UIAction filterByNameUIAction;
     private static UIAction getByIdUIAction;
     private static UIAction deleteUIAction;
@@ -27,47 +24,21 @@ public class Application {
         while (true) {
             showMenu();
             switch (getChoice()) {
-                case 0 : {
-                    exitUIAction.execute();
-                    break;
-                }
-                case 1 : {
-                    getListUIAction.execute();
-                    break;
-                }
-                case 2 : {
-                    getByIdUIAction.execute();
-                    break;
-                }
-                case 3 : {
-                    filterByNameUIAction.execute();
-                    break;
-                }
-                case 4 :{
-                    addProductUIAction.execute();
-
-                    break;
-                }
-                case 5 : {
-                    deleteUIAction.execute();
-                    break;
-                }
-                case 6 : {
-                    clearUIAction.execute();
-                    break;
-                }
-                case 7 : {
-                    filterByPriceMinMax.execute();
-                    break;
-                }
+                case 0 -> exitUIAction.execute();
+                case 1 -> getListUIAction.execute();
+                case 2 -> getByIdUIAction.execute();
+                case 3 -> filterByNameUIAction.execute();
+                case 4 -> addProductUIAction.execute();
+                case 5 -> deleteUIAction.execute();
+                case 6 -> clearUIAction.execute();
+                case 7 -> filterByPriceMinMax.execute();
             }
         }
 
     }
 
-
     private static void initialization() {
-        db = new ProductListDatabase();
+        Database db = new ProductListDatabase();
         AddProductService addProductService = new AddProductService(db);
         addProductUIAction = new AddProductUIAction(addProductService);
 
@@ -91,7 +62,6 @@ public class Application {
 
 
     }
-
 
     private static void showMenu() {
         System.out.println("==========================");
