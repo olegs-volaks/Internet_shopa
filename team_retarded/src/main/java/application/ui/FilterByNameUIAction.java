@@ -21,11 +21,8 @@ public class FilterByNameUIAction implements UIAction {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please, enter new product name: ");
         String name = scanner.nextLine();
-        //filterService.Filter(product -> product.getName().contains(name));
         System.out.print("Please, enter another product name: ");
         String name1 = scanner.nextLine();
-
-        //filterService.Filter(product -> product.getName().contains(name)||product.getName().contains(name1));
         System.out.println("All products are successfully found:  ");
         for (int i = 0; i < filterService.Filter(product -> product.getName().contains(name)||product.getName().contains(name1)).size(); i++) {
             System.out.println(filterService.Filter(product -> product.getName().contains(name)||product.getName().contains(name1)).get(i).toString());

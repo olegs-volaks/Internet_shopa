@@ -18,6 +18,7 @@ public class Application {
     private static UIAction deleteUIAction;
     private static UIAction exitUIAction;
     private static UIAction getListUIAction;
+    private static UIAction filterByPriceMinMax;
     private static UIAction clearUIAction;
 
 
@@ -51,6 +52,14 @@ public class Application {
                     deleteUIAction.execute();
                     break;
                 }
+                case 6 : {
+                    clearUIAction.execute();
+                    break;
+                }
+                case 7 : {
+                    filterByPriceMinMax.execute();
+                    break;
+                }
             }
         }
 
@@ -64,6 +73,7 @@ public class Application {
 
         FilterService filterService= new FilterService(db);
         filterByNameUIAction = new FilterByNameUIAction(filterService);
+        filterByPriceMinMax = new FilterByPriceMinMaxUIAction(filterService);
 
         GetByIdService getByIdService= new GetByIdService(db);
         getByIdUIAction =new GetByIdUIAction(getByIdService);
@@ -78,6 +88,8 @@ public class Application {
 
         ClearService clearService = new ClearService(db);
         clearUIAction = new ClearUIAction(clearService);
+
+
     }
 
 
@@ -90,6 +102,7 @@ public class Application {
         System.out.println("[4] - Add product");
         System.out.println("[5] - Delete product");
         System.out.println("[6] - Delete All products");
+        System.out.println("[7] - Filter by price");
         System.out.println("[0] - Exit");
         System.out.println("==========================");
     }
