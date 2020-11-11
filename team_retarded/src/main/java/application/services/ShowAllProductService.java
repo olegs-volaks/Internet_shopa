@@ -1,7 +1,9 @@
 package application.services;
 
 import application.bd.Database;
+import application.items.Product;
 
+import java.util.List;
 public class ShowAllProductService {
 
     private final Database db;
@@ -10,7 +12,7 @@ public class ShowAllProductService {
         this.db = db;
     }
 
-    public void showAllProduct() {
-        db.getList();
+    public List<Product> showAllProduct() {
+       return db.getList();
     }
 }
