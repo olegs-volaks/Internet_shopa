@@ -36,16 +36,29 @@ class ProductListDatabaseTest {
 
     @Test
     void delete_by_id() {
+        subject.add("Audi", "R8", 9000);
+        subject.add("Nokia", "5110", 100);
+        // assertThat(subject.delete(product -> product.getId()));
 
     }
 
     @Test
     void delete_by_name() {
+        subject.add("Nike", "shoes", 100.0);
+        subject.add("Iphone", "ProMax", 500.0);
+        subject.add("Nokia", "3310", 55.0);
+        subject.delete(product -> product.getName().equals("Nokia") || product.getName().equals("Nike"));
+        assertThat(subject.getList());
 
     }
 
     @Test
     void delete_by_description() {
+        subject.add("Ford", "Mustang", 50000.0);
+        subject.add("Mazda", "CRX", 15000.0);
+        subject.add("BMW", "M3", 25000.0);
+        subject.delete(product -> product.getDescription().equals("M3") || product.getDescription().equals("Mustang"));
+        assertThat(subject.getList());
 
     }
 
@@ -60,16 +73,26 @@ class ProductListDatabaseTest {
 
     @Test
     void delete_by_price_range() {
+        subject.add("Ball", "5size", 50.0);
+        subject.add("Tennis ball", "tennis", 10.0);
+        subject.add("Mars", "2pac", 34.0);
+
 
     }
 
     @Test
     void clear() {
+        subject.clear();
+        assertThat(subject.getList());
 
     }
 
     @Test
     void get_by_id() {
+        subject.getById(1L);
+        subject.getById(4L);
+        subject.getById(3L);
+        assertThat(subject.getList());
 
     }
 

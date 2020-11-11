@@ -2,11 +2,11 @@ package application.services;
 
 import application.bd.Database;
 
-public class GetByIDService {
+public class ShowProductByIDService {
 
     private final Database db;
 
-    public GetByIDService(Database db) {
+    public ShowProductByIDService(Database db) {
         this.db = db;
     }
 

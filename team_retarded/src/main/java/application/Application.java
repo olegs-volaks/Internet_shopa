@@ -2,15 +2,11 @@ package application;
 
 import application.bd.Database;
 import application.bd.ProductListDatabase;
-import application.items.Product;
 import application.services.AddProductService;
 import application.services.DeleteProductService;
-import application.services.GetByIDService;
 import application.services.ShowAllProductService;
+import application.services.ShowProductByIDService;
 import application.ui.*;
-
-import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class Application {
@@ -63,11 +59,11 @@ public class Application {
         db = new ProductListDatabase();
         AddProductService addProductService = new AddProductService(db);
         DeleteProductService deleteProductService = new DeleteProductService(db);
-        GetByIDService getByIDService = new GetByIDService(db);
+        ShowProductByIDService showProductByIDService = new ShowProductByIDService(db);
         ShowAllProductService showAllProductService = new ShowAllProductService(db);
         addProductUIAction = new AddProductUIAction(addProductService);
         filterUIAction= new FilterUIAction(db);
-        getByIdUIAction= new GetByIdUIAction(getByIDService);
+        getByIdUIAction= new ShowProductByIDAction(showProductByIDService);
         deleteUIAction = new DeleteProductUIAction(deleteProductService);
         exitUIAction = new ExitUIAction();
         getListUIAction = new ShowAllProductUIAction(showAllProductService);

@@ -1,8 +1,5 @@
 package application.ui;
-
-import application.bd.Database;
 import application.services.ClearUIActionService;
-
 import java.util.Scanner;
 
 public class ClearUIAction implements UIAction {
