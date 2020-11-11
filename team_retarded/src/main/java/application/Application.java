@@ -9,9 +9,11 @@ import java.util.Scanner;
 
 public class Application {
 
-    private static Database db;
-    private static UIAction addProductUIAction;
-    private static UIAction filterUIAction;
+    //private static Database db;
+    private static Database db = new ProductListDatabase();
+    private static  AddProductService addProductService = new AddProductService(db);
+    private static UIAction addProductUIAction = new AddProductUIAction(addProductService);
+    private static UIAction filterByNameUIAction;
     private static UIAction getByIdUIAction;
     private static UIAction deleteUIAction;
     private static UIAction exitUIAction;
@@ -37,11 +39,12 @@ public class Application {
                     break;
                 }
                 case 3 : {
-                    filterUIAction.execute();
+                    filterByNameUIAction.execute();
                     break;
                 }
                 case 4 :{
                     addProductUIAction.execute();
+
                     break;
                 }
                 case 5 : {
@@ -59,8 +62,8 @@ public class Application {
         AddProductService addProductService = new AddProductService(db);
         addProductUIAction = new AddProductUIAction(addProductService);
 
-        filterUIAction= new FilterUIAction(db);
-
+        FilterService filterService= new FilterService(db);
+        filterByNameUIAction = new FilterByNameUIAction(filterService);
 
         GetByIdService getByIdService= new GetByIdService(db);
         getByIdUIAction =new GetByIdUIAction(getByIdService);
@@ -83,7 +86,7 @@ public class Application {
         System.out.println("Internet Store MENU:");
         System.out.println("[1] - Show all products");
         System.out.println("[2] - Search by ID");
-        System.out.println("[3] - Filter");
+        System.out.println("[3] - Filter by name");
         System.out.println("[4] - Add product");
         System.out.println("[5] - Delete product");
         System.out.println("[6] - Delete All products");

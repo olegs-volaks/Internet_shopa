@@ -65,7 +65,16 @@ class ProductListDatabaseTest {
 
     @Test
     void clear() {
-
+        subject.add("BMW", "323", 10000.0);
+        subject.add("Honda", "2.0", 5000.0);
+        subject.add("Opel", "1.6", 4000.0);
+        subject.add("Mazda", "3.0", 3500.0);
+        subject.add("Iphone", "Xpro", 1000.0);
+        subject.add("PS4", "Pro", 350.0);
+        subject.add("BeatsByDRE", "", 100.0);
+        subject.add("AppleMac", "Pro", 555.0);
+        subject.clear();
+        assertThat(subject.getList()).isEmpty();
     }
 
     @Test
