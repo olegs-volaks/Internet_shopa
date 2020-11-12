@@ -1,6 +1,8 @@
 package application.services;
 
 import application.bd.Database;
+import application.items.Product;
+import java.util.Optional;
 
 public class ShowProductByIDService {
 
@@ -10,7 +12,7 @@ public class ShowProductByIDService {
         this.db = db;
     }
 
-    public void getById(Long id) {
-        db.getById(id);
+    public Optional<Product> getById(Long id) {
+        return db.getById(id);
     }
 }
