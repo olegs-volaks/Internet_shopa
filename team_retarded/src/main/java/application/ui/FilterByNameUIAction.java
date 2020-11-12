@@ -4,6 +4,7 @@ import application.items.Product;
 import application.services.FilterService;
 
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.function.Predicate;
 
@@ -23,8 +24,9 @@ public class FilterByNameUIAction implements UIAction {
         System.out.print("Please, enter another product name: ");
         String name1 = scanner.nextLine();
         System.out.println("All products are successfully found:  ");
-        for (int i = 0; i < filterService.Filter(product -> product.getName().contains(name)||product.getName().contains(name1)).size(); i++) {
-            System.out.println(filterService.Filter(product -> product.getName().contains(name)||product.getName().contains(name1)).get(i));
+        List<Product> products = filterService.Filter(product -> product.getName().contains(name) || product.getName().contains(name1));
+        for (int i = 0; i < products.size(); i++) {
+            System.out.println(products.get(i));
         }
     }
 }

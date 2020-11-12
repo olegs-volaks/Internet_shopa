@@ -1,8 +1,10 @@
 package application.ui;
 
+import application.items.Product;
 import application.services.FilterService;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -26,10 +28,10 @@ public class FilterByPriceMinMaxUIAction implements UIAction {
         System.out.println("All products are successfully found:  ");
         double finalPriceMax = priceMax;
         double finalPriceMin = priceMin;
-        for (int i = 0; i < filterService.Filter(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMin))) > 0 &&
-                product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMax))) < 0).size(); i++) {
-            System.out.println(filterService.Filter(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMin))) > 0 &&
-                    product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMax))) < 0).get(i));
+        List<Product> products = filterService.Filter(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMin))) > 0 &&
+                product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMax))) < 0);
+        for (Product product : products) {
+            System.out.println(product);
         }
     }
 
@@ -37,7 +39,7 @@ public class FilterByPriceMinMaxUIAction implements UIAction {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please, enter min price: ");
         String price = scanner.nextLine();
-        price = price.replaceAll("\\s+","");
+        price = price.replaceAll("\\s+", "");
         try {
             return Double.parseDouble(price);
         } catch (NumberFormatException ex) {
@@ -50,7 +52,7 @@ public class FilterByPriceMinMaxUIAction implements UIAction {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please, enter max price: ");
         String price = scanner.nextLine();
-        price = price.replaceAll("\\s+","");
+        price = price.replaceAll("\\s+", "");
         try {
             return Double.parseDouble(price);
         } catch (NumberFormatException ex) {

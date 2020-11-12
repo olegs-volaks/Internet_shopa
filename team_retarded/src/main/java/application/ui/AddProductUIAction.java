@@ -30,7 +30,7 @@ public class AddProductUIAction implements UIAction {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Please, enter new product price: ");
         String price = scanner.nextLine();
-        price = price.replaceAll("\\s+","");
+        price = price.replaceAll("\\s+", "");
         try {
             return Double.parseDouble(price);
         } catch (NumberFormatException ex) {
