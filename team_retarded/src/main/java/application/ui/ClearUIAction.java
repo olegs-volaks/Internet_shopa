@@ -1,21 +1,22 @@
 package application.ui;
-import application.services.ClearUIActionService;
+
+import application.bd.Database;
+
 import java.util.Scanner;
 
 public class ClearUIAction implements UIAction {
 
-    private final ClearUIActionService service;
+    private Database db;
 
-    public ClearUIAction(ClearUIActionService service) {
-        this.service = service;
+    public ClearUIAction(Database db) {
+        this.db = db;
     }
-
 
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please, clear your list : ");
-        service.clearProductList();
+        db.clear();
         System.out.println("Your list is successfully cleared .  ");
     }
 }

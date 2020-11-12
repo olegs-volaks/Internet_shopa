@@ -1,7 +1,9 @@
 package application.ui;
 
+
 import application.services.ShowAllProductService;
-import java.util.List;
+
+
 public class ShowAllProductUIAction implements UIAction {
 
     private final ShowAllProductService service;
@@ -13,10 +15,8 @@ public class ShowAllProductUIAction implements UIAction {
     @Override
     public void execute() {
         System.out.println("All products are successfully found:  ");
-        System.out.println(service.showAllProduct());
-
-
-
-
+        for (int i = 0; i < service.showAllProducts().size(); i++) {
+            System.out.println(service.showAllProducts().get(i));
+        }
     }
 }

@@ -2,10 +2,7 @@ package application;
 
 import application.bd.Database;
 import application.bd.ProductListDatabase;
-import application.services.AddProductService;
-import application.services.DeleteProductService;
-import application.services.ShowAllProductService;
-import application.services.ShowProductByIDService;
+import application.services.*;
 import application.ui.*;
 import java.util.Scanner;
 
@@ -61,8 +58,9 @@ public class Application {
         DeleteProductService deleteProductService = new DeleteProductService(db);
         ShowProductByIDService showProductByIDService = new ShowProductByIDService(db);
         ShowAllProductService showAllProductService = new ShowAllProductService(db);
+        FilterService filterService = new FilterService(db);
         addProductUIAction = new AddProductUIAction(addProductService);
-        filterUIAction= new FilterUIAction(db);
+        filterUIAction= new FilterByNameUIAction(filterService);
         getByIdUIAction= new ShowProductByIDAction(showProductByIDService);
         deleteUIAction = new DeleteProductUIAction(deleteProductService);
         exitUIAction = new ExitUIAction();
