@@ -42,19 +42,19 @@ public class Application {
         AddProductService addProductService = new AddProductService(db);
         addProductUIAction = new AddProductUIAction(addProductService);
 
-        FilterService filterService= new FilterService(db);
+        FilterService filterService = new FilterService(db);
         filterByNameUIAction = new FilterByNameUIAction(filterService);
         filterByPriceMinMax = new FilterByPriceMinMaxUIAction(filterService);
 
-        GetByIdService getByIdService= new GetByIdService(db);
-        getByIdUIAction =new GetByIdUIAction(getByIdService);
+        GetByIdService getByIdService = new GetByIdService(db);
+        getByIdUIAction = new GetByIdUIAction(getByIdService);
 
         DeleteProductService deleteProductService = new DeleteProductService(db);
         deleteUIAction = new DeleteProductUIAction(deleteProductService);
 
         exitUIAction = new ExitUIAction();
 
-        ShowAllProductService showAllProductService= new ShowAllProductService(db);
+        ShowAllProductService showAllProductService = new ShowAllProductService(db);
         getListUIAction = new ShowAllProductUIAction(showAllProductService);
 
         ClearService clearService = new ClearService(db);
@@ -81,7 +81,7 @@ public class Application {
         System.out.print("Please, enter menu item number: ");
         Scanner scanner = new Scanner(System.in);
         try {
-            return Integer.parseInt(scanner.nextLine().replaceAll("\\s+",""));
+            return Integer.parseInt(scanner.nextLine().replaceAll("\\s+", ""));
         } catch (NumberFormatException ex) {
             System.out.println("Incorrect value, try again ");
         }

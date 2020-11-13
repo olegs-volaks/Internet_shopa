@@ -4,8 +4,7 @@ package application.ui;
 import application.services.ShowAllProductService;
 
 
-
-public class ShowAllProductUIAction  implements UIAction {
+public class ShowAllProductUIAction implements UIAction {
 
     private final ShowAllProductService service;
 
