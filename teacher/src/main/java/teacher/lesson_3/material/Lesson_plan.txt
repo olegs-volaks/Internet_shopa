@@ -1,9 +1,0 @@
-Lesson 3 plan:
-
-0. Stand up meeting (agile practice)
-1. Git branches
-2. Work with pull requests
-3. Code with me plugin presentation (from students)
-4. Team leadership
-5. User stories (agile practice)
-6. Event based applications (request/response model)
