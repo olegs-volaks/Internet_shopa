@@ -3,6 +3,7 @@ package application;
 import application.bd.Database;
 import application.bd.ProductListDatabase;
 import application.core.services.*;
+import application.core.services.validators.AddProductValidator;
 import application.ui.*;
 
 import java.util.Scanner;
@@ -39,7 +40,8 @@ public class Application {
 
     private static void initialization() {
         Database db = new ProductListDatabase();
-        AddProductService addProductService = new AddProductService(db);
+        AddProductValidator addProductValidator = new AddProductValidator();
+        AddProductService addProductService = new AddProductService(db, addProductValidator);
         addProductUIAction = new AddProductUIAction(addProductService);
 
         FilterProductsByNameService filterProductsByNameService = new FilterProductsByNameService(db);
