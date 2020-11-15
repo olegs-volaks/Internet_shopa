@@ -9,18 +9,13 @@ import java.util.Optional;
 public class ShowProductByIDService {
 
     private final Database db;
-    private long id;
 
     public ShowProductByIDService(Database db) {
         this.db = db;
     }
 
-//    public Optional<Product> getById(Long id) {
-//        return db.getById(id);
-//    }
-
     public ShowProductByIDResponse execute(ShowProductByIDRequests requests) {
-        Optional<Product> products;
+        Optional<Product> products = db.getById(requests.getById());
         return new ShowProductByIDResponse(products);
     }
 }
