@@ -2,7 +2,7 @@ package application;
 
 import application.bd.Database;
 import application.bd.ProductListDatabase;
-import application.services.*;
+import application.core.services.*;
 import application.ui.*;
 
 import java.util.Scanner;
@@ -42,23 +42,25 @@ public class Application {
         AddProductService addProductService = new AddProductService(db);
         addProductUIAction = new AddProductUIAction(addProductService);
 
-        FilterService filterService = new FilterService(db);
-        filterByNameUIAction = new FilterByNameUIAction(filterService);
-        filterByPriceMinMax = new FilterByPriceMinMaxUIAction(filterService);
+        FilterProductsByNameService filterProductsByNameService = new FilterProductsByNameService(db);
+        filterByNameUIAction = new FilterProductsByNameUIAction(filterProductsByNameService);
 
-        GetByIdService getByIdService = new GetByIdService(db);
-        getByIdUIAction = new GetByIdUIAction(getByIdService);
+        FilterProductsByPriceService filterProductsByPriceService = new FilterProductsByPriceService(db);
+        filterByPriceMinMax = new FilterProductsByPriceUIAction(filterProductsByPriceService);
+
+        GetProductByIdService getProductByIdService = new GetProductByIdService(db);
+        getByIdUIAction = new GetProductByIdUIAction(getProductByIdService);
 
         DeleteProductService deleteProductService = new DeleteProductService(db);
         deleteUIAction = new DeleteProductUIAction(deleteProductService);
 
         exitUIAction = new ExitUIAction();
 
-        ShowAllProductService showAllProductService = new ShowAllProductService(db);
-        getListUIAction = new ShowAllProductUIAction(showAllProductService);
+        ShowAllProductsService showAllProductsService = new ShowAllProductsService(db);
+        getListUIAction = new ShowAllProductsUIAction(showAllProductsService);
 
-        ClearService clearService = new ClearService(db);
-        clearUIAction = new ClearUIAction(clearService);
+        ClearAllProductsService clearAllProductsService = new ClearAllProductsService(db);
+        clearUIAction = new ClearAllProductsUIAction(clearAllProductsService);
 
 
     }

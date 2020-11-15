@@ -1,6 +1,6 @@
 package application.ui;
 
-import application.services.AddProductService;
+import application.core.services.AddProductService;
 
 import java.util.Scanner;
 

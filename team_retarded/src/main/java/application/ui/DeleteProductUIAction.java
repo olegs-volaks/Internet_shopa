@@ -1,7 +1,7 @@
 package application.ui;
 
 
-import application.services.DeleteProductService;
+import application.core.services.DeleteProductService;
 
 import java.util.Scanner;
 
