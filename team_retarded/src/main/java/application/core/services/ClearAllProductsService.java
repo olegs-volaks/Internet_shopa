@@ -9,7 +9,7 @@ public class ClearAllProductsService {
         this.db = db;
     }
 
-    public void clear() {
+    public void execute() {
         db.clear();
     }
 }

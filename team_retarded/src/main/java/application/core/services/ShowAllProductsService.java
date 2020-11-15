@@ -12,7 +12,7 @@ public class ShowAllProductsService {
         this.db = db;
     }
 
-    public List<Product> showAllProducts() {
+    public List<Product> execute() {
         return db.getList();
     }
 }

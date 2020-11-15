@@ -15,8 +15,8 @@ public class ShowAllProductsUIAction implements UIAction {
     @Override
     public void execute() {
         System.out.println("All products are successfully found:  ");
-        for (int i = 0; i < service.showAllProducts().size(); i++) {
-            System.out.println(service.showAllProducts().get(i));
+        for (int i = 0; i < service.execute().size(); i++) {
+            System.out.println(service.execute().get(i));
         }
     }
 }

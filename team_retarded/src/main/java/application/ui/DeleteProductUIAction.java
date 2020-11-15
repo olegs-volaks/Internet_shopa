@@ -18,7 +18,7 @@ public class DeleteProductUIAction  implements UIAction {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please, enter product id to remove:  ");
         long productId = Long.parseLong(scanner.nextLine());
-        service.delete(productId);
+        service.execute(productId);
         System.out.println("Your product was successfully removed.");
     }
 }

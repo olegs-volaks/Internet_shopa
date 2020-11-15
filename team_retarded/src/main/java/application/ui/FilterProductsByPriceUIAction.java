@@ -28,7 +28,7 @@ public class FilterProductsByPriceUIAction implements UIAction {
         System.out.println("All products are successfully found:  ");
         double finalPriceMax = priceMax;
         double finalPriceMin = priceMin;
-        List<Product> products = service.Filter(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMin))) > 0 &&
+        List<Product> products = service.execute(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMin))) > 0 &&
                 product.getPrice().compareTo(new BigDecimal(Double.toString(finalPriceMax))) < 0);
         for (Product product : products) {
             System.out.println(product);

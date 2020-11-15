@@ -9,7 +9,7 @@ public class DeleteProductService {
         this.db = db;
     }
 
-    public void delete(Long id) {
+    public void execute(Long id) {
         db.delete(id);
     }
 }

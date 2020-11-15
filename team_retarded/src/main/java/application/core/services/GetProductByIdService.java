@@ -12,7 +12,7 @@ public class GetProductByIdService {
         this.db = db;
     }
 
-    public Optional<Product> getById(Long id) {
+    public Optional<Product> execute(Long id) {
         return db.getById(id);
     }
 }

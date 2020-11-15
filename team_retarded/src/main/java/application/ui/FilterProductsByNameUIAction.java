@@ -22,7 +22,7 @@ public class FilterProductsByNameUIAction implements UIAction {
         System.out.print("Please, enter another product name: ");
         String name1 = scanner.nextLine();
         System.out.println("All products are successfully found:  ");
-        List<Product> products = service.Filter(product -> product.getName().contains(name) || product.getName().contains(name1));
+        List<Product> products = service.execute(product -> product.getName().contains(name) || product.getName().contains(name1));
         for (int i = 0; i < products.size(); i++) {
             System.out.println(products.get(i));
         }

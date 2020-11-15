@@ -13,7 +13,7 @@ public class FilterProductsByPriceService {
         this.db = db;
     }
 
-    public List<Product> Filter(Predicate<Product> predicate) {
+    public List<Product> execute(Predicate<Product> predicate) {
         return db.filter(predicate);
 
     }
