@@ -21,8 +21,9 @@ public class ProductListDatabase implements Database {
     }
 
     @Override
-    public void delete(long id) {
+    public boolean delete(long id) {
         db.removeIf(x -> x.getId() == id);
+        return false;
     }
 
     @Override

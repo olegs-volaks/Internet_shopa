@@ -1,13 +1,13 @@
 package application.ui;
-
+import application.requests.AddProductRequests;
+import application.responses.AddProductResponse;
 import application.services.AddProductService;
-
-
 import java.util.Scanner;
 
 public class AddProductUIAction implements UIAction {
 
     private final AddProductService service;
+    private Long id;
 
 
     public AddProductUIAction(AddProductService service) {
@@ -22,6 +22,16 @@ public class AddProductUIAction implements UIAction {
         String name = scanner.nextLine();
         System.out.print("Please, enter new product description: ");
         String description = scanner.nextLine();
+        AddProductRequests requests = new AddProductRequests(id,name,description,getPrice());
+        AddProductResponse response = service.execute(requests);
+
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError ->
+                    System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+        }else {
+            System.out.println("New product id was: " + response.getNewProduct().getId());
+            System.out.println("Your product was successfully added to list.");
+        }
         double price;
         do {
             price = getPrice();

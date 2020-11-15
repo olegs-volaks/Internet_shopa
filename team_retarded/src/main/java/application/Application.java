@@ -1,5 +1,4 @@
 package application;
-
 import application.bd.Database;
 import application.bd.ProductListDatabase;
 import application.services.*;
@@ -54,7 +53,8 @@ public class Application {
 
     private static void initialization() {
         db = new ProductListDatabase();
-        AddProductService addProductService = new AddProductService(db);
+        AddProductValidator addProductValidator = new AddProductValidator();
+        AddProductService addProductService = new AddProductService(db,addProductValidator);
         DeleteProductService deleteProductService = new DeleteProductService(db);
         ShowProductByIDService showProductByIDService = new ShowProductByIDService(db);
         ShowAllProductService showAllProductService = new ShowAllProductService(db);

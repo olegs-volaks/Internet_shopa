@@ -1,8 +1,6 @@
 package application.services;
-
 import application.bd.Database;
 import application.items.Product;
-
 import java.util.List;
 import java.util.function.Predicate;
 
