@@ -23,7 +23,6 @@ public class AddProductService {
         if (!errors.isEmpty()) {
             return new AddProductResponse(errors);
         }
-        db.add(request.getName(), request.getDescription(), request.getPrice());
-        return new AddProductResponse();
+        return new AddProductResponse(db.add(request.getName(), request.getDescription(), request.getPrice()));
     }
 }
