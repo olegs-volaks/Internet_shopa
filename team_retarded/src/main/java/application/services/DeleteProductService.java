@@ -19,13 +19,12 @@ public class DeleteProductService {
     }
 
     public DeleteProductResponse execute(DeleteProductRequests requests) {
+        List<CoreError> errors = new ArrayList<>();
         if (requests.getProductId() == null) {
             CoreError error = new CoreError("id","Please insert id product,it can not be empty!");
-            List<CoreError> errors = new ArrayList<>();
             errors.add(error);
           //  return new DeleteProductResponse(errors);
         }
-        boolean isProductDeleted = db.delete(requests.getProductId());
-        return new DeleteProductResponse(isProductDeleted);
+        return new DeleteProductResponse();
     }
 }

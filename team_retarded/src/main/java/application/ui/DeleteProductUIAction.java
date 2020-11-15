@@ -21,14 +21,14 @@ public class DeleteProductUIAction  implements UIAction {
         DeleteProductRequests requests = new DeleteProductRequests(productId);
         DeleteProductResponse response = service.execute(requests);
 
-        if (response.hasErrors()) {
-            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
-        } else {
-            if (response.isDeleteProductId()) {
-                System.out.println("Your product was successfully removed.");
-            } else{
-                System.out.println("Your product not removed from list.");
-            }
-        }
+//        if (response.hasErrors()) {
+//            response.getErrors().forEach(coreError -> System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
+//        } else {
+//            if (response.isDeleteProductId()) {
+//                System.out.println("Your product was successfully removed.");
+//            } else{
+//                System.out.println("Your product not removed from list.");
+//            }
+//        }
     }
 }

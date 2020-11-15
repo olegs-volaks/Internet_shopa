@@ -2,22 +2,15 @@ package application.requests;
 
 public class AddProductRequests {
 
-    private final Long id;
     private final String name;
     private final String description;
     private final double price;
 
-    public AddProductRequests(Long id, String name, String description, double price) {
-        this.id = id;
+    public AddProductRequests(String name, String description, double price) {
         this.name = name;
         this.description = description;
         this.price = price;
 
-    }
-
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {

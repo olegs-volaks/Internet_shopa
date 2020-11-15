@@ -1,14 +1,11 @@
 package application.requests;
-import application.items.Product;
-import java.util.Optional;
 
 public class ShowProductByIDRequests {
 
-    private Long getById;
+    private final Long getById;
 
-    public Optional<Product> ShowProductByIDRequests(Long getById) {
+    public ShowProductByIDRequests(Long getById) {
         this.getById = getById;
-        return Optional.empty();
     }
 
     public Long getById() {

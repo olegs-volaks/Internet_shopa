@@ -1,20 +1,26 @@
 package application.responses;
+import application.items.Product;
+
 import java.util.List;
+import java.util.Optional;
 
 public class ShowProductByIDResponse  extends CoreResponse{
 
-    private final Long getById;
+    private Optional<Product> product;
 
-    public ShowProductByIDResponse(Long getById) {
-        this.getById = getById;
+    public ShowProductByIDResponse() {
+        super();
     }
 
-    public ShowProductByIDResponse(List<CoreError> errors, Long getById) {
+    public ShowProductByIDResponse(List<CoreError> errors) {
         super(errors);
-        this.getById = getById;
     }
 
-    public Long getById() {
-        return getById;
+    public ShowProductByIDResponse(Optional<Product> product) {
+        this.product = product;
+    }
+
+    public Optional<Product> getProduct() {
+        return product;
     }
 }

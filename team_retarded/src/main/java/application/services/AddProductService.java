@@ -29,7 +29,8 @@ public class AddProductService {
         if (!errors.isEmpty()) {
             return new AddProductResponse(errors);
         }
-        Product product = new Product(requests.getId(),requests.getName(), requests.getDescription(), requests.getPrice());
-        return new AddProductResponse(product);
+        db.add(requests.getName(), requests.getDescription(), requests.getPrice());
+//        Product product = new Product(requests.getId(),requests.getName(), requests.getDescription(), requests.getPrice());
+        return new AddProductResponse();
     }
 }

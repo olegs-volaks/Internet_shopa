@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class AddProductUIAction implements UIAction {
 
     private final AddProductService service;
-    private Long id;
 
 
     public AddProductUIAction(AddProductService service) {
@@ -22,22 +21,21 @@ public class AddProductUIAction implements UIAction {
         String name = scanner.nextLine();
         System.out.print("Please, enter new product description: ");
         String description = scanner.nextLine();
-        AddProductRequests requests = new AddProductRequests(id,name,description,getPrice());
+        AddProductRequests requests = new AddProductRequests(name,description,getPrice());
         AddProductResponse response = service.execute(requests);
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError ->
                     System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
         }else {
-            System.out.println("New product id was: " + response.getNewProduct().getId());
             System.out.println("Your product was successfully added to list.");
         }
-        double price;
-        do {
-            price = getPrice();
-        } while (price < 0);
-        service.addProduct(name, description, price);
-        System.out.println("Your product was successfully added.");
+//        double price;
+//        do {
+//            price = getPrice();
+//        } while (price < 0);
+//        //service.addProduct(name, description, price);
+//        System.out.println("Your product was successfully added.");
     }
 
     private double getPrice() {

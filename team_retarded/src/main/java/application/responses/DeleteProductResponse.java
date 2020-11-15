@@ -4,19 +4,11 @@ import java.util.List;
 
 public class DeleteProductResponse extends CoreResponse {
 
-    private final boolean deleteProductId;
-
-    public DeleteProductResponse(boolean deleteProductId) {
-        this.deleteProductId = deleteProductId;
+    public DeleteProductResponse() {
+        super();
     }
 
-    public DeleteProductResponse(List<CoreError> errors, boolean deleteProductId) {
+    public DeleteProductResponse(List<CoreError> errors) {
         super(errors);
-        this.deleteProductId = deleteProductId;
-    }
-
-
-    public boolean isDeleteProductId() {
-        return deleteProductId;
     }
 }

@@ -15,12 +15,12 @@ public class ShowProductByIDService {
         this.db = db;
     }
 
-    public Optional<Product> getById(Long id) {
-        return db.getById(id);
-    }
+//    public Optional<Product> getById(Long id) {
+//        return db.getById(id);
+//    }
 
     public ShowProductByIDResponse execute(ShowProductByIDRequests requests) {
-        Optional<Product> products = db.getById(id);
-        return new ShowProductByIDResponse(id);
+        Optional<Product> products;
+        return new ShowProductByIDResponse(products);
     }
 }
