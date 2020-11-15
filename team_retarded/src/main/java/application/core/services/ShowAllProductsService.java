@@ -1,9 +1,8 @@
 package application.core.services;
 
 import application.bd.Database;
-import application.items.Product;
-
-import java.util.List;
+import application.core.requests.ShowAllProductsRequest;
+import application.core.responses.ShowAllProductsResponse;
 
 public class ShowAllProductsService {
     private final Database db;
@@ -12,7 +11,7 @@ public class ShowAllProductsService {
         this.db = db;
     }
 
-    public List<Product> execute() {
-        return db.getList();
+    public ShowAllProductsResponse execute(ShowAllProductsRequest request) {
+        return new ShowAllProductsResponse(db.getList());
     }
 }

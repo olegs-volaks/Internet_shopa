@@ -1,6 +1,8 @@
 package application.ui;
 
 
+import application.core.requests.ShowAllProductsRequest;
+import application.core.responses.ShowAllProductsResponse;
 import application.core.services.ShowAllProductsService;
 
 
@@ -14,9 +16,10 @@ public class ShowAllProductsUIAction implements UIAction {
 
     @Override
     public void execute() {
-        System.out.println("All products are successfully found:  ");
-        for (int i = 0; i < service.execute().size(); i++) {
-            System.out.println(service.execute().get(i));
+        ShowAllProductsResponse response = service.execute(new ShowAllProductsRequest());
+        if (!response.hasErrors()) {
+            System.out.println("All products:");
+            response.getProducts().forEach(System.out::println);
         }
     }
 }
