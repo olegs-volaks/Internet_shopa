@@ -13,6 +13,7 @@ public class AddProductValidator {
         List<CoreError> errors = new ArrayList<>();
         validateName(request).ifPresent(errors::add);
         validateDescription(request).ifPresent(errors::add);
+        validatePrice(request).ifPresent(errors::add);
         return errors;
     }
 
