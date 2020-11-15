@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 
 public interface Database {
 
-    void add(String productName, String specification, double price);
+    long add(String productName, String specification, double price);
 
     void delete(long id);
 
