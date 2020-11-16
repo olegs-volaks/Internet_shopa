@@ -1,6 +1,8 @@
 package application.ui;
 
-import application.services.AddProductService;
+import application.core.requests.AddProductRequest;
+import application.core.responses.AddProductResponse;
+import application.core.services.AddProductService;
 
 import java.util.Scanner;
 
@@ -23,7 +25,13 @@ public class AddProductUIAction implements UIAction {
         do {
             price = getPrice();
         } while (price < 0);
-        service.addProduct(name, description, price);
+        AddProductResponse response = service.execute(new AddProductRequest(name, description, price));
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
+                    + coreError.getField() + ": " + coreError.getMessage()));
+        } else {
+            System.out.println("Product number " + response.getProductId() + " was added successfully");
+        }
     }
 
     private double getPrice() {

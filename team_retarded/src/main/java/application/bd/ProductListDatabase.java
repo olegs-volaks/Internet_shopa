@@ -12,12 +12,13 @@ import static java.util.stream.Collectors.toList;
 public class ProductListDatabase implements Database {
 
     private final List<Product> db = new ArrayList<>();
-    private long id = 1;
+    private long id;
 
     @Override
-    public void add(String name, String description, double price) {
-        db.add(new Product(id, name, description, price));
+    public long add(String name, String description, double price) {
         id++;
+        db.add(new Product(id, name, description, price));
+        return id;
     }
 
     @Override
