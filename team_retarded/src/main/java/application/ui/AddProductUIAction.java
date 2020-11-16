@@ -1,17 +1,17 @@
 package application.ui;
-import application.requests.AddProductRequests;
-import application.responses.AddProductResponse;
-import application.services.AddProductService;
+
+import application.core.requests.AddProductRequest;
+import application.core.responses.AddProductResponse;
+import application.core.services.AddProductService;
+
 import java.util.Scanner;
 
 public class AddProductUIAction implements UIAction {
 
     private final AddProductService service;
 
-
     public AddProductUIAction(AddProductService service) {
         this.service = service;
-
     }
 
     @Override
@@ -21,21 +21,17 @@ public class AddProductUIAction implements UIAction {
         String name = scanner.nextLine();
         System.out.print("Please, enter new product description: ");
         String description = scanner.nextLine();
-        AddProductRequests requests = new AddProductRequests(name,description,getPrice());
-        AddProductResponse response = service.execute(requests);
-
+        double price;
+        do {
+            price = getPrice();
+        } while (price < 0);
+        AddProductResponse response = service.execute(new AddProductRequest(name, description, price));
         if (response.hasErrors()) {
-            response.getErrors().forEach(coreError ->
-                    System.out.println("Error: " + coreError.getField() + " " + coreError.getMessage()));
-        }else {
-            System.out.println("Your product was successfully added to list.");
+            response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
+                    + coreError.getField() + ": " + coreError.getMessage()));
+        } else {
+            System.out.println("Product number " + response.getProductId() + " was added successfully");
         }
-//        double price;
-//        do {
-//            price = getPrice();
-//        } while (price < 0);
-//        //service.addProduct(name, description, price);
-//        System.out.println("Your product was successfully added.");
     }
 
     private double getPrice() {
@@ -51,4 +47,3 @@ public class AddProductUIAction implements UIAction {
         return -1;
     }
 }
-

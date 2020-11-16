@@ -1,19 +1,23 @@
 package application;
+
 import application.bd.Database;
 import application.bd.ProductListDatabase;
-import application.services.*;
+import application.core.services.*;
+import application.core.services.validators.AddProductValidator;
 import application.ui.*;
+
 import java.util.Scanner;
 
 public class Application {
 
-    private static Database db;
     private static UIAction addProductUIAction;
-    private static UIAction filterUIAction;
+    private static UIAction filterByNameUIAction;
     private static UIAction getByIdUIAction;
     private static UIAction deleteUIAction;
     private static UIAction exitUIAction;
     private static UIAction getListUIAction;
+    private static UIAction filterByPriceMinMax;
+    private static UIAction clearUIAction;
 
 
     public static void main(String[] args) {
@@ -21,50 +25,46 @@ public class Application {
         while (true) {
             showMenu();
             switch (getChoice()) {
-                case 0 : {
-                    exitUIAction.execute();
-                    break;
-                }
-                case 1 : {
-                    getListUIAction.execute();
-                    break;
-                }
-                case 2 : {
-                    getByIdUIAction.execute();
-                    break;
-                }
-                case 3 : {
-                    filterUIAction.execute();
-                    break;
-                }
-                case 4 :{
-                    addProductUIAction.execute();
-                    break;
-                }
-                case 5 : {
-                    deleteUIAction.execute();
-                    break;
-                }
+                case 0 -> exitUIAction.execute();
+                case 1 -> getListUIAction.execute();
+                case 2 -> getByIdUIAction.execute();
+                case 3 -> filterByNameUIAction.execute();
+                case 4 -> addProductUIAction.execute();
+                case 5 -> deleteUIAction.execute();
+                case 6 -> clearUIAction.execute();
+                case 7 -> filterByPriceMinMax.execute();
             }
         }
 
     }
 
-
     private static void initialization() {
-        db = new ProductListDatabase();
+        Database db = new ProductListDatabase();
         AddProductValidator addProductValidator = new AddProductValidator();
-        AddProductService addProductService = new AddProductService(db,addProductValidator);
-        DeleteProductService deleteProductService = new DeleteProductService(db);
-        ShowProductByIDService showProductByIDService = new ShowProductByIDService(db);
-        ShowAllProductService showAllProductService = new ShowAllProductService(db);
-        FilterService filterService = new FilterService(db);
+        AddProductService addProductService = new AddProductService(db, addProductValidator);
         addProductUIAction = new AddProductUIAction(addProductService);
-        filterUIAction= new FilterByNameUIAction(filterService);
-        getByIdUIAction= new ShowProductByIDAction(showProductByIDService);
+
+        FilterProductsByNameService filterProductsByNameService = new FilterProductsByNameService(db);
+        filterByNameUIAction = new FilterProductsByNameUIAction(filterProductsByNameService);
+
+        FilterProductsByPriceService filterProductsByPriceService = new FilterProductsByPriceService(db);
+        filterByPriceMinMax = new FilterProductsByPriceUIAction(filterProductsByPriceService);
+
+        GetProductByIdService getProductByIdService = new GetProductByIdService(db);
+        getByIdUIAction = new GetProductByIdUIAction(getProductByIdService);
+
+        DeleteProductService deleteProductService = new DeleteProductService(db);
         deleteUIAction = new DeleteProductUIAction(deleteProductService);
+
         exitUIAction = new ExitUIAction();
-        getListUIAction = new ShowAllProductUIAction(showAllProductService);
+
+        ShowAllProductsService showAllProductsService = new ShowAllProductsService(db);
+        getListUIAction = new ShowAllProductsUIAction(showAllProductsService);
+
+        ClearAllProductsService clearAllProductsService = new ClearAllProductsService(db);
+        clearUIAction = new ClearAllProductsUIAction(clearAllProductsService);
+
+
     }
 
     private static void showMenu() {
@@ -72,9 +72,11 @@ public class Application {
         System.out.println("Internet Store MENU:");
         System.out.println("[1] - Show all products");
         System.out.println("[2] - Search by ID");
-        System.out.println("[3] - Filter");
+        System.out.println("[3] - Filter by name");
         System.out.println("[4] - Add product");
         System.out.println("[5] - Delete product");
+        System.out.println("[6] - Delete All products");
+        System.out.println("[7] - Filter by price");
         System.out.println("[0] - Exit");
         System.out.println("==========================");
     }
@@ -83,7 +85,7 @@ public class Application {
         System.out.print("Please, enter menu item number: ");
         Scanner scanner = new Scanner(System.in);
         try {
-            return Integer.parseInt(scanner.nextLine().replaceAll("\\s+",""));
+            return Integer.parseInt(scanner.nextLine().replaceAll("\\s+", ""));
         } catch (NumberFormatException ex) {
             System.out.println("Incorrect value, try again ");
         }
