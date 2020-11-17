@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 public class AddProductValidator {
 
     public List<CoreError> validate(AddProductRequest request) {
@@ -20,6 +21,8 @@ public class AddProductValidator {
     private Optional<CoreError> validateName(AddProductRequest request) {
         if (request.getName() == null || request.getName().isEmpty()) {
             return Optional.of(new CoreError("Name", "Must not be empty!"));
+
+
         }
 
         if (request.getName().length() < 4 || request.getName().length() > 100) {

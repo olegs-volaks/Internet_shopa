@@ -5,13 +5,12 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Product {
-    private final long id;
+    private  long id;
     private String name;
     private String description;
     private BigDecimal price;
 
-    public Product(long id, String name, String description, double price) {
-        this.id = id;
+    public Product(String name, String description, double price) {
         this.name = name;
         this.description = description;
 //      price from double convert to BigDecimal and rounded to two decimal places

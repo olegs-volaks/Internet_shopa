@@ -5,6 +5,7 @@ import application.core.requests.AddProductRequest;
 import application.core.responses.AddProductResponse;
 import application.core.responses.CoreError;
 import application.core.services.validators.AddProductValidator;
+import application.items.Product;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class AddProductService {
         if (!errors.isEmpty()) {
             return new AddProductResponse(errors);
         }
-        return new AddProductResponse(db.add(request.getName(), request.getDescription(), request.getPrice()));
+
+       return new AddProductResponse(new Product(request.getName(), request.getDescription(), request.getPrice()));
     }
 }
