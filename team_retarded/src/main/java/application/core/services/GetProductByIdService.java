@@ -1,18 +1,28 @@
 package application.core.services;
 
 import application.bd.Database;
-import application.items.Product;
+import application.core.requests.GetProductByIdRequest;
+import application.core.responses.CoreError;
+import application.core.responses.GetProductByIdResponse;
+import application.core.services.validators.GetProductByIdValidator;
 
-import java.util.Optional;
+import java.util.List;
 
 public class GetProductByIdService {
-    private final Database db;
 
-    public GetProductByIdService(Database db) {
+    private final Database db;
+    private final GetProductByIdValidator validator;
+
+    public GetProductByIdService(Database db,GetProductByIdValidator validator) {
         this.db = db;
+        this.validator = validator;
     }
 
-    public Optional<Product> execute(Long id) {
-        return db.getById(id);
+    public GetProductByIdResponse execute(GetProductByIdRequest request) {
+        List<CoreError> errors = validator.validate(request);
+        if (!errors.isEmpty()) {
+            return new GetProductByIdResponse(errors);
+        }
+       return new GetProductByIdResponse(db.getById(request.getProductId()));
     }
 }
