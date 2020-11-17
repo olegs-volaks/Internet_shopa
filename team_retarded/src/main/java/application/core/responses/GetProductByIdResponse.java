@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public class GetProductByIdResponse extends CoreResponse {
 
-    private long productId;
+    private Optional<Product> productId;
 
     public GetProductByIdResponse(Optional<Product> productId) {
         this.productId = productId;
@@ -17,7 +17,7 @@ public class GetProductByIdResponse extends CoreResponse {
         super(errors);
     }
 
-    public long getProductId() {
+    public Optional<Product> getProductId() {
         return productId;
     }
 }
