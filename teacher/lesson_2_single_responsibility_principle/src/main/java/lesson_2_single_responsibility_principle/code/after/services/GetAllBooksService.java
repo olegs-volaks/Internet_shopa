@@ -1,9 +1,9 @@
 package lesson_2_single_responsibility_principle.code.after.services;
 
-import java.util.List;
-
 import lesson_2_single_responsibility_principle.code.after.Book;
 import lesson_2_single_responsibility_principle.code.after.database.Database;
+
+import java.util.List;
 
 public class GetAllBooksService {
 

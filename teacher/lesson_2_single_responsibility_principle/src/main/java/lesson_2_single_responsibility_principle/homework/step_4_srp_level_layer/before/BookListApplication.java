@@ -1,14 +1,10 @@
 package lesson_2_single_responsibility_principle.homework.step_4_srp_level_layer.before;
 
-import java.util.Scanner;
-
-import lesson_2_single_responsibility_principle.homework.step_4_srp_level_layer.before.console_ui.AddBookUIAction;
-import lesson_2_single_responsibility_principle.homework.step_4_srp_level_layer.before.console_ui.ExitUIAction;
-import lesson_2_single_responsibility_principle.homework.step_4_srp_level_layer.before.console_ui.GetAllBooksUIAction;
-import lesson_2_single_responsibility_principle.homework.step_4_srp_level_layer.before.console_ui.RemoveBookUIAction;
-import lesson_2_single_responsibility_principle.homework.step_4_srp_level_layer.before.console_ui.UIAction;
+import lesson_2_single_responsibility_principle.homework.step_4_srp_level_layer.before.console_ui.*;
 import lesson_2_single_responsibility_principle.homework.step_4_srp_level_layer.before.database.Database;
 import lesson_2_single_responsibility_principle.homework.step_4_srp_level_layer.before.database.InMemoryDatabaseImpl;
+
+import java.util.Scanner;
 
 public class BookListApplication {
 

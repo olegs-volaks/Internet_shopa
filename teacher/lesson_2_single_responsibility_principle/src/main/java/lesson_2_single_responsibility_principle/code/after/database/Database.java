@@ -1,8 +1,8 @@
 package lesson_2_single_responsibility_principle.code.after.database;
 
-import java.util.List;
-
 import lesson_2_single_responsibility_principle.code.after.Book;
+
+import java.util.List;
 
 public interface Database {
 

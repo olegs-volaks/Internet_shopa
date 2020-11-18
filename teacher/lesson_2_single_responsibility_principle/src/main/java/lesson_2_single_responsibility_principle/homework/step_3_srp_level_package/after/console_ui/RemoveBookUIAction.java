@@ -1,8 +1,8 @@
 package lesson_2_single_responsibility_principle.homework.step_3_srp_level_package.after.console_ui;
 
-import java.util.Scanner;
-
 import lesson_2_single_responsibility_principle.homework.step_3_srp_level_package.after.database.Database;
+
+import java.util.Scanner;
 
 public class RemoveBookUIAction implements UIAction {
 

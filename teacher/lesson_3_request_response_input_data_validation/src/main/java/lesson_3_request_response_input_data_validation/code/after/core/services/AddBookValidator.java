@@ -1,10 +1,10 @@
 package lesson_3_request_response_input_data_validation.code.after.core.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lesson_3_request_response_input_data_validation.code.after.core.requests.AddBookRequest;
 import lesson_3_request_response_input_data_validation.code.after.core.responses.CoreError;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddBookValidator {
 

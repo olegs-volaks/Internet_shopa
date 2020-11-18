@@ -1,9 +1,9 @@
 package lesson_2_single_responsibility_principle.homework.step_4_srp_level_layer.after.services;
 
-import java.util.List;
-
 import lesson_2_single_responsibility_principle.homework.step_4_srp_level_layer.after.Book;
 import lesson_2_single_responsibility_principle.homework.step_4_srp_level_layer.after.database.Database;
+
+import java.util.List;
 
 public class GetAllBooksService {
 

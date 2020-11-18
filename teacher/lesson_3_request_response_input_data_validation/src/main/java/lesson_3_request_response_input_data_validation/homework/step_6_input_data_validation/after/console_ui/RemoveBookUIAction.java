@@ -1,10 +1,10 @@
 package lesson_3_request_response_input_data_validation.homework.step_6_input_data_validation.after.console_ui;
 
-import java.util.Scanner;
-
 import lesson_3_request_response_input_data_validation.homework.step_6_input_data_validation.after.core.requests.RemoveBookRequest;
 import lesson_3_request_response_input_data_validation.homework.step_6_input_data_validation.after.core.responses.RemoveBookResponse;
 import lesson_3_request_response_input_data_validation.homework.step_6_input_data_validation.after.core.services.RemoveBookService;
+
+import java.util.Scanner;
 
 public class RemoveBookUIAction implements UIAction {
 

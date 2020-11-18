@@ -1,8 +1,8 @@
 package lesson_3_request_response_input_data_validation.code.before.console_ui;
 
-import java.util.Scanner;
-
 import lesson_3_request_response_input_data_validation.code.before.services.RemoveBookService;
+
+import java.util.Scanner;
 
 public class RemoveBookUIAction implements UIAction {
 

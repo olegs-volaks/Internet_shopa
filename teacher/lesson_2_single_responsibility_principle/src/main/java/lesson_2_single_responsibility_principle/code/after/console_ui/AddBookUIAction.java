@@ -1,8 +1,8 @@
 package lesson_2_single_responsibility_principle.code.after.console_ui;
 
-import java.util.Scanner;
-
 import lesson_2_single_responsibility_principle.code.after.services.AddBookService;
+
+import java.util.Scanner;
 
 public class AddBookUIAction implements UIAction {
 

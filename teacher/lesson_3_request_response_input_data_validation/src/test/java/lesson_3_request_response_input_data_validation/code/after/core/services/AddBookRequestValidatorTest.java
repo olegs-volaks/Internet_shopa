@@ -1,13 +1,12 @@
 package lesson_3_request_response_input_data_validation.code.after.core.services;
 
-import static org.junit.Assert.*;
+import lesson_3_request_response_input_data_validation.code.after.core.requests.AddBookRequest;
+import lesson_3_request_response_input_data_validation.code.after.core.responses.CoreError;
+import org.junit.Test;
 
 import java.util.List;
 
-import org.junit.Test;
-
-import lesson_3_request_response_input_data_validation.code.after.core.requests.AddBookRequest;
-import lesson_3_request_response_input_data_validation.code.after.core.responses.CoreError;
+import static org.junit.Assert.*;
 
 public class AddBookRequestValidatorTest {
 

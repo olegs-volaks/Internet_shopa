@@ -1,9 +1,9 @@
 package lesson_2_single_responsibility_principle.homework.step_3_srp_level_package.after.console_ui;
 
-import java.util.Scanner;
-
 import lesson_2_single_responsibility_principle.homework.step_3_srp_level_package.after.Book;
 import lesson_2_single_responsibility_principle.homework.step_3_srp_level_package.after.database.Database;
+
+import java.util.Scanner;
 
 public class AddBookUIAction implements UIAction {
 

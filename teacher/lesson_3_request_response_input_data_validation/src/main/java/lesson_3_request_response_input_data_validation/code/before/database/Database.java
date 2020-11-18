@@ -1,8 +1,8 @@
 package lesson_3_request_response_input_data_validation.code.before.database;
 
-import java.util.List;
-
 import lesson_3_request_response_input_data_validation.code.before.Book;
+
+import java.util.List;
 
 public interface Database {
 

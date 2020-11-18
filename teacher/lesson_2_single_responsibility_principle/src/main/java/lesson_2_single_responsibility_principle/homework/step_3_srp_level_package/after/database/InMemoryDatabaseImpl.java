@@ -1,9 +1,9 @@
 package lesson_2_single_responsibility_principle.homework.step_3_srp_level_package.after.database;
 
+import lesson_2_single_responsibility_principle.homework.step_3_srp_level_package.after.Book;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import lesson_2_single_responsibility_principle.homework.step_3_srp_level_package.after.Book;
 
 public class InMemoryDatabaseImpl implements Database {
 

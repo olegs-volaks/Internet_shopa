@@ -1,18 +1,14 @@
 package lesson_3_request_response_input_data_validation.code.after;
 
-import java.util.Scanner;
-
-import lesson_3_request_response_input_data_validation.code.after.console_ui.AddBookUIAction;
-import lesson_3_request_response_input_data_validation.code.after.console_ui.ExitUIAction;
-import lesson_3_request_response_input_data_validation.code.after.console_ui.GetAllBooksUIAction;
-import lesson_3_request_response_input_data_validation.code.after.console_ui.RemoveBookUIAction;
-import lesson_3_request_response_input_data_validation.code.after.console_ui.UIAction;
-import lesson_3_request_response_input_data_validation.code.after.database.Database;
-import lesson_3_request_response_input_data_validation.code.after.database.InMemoryDatabaseImpl;
+import lesson_3_request_response_input_data_validation.code.after.console_ui.*;
 import lesson_3_request_response_input_data_validation.code.after.core.services.AddBookService;
 import lesson_3_request_response_input_data_validation.code.after.core.services.AddBookValidator;
 import lesson_3_request_response_input_data_validation.code.after.core.services.GetAllBooksService;
 import lesson_3_request_response_input_data_validation.code.after.core.services.RemoveBookService;
+import lesson_3_request_response_input_data_validation.code.after.database.Database;
+import lesson_3_request_response_input_data_validation.code.after.database.InMemoryDatabaseImpl;
+
+import java.util.Scanner;
 
 public class BookListApplication {
 

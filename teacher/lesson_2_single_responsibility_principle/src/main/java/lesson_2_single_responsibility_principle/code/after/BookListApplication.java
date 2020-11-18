@@ -1,17 +1,13 @@
 package lesson_2_single_responsibility_principle.code.after;
 
-import java.util.Scanner;
-
-import lesson_2_single_responsibility_principle.code.after.console_ui.AddBookUIAction;
-import lesson_2_single_responsibility_principle.code.after.console_ui.ExitUIAction;
-import lesson_2_single_responsibility_principle.code.after.console_ui.GetAllBooksUIAction;
-import lesson_2_single_responsibility_principle.code.after.console_ui.RemoveBookUIAction;
-import lesson_2_single_responsibility_principle.code.after.console_ui.UIAction;
+import lesson_2_single_responsibility_principle.code.after.console_ui.*;
 import lesson_2_single_responsibility_principle.code.after.database.Database;
 import lesson_2_single_responsibility_principle.code.after.database.InMemoryDatabaseImpl;
 import lesson_2_single_responsibility_principle.code.after.services.AddBookService;
 import lesson_2_single_responsibility_principle.code.after.services.GetAllBooksService;
 import lesson_2_single_responsibility_principle.code.after.services.RemoveBookService;
+
+import java.util.Scanner;
 
 public class BookListApplication {
 

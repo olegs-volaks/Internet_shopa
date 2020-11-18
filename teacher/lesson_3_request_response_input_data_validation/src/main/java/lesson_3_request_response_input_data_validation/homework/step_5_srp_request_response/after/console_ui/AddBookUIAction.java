@@ -1,10 +1,10 @@
 package lesson_3_request_response_input_data_validation.homework.step_5_srp_request_response.after.console_ui;
 
-import java.util.Scanner;
-
 import lesson_3_request_response_input_data_validation.homework.step_5_srp_request_response.after.core.requests.AddBookRequest;
 import lesson_3_request_response_input_data_validation.homework.step_5_srp_request_response.after.core.responses.AddBookResponse;
 import lesson_3_request_response_input_data_validation.homework.step_5_srp_request_response.after.core.services.AddBookService;
+
+import java.util.Scanner;
 
 public class AddBookUIAction implements UIAction {
 
