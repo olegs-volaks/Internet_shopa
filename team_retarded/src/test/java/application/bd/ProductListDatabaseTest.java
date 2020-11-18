@@ -50,8 +50,10 @@ class ProductListDatabaseTest {
         subject.delete(10);
         subject.delete(5);
         subject.delete(8);
-        assertThat(subject.getList()).allMatch(product -> product.getId() == 1 || product.getId() == 3);
-        //assertThat(subject.delete(product -> product.getId()));
+        subject.delete(9);
+        assertThat(subject.getList()).allMatch(product -> product.getId() == 1 || product.getId() == 3 ||
+                product.getId() == 4 || product.getId() == 6 || product.getId() == 7);
+
 
     }
 
@@ -61,7 +63,8 @@ class ProductListDatabaseTest {
         subject.add("Iphone", "ProMax", 500.0);
         subject.add("Nokia", "3310", 55.0);
         subject.delete(product -> product.getName().equals("Nokia") || product.getName().equals("Nike"));
-        assertThat(subject.getList());
+        assertThat(subject.getList()).noneMatch(product -> product.getName().equals("Nokia") ||
+                product.getName().equals("Nike"));
 
     }
 
@@ -71,7 +74,8 @@ class ProductListDatabaseTest {
         subject.add("Mazda", "CRX", 15000.0);
         subject.add("BMW", "M3", 25000.0);
         subject.delete(product -> product.getDescription().equals("M3") || product.getDescription().equals("Mustang"));
-        assertThat(subject.getList());
+        assertThat(subject.getList()).noneMatch(product -> product.getDescription().equals("M3") ||
+                product.getDescription().equals("Mustang"));
 
     }
 
@@ -80,7 +84,8 @@ class ProductListDatabaseTest {
         ProductListDatabase subject = new ProductListDatabase();
         subject.add("name", "d", 12.9);
         subject.add("name2", "d", 17.8);
-        subject.delete(product -> product.getPrice().compareTo(new BigDecimal("12.9")) == 0 || product.getPrice().compareTo(new BigDecimal("17.8")) == 0);
+        subject.delete(product -> product.getPrice().compareTo(new BigDecimal("12.9")) == 0 ||
+                product.getPrice().compareTo(new BigDecimal("17.8")) == 0);
         assertThat(subject.getList()).isEmpty();
     }
 
@@ -95,7 +100,8 @@ class ProductListDatabaseTest {
         subject.add("volleyball","ball",35.0);
         subject.delete(product -> product.getPrice().compareTo(new BigDecimal("10.0")) > 0 &&
                 product.getPrice().compareTo(new BigDecimal("70.0")) < 0);
-        assertThat(subject.getList().isEmpty());
+        assertThat(subject.getList()).noneMatch(product -> product.getPrice().compareTo(new BigDecimal("10.0")) > 0
+        || product.getPrice().compareTo(new BigDecimal("70.0")) < 0);
 
 
     }
@@ -106,22 +112,31 @@ class ProductListDatabaseTest {
         subject.add("Honda", "2.0", 5000.0);
         subject.add("Opel", "1.6", 4000.0);
         subject.add("Mazda", "3.0", 3500.0);
-        subject.add("Iphone", "Xpro", 1000.0);
+        subject.add("Iphone", "pro", 1000.0);
         subject.add("PS4", "Pro", 350.0);
         subject.add("BeatsByDRE", "", 100.0);
         subject.add("AppleMac", "Pro", 555.0);
-        subject.getList();
         subject.clear();
-        assertThat(subject.getList());
+       // assertThat(subject.getList()).;
 
     }
 
     @Test
     void get_by_id() {
+        subject.add("BMW", "323", 10000.0);
+        subject.add("Honda", "2.0", 5000.0);
+        subject.add("Opel", "1.6", 4000.0);
+        subject.add("Mazda", "3.0", 3500.0);
+        subject.add("Iphone", "Xpro", 1000.0);
+        subject.add("PS4", "Pro", 350.0);
+        subject.add("BeatsByDRE", "", 100.0);
+        subject.add("AppleMac", "Pro", 555.0);
         subject.getById(1L);
         subject.getById(4L);
         subject.getById(3L);
-        assertThat(subject.getList());
+        subject.getById(8L);
+        subject.getById(6L);
+       // assertThat(subject.getList()).allMatch(product -> product.getId(equals()));
 
     }
 
