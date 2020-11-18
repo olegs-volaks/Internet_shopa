@@ -1,2 +1,0 @@
-Подключите интерфейс Database и его реализацию InMemoryDatabaseImpl
-к классу XXXListApplication.
