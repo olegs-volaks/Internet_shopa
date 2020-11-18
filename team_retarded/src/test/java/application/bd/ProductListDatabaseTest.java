@@ -38,7 +38,20 @@ class ProductListDatabaseTest {
     void delete_by_id() {
         subject.add("Audi", "R8", 9000);
         subject.add("Nokia", "5110", 100);
-        // assertThat(subject.delete(product -> product.getId()));
+        subject.add("BMW", "323", 10000.0);
+        subject.add("Honda", "2.0", 5000.0);
+        subject.add("Opel", "1.6", 4000.0);
+        subject.add("Mazda", "3.0", 3500.0);
+        subject.add("Iphone", "Xpro", 1000.0);
+        subject.add("PS4", "Pro", 350.0);
+        subject.add("BeatsByDRE", "", 100.0);
+        subject.add("AppleMac", "Pro", 555.0);
+        subject.delete(2);
+        subject.delete(10);
+        subject.delete(5);
+        subject.delete(8);
+        assertThat(subject.getList());
+        //assertThat(subject.delete(product -> product.getId()));
 
     }
 
@@ -76,12 +89,28 @@ class ProductListDatabaseTest {
         subject.add("Ball", "5size", 50.0);
         subject.add("Tennis ball", "tennis", 10.0);
         subject.add("Mars", "2pac", 34.0);
+        subject.add("Honda","typeR",1234.0);
+        subject.add("PS4","PRO",200.0);
+        subject.add("football","ball",60.0);
+        subject.add("volleyball","ball",35.0);
+        subject.delete(product -> product.getPrice().compareTo(new BigDecimal("10.0")) > 0 &&
+                product.getPrice().compareTo(new BigDecimal("70.0")) < 0);
+        assertThat(subject.getList().isEmpty());
 
 
     }
 
     @Test
     void clear() {
+        subject.add("BMW", "323", 10000.0);
+        subject.add("Honda", "2.0", 5000.0);
+        subject.add("Opel", "1.6", 4000.0);
+        subject.add("Mazda", "3.0", 3500.0);
+        subject.add("Iphone", "Xpro", 1000.0);
+        subject.add("PS4", "Pro", 350.0);
+        subject.add("BeatsByDRE", "", 100.0);
+        subject.add("AppleMac", "Pro", 555.0);
+        subject.getList();
         subject.clear();
         assertThat(subject.getList());
 
