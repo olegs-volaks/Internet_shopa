@@ -1,21 +1,22 @@
 package application.core.services;
 
 import application.bd.Database;
-import application.items.Product;
-
-import java.util.List;
-import java.util.function.Predicate;
+import application.core.services.validators.FilterProductsByPriceValidator;
 
 public class FilterProductsByPriceService {
     private final Database db;
+    private final FilterProductsByPriceValidator validator;
 
-    public FilterProductsByPriceService(Database db) {
+    public FilterProductsByPriceService(Database db, FilterProductsByPriceValidator validator) {
         this.db = db;
+        this.validator = validator;
     }
 
-    public List<Product> execute(Predicate<Product> predicate) {
-        return db.filter(predicate);
 
-    }
+
+
+
+
+
 }
 
