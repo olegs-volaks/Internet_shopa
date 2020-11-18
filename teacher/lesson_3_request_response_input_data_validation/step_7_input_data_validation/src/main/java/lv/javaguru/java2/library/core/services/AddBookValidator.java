@@ -1,11 +1,11 @@
 package lv.javaguru.java2.library.core.services;
 
+import lv.javaguru.java2.library.core.requests.AddBookRequest;
+import lv.javaguru.java2.library.core.responses.CoreError;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import lv.javaguru.java2.library.core.requests.AddBookRequest;
-import lv.javaguru.java2.library.core.responses.CoreError;
 
 public class AddBookValidator {
 

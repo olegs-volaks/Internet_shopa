@@ -1,12 +1,12 @@
 package lv.javaguru.java2.library.core.services;
 
-import java.util.List;
-
 import lv.javaguru.java2.library.Book;
 import lv.javaguru.java2.library.core.database.Database;
 import lv.javaguru.java2.library.core.requests.AddBookRequest;
 import lv.javaguru.java2.library.core.responses.AddBookResponse;
 import lv.javaguru.java2.library.core.responses.CoreError;
+
+import java.util.List;
 
 public class AddBookService {
 
@@ -27,7 +27,6 @@ public class AddBookService {
 
 		Book book = new Book(request.getTitle(), request.getAuthor());
 		database.save(book);
-
 		return new AddBookResponse(book);
 	}
 

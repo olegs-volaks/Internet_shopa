@@ -1,8 +1,8 @@
 package lv.javaguru.java2.library.console_ui;
 
-import java.util.Scanner;
-
 import lv.javaguru.java2.library.database.Database;
+
+import java.util.Scanner;
 
 public class RemoveBookUIAction implements UIAction {
 

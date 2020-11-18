@@ -1,24 +1,20 @@
 package application.core.responses;
 
-import application.items.Product;
-
 import java.util.List;
 
 public class AddProductResponse extends CoreResponse {
 
+    private long productId;
 
-
-    private Product newProduct;
+    public AddProductResponse(long productId) {
+        this.productId = productId;
+    }
 
     public AddProductResponse(List<CoreError> errors) {
         super(errors);
     }
 
-    public AddProductResponse(Product newProduct) {
-        this.newProduct = newProduct;
-    }
-
-    public Product getNewProduct() {
-        return newProduct;
+    public long getProductId() {
+        return productId;
     }
 }

@@ -1,9 +1,9 @@
 package lv.javaguru.java2.library.services;
 
-import java.util.List;
-
 import lv.javaguru.java2.library.Book;
 import lv.javaguru.java2.library.database.Database;
+
+import java.util.List;
 
 public class GetAllBooksService {
 

@@ -12,18 +12,28 @@ import static java.util.stream.Collectors.toList;
 public class ProductListDatabase implements Database {
 
     private final List<Product> db = new ArrayList<>();
-    private long id;
+    private long id=1;
 
     @Override
-    public long add(String name, String description, double price) {
+    public long add(String name, String description,double price) {
+        Product product=new Product(name, description,price);
+        product.setId(id);
+        db.add(product);
         id++;
-        db.add(new Product(id, name, description, price));
-        return id;
+        return product.getId();
     }
 
     @Override
-    public void delete(long id) {
-        db.removeIf(x -> x.getId() == id);
+    public boolean delete(long id) {
+        boolean isProductDeleted = false;
+        Optional<Product> productToDeleteOpt = db.stream()
+                .filter(product -> product.getId()==id)
+                .findFirst();
+        if (productToDeleteOpt.isPresent()) {
+            Product productToDelete = productToDeleteOpt.get();
+            isProductDeleted = db.remove(productToDelete);
+        }
+        return isProductDeleted;
     }
 
     @Override

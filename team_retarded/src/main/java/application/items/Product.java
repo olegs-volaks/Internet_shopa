@@ -42,6 +42,10 @@ public class Product {
         this.description = description;
     }
 
+    public void setId (long id){
+        this.id=id;
+    }
+
     public void setPrice(double price) {
 //      price from double convert to BigDecimal and rounded to two decimal places
         BigDecimal tmp = new BigDecimal(Double.toString(price));

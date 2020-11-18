@@ -1,12 +1,12 @@
 package lv.javaguru.java2.library.core.services;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import lv.javaguru.java2.library.core.database.Database;
 import lv.javaguru.java2.library.core.requests.RemoveBookRequest;
 import lv.javaguru.java2.library.core.responses.CoreError;
 import lv.javaguru.java2.library.core.responses.RemoveBookResponse;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RemoveBookService {
 

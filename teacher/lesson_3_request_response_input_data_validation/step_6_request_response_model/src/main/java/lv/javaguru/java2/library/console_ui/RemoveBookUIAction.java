@@ -1,10 +1,10 @@
 package lv.javaguru.java2.library.console_ui;
 
-import java.util.Scanner;
-
 import lv.javaguru.java2.library.core.requests.RemoveBookRequest;
 import lv.javaguru.java2.library.core.responses.RemoveBookResponse;
 import lv.javaguru.java2.library.core.services.RemoveBookService;
+
+import java.util.Scanner;
 
 public class RemoveBookUIAction implements UIAction {
 

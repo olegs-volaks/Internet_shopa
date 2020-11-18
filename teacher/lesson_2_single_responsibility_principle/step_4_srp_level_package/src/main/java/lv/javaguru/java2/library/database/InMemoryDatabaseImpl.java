@@ -1,9 +1,9 @@
 package lv.javaguru.java2.library.database;
 
+import lv.javaguru.java2.library.Book;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import lv.javaguru.java2.library.Book;
 
 public class InMemoryDatabaseImpl implements Database {
 

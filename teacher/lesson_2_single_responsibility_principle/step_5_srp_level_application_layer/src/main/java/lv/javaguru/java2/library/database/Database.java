@@ -1,8 +1,8 @@
 package lv.javaguru.java2.library.database;
 
-import java.util.List;
-
 import lv.javaguru.java2.library.Book;
+
+import java.util.List;
 
 public interface Database {
 
