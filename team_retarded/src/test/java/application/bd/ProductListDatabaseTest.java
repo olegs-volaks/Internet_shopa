@@ -23,7 +23,7 @@ class ProductListDatabaseTest {
 
     @Test
     void add() {
-        subject.add("BMW", "323", 10000.0);
+        subject.add("BMW1", "323", 10000.0);
         subject.add("Honda", "2.0", 5000.0);
         subject.add("Opel", "1.6", 4000.0);
         subject.add("Mazda", "3.0", 3500.0);
@@ -31,12 +31,22 @@ class ProductListDatabaseTest {
         subject.add("PS4", "Pro", 350.0);
         subject.add("BeatsByDRE", "", 100.0);
         subject.add("AppleMac", "Pro", 555.0);
-        assertThat(subject.getList()).contains(new Product(4, "Mazda", "3.0", 3500.0));
+
+        assertThat(subject.getById(4).equals(new Product("Mazda", "3.0", 3500.0)));
     }
 
     @Test
     void delete_by_id() {
-
+        subject.add("BMW1", "323", 10000.0);
+        subject.add("Honda", "2.0", 5000.0);
+        subject.add("Opel", "1.6", 4000.0);
+        subject.add("Mazda", "3.0", 3500.0);
+        subject.add("Iphone", "Xpro", 1000.0);
+        subject.add("PS4", "Pro", 350.0);
+        subject.add("BeatsByDRE", "", 100.0);
+        subject.add("AppleMac", "Pro", 555.0);
+        subject.delete(4);
+        assertThat(subject.getById(4) == null);
     }
 
     @Test
