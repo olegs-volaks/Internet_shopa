@@ -50,7 +50,7 @@ class ProductListDatabaseTest {
         subject.delete(10);
         subject.delete(5);
         subject.delete(8);
-        assertThat(subject.getList());
+        assertThat(subject.getList()).allMatch(product -> product.getId() == 1 || product.getId() == 3);
         //assertThat(subject.delete(product -> product.getId()));
 
     }

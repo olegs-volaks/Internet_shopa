@@ -3,21 +3,20 @@ package application.core.responses;
 import application.items.Product;
 
 import java.util.List;
-import java.util.Optional;
 
 public class GetProductByIdResponse extends CoreResponse {
 
-    private Optional<Product> productId;
+    private Product product;
 
-    public GetProductByIdResponse(Optional<Product> productId) {
-        this.productId = productId;
+    public GetProductByIdResponse(Product product) {
+        this.product = product;
     }
 
     public GetProductByIdResponse(List<CoreError> errors) {
         super(errors);
     }
 
-    public Optional<Product> getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 }
