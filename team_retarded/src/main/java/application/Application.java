@@ -5,6 +5,7 @@ import application.bd.ProductListDatabase;
 import application.core.services.*;
 import application.core.services.validators.AddProductValidator;
 import application.core.services.validators.DeleteProductValidator;
+import application.core.services.validators.FilterProductsByNameValidator;
 import application.core.services.validators.FilterProductsByPriceValidator;
 import application.ui.*;
 
@@ -46,7 +47,8 @@ public class Application {
         AddProductService addProductService = new AddProductService(db, addProductValidator);
         addProductUIAction = new AddProductUIAction(addProductService);
 
-        FilterProductsByNameService filterProductsByNameService = new FilterProductsByNameService(db);
+        FilterProductsByNameValidator filterProductsByNameValidator = new FilterProductsByNameValidator();
+        FilterProductsByNameService filterProductsByNameService = new FilterProductsByNameService(db, filterProductsByNameValidator);
         filterByNameUIAction = new FilterProductsByNameUIAction(filterProductsByNameService);
 
 

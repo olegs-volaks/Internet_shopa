@@ -31,10 +31,5 @@ public class FilterProductsByPriceService {
                 db.filter(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(request.getPriceMin()))) > 0 &&
                 product.getPrice().compareTo(new BigDecimal(Double.toString(request.getPriceMax()))) < 0));
     }
-
-
-
-
-
 }
 
