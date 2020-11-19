@@ -1,5 +1,7 @@
 package application.bd;
+
 import application.items.Product;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -19,5 +21,6 @@ public interface Database {
     List<Product> filter(Predicate<Product> predicate);
 
     List<Product> getList();
+
 
 }
