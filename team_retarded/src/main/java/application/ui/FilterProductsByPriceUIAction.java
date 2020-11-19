@@ -30,7 +30,8 @@ public class FilterProductsByPriceUIAction implements UIAction {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
                     + coreError.getField() + ": " + coreError.getMessage()));
         } else {
-            System.out.println("All products are successfully found:  "+response.getProductsByFilter());
+            System.out.println("All products are successfully found:  ");
+            response.getProductsByFilter().forEach(System.out::println);
         }
 
     }

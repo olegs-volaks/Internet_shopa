@@ -52,7 +52,7 @@ public class Application {
 
         FilterProductsByPriceValidator filterProductsByPriceValidator = new FilterProductsByPriceValidator();
         FilterProductsByPriceService filterProductsByPriceService = new FilterProductsByPriceService(db, filterProductsByPriceValidator);
-        deleteUIAction = new FilterProductsByPriceUIAction(filterProductsByPriceService);
+        filterByPriceMinMax = new FilterProductsByPriceUIAction(filterProductsByPriceService);
 
         GetProductByIdService getProductByIdService = new GetProductByIdService(db);
         getByIdUIAction = new GetProductByIdUIAction(getProductByIdService);

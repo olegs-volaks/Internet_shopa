@@ -8,9 +8,6 @@ public class FilterProductsByPriceResponse extends CoreResponse{
 
     private  List <Product> productsByFilter;
 
-    //public FilterProductsByPriceResponse() {
-        //this.productsByFilter = productsByFilter;
-    //}
 
     public FilterProductsByPriceResponse(List<CoreError> errors,List <Product> productsByFilter) {
         super(errors);

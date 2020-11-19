@@ -37,7 +37,7 @@ public class DeleteProductUIAction  implements UIAction {
 
     private long getId() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Please, enter new product id: ");
+        System.out.print("Please, enter product id: ");
         String id = scanner.nextLine();
         id = id.replaceAll("\\s+", "");
         try {

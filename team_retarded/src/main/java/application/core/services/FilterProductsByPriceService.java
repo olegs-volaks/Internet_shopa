@@ -23,8 +23,8 @@ public class FilterProductsByPriceService {
         List<CoreError> errors = validator.validate(request);
 
         if (!errors.isEmpty()) {
-            List<Product> products= null;
-            return new FilterProductsByPriceResponse(errors,products);
+            List<Product> empty=null;
+            return new FilterProductsByPriceResponse(errors,empty);
         }
 
         return new FilterProductsByPriceResponse(errors,
