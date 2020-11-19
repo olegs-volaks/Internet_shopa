@@ -4,6 +4,8 @@ import application.bd.Database;
 import application.bd.ProductListDatabase;
 import application.core.services.*;
 import application.core.services.validators.AddProductValidator;
+import application.core.services.validators.DeleteProductValidator;
+import application.core.services.validators.FilterProductsByPriceValidator;
 import application.ui.*;
 
 import java.util.Scanner;
@@ -47,13 +49,17 @@ public class Application {
         FilterProductsByNameService filterProductsByNameService = new FilterProductsByNameService(db);
         filterByNameUIAction = new FilterProductsByNameUIAction(filterProductsByNameService);
 
-        FilterProductsByPriceService filterProductsByPriceService = new FilterProductsByPriceService(db);
-        filterByPriceMinMax = new FilterProductsByPriceUIAction(filterProductsByPriceService);
+
+        FilterProductsByPriceValidator filterProductsByPriceValidator = new FilterProductsByPriceValidator();
+        FilterProductsByPriceService filterProductsByPriceService = new FilterProductsByPriceService(db, filterProductsByPriceValidator);
+        deleteUIAction = new FilterProductsByPriceUIAction(filterProductsByPriceService);
 
         GetProductByIdService getProductByIdService = new GetProductByIdService(db);
         getByIdUIAction = new GetProductByIdUIAction(getProductByIdService);
 
-        DeleteProductService deleteProductService = new DeleteProductService(db);
+
+        DeleteProductValidator deleteProductValidator = new DeleteProductValidator();
+        DeleteProductService deleteProductService = new DeleteProductService(db, deleteProductValidator);
         deleteUIAction = new DeleteProductUIAction(deleteProductService);
 
         exitUIAction = new ExitUIAction();

@@ -10,7 +10,7 @@ public interface Database {
 
     long add(String productName, String specification, double price);
 
-    void delete(long id);
+    boolean delete(long id);
 
     void delete(Predicate<Product> predicate);
 
