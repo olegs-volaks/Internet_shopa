@@ -5,12 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ProductListDatabaseTest {
 
     private final ProductListDatabase subject = new ProductListDatabase();
+
 
     @Test
     void delete_by_predicate() {
@@ -117,7 +119,7 @@ class ProductListDatabaseTest {
         subject.add("BeatsByDRE", "", 100.0);
         subject.add("AppleMac", "Pro", 555.0);
         subject.clear();
-       // assertThat(subject.getList()).;
+        assertThat(subject.getList()).isEmpty();
 
     }
 
@@ -131,12 +133,10 @@ class ProductListDatabaseTest {
         subject.add("PS4", "Pro", 350.0);
         subject.add("BeatsByDRE", "", 100.0);
         subject.add("AppleMac", "Pro", 555.0);
-        subject.getById(1L);
-        subject.getById(4L);
-        subject.getById(3L);
-        subject.getById(8L);
-        subject.getById(6L);
-       // assertThat(subject.getList()).allMatch(product -> product.getId(equals()));
+        Optional<Product> result = subject.getById(1);
+        assertThat(result.isPresent()).isTrue();
+        assertThat(result.get()).matches(product -> product.getId() == 1 || product.getId() == 3 ||
+                product.getId() == 5 || product.getId() == 6);
 
     }
 
