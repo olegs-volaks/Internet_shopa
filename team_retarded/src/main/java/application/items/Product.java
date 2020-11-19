@@ -19,6 +19,7 @@ public class Product {
         this.price = tmp.setScale(2, RoundingMode.DOWN);
     }
 
+
     public long getId() {
         return id;
     }

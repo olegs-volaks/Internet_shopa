@@ -7,6 +7,7 @@ import application.core.services.validators.AddProductValidator;
 import application.core.services.validators.DeleteProductValidator;
 import application.core.services.validators.FilterProductsByNameValidator;
 import application.core.services.validators.FilterProductsByPriceValidator;
+import application.core.services.validators.GetProductByIdValidator;
 import application.ui.*;
 
 import java.util.Scanner;
@@ -56,7 +57,8 @@ public class Application {
         FilterProductsByPriceService filterProductsByPriceService = new FilterProductsByPriceService(db, filterProductsByPriceValidator);
         filterByPriceMinMax = new FilterProductsByPriceUIAction(filterProductsByPriceService);
 
-        GetProductByIdService getProductByIdService = new GetProductByIdService(db);
+        GetProductByIdValidator getProductByIdValidator = new GetProductByIdValidator();
+        GetProductByIdService getProductByIdService = new GetProductByIdService(db,getProductByIdValidator);
         getByIdUIAction = new GetProductByIdUIAction(getProductByIdService);
 
 

@@ -1,11 +1,8 @@
 package lesson_3_request_response_input_data_validation.code.after.core.services;
 
 import static org.junit.Assert.*;
-
 import java.util.List;
-
 import org.junit.Test;
-
 import lesson_3_request_response_input_data_validation.code.after.core.requests.AddBookRequest;
 import lesson_3_request_response_input_data_validation.code.after.core.responses.CoreError;
 
