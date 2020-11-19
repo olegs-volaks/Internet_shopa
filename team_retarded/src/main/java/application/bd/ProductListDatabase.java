@@ -23,8 +23,15 @@ public class ProductListDatabase implements Database {
 
     @Override
     public boolean delete(long id) {
-        db.removeIf(x -> x.getId() == id);
-        return false;
+        boolean isProductDeleted = false;
+        Optional<Product> productToDeleteOpt = db.stream()
+                .filter(product -> product.getId()==id)
+                .findFirst();
+        if (productToDeleteOpt.isPresent()) {
+            Product productToDelete = productToDeleteOpt.get();
+            isProductDeleted = db.remove(productToDelete);
+        }
+        return isProductDeleted;
     }
 
     @Override
