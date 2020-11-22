@@ -22,8 +22,11 @@ public class DeleteProductService {
         if (!errors.isEmpty()) {
             return new DeleteProductResponse(errors);
         }
-
-        return new DeleteProductResponse(db.delete(request.getProductIdToDelete()));
+        db.delete(request.getProductIdToDelete());
+        if (db.getById(request.getProductIdToDelete()).isEmpty()){
+            return new DeleteProductResponse(true);
+        }
+        return new DeleteProductResponse(false);
     }
 }
 

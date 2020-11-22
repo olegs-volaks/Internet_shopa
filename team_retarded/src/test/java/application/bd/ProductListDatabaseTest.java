@@ -100,10 +100,10 @@ class ProductListDatabaseTest {
         subject.add("PS4","PRO",200.0);
         subject.add("football","ball",60.0);
         subject.add("volleyball","ball",35.0);
-        subject.delete(product -> product.getPrice().compareTo(new BigDecimal("10.0")) > 0 &&
-                product.getPrice().compareTo(new BigDecimal("70.0")) < 0);
+        subject.delete(product -> product.getPrice().compareTo(new BigDecimal("10.0")) >= 0 &&
+                product.getPrice().compareTo(new BigDecimal("70.0")) <= 0);
         assertThat(subject.getList()).noneMatch(product -> product.getPrice().compareTo(new BigDecimal("10.0")) > 0
-        || product.getPrice().compareTo(new BigDecimal("70.0")) < 0);
+        && product.getPrice().compareTo(new BigDecimal("70.0")) < 0);
 
 
     }

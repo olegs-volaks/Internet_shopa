@@ -7,7 +7,7 @@ import application.core.services.DeleteProductService;
 
 import java.util.Scanner;
 
-public class DeleteProductUIAction  implements UIAction {
+public class DeleteProductUIAction implements UIAction {
 
     private final DeleteProductService service;
 
@@ -26,7 +26,7 @@ public class DeleteProductUIAction  implements UIAction {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
                     + coreError.getField() + ": " + coreError.getMessage()));
         } else {
-            if (response.isProductRemoved()) {
+            if (response.idProductDeleted()) {
                 System.out.println("Your product was removed from list.");
             } else {
                 System.out.println("Your product not removed from list.");

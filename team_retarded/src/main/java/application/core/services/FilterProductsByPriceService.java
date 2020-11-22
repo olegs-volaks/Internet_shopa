@@ -28,8 +28,8 @@ public class FilterProductsByPriceService {
         }
 
         return new FilterProductsByPriceResponse(errors,
-                db.filter(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(request.getPriceMin()))) > 0 &&
-                product.getPrice().compareTo(new BigDecimal(Double.toString(request.getPriceMax()))) < 0));
+                db.filter(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(request.getPriceMin()))) >= 0 &&
+                product.getPrice().compareTo(new BigDecimal(Double.toString(request.getPriceMax()))) <= 0));
     }
 }
 
