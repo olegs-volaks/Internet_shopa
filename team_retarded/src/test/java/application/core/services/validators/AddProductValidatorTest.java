@@ -36,4 +36,18 @@ class AddProductValidatorTest {
         List<CoreError> result = subject.validate(new AddProductRequest("1233", "description", 123.1));
         assertThat(result).isEmpty();
     }
+
+    @Test
+    void validate_description() {
+        List<CoreError> result = subject.validate(new AddProductRequest("Nevil","description",54.5));
+        assertThat(result).allMatch(coreError -> coreError.getField().equals("Description") &&
+                coreError.getMessage().equals("Must be between 10 and 2000 characters"));
+    }
+
+    @Test
+    void validate_price() {
+        List<CoreError> result = subject.validate(new AddProductRequest("Mojo","description",127.0));
+        assertThat(result).allMatch(coreError -> coreError.getField().equals("Price") &&
+                coreError.getMessage().equals("Must be between 10 and 2000 characters"));
+    }
 }
