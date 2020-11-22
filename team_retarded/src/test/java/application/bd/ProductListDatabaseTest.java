@@ -96,14 +96,14 @@ class ProductListDatabaseTest {
         subject.add("Ball", "5size", 50.0);
         subject.add("Tennis ball", "tennis", 10.0);
         subject.add("Mars", "2pac", 34.0);
-        subject.add("Honda","typeR",1234.0);
-        subject.add("PS4","PRO",200.0);
-        subject.add("football","ball",60.0);
-        subject.add("volleyball","ball",35.0);
-        subject.delete(product -> product.getPrice().compareTo(new BigDecimal("10.0")) >= 0 &&
-                product.getPrice().compareTo(new BigDecimal("70.0")) <= 0);
+        subject.add("Honda", "typeR", 1234.0);
+        subject.add("PS4", "PRO", 200.0);
+        subject.add("football", "ball", 60.0);
+        subject.add("volleyball", "ball", 35.0);
+        subject.delete(product -> product.getPrice().compareTo(new BigDecimal("10.0")) > 0 &&
+                product.getPrice().compareTo(new BigDecimal("70.0")) < 0);
         assertThat(subject.getList()).noneMatch(product -> product.getPrice().compareTo(new BigDecimal("10.0")) > 0
-        && product.getPrice().compareTo(new BigDecimal("70.0")) < 0);
+                || product.getPrice().compareTo(new BigDecimal("70.0")) < 0);
 
 
     }
@@ -129,7 +129,7 @@ class ProductListDatabaseTest {
         subject.add("Honda", "2.0", 5000.0);
         subject.add("Opel", "1.6", 4000.0);
         subject.add("Mazda", "3.0", 3500.0);
-        subject.add("Iphone", "Xpro", 1000.0);
+        subject.add("Iphone", "pro", 1000.0);
         subject.add("PS4", "Pro", 350.0);
         subject.add("BeatsByDRE", "", 100.0);
         subject.add("AppleMac", "Pro", 555.0);
@@ -142,7 +142,16 @@ class ProductListDatabaseTest {
 
     @Test
     void filter_by_name() {
-
+        subject.add("BMW", "323", 10000.0);
+        subject.add("Honda", "2.0", 5000.0);
+        subject.add("Opel", "1.6", 4000.0);
+        subject.add("Mazda", "3.0", 3500.0);
+        subject.add("Iphone", "pro", 1000.0);
+        subject.add("PS4", "Pro", 350.0);
+        subject.add("BeatsByDRE", "", 100.0);
+        subject.add("AppleMac", "Pro", 555.0);
+        List<Product> actual = subject.filter(product -> product.getName().equals("BMW") || product.getName().equals("PS4"));
+        assertThat(actual).allMatch(product -> product.getName().equals("BMW") || product.getName().equals("PS4"));
     }
 
     @Test
@@ -152,6 +161,21 @@ class ProductListDatabaseTest {
 
     @Test
     void filter_by_price() {
+
+    }
+
+    @Test
+    void get_by_id_validator() {
+
+    }
+
+    @Test
+    void filter_product_by_name_validator() {
+
+    }
+
+    @Test
+    void filer_product_by_price_validator() {
 
     }
 
