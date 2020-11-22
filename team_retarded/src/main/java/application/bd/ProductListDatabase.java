@@ -21,7 +21,7 @@ public class ProductListDatabase implements Database {
         return id;
     }
 
-    @Override
+    /*@Override
     public boolean delete(long id) {
         boolean isProductDeleted = false;
         Optional<Product> productToDeleteOpt = db.stream()
@@ -32,6 +32,11 @@ public class ProductListDatabase implements Database {
             isProductDeleted = db.remove(productToDelete);
         }
         return isProductDeleted;
+    }*/
+
+    @Override
+    public void delete(long id) {
+        db.removeIf(x -> x.getId() == id);
     }
 
     @Override
