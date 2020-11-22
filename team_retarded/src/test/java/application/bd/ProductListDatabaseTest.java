@@ -156,28 +156,39 @@ class ProductListDatabaseTest {
 
     @Test
     void filter_by_description() {
+        subject.add("BMW", "323", 10000.0);
+        subject.add("Honda", "2.0", 5000.0);
+        subject.add("Opel", "1.6", 4000.0);
+        subject.add("Mazda", "3.0", 3500.0);
+        subject.add("Iphone", "Pro", 1000.0);
+        subject.add("PS4", "Pro", 350.0);
+        subject.add("BeatsByDRE", "323", 100.0);
+        subject.add("AppleMac", "Pro", 555.0);
+        List<Product> actual = subject.filter(product -> product.getDescription().equals("323") ||
+                product.getDescription().equals("Pro"));
+        assertThat(actual).allMatch(product -> product.getDescription().equals("323") ||
+                product.getDescription().equals("Pro"));
 
     }
 
     @Test
     void filter_by_price() {
+        subject.add("BMW", "323", 10000.0);
+        subject.add("Honda", "2.0", 4000.0);
+        subject.add("Opel", "1.6", 4000.0);
+        subject.add("Mazda", "3.0", 10000.0);
+        subject.add("Iphone", "pro", 100.0);
+        subject.add("PS4", "Pro", 350.0);
+        subject.add("BeatsByDRE", "", 100.0);
+        subject.add("AppleMac", "Pro", 555.0);
+        List<Product> actual = subject.filter(product -> product.getPrice().compareTo(new BigDecimal("10000.0")) > 0 &&
+                product.getPrice().compareTo(new BigDecimal("100.0")) < 0);
+        assertThat(actual).allMatch(product -> product.getPrice().compareTo(new BigDecimal("10000.0")) > 0 &&
+                product.getPrice().compareTo(new BigDecimal("100.0")) < 0);
+
 
     }
 
-    @Test
-    void get_by_id_validator() {
-
-    }
-
-    @Test
-    void filter_product_by_name_validator() {
-
-    }
-
-    @Test
-    void filer_product_by_price_validator() {
-
-    }
 
     @Test
     void filter_by_price_range() {
@@ -185,7 +196,7 @@ class ProductListDatabaseTest {
         subject.add("Honda", "2.0", 5000.0);
         subject.add("Opel", "1.6", 4000.0);
         subject.add("Mazda", "3.0", 3500.0);
-        subject.add("Iphone", "Xpro", 1000.0);
+        subject.add("Iphone", "Pro", 1000.0);
         subject.add("PS4", "Pro", 350.0);
         subject.add("BeatsByDRE", "", 100.0);
         subject.add("AppleMac", "Pro", 555.0);
