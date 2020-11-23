@@ -16,7 +16,7 @@ public class DeleteProductValidator {
     }
 
     private Optional<CoreError> validateId(DeleteProductRequest request) {
-        if (request.getProductIdToDelete() <=0) {
+        if (request.getProductIdToDelete() <= 0) {
             return Optional.of(new CoreError("ID", "Must not be empty, negative or fractional"));
         }
 

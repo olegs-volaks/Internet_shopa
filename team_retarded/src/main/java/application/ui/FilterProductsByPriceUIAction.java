@@ -25,7 +25,7 @@ public class FilterProductsByPriceUIAction implements UIAction {
         } while (priceMin < 0 && priceMax < priceMin);
 
 
-        FilterProductsByPriceResponse response = service.execute(new FilterProductsByPriceRequest(priceMin,priceMax));
+        FilterProductsByPriceResponse response = service.execute(new FilterProductsByPriceRequest(priceMin, priceMax));
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
                     + coreError.getField() + ": " + coreError.getMessage()));

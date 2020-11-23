@@ -1,7 +1,7 @@
 package application.ui;
 
 
-public class ExitUIAction  implements UIAction {
+public class ExitUIAction implements UIAction {
 
     @Override
     public void execute() {
