@@ -17,13 +17,17 @@ class FilterProductsByPriceValidatorTest {
     @Test
     void validatePriceMin() {
         List<CoreError> result = subject.validate(new FilterProductsByPriceRequest(1,5));
-        assertThat(result).allMatch(coreError -> coreError.getField().equals("minimum price") &&
-                coreError.getMessage().equals("Must not be empty or negative")) ;
+        assertThat(result).isEmpty();
+        //assertThat(result).allMatch(coreError -> coreError.getField().equals("minimum price") &&
+          //      coreError.getMessage().equals("Must not be empty or negative")) ;
     }
+
+
     @Test
     void validatePriceMax() {
         List<CoreError> result = subject.validate(new FilterProductsByPriceRequest(6,8));
-        assertThat(result).allMatch(coreError -> coreError.getMessage().equals("Must not be empty, negative or less than minimum price"));
+        assertThat(result).isEmpty();
+      //  assertThat(result).allMatch(coreError -> coreError.getMessage().equals("Must not be empty, negative or less than minimum price"));
     }
 
 }

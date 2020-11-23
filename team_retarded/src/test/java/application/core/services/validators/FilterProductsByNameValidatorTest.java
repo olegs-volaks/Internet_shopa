@@ -14,9 +14,10 @@ class FilterProductsByNameValidatorTest {
 
     @Test
     void validateName1() {
-        List<CoreError> result = subject.validate(new FilterProductsByNameRequest("Alexander","description"));
-        assertThat(result).allMatch(coreError -> coreError.getField().equals("Name") &&
-                coreError.getMessage().equals("Must be between 4 and 100 characters"));
+        List<CoreError> result = subject.validate(new FilterProductsByNameRequest("Alexander","Most"));
+        assertThat(result).isEmpty();
+    //    assertThat(result).allMatch(coreError -> coreError.getField().equals("Name") &&
+    //            coreError.getMessage().equals("Must be between 4 and 100 characters"));
     }
 
     @Test

@@ -18,7 +18,7 @@ public class GetProductByIdValidator {
 
     private Optional<CoreError> validateId(GetProductByIdRequest request) {
         if (request.getProductId() < 0) {
-            return Optional.of(new CoreError("ID","Product with this ID does not exist!"));
+            return Optional.of(new CoreError("ID","ID must be greater than 0 !"));
         }
         return Optional.empty();
     }

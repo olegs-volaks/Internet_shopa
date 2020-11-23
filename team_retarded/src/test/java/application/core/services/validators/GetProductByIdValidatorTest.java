@@ -17,8 +17,7 @@ class GetProductByIdValidatorTest {
     @Test
     void validateId() {
         List<CoreError> result = subject.validate(new GetProductByIdRequest(1));
-        assertThat(result).allMatch(coreError -> coreError.getField().equals("ID")
-                && coreError.getMessage().equals("Product with this ID does not exist!"));
+        assertThat(result).isEmpty();
     }
 
 }

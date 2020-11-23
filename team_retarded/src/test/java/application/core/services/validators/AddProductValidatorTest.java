@@ -33,21 +33,32 @@ class AddProductValidatorTest {
 
     @Test
     void validate_name_is_100_characters() {
-        List<CoreError> result = subject.validate(new AddProductRequest("1233", "description", 123.1));
+        List<CoreError> result = subject.validate(new AddProductRequest("1111111111111111111111111111111111111111" +
+                "111111111111111111112222222222333333333333333333344444444445", "description", 123.1));
         assertThat(result).isEmpty();
     }
 
     @Test
-    void validate_description() {
-        List<CoreError> result = subject.validate(new AddProductRequest("Nevil","description",54.5));
-        assertThat(result).allMatch(coreError -> coreError.getField().equals("Description") &&
-                coreError.getMessage().equals("Must be between 10 and 2000 characters"));
+    void validate_name_is_101_characters() {
+        List<CoreError> result = subject.validate(new AddProductRequest("1111111111111111111111111111111111111111" +
+                "111111111111111111112222222222333333333333333333344444444445aAA"
+                , "description", 5554.5));
+        assertThat(result).allMatch(coreError -> coreError.getField().equals("Name") &&
+                coreError.getMessage().equals("Must be between 4 and 100 characters"));
     }
 
     @Test
-    void validate_price() {
-        List<CoreError> result = subject.validate(new AddProductRequest("Mojo","description",127.0));
-        assertThat(result).allMatch(coreError -> coreError.getField().equals("Price") &&
-                coreError.getMessage().equals("Must be between 10 and 2000 characters"));
+    void validate_description() {
+        List<CoreError> result = subject.validate(new AddProductRequest("Nevil", "description", 54.5));
+        assertThat(result).isEmpty();
+        // assertThat(result).allMatch(coreError -> coreError.getField().equals("Description") &&
+        //       coreError.getMessage().equals("Must be between 10 and 2000 characters"));
     }
+
+   /* @Test
+    void validate_description2() {
+        List<CoreError> result = subject.validate(new AddProductRequest("Sony", "TV", 10000.0));
+        assertThat(result).allMatch(coreError -> coreError.getField().equals("Description") &&
+                coreError.getMessage().equals("Must be between 10 and 2000 characters")); */
+
 }
