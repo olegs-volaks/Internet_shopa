@@ -16,14 +16,10 @@ public class DeleteProductValidator {
     }
 
     private Optional<CoreError> validateId(DeleteProductRequest request) {
-        if (request.getProductIdToDelete() <=0 ||
-                (request.getProductIdToDelete() % 2 != 1 && request.getProductIdToDelete() % 2 != 0)) {
+        if (request.getProductIdToDelete() <=0) {
             return Optional.of(new CoreError("ID", "Must not be empty, negative or fractional"));
         }
 
-        if (request.getProductIdToDelete() > (10^18))  {
-            return Optional.of(new CoreError("ID", "Must be less than 18 characters"));
-        }
         return Optional.empty();
     }
 
