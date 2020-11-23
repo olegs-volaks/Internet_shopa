@@ -15,7 +15,7 @@ public class GetProductByIdService {
     private final Database db;
     private final GetProductByIdValidator validator;
 
-    public GetProductByIdService(Database db,GetProductByIdValidator validator) {
+    public GetProductByIdService(Database db, GetProductByIdValidator validator) {
         this.db = db;
         this.validator = validator;
     }
