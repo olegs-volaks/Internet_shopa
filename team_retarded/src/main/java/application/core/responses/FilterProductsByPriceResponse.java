@@ -4,19 +4,18 @@ import application.items.Product;
 
 import java.util.List;
 
-public class FilterProductsByPriceResponse extends CoreResponse{
+public class FilterProductsByPriceResponse extends CoreResponse {
 
-    private  List <Product> productsByFilter;
+    private List<Product> productsByFilter;
 
 
-    public FilterProductsByPriceResponse(List<CoreError> errors,List <Product> productsByFilter) {
+    public FilterProductsByPriceResponse(List<CoreError> errors, List<Product> productsByFilter) {
         super(errors);
         this.productsByFilter = productsByFilter;
     }
 
 
-
-    public List <Product> getProductsByFilter() {
+    public List<Product> getProductsByFilter() {
         return productsByFilter;
     }
 }

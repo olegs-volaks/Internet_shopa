@@ -22,13 +22,13 @@ public class FilterProductsByNameService {
         List<CoreError> errors = validator.validate(request);
 
         if (!errors.isEmpty()) {
-            List<Product> empty=null;
-            return new FilterProductsByNameResponse(errors,empty);
+            List<Product> empty = null;
+            return new FilterProductsByNameResponse(errors, empty);
         }
 
         return new FilterProductsByNameResponse(errors,
-                db.filter(product -> product.getName().equalsIgnoreCase(request.getName1())||
-                product.getName().equalsIgnoreCase(request.getName2())));
+                db.filter(product -> product.getName().equalsIgnoreCase(request.getName1()) ||
+                        product.getName().equalsIgnoreCase(request.getName2())));
     }
 }
 
