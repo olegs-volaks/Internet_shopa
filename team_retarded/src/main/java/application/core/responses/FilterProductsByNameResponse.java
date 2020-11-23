@@ -8,14 +8,12 @@ public class FilterProductsByNameResponse extends CoreResponse {
 
     private final List<Product> filterProductsByName;
 
-
-    public FilterProductsByNameResponse(List<CoreError> errors, List<Product> filterProductsByName) {
+    public FilterProductsByNameResponse(List<CoreError> errors,List <Product> filterProductsByName) {
         super(errors);
         this.filterProductsByName = filterProductsByName;
     }
 
-
-    public List<Product> getFilterProductsByName() {
+    public List <Product> getFilterProductsByName() {
         return filterProductsByName;
     }
 }
