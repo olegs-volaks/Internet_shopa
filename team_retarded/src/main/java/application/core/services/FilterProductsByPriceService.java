@@ -23,13 +23,13 @@ public class FilterProductsByPriceService {
         List<CoreError> errors = validator.validate(request);
 
         if (!errors.isEmpty()) {
-            List<Product> empty=null;
-            return new FilterProductsByPriceResponse(errors,empty);
+            List<Product> empty = null;
+            return new FilterProductsByPriceResponse(errors, empty);
         }
 
         return new FilterProductsByPriceResponse(errors,
                 db.filter(product -> product.getPrice().compareTo(new BigDecimal(Double.toString(request.getPriceMin()))) >= 0 &&
-                product.getPrice().compareTo(new BigDecimal(Double.toString(request.getPriceMax()))) <= 0));
+                        product.getPrice().compareTo(new BigDecimal(Double.toString(request.getPriceMax()))) <= 0));
     }
 }
 

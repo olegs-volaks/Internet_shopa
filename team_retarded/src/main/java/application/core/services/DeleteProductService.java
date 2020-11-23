@@ -23,7 +23,7 @@ public class DeleteProductService {
             return new DeleteProductResponse(errors);
         }
         db.delete(request.getProductIdToDelete());
-        if (db.getById(request.getProductIdToDelete()).isEmpty()){
+        if (db.getById(request.getProductIdToDelete()).isEmpty()) {
             return new DeleteProductResponse(true);
         }
         return new DeleteProductResponse(false);
