@@ -6,7 +6,6 @@ public class CoreResponse {
 
     private List<CoreError> errors;
 
-
     public CoreResponse() {
     }
 
