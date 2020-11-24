@@ -2,8 +2,12 @@ package application.core.services;
 
 import application.bd.Database;
 import application.core.requests.SearchProductRequest;
+import application.core.responses.CoreError;
 import application.core.responses.SearchProductResponse;
 import application.core.services.validators.SearchProductValidator;
+import application.items.Product;
+
+import java.util.List;
 
 public class SearchProductService {
 
@@ -16,7 +20,11 @@ public class SearchProductService {
     }
 
     public SearchProductResponse execute(SearchProductRequest request) {
-        //todo: добавить логику
-        return null;
+        List<CoreError> errors = validator.validate(request);
+        if (!errors.isEmpty()) {
+            List<Product> empty = null;
+            return new SearchProductResponse(errors, null);
+        }
+        return new SearchProductResponse(errors,null);
     }
 }
