@@ -68,7 +68,7 @@ class AddProductValidatorTest {
     }
     @Test
     void validate_price1() {
-        List<CoreError> result = subject.validate(new AddProductRequest("Car","Mazda",-125.0));
+        List<CoreError> result = subject.validate(new AddProductRequest("Car","Mazda",110000.0));
         assertThat(result).allMatch(coreError -> coreError.getField().equals("Price") &&
                 coreError.getMessage().equals("Must be between 0 and 100000"));
     }
