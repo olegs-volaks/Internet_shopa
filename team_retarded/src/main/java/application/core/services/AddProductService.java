@@ -4,17 +4,17 @@ import application.core.requests.AddProductRequest;
 import application.core.responses.AddProductResponse;
 import application.core.responses.CoreError;
 import application.core.services.validators.AddProductValidator;
-import application.database.Database;
+import application.database.ProductDatabase;
 import application.items.Product;
 
 import java.util.List;
 
 public class AddProductService {
 
-    private final Database db;
+    private final ProductDatabase db;
     private final AddProductValidator validator;
 
-    public AddProductService(Database db, AddProductValidator validator) {
+    public AddProductService(ProductDatabase db, AddProductValidator validator) {
         this.db = db;
         this.validator = validator;
     }

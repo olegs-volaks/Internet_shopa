@@ -2,8 +2,8 @@ package application;
 
 import application.core.services.*;
 import application.core.services.validators.*;
-import application.database.Database;
-import application.database.ProductListDatabase;
+import application.database.ListProductDatabase;
+import application.database.ProductDatabase;
 import application.ui.*;
 
 import java.util.Scanner;
@@ -41,39 +41,41 @@ public class Application {
     }
 
     private static void initialization() {
-        Database db = new ProductListDatabase();
+        ProductDatabase productDatabase = new ListProductDatabase();
         AddProductValidator addProductValidator = new AddProductValidator();
-        AddProductService addProductService = new AddProductService(db, addProductValidator);
+        AddProductService addProductService = new AddProductService(productDatabase, addProductValidator);
         addProductUIAction = new AddProductUIAction(addProductService);
 
         FilterProductsByNameValidator filterProductsByNameValidator = new FilterProductsByNameValidator();
-        FilterProductsByNameService filterProductsByNameService = new FilterProductsByNameService(db, filterProductsByNameValidator);
+        FilterProductsByNameService filterProductsByNameService = new FilterProductsByNameService(productDatabase,
+                filterProductsByNameValidator);
         filterByNameUIAction = new FilterProductsByNameUIAction(filterProductsByNameService);
 
 
         FilterProductsByPriceValidator filterProductsByPriceValidator = new FilterProductsByPriceValidator();
-        FilterProductsByPriceService filterProductsByPriceService = new FilterProductsByPriceService(db, filterProductsByPriceValidator);
+        FilterProductsByPriceService filterProductsByPriceService = new FilterProductsByPriceService(productDatabase,
+                filterProductsByPriceValidator);
         filterByPriceMinMax = new FilterProductsByPriceUIAction(filterProductsByPriceService);
 
         GetProductByIdValidator getProductByIdValidator = new GetProductByIdValidator();
-        GetProductByIdService getProductByIdService = new GetProductByIdService(db, getProductByIdValidator);
+        GetProductByIdService getProductByIdService = new GetProductByIdService(productDatabase, getProductByIdValidator);
         getByIdUIAction = new GetProductByIdUIAction(getProductByIdService);
 
 
         DeleteProductValidator deleteProductValidator = new DeleteProductValidator();
-        DeleteProductService deleteProductService = new DeleteProductService(db, deleteProductValidator);
+        DeleteProductService deleteProductService = new DeleteProductService(productDatabase, deleteProductValidator);
         deleteUIAction = new DeleteProductUIAction(deleteProductService);
 
         exitUIAction = new ExitUIAction();
 
-        ShowAllProductsService showAllProductsService = new ShowAllProductsService(db);
+        ShowAllProductsService showAllProductsService = new ShowAllProductsService(productDatabase);
         getListUIAction = new ShowAllProductsUIAction(showAllProductsService);
 
-        ClearAllProductsService clearAllProductsService = new ClearAllProductsService(db);
+        ClearAllProductsService clearAllProductsService = new ClearAllProductsService(productDatabase);
         clearUIAction = new ClearAllProductsUIAction(clearAllProductsService);
 
         SearchProductValidator searchProductValidator = new SearchProductValidator();
-        SearchProductService searchProductService = new SearchProductService(db, searchProductValidator);
+        SearchProductService searchProductService = new SearchProductService(productDatabase, searchProductValidator);
         searchProductUIAction = new SearchProductUIAction(searchProductService);
 
     }

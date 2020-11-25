@@ -1,11 +1,11 @@
 package application.core.services;
 
-import application.database.Database;
+import application.database.ProductDatabase;
 
 public class ClearAllProductsService {
-    private final Database db;
+    private final ProductDatabase db;
 
-    public ClearAllProductsService(Database db) {
+    public ClearAllProductsService(ProductDatabase db) {
         this.db = db;
     }
 

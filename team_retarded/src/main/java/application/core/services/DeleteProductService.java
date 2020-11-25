@@ -4,15 +4,15 @@ import application.core.requests.DeleteProductRequest;
 import application.core.responses.CoreError;
 import application.core.responses.DeleteProductResponse;
 import application.core.services.validators.DeleteProductValidator;
-import application.database.Database;
+import application.database.ProductDatabase;
 
 import java.util.List;
 
 public class DeleteProductService {
-    private final Database db;
+    private final ProductDatabase db;
     private final DeleteProductValidator validator;
 
-    public DeleteProductService(Database db, DeleteProductValidator validator) {
+    public DeleteProductService(ProductDatabase db, DeleteProductValidator validator) {
         this.db = db;
         this.validator = validator;
     }

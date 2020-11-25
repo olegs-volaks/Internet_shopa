@@ -4,7 +4,7 @@ import application.core.requests.GetProductByIdRequest;
 import application.core.responses.CoreError;
 import application.core.responses.GetProductByIdResponse;
 import application.core.services.validators.GetProductByIdValidator;
-import application.database.Database;
+import application.database.ProductDatabase;
 import application.items.Product;
 
 import java.util.List;
@@ -12,10 +12,10 @@ import java.util.Optional;
 
 public class GetProductByIdService {
 
-    private final Database db;
+    private final ProductDatabase db;
     private final GetProductByIdValidator validator;
 
-    public GetProductByIdService(Database db, GetProductByIdValidator validator) {
+    public GetProductByIdService(ProductDatabase db, GetProductByIdValidator validator) {
         this.db = db;
         this.validator = validator;
     }

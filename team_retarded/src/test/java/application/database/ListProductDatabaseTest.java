@@ -9,14 +9,14 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ProductListDatabaseTest {
+class ListProductDatabaseTest {
 
-    private final ProductListDatabase subject = new ProductListDatabase();
+    private final ListProductDatabase subject = new ListProductDatabase();
 
 
     @Test
     void delete_by_predicate() {
-        ProductListDatabase subject = new ProductListDatabase();
+        ListProductDatabase subject = new ListProductDatabase();
         subject.add(new Product("name", "d", 12.9));
         subject.add(new Product("name2", "d", 12.9));
         subject.delete(product -> product.getName().equals("name") || product.getName().equals("name2"));
@@ -86,7 +86,7 @@ class ProductListDatabaseTest {
 
     @Test
     void delete_by_price() {
-        ProductListDatabase subject = new ProductListDatabase();
+        ListProductDatabase subject = new ListProductDatabase();
         subject.add(new Product("name", "d", 12.9));
         subject.add(new Product("name2", "d", 17.8));
         subject.delete(product -> product.getPrice().compareTo(new BigDecimal("12.9")) == 0 ||

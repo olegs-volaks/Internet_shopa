@@ -4,16 +4,16 @@ import application.core.requests.FilterProductsByNameRequest;
 import application.core.responses.CoreError;
 import application.core.responses.FilterProductsByNameResponse;
 import application.core.services.validators.FilterProductsByNameValidator;
-import application.database.Database;
+import application.database.ProductDatabase;
 import application.items.Product;
 
 import java.util.List;
 
 public class FilterProductsByNameService {
-    private final Database db;
+    private final ProductDatabase db;
     private final FilterProductsByNameValidator validator;
 
-    public FilterProductsByNameService(Database db, FilterProductsByNameValidator validator) {
+    public FilterProductsByNameService(ProductDatabase db, FilterProductsByNameValidator validator) {
         this.db = db;
         this.validator = validator;
     }

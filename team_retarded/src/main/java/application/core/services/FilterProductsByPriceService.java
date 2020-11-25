@@ -4,17 +4,17 @@ import application.core.requests.FilterProductsByPriceRequest;
 import application.core.responses.CoreError;
 import application.core.responses.FilterProductsByPriceResponse;
 import application.core.services.validators.FilterProductsByPriceValidator;
-import application.database.Database;
+import application.database.ProductDatabase;
 import application.items.Product;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 public class FilterProductsByPriceService {
-    private final Database db;
+    private final ProductDatabase db;
     private final FilterProductsByPriceValidator validator;
 
-    public FilterProductsByPriceService(Database db, FilterProductsByPriceValidator validator) {
+    public FilterProductsByPriceService(ProductDatabase db, FilterProductsByPriceValidator validator) {
         this.db = db;
         this.validator = validator;
     }

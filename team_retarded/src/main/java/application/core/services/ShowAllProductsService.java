@@ -2,12 +2,12 @@ package application.core.services;
 
 import application.core.requests.ShowAllProductsRequest;
 import application.core.responses.ShowAllProductsResponse;
-import application.database.Database;
+import application.database.ProductDatabase;
 
 public class ShowAllProductsService {
-    private final Database db;
+    private final ProductDatabase db;
 
-    public ShowAllProductsService(Database db) {
+    public ShowAllProductsService(ProductDatabase db) {
         this.db = db;
     }
 

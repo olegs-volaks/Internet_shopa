@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public interface Database {
+public interface ProductDatabase {
 
     long add(Product product);
 

@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
-public class ProductListDatabase implements Database {
+public class ListProductDatabase implements ProductDatabase {
 
     private final List<Product> db = new ArrayList<>();
     private long id;
@@ -21,19 +21,6 @@ public class ProductListDatabase implements Database {
         db.add(product);
         return id;
     }
-
-    /*@Override
-    public boolean delete(long id) {
-        boolean isProductDeleted = false;
-        Optional<Product> productToDeleteOpt = db.stream()
-                .filter(product -> product.getId()==id)
-                .findFirst();
-        if (productToDeleteOpt.isPresent()) {
-            Product productToDelete = productToDeleteOpt.get();
-            isProductDeleted = db.remove(productToDelete);
-        }
-        return isProductDeleted;
-    }*/
 
     @Override
     public void delete(long id) {
