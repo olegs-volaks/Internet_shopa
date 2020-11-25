@@ -14,7 +14,7 @@ public class SearchProductResponse extends CoreResponse {
     }
 
 
-    public List<Product> getProducts() {
+    public List<Product> getProductsBySearch() {
         return products;
     }
 }
