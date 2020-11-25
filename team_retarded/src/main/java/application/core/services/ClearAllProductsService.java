@@ -1,6 +1,6 @@
 package application.core.services;
 
-import application.bd.Database;
+import application.database.Database;
 
 public class ClearAllProductsService {
     private final Database db;

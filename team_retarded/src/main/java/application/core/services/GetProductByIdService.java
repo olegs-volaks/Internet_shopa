@@ -1,10 +1,10 @@
 package application.core.services;
 
-import application.bd.Database;
 import application.core.requests.GetProductByIdRequest;
 import application.core.responses.CoreError;
 import application.core.responses.GetProductByIdResponse;
 import application.core.services.validators.GetProductByIdValidator;
+import application.database.Database;
 import application.items.Product;
 
 import java.util.List;
