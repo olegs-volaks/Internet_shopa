@@ -1,9 +1,9 @@
 package application;
 
-import application.bd.Database;
-import application.bd.ProductListDatabase;
 import application.core.services.*;
 import application.core.services.validators.*;
+import application.database.Database;
+import application.database.ProductListDatabase;
 import application.ui.*;
 
 import java.util.Scanner;

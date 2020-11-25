@@ -1,9 +1,9 @@
 package application.core.services;
 
-import application.bd.Database;
 import application.core.requests.SearchProductRequest;
 import application.core.responses.SearchProductResponse;
 import application.core.services.validators.SearchProductValidator;
+import application.database.Database;
 
 public class SearchProductService {
 

@@ -1,8 +1,8 @@
 package application.core.services;
 
-import application.bd.Database;
 import application.core.requests.ShowAllProductsRequest;
 import application.core.responses.ShowAllProductsResponse;
+import application.database.Database;
 
 public class ShowAllProductsService {
     private final Database db;

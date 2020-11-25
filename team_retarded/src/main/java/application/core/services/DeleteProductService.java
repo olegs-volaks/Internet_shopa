@@ -1,10 +1,10 @@
 package application.core.services;
 
-import application.bd.Database;
 import application.core.requests.DeleteProductRequest;
 import application.core.responses.CoreError;
 import application.core.responses.DeleteProductResponse;
 import application.core.services.validators.DeleteProductValidator;
+import application.database.Database;
 
 import java.util.List;
 

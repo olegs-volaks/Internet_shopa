@@ -1,10 +1,10 @@
 package application.core.services;
 
-import application.bd.Database;
 import application.core.requests.FilterProductsByPriceRequest;
 import application.core.responses.CoreError;
 import application.core.responses.FilterProductsByPriceResponse;
 import application.core.services.validators.FilterProductsByPriceValidator;
+import application.database.Database;
 import application.items.Product;
 
 import java.math.BigDecimal;
