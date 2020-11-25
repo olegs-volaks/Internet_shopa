@@ -32,5 +32,5 @@ class GetProductByIdValidatorTest {
         assertThat(result).allMatch(coreError -> coreError.getField().equals("ID") &&
                 coreError.getMessage().equals("Must be more than 0 "));;
     }
- */
+*/
 }
