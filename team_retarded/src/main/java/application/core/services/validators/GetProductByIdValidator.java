@@ -17,8 +17,8 @@ public class GetProductByIdValidator {
     }
 
     private Optional<CoreError> validateId(GetProductByIdRequest request) {
-        if (request.getProductId() < 0) {
-            return Optional.of(new CoreError("ID", "Must be more than 0"));
+        if (request.getProductId() <=0) {
+            return Optional.of(new CoreError("ID", "Must be greater than 0"));
         }
         return Optional.empty();
     }

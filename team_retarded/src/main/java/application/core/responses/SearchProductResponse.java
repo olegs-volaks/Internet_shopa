@@ -13,6 +13,7 @@ public class SearchProductResponse extends CoreResponse {
         this.products = products;
     }
 
+
     public List<Product> getProducts() {
         return products;
     }
