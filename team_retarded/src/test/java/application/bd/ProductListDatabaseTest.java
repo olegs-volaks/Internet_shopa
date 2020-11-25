@@ -200,10 +200,8 @@ class ProductListDatabaseTest {
         subject.add("PS4", "Pro", 350.0);
         subject.add("BeatsByDRE", "", 100.0);
         subject.add("AppleMac", "Pro", 555.0);
-//        Price range from 300 to 1000
         List<Product> actual = subject.filter(product -> product.getPrice().compareTo(new BigDecimal("300")) > 0 &&
                 product.getPrice().compareTo(new BigDecimal("1000")) < 0);
-//        assert ONLY if all products in the actual List have id 5; 6; 8
         assertThat(actual).allMatch(product -> product.getId() == 5 || product.getId() == 6 || product.getId() == 8);
     }
 }
