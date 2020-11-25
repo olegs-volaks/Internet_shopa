@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class GetProductByIdValidatorTest {
@@ -23,13 +21,15 @@ class GetProductByIdValidatorTest {
     @Test
     void validateIdNegative() {
         List<CoreError> result = subject.validate(new GetProductByIdRequest(-1));
-        assertThat(result).allMatch(coreError -> coreError.getMessage().equals("ID must be greater than 0 !"));
+        assertThat(result).allMatch(coreError -> coreError.getField().equals("ID") ||
+                coreError.getMessage().equals("Must be more than 0"));
     }
 
     @Test
     void validateIdZero() {
         List<CoreError> result = subject.validate(new GetProductByIdRequest(0));
-        assertThat(result).allMatch(coreError -> coreError.getMessage().equals("ID must be greater than 0 !"));
+        assertThat(result).allMatch(coreError -> coreError.getField().equals("ID") ||
+                coreError.getMessage().equals("Must be more than 0"));
     }
 
 }
