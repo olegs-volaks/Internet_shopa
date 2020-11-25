@@ -22,14 +22,14 @@ class GetProductByIdValidatorTest {
     void validateIdNegative() {
        List<CoreError> result = subject.validate(new GetProductByIdRequest(-10));
        assertThat(result).allMatch(coreError -> coreError.getField().equals("ID") &&
-               coreError.getMessage().equals("Must be more than 0"));
+               coreError.getMessage().equals("Must be greater than 0"));
    }
 
    @Test
     void validateIdZero() {
        List<CoreError> result = subject.validate(new GetProductByIdRequest(0));
        assertThat(result).allMatch(coreError -> coreError.getField().equals("ID") &&
-               coreError.getMessage().equals("Must be more than 0"));
+               coreError.getMessage().equals("Must be greater than 0"));
        ;
    }
 }
