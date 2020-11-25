@@ -5,7 +5,7 @@ import application.core.requests.SearchProductRequest;
 import application.core.responses.CoreError;
 import application.core.responses.SearchProductResponse;
 import application.core.services.validators.SearchProductValidator;
-import application.items.Product;
+
 
 import java.util.List;
 
@@ -22,9 +22,14 @@ public class SearchProductService {
     public SearchProductResponse execute(SearchProductRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            List<Product> empty = null;
             return new SearchProductResponse(errors, null);
         }
-        return new SearchProductResponse(errors,null);
+        return new SearchProductResponse(errors,
+                db.filter(product -> product.getName().toLowerCase().contains(request.getName().toLowerCase()) ||
+                 product.getDescription().toLowerCase().contains(request.getDescription().toLowerCase())));
+        }
+
     }
-}
+
+
+
