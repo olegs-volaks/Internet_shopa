@@ -63,13 +63,13 @@ class AddProductValidatorTest {
 
     @Test
     void validate_price() {
-        List<CoreError> result = subject.validate(new AddProductRequest("Cars", "Chevrolett", 1200.0));
+        List<CoreError> result = subject.validate(new AddProductRequest("Mustang", "Chevrolett", 1200.0));
         assertThat(result).isEmpty();
     }
 
     @Test
     void validate_price1() {
-        List<CoreError> result = subject.validate(new AddProductRequest("Cars", "Chevrolett", -10));
+        List<CoreError> result = subject.validate(new AddProductRequest("Mustang", "Chevrolett", -10));
         assertThat(result).allMatch(coreError -> coreError.getField().equals("Price") &&
                 coreError.getMessage().equals("Must be between 0 and 100000"));
     }
