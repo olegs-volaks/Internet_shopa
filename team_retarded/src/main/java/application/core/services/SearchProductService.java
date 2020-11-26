@@ -1,12 +1,12 @@
 package application.core.services;
 
-import application.bd.Database;
 import application.core.requests.Ordering;
 import application.core.requests.Paging;
 import application.core.requests.SearchProductRequest;
 import application.core.responses.CoreError;
 import application.core.responses.SearchProductResponse;
 import application.core.services.validators.SearchProductValidator;
+import application.database.Database;
 import application.items.Product;
 
 import java.util.Comparator;
