@@ -26,7 +26,7 @@ public class SearchProductUIAction implements UIAction {
         System.out.println("Enter order by name (press 1) or description (press 2): ");
         String orderBy = getChoseNameOrDescription();
         System.out.println("Enter orderDirection ASCENDING (press 1) or DESCENDING (press 2): ");
-        String orderDirection = getChoseASCENDINGOrDESCENDING();
+        String orderDirection = getChoseAscendOrDescend();
         Ordering ordering = new Ordering(orderBy, orderDirection);
         System.out.println("Enter pageNumber: ");
         Integer pageNumber = getPageNumber();
@@ -41,7 +41,7 @@ public class SearchProductUIAction implements UIAction {
             + coreError.getField() + ": " + coreError.getMessage()));
         } else {
             System.out.println("All products are successfully found:  ");
-            response.getProductsBySearch().forEach(System.out::println);
+            response.getProducts().forEach(System.out::println);
         }
     }
     private String getChoseNameOrDescription() {
@@ -62,7 +62,7 @@ public class SearchProductUIAction implements UIAction {
         return null;
     }
 
-    private String getChoseASCENDINGOrDESCENDING() {
+    private String getChoseAscendOrDescend() {
         Scanner scanner = new Scanner(System.in);
         String getChose = scanner.nextLine();
         getChose = getChose.replaceAll("\\s+", "");

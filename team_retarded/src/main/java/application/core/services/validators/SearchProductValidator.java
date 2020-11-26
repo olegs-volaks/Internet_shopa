@@ -20,8 +20,6 @@ public class SearchProductValidator {
             validateMandatoryOrderDirection(request.getOrdering()).ifPresent(errors::add);
         }
         if (request.getPaging() != null) {
-            validatePageNumber(request.getPaging()).ifPresent(errors::add);
-            validatePageSize(request.getPaging()).ifPresent(errors::add);
             validateMandatoryPageNumber(request.getPaging()).ifPresent(errors::add);
             validateMandatoryPageSize(request.getPaging()).ifPresent(errors::add);
         }
@@ -56,28 +54,25 @@ public class SearchProductValidator {
     }
 
     private Optional<CoreError> validateMandatoryPageNumber(Paging paging) {
-        return (paging.getPageNumber() == null && paging.getPageSize() != null)
-                ? Optional.of(new CoreError("pageNumber", "Must not be empty!"))
-                : Optional.empty();
-    }
-
-    private Optional<CoreError> validatePageNumber(Paging paging) {
-        return (paging.getPageNumber() != null
-                && paging.getPageNumber() <= 0)
-                ? Optional.of(new CoreError("pageNumber", "Must be greater then 0!"))
-                : Optional.empty();
+        if ((paging.getPageNumber() == null && paging.getPageSize() == null)) {
+            return Optional.empty();
+        }else if(paging.getPageNumber() == null && paging.getPageSize() != null){
+            return Optional.of(new CoreError("pageNumber", "Must not be empty!"));
+        }else if ( paging.getPageNumber() <= 0){
+            return Optional.of(new CoreError("pageNumber", "Must be greater then 0!"));
+        }
+        return Optional.empty();
     }
 
     private Optional<CoreError> validateMandatoryPageSize(Paging paging) {
-        return (paging.getPageSize() == null && paging.getPageNumber() != null)
-                ? Optional.of(new CoreError("pageSize", "Must not be empty!"))
-                : Optional.empty();
+        if ((paging.getPageNumber() == null && paging.getPageSize() == null)){
+            return Optional.empty();
+        } else if (paging.getPageSize() == null && paging.getPageNumber() != null){
+            return Optional.of(new CoreError("pageSize", "Must not be empty!"));
+        }else if ( paging.getPageSize() <= 0){
+            return Optional.of(new CoreError("pageSize", "Must be greater then 0!"));
+        }
+        return Optional.empty();
     }
 
-    private Optional<CoreError> validatePageSize(Paging paging) {
-        return (paging.getPageSize() != null
-                && paging.getPageSize() <= 0)
-                ? Optional.of(new CoreError("pageSize", "Must be greater then 0!"))
-                : Optional.empty();
-    }
 }
