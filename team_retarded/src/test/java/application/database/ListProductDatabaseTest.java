@@ -1,5 +1,6 @@
 package application.database;
 
+import application.database.categories.database.ListCategoriesDatabase;
 import application.items.Product;
 import org.junit.jupiter.api.Test;
 
@@ -11,12 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ListProductDatabaseTest {
 
-    private final ListProductDatabase subject = new ListProductDatabase();
+    private final ListProductDatabase subject = new ListProductDatabase(new ListCategoriesDatabase());
 
 
     @Test
     void delete_by_predicate() {
-        ListProductDatabase subject = new ListProductDatabase();
         subject.add(new Product("name", "d", 12.9));
         subject.add(new Product("name2", "d", 12.9));
         subject.delete(product -> product.getName().equals("name") || product.getName().equals("name2"));
@@ -86,7 +86,6 @@ class ListProductDatabaseTest {
 
     @Test
     void delete_by_price() {
-        ListProductDatabase subject = new ListProductDatabase();
         subject.add(new Product("name", "d", 12.9));
         subject.add(new Product("name2", "d", 17.8));
         subject.delete(product -> product.getPrice().compareTo(new BigDecimal("12.9")) == 0 ||
