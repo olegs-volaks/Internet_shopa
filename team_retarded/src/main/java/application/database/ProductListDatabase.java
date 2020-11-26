@@ -1,4 +1,4 @@
-package application.bd;
+package application.database;
 
 import application.items.Product;
 
@@ -15,9 +15,10 @@ public class ProductListDatabase implements Database {
     private long id;
 
     @Override
-    public long add(String name, String description, double price) {
+    public long add(Product product) {
         id++;
-        db.add(new Product(id, name, description, price));
+        product.setId(id);
+        db.add(product);
         return id;
     }
 

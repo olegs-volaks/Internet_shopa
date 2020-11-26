@@ -1,10 +1,10 @@
 package application.core.services;
 
-import application.bd.Database;
 import application.core.requests.FilterProductsByNameRequest;
 import application.core.responses.CoreError;
 import application.core.responses.FilterProductsByNameResponse;
 import application.core.services.validators.FilterProductsByNameValidator;
+import application.database.Database;
 import application.items.Product;
 
 import java.util.List;
