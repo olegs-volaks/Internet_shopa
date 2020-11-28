@@ -23,7 +23,12 @@ public class GetProductByIdUIAction implements UIAction {
         System.out.println("Get product by ID: ");
         long productId = Long.parseLong(scanner.nextLine());
         GetProductByIdResponse response = service.execute(new GetProductByIdRequest(productId));
-        System.out.println("Your product was got by ID");
-        System.out.println(response.getProduct());
+        if (response.hasErrors()) {
+            response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
+                    + coreError.getField() + ": " + coreError.getMessage()));
+        } else {
+            System.out.println("Your product was got by ID");
+            System.out.println(response.getProduct());
+        }
     }
 }
