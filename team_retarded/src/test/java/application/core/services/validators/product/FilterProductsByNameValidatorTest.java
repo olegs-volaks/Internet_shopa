@@ -21,6 +21,7 @@ class FilterProductsByNameValidatorTest {
     @Test
     void validateName2() {
         List<CoreError> result = subject.validate(new FilterProductsByNameRequest("Fil","description"));
+        assertThat(result).isNotEmpty();
         assertThat(result).allMatch(coreError -> coreError.getField().equals("Name") &&
                 coreError.getMessage().equals("Must be between 4 and 100 characters"));
     }
