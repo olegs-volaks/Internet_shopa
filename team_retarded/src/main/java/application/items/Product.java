@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Product {
-    private long id;
+    private Long id;
     private String name;
     private String description;
     private BigDecimal price;
@@ -58,7 +58,7 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id &&
+        return Objects.equals(id, product.id) &&
                 Objects.equals(name, product.name) &&
                 Objects.equals(description, product.description) &&
                 Objects.equals(price, product.price);
@@ -67,15 +67,5 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, description, price);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                '}';
     }
 }
