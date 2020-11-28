@@ -1,12 +1,10 @@
 package application.core.services.validators.product;
 
 import application.core.requests.product.GetProductByIdRequest;
-import application.core.responses.product.CoreError;
+import application.core.responses.CoreError;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-
 
 import static org.assertj.core.api.Assertions.assertThat;
 

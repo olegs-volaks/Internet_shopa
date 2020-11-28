@@ -1,6 +1,4 @@
-package application.core.responses.product;
-
-import application.items.Product;
+package application.core.responses;
 
 import java.util.Objects;
 

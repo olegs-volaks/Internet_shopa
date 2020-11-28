@@ -1,7 +1,7 @@
 package application.core.services.validators.product;
 
 import application.core.requests.product.FilterProductsByPriceRequest;
-import application.core.responses.product.CoreError;
+import application.core.responses.CoreError;
 
 import java.util.ArrayList;
 import java.util.List;

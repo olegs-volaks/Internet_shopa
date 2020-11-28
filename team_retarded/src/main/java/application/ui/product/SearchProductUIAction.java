@@ -1,10 +1,11 @@
-package application.ui;
+package application.ui.product;
 
-import application.core.requests.Ordering;
-import application.core.requests.Paging;
-import application.core.requests.SearchProductRequest;
-import application.core.responses.SearchProductResponse;
-import application.core.services.SearchProductService;
+import application.core.requests.product.Ordering;
+import application.core.requests.product.Paging;
+import application.core.requests.product.SearchProductRequest;
+import application.core.responses.product.SearchProductResponse;
+import application.core.services.product.SearchProductService;
+import application.ui.UIAction;
 
 import java.util.Scanner;
 

@@ -1,7 +1,7 @@
 package application.core.services.validators.product;
 
 import application.core.requests.product.FilterProductsByNameRequest;
-import application.core.responses.product.CoreError;
+import application.core.responses.CoreError;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

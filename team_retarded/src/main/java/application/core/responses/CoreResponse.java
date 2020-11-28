@@ -1,4 +1,4 @@
-package application.core.responses.product;
+package application.core.responses;
 
 import java.util.List;
 

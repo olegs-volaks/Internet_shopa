@@ -1,7 +1,7 @@
 package application.core.services.validators.product;
 
 import application.core.requests.product.AddProductRequest;
-import application.core.responses.product.CoreError;
+import application.core.responses.CoreError;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

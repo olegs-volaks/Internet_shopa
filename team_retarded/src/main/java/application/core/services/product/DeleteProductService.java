@@ -1,7 +1,7 @@
 package application.core.services.product;
 
 import application.core.requests.product.DeleteProductRequest;
-import application.core.responses.product.CoreError;
+import application.core.responses.CoreError;
 import application.core.responses.product.DeleteProductResponse;
 import application.core.services.validators.product.DeleteProductValidator;
 import application.database.ProductDatabase;

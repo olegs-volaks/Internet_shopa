@@ -1,9 +1,10 @@
 package application.core.services.validators;
 
-import application.core.requests.Ordering;
-import application.core.requests.Paging;
-import application.core.requests.SearchProductRequest;
+import application.core.requests.product.Ordering;
+import application.core.requests.product.Paging;
+import application.core.requests.product.SearchProductRequest;
 import application.core.responses.CoreError;
+import application.core.services.validators.product.SearchProductValidator;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

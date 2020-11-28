@@ -1,5 +1,8 @@
 package application.core.responses.product;
 
+import application.core.responses.CoreError;
+import application.core.responses.CoreResponse;
+
 import java.util.List;
 
 public class DeleteProductResponse extends CoreResponse {

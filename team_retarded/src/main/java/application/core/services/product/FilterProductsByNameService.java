@@ -1,7 +1,7 @@
 package application.core.services.product;
 
 import application.core.requests.product.FilterProductsByNameRequest;
-import application.core.responses.product.CoreError;
+import application.core.responses.CoreError;
 import application.core.responses.product.FilterProductsByNameResponse;
 import application.core.services.validators.product.FilterProductsByNameValidator;
 import application.database.ProductDatabase;

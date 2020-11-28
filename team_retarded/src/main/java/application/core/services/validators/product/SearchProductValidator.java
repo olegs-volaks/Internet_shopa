@@ -1,8 +1,8 @@
-package application.core.services.validators;
+package application.core.services.validators.product;
 
-import application.core.requests.Ordering;
-import application.core.requests.Paging;
-import application.core.requests.SearchProductRequest;
+import application.core.requests.product.Ordering;
+import application.core.requests.product.Paging;
+import application.core.requests.product.SearchProductRequest;
 import application.core.responses.CoreError;
 
 import java.util.ArrayList;

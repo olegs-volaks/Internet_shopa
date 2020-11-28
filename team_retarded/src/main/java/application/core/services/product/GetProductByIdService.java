@@ -1,7 +1,7 @@
 package application.core.services.product;
 
 import application.core.requests.product.GetProductByIdRequest;
-import application.core.responses.product.CoreError;
+import application.core.responses.CoreError;
 import application.core.responses.product.GetProductByIdResponse;
 import application.core.services.validators.product.GetProductByIdValidator;
 import application.database.ProductDatabase;

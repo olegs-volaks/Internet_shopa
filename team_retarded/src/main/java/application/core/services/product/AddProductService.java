@@ -1,8 +1,8 @@
 package application.core.services.product;
 
 import application.core.requests.product.AddProductRequest;
+import application.core.responses.CoreError;
 import application.core.responses.product.AddProductResponse;
-import application.core.responses.product.CoreError;
 import application.core.services.validators.product.AddProductValidator;
 import application.database.ProductDatabase;
 import application.items.Product;
