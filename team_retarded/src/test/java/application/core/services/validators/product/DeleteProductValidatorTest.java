@@ -14,13 +14,15 @@ class DeleteProductValidatorTest {
 
     @Test
     void test1() {
-        List<CoreError> actual=subject.validate(new DeleteProductRequest(5));
+        List<CoreError> actual = subject.validate(new DeleteProductRequest(5));
         assertThat(actual).isEmpty();
     }
+
     @Test
     void test2() {
-        List<CoreError> actual=subject.validate(new DeleteProductRequest(0));
-        assertThat(actual).allMatch(coreError -> coreError.getField().equals("ID")&&
+        List<CoreError> actual = subject.validate(new DeleteProductRequest(0));
+        assertThat(actual).isNotEmpty();
+        assertThat(actual).allMatch(coreError -> coreError.getField().equals("ID") &&
                 coreError.getMessage().equals("Must not be empty, negative or fractional"));
     }
 }

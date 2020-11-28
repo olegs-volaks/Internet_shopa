@@ -15,7 +15,7 @@ public class FilterProductsByNameResponse extends CoreResponse {
         this.filterProductsByName = filterProductsByName;
     }
 
-    public List <Product> getFilterProductsByName() {
+    public List<Product> getFilterProductsByName() {
         return filterProductsByName;
     }
 }

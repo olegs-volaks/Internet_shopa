@@ -35,16 +35,17 @@ public class SearchProductUIAction implements UIAction {
         Integer pageSize = getPageSize();
         Paging paging = new Paging(pageNumber, pageSize);
 
-        SearchProductResponse response = service.execute(new SearchProductRequest(name,description, ordering, paging));
+        SearchProductResponse response = service.execute(new SearchProductRequest(name, description, ordering, paging));
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field -  "
-            + coreError.getField() + ": " + coreError.getMessage()));
+                    + coreError.getField() + ": " + coreError.getMessage()));
         } else {
             System.out.println("All products are successfully found:  ");
             response.getProducts().forEach(System.out::println);
         }
     }
+
     private String getChoseNameOrDescription() {
         Scanner scanner = new Scanner(System.in);
         String getChose = scanner.nextLine();
@@ -81,7 +82,7 @@ public class SearchProductUIAction implements UIAction {
         return null;
     }
 
-    private Integer getPageNumber(){
+    private Integer getPageNumber() {
         Scanner scanner = new Scanner(System.in);
         String pageNumber = scanner.nextLine();
         pageNumber = pageNumber.replaceAll("\\s+", "");
@@ -93,7 +94,7 @@ public class SearchProductUIAction implements UIAction {
         return null;
     }
 
-    private Integer getPageSize(){
+    private Integer getPageSize() {
         Scanner scanner = new Scanner(System.in);
         String pageSize = scanner.nextLine();
         pageSize = pageSize.replaceAll("\\s+", "");

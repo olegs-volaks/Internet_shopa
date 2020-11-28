@@ -25,7 +25,7 @@ public class CoreError {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CoreError coreError = (CoreError) o;
-        return  Objects.equals(field, coreError.field) &&
+        return Objects.equals(field, coreError.field) &&
                 Objects.equals(message, coreError.message);
     }
 }

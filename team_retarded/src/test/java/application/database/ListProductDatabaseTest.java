@@ -33,6 +33,7 @@ class ListProductDatabaseTest {
         subject.add(new Product("PS4", "Pro", 350.0));
         subject.add(new Product("BeatsByDRE", "", 100.0));
         subject.add(new Product("AppleMac", "Pro", 555.0));
+        assertThat(subject.getList()).isNotEmpty();
         assertThat(subject.getList()).anyMatch(product -> product.getId() == 4 &&
                 product.getName().equals("Mazda") &&
                 product.getDescription().equals("3.0") &&
@@ -56,6 +57,7 @@ class ListProductDatabaseTest {
         subject.delete(5);
         subject.delete(8);
         subject.delete(9);
+        assertThat(subject.getList()).isNotEmpty();
         assertThat(subject.getList()).allMatch(product -> product.getId() == 1 || product.getId() == 3 ||
                 product.getId() == 4 || product.getId() == 6 || product.getId() == 7);
 
@@ -68,6 +70,7 @@ class ListProductDatabaseTest {
         subject.add(new Product("Iphone", "ProMax", 500.0));
         subject.add(new Product("Nokia", "3310", 55.0));
         subject.delete(product -> product.getName().equals("Nokia") || product.getName().equals("Nike"));
+        assertThat(subject.getList()).isNotEmpty();
         assertThat(subject.getList()).noneMatch(product -> product.getName().equals("Nokia") ||
                 product.getName().equals("Nike"));
 
@@ -79,6 +82,7 @@ class ListProductDatabaseTest {
         subject.add(new Product("Mazda", "CRX", 15000.0));
         subject.add(new Product("BMW", "M3", 25000.0));
         subject.delete(product -> product.getDescription().equals("M3") || product.getDescription().equals("Mustang"));
+        assertThat(subject.getList()).isNotEmpty();
         assertThat(subject.getList()).noneMatch(product -> product.getDescription().equals("M3") ||
                 product.getDescription().equals("Mustang"));
 
@@ -104,6 +108,7 @@ class ListProductDatabaseTest {
         subject.add(new Product("volleyball", "ball", 35.0));
         subject.delete(product -> product.getPrice().compareTo(new BigDecimal("10.0")) > 0 &&
                 product.getPrice().compareTo(new BigDecimal("70.0")) < 0);
+        assertThat(subject.getList()).isNotEmpty();
         assertThat(subject.getList()).noneMatch(product -> product.getPrice().compareTo(new BigDecimal("10.0")) > 0
                 && product.getPrice().compareTo(new BigDecimal("70.0")) < 0);
 
@@ -153,6 +158,7 @@ class ListProductDatabaseTest {
         subject.add(new Product("BeatsByDRE", "", 100.0));
         subject.add(new Product("AppleMac", "Pro", 555.0));
         List<Product> actual = subject.filter(product -> product.getName().equals("BMW") || product.getName().equals("PS4"));
+        assertThat(subject.getList()).isNotEmpty();
         assertThat(actual).allMatch(product -> product.getName().equals("BMW") || product.getName().equals("PS4"));
     }
 
@@ -168,6 +174,7 @@ class ListProductDatabaseTest {
         subject.add(new Product("AppleMac", "Pro", 555.0));
         List<Product> actual = subject.filter(product -> product.getDescription().equals("323") ||
                 product.getDescription().equals("Pro"));
+        assertThat(subject.getList()).isNotEmpty();
         assertThat(actual).allMatch(product -> product.getDescription().equals("323") ||
                 product.getDescription().equals("Pro"));
 
@@ -185,6 +192,7 @@ class ListProductDatabaseTest {
         subject.add(new Product("AppleMac", "Pro", 555.0));
         List<Product> actual = subject.filter(product -> product.getPrice().compareTo(new BigDecimal("100.0")) > 0 &&
                 product.getPrice().compareTo(new BigDecimal("4000.0")) < 0);
+        assertThat(subject.getList()).isNotEmpty();
         assertThat(actual).allMatch(product -> product.getPrice().compareTo(new BigDecimal("100.0")) > 0 &&
                 product.getPrice().compareTo(new BigDecimal("4000.0")) < 0);
 
@@ -204,6 +212,7 @@ class ListProductDatabaseTest {
         subject.add(new Product("AppleMac", "Pro", 555.0));
         List<Product> actual = subject.filter(product -> product.getPrice().compareTo(new BigDecimal("300")) > 0 &&
                 product.getPrice().compareTo(new BigDecimal("1000")) < 0);
+        assertThat(subject.getList()).isNotEmpty();
         assertThat(actual).allMatch(product -> product.getId() == 5 || product.getId() == 6 || product.getId() == 8);
     }
 }
