@@ -56,20 +56,20 @@ public class SearchProductValidator {
     private Optional<CoreError> validateMandatoryPageNumber(Paging paging) {
         if ((paging.getPageNumber() == null && paging.getPageSize() == null)) {
             return Optional.empty();
-        }else if(paging.getPageNumber() == null && paging.getPageSize() != null){
+        } else if (paging.getPageNumber() == null && paging.getPageSize() != null) {
             return Optional.of(new CoreError("pageNumber", "Must not be empty!"));
-        }else if ( paging.getPageNumber() <= 0){
+        } else if (paging.getPageNumber() <= 0) {
             return Optional.of(new CoreError("pageNumber", "Must be greater then 0!"));
         }
         return Optional.empty();
     }
 
     private Optional<CoreError> validateMandatoryPageSize(Paging paging) {
-        if ((paging.getPageNumber() == null && paging.getPageSize() == null)){
+        if ((paging.getPageNumber() == null && paging.getPageSize() == null)) {
             return Optional.empty();
-        } else if (paging.getPageSize() == null && paging.getPageNumber() != null){
+        } else if (paging.getPageSize() == null && paging.getPageNumber() != null) {
             return Optional.of(new CoreError("pageSize", "Must not be empty!"));
-        }else if ( paging.getPageSize() <= 0){
+        } else if (paging.getPageSize() <= 0) {
             return Optional.of(new CoreError("pageSize", "Must be greater then 0!"));
         }
         return Optional.empty();

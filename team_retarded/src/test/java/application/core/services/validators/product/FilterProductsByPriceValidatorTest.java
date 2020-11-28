@@ -14,14 +14,14 @@ class FilterProductsByPriceValidatorTest {
 
     @Test
     void validatePriceMin() {
-        List<CoreError> result = subject.validate(new FilterProductsByPriceRequest(1,5));
+        List<CoreError> result = subject.validate(new FilterProductsByPriceRequest(1, 5));
         assertThat(result).isEmpty();
     }
 
 
     @Test
     void validatePriceMax() {
-        List<CoreError> result = subject.validate(new FilterProductsByPriceRequest(6,8));
+        List<CoreError> result = subject.validate(new FilterProductsByPriceRequest(6, 8));
         assertThat(result).isEmpty();
     }
 
