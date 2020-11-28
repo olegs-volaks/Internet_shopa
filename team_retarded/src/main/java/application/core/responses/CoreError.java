@@ -1,7 +1,5 @@
 package application.core.responses;
 
-import application.items.Product;
-
 import java.util.Objects;
 
 public class CoreError {
