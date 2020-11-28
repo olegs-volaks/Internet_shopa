@@ -40,7 +40,8 @@ public class AddProductValidator {
     }
 
     private Optional<CoreError> validatePrice(AddProductRequest request) {
-        return request.getPrice() <= 0 || request.getPrice() >= 100000
+
+        return (request.getPrice() <= 0 || request.getPrice() >= 100000)
                 ? Optional.of(new CoreError("Price", "Must be between 0 and 100000"))
                 : Optional.empty();
     }
