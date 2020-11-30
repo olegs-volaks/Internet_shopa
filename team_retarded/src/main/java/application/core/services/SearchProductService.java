@@ -9,6 +9,7 @@ import application.core.services.validators.SearchProductValidator;
 import application.database.Database;
 import application.items.Product;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,12 +29,13 @@ public class SearchProductService {
         if (!errors.isEmpty()) {
             return new SearchProductResponse(errors, null);
         }
-
-        List<Product> products = db.filter(product -> (product.getName().toLowerCase().contains(request.getName().toLowerCase()))||
+        List<Product> products= new ArrayList<>();
+        if (request.getName()!=null || request.getDescription() != null ){
+        products = db.filter(product -> (product.getName().toLowerCase().contains(request.getName().toLowerCase()))||
                 (product.getDescription().toLowerCase().contains(request.getDescription().toLowerCase())));
         products = order(products, request.getOrdering());
         products = paging(products, request.getPaging());
-
+        }
         return new SearchProductResponse(errors,products);
     }
 
