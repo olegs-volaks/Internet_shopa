@@ -14,8 +14,8 @@ public void shouldReturnCorrectBookList() {
     AddBookRequest addBookRequest2 = new AddBookRequest("TitleA", "AuthorA");
     getAddBookService().execute(addBookRequest2);
 
-    GetAllBooksResponse response = getAllBooksService.execute(new GetAllBooksRequest());
-    assertEquals(response.getBooks().size, 2);
+    GetAllBooksResponse response = getAllBooksService().execute(new GetAllBooksRequest());
+    assertEquals(response.getBooks().size(), 2);
 }
 
 private AddBookService getAddBookService() {
