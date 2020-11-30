@@ -1,25 +1,24 @@
-package application.core.services;
+package application.core.services.product;
 
-import application.core.requests.Ordering;
-import application.core.requests.Paging;
-import application.core.requests.SearchProductRequest;
+import application.core.requests.product.Ordering;
+import application.core.requests.product.Paging;
+import application.core.requests.product.SearchProductRequest;
 import application.core.responses.CoreError;
-import application.core.responses.SearchProductResponse;
-import application.core.services.validators.SearchProductValidator;
-import application.database.Database;
+import application.core.responses.product.SearchProductResponse;
+import application.core.services.validators.product.SearchProductValidator;
+import application.database.ProductDatabase;
 import application.items.Product;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SearchProductService {
 
-    private final Database db;
+    private final ProductDatabase db;
     private final SearchProductValidator validator;
 
-    public SearchProductService(Database db, SearchProductValidator validator) {
+    public SearchProductService(ProductDatabase db, SearchProductValidator validator) {
         this.db = db;
         this.validator = validator;
     }
@@ -29,13 +28,12 @@ public class SearchProductService {
         if (!errors.isEmpty()) {
             return new SearchProductResponse(errors, null);
         }
-        List<Product> products= new ArrayList<>();
-        if (request.getName()!=null || request.getDescription() != null ){
-        products = db.filter(product -> (product.getName().toLowerCase().contains(request.getName().toLowerCase()))||
+
+        List<Product> products = db.filter(product -> (product.getName().toLowerCase().contains(request.getName().toLowerCase()))||
                 (product.getDescription().toLowerCase().contains(request.getDescription().toLowerCase())));
         products = order(products, request.getOrdering());
         products = paging(products, request.getPaging());
-        }
+
         return new SearchProductResponse(errors,products);
     }
 
