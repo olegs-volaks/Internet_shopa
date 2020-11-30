@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
+
+
 public class SearchProductValidator {
 
     public List<CoreError> validate(SearchProductRequest request) {
-        List<CoreError> errors = new ArrayList<>();
-        validateName(request).ifPresent(errors::add);
-        validateDescription(request).ifPresent(errors::add);
+        List<CoreError> errors = new ArrayList<>(validateSearchFields(request));
         if (request.getOrdering() != null) {
             validateMandatoryOrderBy(request.getOrdering()).ifPresent(errors::add);
             validateMandatoryOrderDirection(request.getOrdering()).ifPresent(errors::add);
@@ -27,18 +28,14 @@ public class SearchProductValidator {
         return errors;
     }
 
-    private Optional<CoreError> validateName(SearchProductRequest request) {
-        if (request.getName() == null && request.getDescription() == null) {
-            return Optional.of(new CoreError("name", "Must be not empty!"));
-        }
-        return Optional.empty();
-    }
 
-    private Optional<CoreError> validateDescription(SearchProductRequest request) {
-        if (request.getName() == null && request.getDescription() == null) {
-            return Optional.of(new CoreError("description", "Must be not empty!"));
+    private List<CoreError> validateSearchFields(SearchProductRequest request) {
+        List<CoreError> errors = new ArrayList<>();
+        if ((request.getName()).isEmpty() && (request.getDescription()).isEmpty()) {
+            errors.add(new CoreError("name", "Must not be empty!"));
+            errors.add(new CoreError("description", "Must not be empty!"));
         }
-        return Optional.empty();
+        return errors;
     }
 
     private Optional<CoreError> validateMandatoryOrderBy(Ordering ordering) {

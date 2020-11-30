@@ -29,12 +29,12 @@ public class SearchProductService {
             return new SearchProductResponse(errors, null);
         }
 
-        List<Product> products = db.filter(product -> (product.getName().toLowerCase().contains(request.getName().toLowerCase())) ||
+        List<Product> products = db.filter(product -> (product.getName().toLowerCase().contains(request.getName().toLowerCase()))||
                 (product.getDescription().toLowerCase().contains(request.getDescription().toLowerCase())));
         products = order(products, request.getOrdering());
         products = paging(products, request.getPaging());
 
-        return new SearchProductResponse(errors, products);
+        return new SearchProductResponse(errors,products);
     }
 
     private List<Product> order(List<Product> products, Ordering ordering) {
@@ -52,7 +52,7 @@ public class SearchProductService {
     }
 
     private List<Product> paging(List<Product> products, Paging paging) {
-        if (paging.getPageNumber() != null && paging.getPageSize() != null) {
+        if (paging.getPageNumber()!=null && paging.getPageSize()!=null) {
             int skip = (paging.getPageNumber() - 1) * paging.getPageSize();
             return products.stream()
                     .skip(skip)
