@@ -1,10 +1,9 @@
 package lv.javaguru.java2.library.core.services;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import lv.javaguru.java2.library.Book;
+import lv.javaguru.java2.library.core.database.Database;
+import lv.javaguru.java2.library.core.requests.GetAllBooksRequest;
+import lv.javaguru.java2.library.core.responses.GetAllBooksResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,10 +11,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import lv.javaguru.java2.library.Book;
-import lv.javaguru.java2.library.core.database.Database;
-import lv.javaguru.java2.library.core.requests.GetAllBooksRequest;
-import lv.javaguru.java2.library.core.responses.GetAllBooksResponse;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GetAllBooksServiceTest {

@@ -1,11 +1,10 @@
 package lv.javaguru.java2.library.core.services;
 
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import lv.javaguru.java2.library.core.database.Database;
+import lv.javaguru.java2.library.core.requests.RemoveBookRequest;
+import lv.javaguru.java2.library.core.responses.CoreError;
+import lv.javaguru.java2.library.core.responses.RemoveBookResponse;
+import lv.javaguru.java2.library.core.services.validators.RemoveBookRequestValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -13,12 +12,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import lv.javaguru.java2.library.core.database.Database;
-import lv.javaguru.java2.library.core.requests.AddBookRequest;
-import lv.javaguru.java2.library.core.requests.RemoveBookRequest;
-import lv.javaguru.java2.library.core.responses.CoreError;
-import lv.javaguru.java2.library.core.responses.RemoveBookResponse;
-import lv.javaguru.java2.library.core.services.validators.RemoveBookRequestValidator;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RemoveBookServiceTest {

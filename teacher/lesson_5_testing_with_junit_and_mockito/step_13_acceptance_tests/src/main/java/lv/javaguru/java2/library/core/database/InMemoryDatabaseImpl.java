@@ -1,11 +1,11 @@
 package lv.javaguru.java2.library.core.database;
 
+import lv.javaguru.java2.library.Book;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import lv.javaguru.java2.library.Book;
 
 public class InMemoryDatabaseImpl implements Database {
 

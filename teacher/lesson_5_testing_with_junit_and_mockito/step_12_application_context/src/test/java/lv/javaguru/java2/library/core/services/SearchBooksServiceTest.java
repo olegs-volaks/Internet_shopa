@@ -1,18 +1,5 @@
 package lv.javaguru.java2.library.core.services;
 
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
-
 import lv.javaguru.java2.library.Book;
 import lv.javaguru.java2.library.core.database.Database;
 import lv.javaguru.java2.library.core.requests.Ordering;
@@ -21,6 +8,18 @@ import lv.javaguru.java2.library.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.library.core.responses.CoreError;
 import lv.javaguru.java2.library.core.responses.SearchBooksResponse;
 import lv.javaguru.java2.library.core.services.validators.SearchBooksRequestValidator;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SearchBooksServiceTest {

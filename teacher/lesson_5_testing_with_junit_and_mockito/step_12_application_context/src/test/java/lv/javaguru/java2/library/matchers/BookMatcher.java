@@ -1,8 +1,7 @@
 package lv.javaguru.java2.library.matchers;
 
-import org.mockito.ArgumentMatcher;
-
 import lv.javaguru.java2.library.Book;
+import org.mockito.ArgumentMatcher;
 
 public class BookMatcher implements ArgumentMatcher<Book> {
 	private String title;

@@ -28,9 +28,10 @@ class SearchProductValidatorTest {
         List<CoreError> actual = subject.validate(new SearchProductRequest(null, null,
                 new Ordering("description", "ASCENDING"), new Paging(2, 2)));
         List<CoreError> expected = new ArrayList<>();
-        expected.add(new CoreError("name", "Must be not empty!"));
-        expected.add(new CoreError("description", "Must be not empty!"));
+        expected.add(new CoreError("name",        "Must not be empty!"));
+        expected.add(new CoreError("description", "Must not be empty!"));
         assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isNotEmpty();
     }
 
     @Test

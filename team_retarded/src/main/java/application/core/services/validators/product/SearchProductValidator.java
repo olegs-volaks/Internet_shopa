@@ -16,6 +16,7 @@ public class SearchProductValidator {
 
     public List<CoreError> validate(SearchProductRequest request) {
         List<CoreError> errors = new ArrayList<>(validateSearchFields(request));
+
         if (request.getOrdering() != null) {
             validateMandatoryOrderBy(request.getOrdering()).ifPresent(errors::add);
             validateMandatoryOrderDirection(request.getOrdering()).ifPresent(errors::add);
@@ -31,11 +32,14 @@ public class SearchProductValidator {
 
     private List<CoreError> validateSearchFields(SearchProductRequest request) {
         List<CoreError> errors = new ArrayList<>();
-        if ((request.getName()).isEmpty() && (request.getDescription()).isEmpty()) {
-            errors.add(new CoreError("name", "Must not be empty!"));
+        if (isEmpty(request.getName()) && isEmpty(request.getDescription())) {
+            errors.add(new CoreError("name",        "Must not be empty!"));
             errors.add(new CoreError("description", "Must not be empty!"));
         }
         return errors;
+    }
+    private boolean isEmpty(String str) {
+        return str == null || str.isEmpty();
     }
 
     private Optional<CoreError> validateMandatoryOrderBy(Ordering ordering) {

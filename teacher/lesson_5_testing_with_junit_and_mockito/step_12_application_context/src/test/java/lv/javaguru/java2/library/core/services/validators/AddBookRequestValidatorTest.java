@@ -1,13 +1,12 @@
 package lv.javaguru.java2.library.core.services.validators;
 
-import static org.junit.Assert.*;
+import lv.javaguru.java2.library.core.requests.AddBookRequest;
+import lv.javaguru.java2.library.core.responses.CoreError;
+import org.junit.Test;
 
 import java.util.List;
 
-import org.junit.Test;
-
-import lv.javaguru.java2.library.core.requests.AddBookRequest;
-import lv.javaguru.java2.library.core.responses.CoreError;
+import static org.junit.Assert.*;
 
 public class AddBookRequestValidatorTest {
 

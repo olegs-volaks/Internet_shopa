@@ -1,15 +1,14 @@
 package lv.javaguru.java2.library.core.services.validators;
 
-import static org.junit.Assert.*;
-
-import java.util.List;
-
-import org.junit.Test;
-
 import lv.javaguru.java2.library.core.requests.Ordering;
 import lv.javaguru.java2.library.core.requests.Paging;
 import lv.javaguru.java2.library.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.library.core.responses.CoreError;
+import org.junit.Test;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class SearchBooksRequestValidatorTest {
 

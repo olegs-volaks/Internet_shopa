@@ -1,10 +1,5 @@
 package lv.javaguru.java2.library.core.services;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import lv.javaguru.java2.library.Book;
 import lv.javaguru.java2.library.core.database.Database;
 import lv.javaguru.java2.library.core.requests.Ordering;
@@ -13,6 +8,11 @@ import lv.javaguru.java2.library.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.library.core.responses.CoreError;
 import lv.javaguru.java2.library.core.responses.SearchBooksResponse;
 import lv.javaguru.java2.library.core.services.validators.SearchBooksRequestValidator;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SearchBooksService {
 

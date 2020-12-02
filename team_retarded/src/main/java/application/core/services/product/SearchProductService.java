@@ -34,7 +34,7 @@ public class SearchProductService {
         products = order(products, request.getOrdering());
         products = paging(products, request.getPaging());
 
-        return new SearchProductResponse(errors,products);
+        return new SearchProductResponse(null,products);
     }
 
     private List<Product> order(List<Product> products, Ordering ordering) {
