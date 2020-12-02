@@ -52,14 +52,15 @@ public class SearchProductService {
     }
 
     private List<Product> paging(List<Product> products, Paging paging) {
+        if (paging != null) {
         if (paging.getPageNumber()!=null && paging.getPageSize()!=null) {
             int skip = (paging.getPageNumber() - 1) * paging.getPageSize();
             return products.stream()
                     .skip(skip)
                     .limit(paging.getPageSize())
                     .collect(Collectors.toList());
-        } else {
-            return products;
+            }
         }
+        return products;
     }
 }
