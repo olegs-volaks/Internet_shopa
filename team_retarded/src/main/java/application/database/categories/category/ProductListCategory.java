@@ -38,7 +38,7 @@ public class ProductListCategory implements ListCategory<Product> {
     }
 
     @Override
-    public List<Product> get() {
+    public List<Product> getList() {
         return products;
     }
 

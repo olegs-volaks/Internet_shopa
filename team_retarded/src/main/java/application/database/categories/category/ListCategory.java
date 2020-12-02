@@ -13,7 +13,7 @@ public interface ListCategory<T> {
 
     void setName(String name);
 
-    List<T> get();
+    List<T> getList();
 
     void add(T t);
 
