@@ -28,4 +28,9 @@ public class CoreError {
         return Objects.equals(field, coreError.field) &&
                 Objects.equals(message, coreError.message);
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(field,message);
+    }
 }
