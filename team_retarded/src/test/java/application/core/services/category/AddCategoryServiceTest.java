@@ -5,6 +5,7 @@ import application.core.responses.CoreError;
 import application.core.responses.category.AddCategoryResponse;
 import application.core.services.validators.category.AddCategoryValidator;
 import application.database.categories.database.CategoriesDatabase;
+import application.matchers.ListProductCategoryMatcher;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.argThat;
 
 @ExtendWith(MockitoExtension.class)
 class AddCategoryServiceTest {
@@ -40,5 +43,13 @@ class AddCategoryServiceTest {
         assertThat(response.getErrors()).allMatch(coreError -> coreError.getField().equals("Name") ||
                 coreError.getMessage().equals("Must not be empty!"));
         Mockito.verifyNoInteractions(database);
+    }
+
+    @Test
+    void should_add_category_to_database() {
+        Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
+        AddCategoryResponse response = subject.execute(new AddCategoryRequest("name1"));
+        assertThat(response.hasErrors()).isFalse();
+        Mockito.verify(database).addCategory(argThat(new ListProductCategoryMatcher("name1")));
     }
 }
