@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class FilterProductsByNameValidatorTest {
 
-    FilterProductsByNameValidator subject = new FilterProductsByNameValidator();
+    private final FilterProductsByNameValidator subject = new FilterProductsByNameValidator();
 
     @Test
     void validateName1() {

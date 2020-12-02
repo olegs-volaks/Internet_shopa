@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class AddProductValidatorTest {
 
-    AddProductValidator subject;
+    private AddProductValidator subject;
 
     @BeforeEach
     void setUp() {

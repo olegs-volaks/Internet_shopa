@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ListCategoriesDatabaseTest {
 
-    ListCategoriesDatabase subject;
+    private ListCategoriesDatabase subject;
 
     @BeforeEach
     void setUp() {

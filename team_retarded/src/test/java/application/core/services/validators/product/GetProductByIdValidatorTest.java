@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class GetProductByIdValidatorTest {
 
-    GetProductByIdValidator subject = new GetProductByIdValidator();
+    private final GetProductByIdValidator subject = new GetProductByIdValidator();
 
     @Test
     void validateId() {

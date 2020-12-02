@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ProductListCategoryTest {
 
-    ProductListCategory subject;
+    private ProductListCategory subject;
 
     @BeforeEach
     void setUp() {
