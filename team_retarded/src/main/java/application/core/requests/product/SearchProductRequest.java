@@ -26,7 +26,7 @@ public class SearchProductRequest {
     }
 
     public SearchProductRequest(String name, String description, Ordering ordering) {
-        this.name = name;
+       this.name = name;
         this.description = description;
         this.ordering = ordering;
     }

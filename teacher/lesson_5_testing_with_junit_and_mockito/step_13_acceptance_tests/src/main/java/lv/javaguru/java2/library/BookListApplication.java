@@ -1,12 +1,8 @@
 package lv.javaguru.java2.library;
 
-import java.util.Scanner;
+import lv.javaguru.java2.library.console_ui.*;
 
-import lv.javaguru.java2.library.console_ui.AddBookUIAction;
-import lv.javaguru.java2.library.console_ui.ExitUIAction;
-import lv.javaguru.java2.library.console_ui.GetAllBooksUIAction;
-import lv.javaguru.java2.library.console_ui.RemoveBookUIAction;
-import lv.javaguru.java2.library.console_ui.SearchBooksUIAction;
+import java.util.Scanner;
 
 public class BookListApplication {
 

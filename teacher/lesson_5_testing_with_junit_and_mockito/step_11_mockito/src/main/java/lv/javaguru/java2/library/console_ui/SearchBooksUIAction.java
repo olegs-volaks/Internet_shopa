@@ -1,13 +1,13 @@
 package lv.javaguru.java2.library.console_ui;
 
-import java.util.Scanner;
-
 import lv.javaguru.java2.library.Book;
 import lv.javaguru.java2.library.core.requests.Ordering;
 import lv.javaguru.java2.library.core.requests.Paging;
 import lv.javaguru.java2.library.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.library.core.responses.SearchBooksResponse;
 import lv.javaguru.java2.library.core.services.SearchBooksService;
+
+import java.util.Scanner;
 
 public class SearchBooksUIAction implements UIAction {
 

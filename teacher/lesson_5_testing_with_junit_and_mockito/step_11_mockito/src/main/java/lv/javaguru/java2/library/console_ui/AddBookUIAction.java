@@ -1,10 +1,10 @@
 package lv.javaguru.java2.library.console_ui;
 
-import java.util.Scanner;
-
 import lv.javaguru.java2.library.core.requests.AddBookRequest;
 import lv.javaguru.java2.library.core.responses.AddBookResponse;
 import lv.javaguru.java2.library.core.services.AddBookService;
+
+import java.util.Scanner;
 
 public class AddBookUIAction implements UIAction {
 

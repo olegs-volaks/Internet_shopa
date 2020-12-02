@@ -1,22 +1,17 @@
 package lv.javaguru.java2.library;
 
-import java.util.Scanner;
-
-import lv.javaguru.java2.library.console_ui.AddBookUIAction;
-import lv.javaguru.java2.library.console_ui.ExitUIAction;
-import lv.javaguru.java2.library.console_ui.GetAllBooksUIAction;
-import lv.javaguru.java2.library.console_ui.RemoveBookUIAction;
-import lv.javaguru.java2.library.console_ui.SearchBooksUIAction;
-import lv.javaguru.java2.library.console_ui.UIAction;
+import lv.javaguru.java2.library.console_ui.*;
 import lv.javaguru.java2.library.core.database.Database;
 import lv.javaguru.java2.library.core.database.InMemoryDatabaseImpl;
 import lv.javaguru.java2.library.core.services.AddBookService;
-import lv.javaguru.java2.library.core.services.validators.AddBookRequestValidator;
 import lv.javaguru.java2.library.core.services.GetAllBooksService;
 import lv.javaguru.java2.library.core.services.RemoveBookService;
 import lv.javaguru.java2.library.core.services.SearchBooksService;
+import lv.javaguru.java2.library.core.services.validators.AddBookRequestValidator;
 import lv.javaguru.java2.library.core.services.validators.RemoveBookRequestValidator;
 import lv.javaguru.java2.library.core.services.validators.SearchBooksRequestValidator;
+
+import java.util.Scanner;
 
 public class BookListApplication {
 

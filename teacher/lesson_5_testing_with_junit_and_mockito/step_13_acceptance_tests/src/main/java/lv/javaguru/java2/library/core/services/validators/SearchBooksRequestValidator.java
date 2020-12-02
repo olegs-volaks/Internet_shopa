@@ -1,13 +1,13 @@
 package lv.javaguru.java2.library.core.services.validators;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import lv.javaguru.java2.library.core.requests.Ordering;
 import lv.javaguru.java2.library.core.requests.Paging;
 import lv.javaguru.java2.library.core.requests.SearchBooksRequest;
 import lv.javaguru.java2.library.core.responses.CoreError;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class SearchBooksRequestValidator {
 

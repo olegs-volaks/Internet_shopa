@@ -1,12 +1,11 @@
 package lv.javaguru.java2.library.core.services;
 
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.argThat;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import lv.javaguru.java2.library.core.database.Database;
+import lv.javaguru.java2.library.core.requests.AddBookRequest;
+import lv.javaguru.java2.library.core.responses.AddBookResponse;
+import lv.javaguru.java2.library.core.responses.CoreError;
+import lv.javaguru.java2.library.core.services.validators.AddBookRequestValidator;
+import lv.javaguru.java2.library.matchers.BookMatcher;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -14,12 +13,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import lv.javaguru.java2.library.core.database.Database;
-import lv.javaguru.java2.library.core.requests.AddBookRequest;
-import lv.javaguru.java2.library.core.responses.AddBookResponse;
-import lv.javaguru.java2.library.core.responses.CoreError;
-import lv.javaguru.java2.library.core.services.validators.AddBookRequestValidator;
-import lv.javaguru.java2.library.matchers.BookMatcher;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.argThat;
 
 @RunWith(MockitoJUnitRunner.class)
 public class AddBookServiceTest {
