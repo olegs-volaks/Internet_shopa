@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 
 public interface CategoriesDatabase {
 
-    void addCategory(ProductListCategory ListCategory);
+    long addCategory(ProductListCategory ListCategory);
 
     void removeCategory(String name);
 

@@ -13,10 +13,11 @@ public class ListCategoriesDatabase implements CategoriesDatabase {
     private long id;
 
     @Override
-    public void addCategory(ProductListCategory productListCategory) {
+    public long addCategory(ProductListCategory productListCategory) {
         id++;
         productListCategory.setId(id);
         categoriesDatabase.add(productListCategory);
+        return id;
     }
 
     @Override
