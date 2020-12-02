@@ -1,5 +1,7 @@
 package application.core.services.product;
 
+import application.core.requests.product.Ordering;
+import application.core.requests.product.Paging;
 import application.core.requests.product.SearchProductRequest;
 import application.core.responses.CoreError;
 import application.core.responses.product.SearchProductResponse;
@@ -48,7 +50,7 @@ class SearchProductServiceTest {
     }
 
     @Test
-    public void shouldSearchByTitle() {
+    public void shouldSearchByName() {
         SearchProductRequest request = new SearchProductRequest("Title", null);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
@@ -64,14 +66,14 @@ class SearchProductServiceTest {
         assertEquals(response.getProducts().get(0).getDescription(), "Author123456789");
     }
 
-    /*@Test
-    public void shouldSearchByAuthor() {
+    @Test
+    public void shouldSearchByDescription() {
         SearchProductRequest request = new SearchProductRequest(null, "Author");
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Title", "Author123456789", 345));
-        Mockito.when(db.filter(product -> product.getDescription().contains("Author"))).thenReturn(products);
+        Mockito.when(db.filter(any())).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -80,95 +82,91 @@ class SearchProductServiceTest {
         assertEquals(response.getProducts().get(0).getDescription(), "Author123456789");
     }
 
-    /*@Test
-    public void shouldSearchByTitleAndAuthor() {
-        SearchBooksRequest request = new SearchBooksRequest("Title", "Author");
+   @Test
+    public void shouldSearchByNameAndDescription() {
+       SearchProductRequest request = new SearchProductRequest("Title", "Author");
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
-        List<Book> books = new ArrayList<>();
-        books.add(new Book("Title", "Author"));
-        Mockito.when(database.findByTitleAndAuthor("Title", "Author")).thenReturn(books);
+        List<Product> products = new ArrayList<>();
+        products.add(new Product("Title", "Author123456789", 345));
+        Mockito.when(db.filter(any())).thenReturn(products);
 
-        SearchBooksResponse response = service.execute(request);
+        SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        assertEquals(response.getBooks().size(), 1);
-        assertEquals(response.getBooks().get(0).getTitle(), "Title");
-        assertEquals(response.getBooks().get(0).getAuthor(), "Author");
+        assertEquals(response.getProducts().size(), 1);
+        assertEquals(response.getProducts().get(0).getName(), "Title");
+        assertEquals(response.getProducts().get(0).getDescription(), "Author123456789");
     }
 
     @Test
-    public void shouldSearchByTitleWithOrderingAscending() {
-        Ordering ordering = new Ordering("author", "ASCENDING");
-        SearchBooksRequest request = new SearchBooksRequest("Title", null, ordering);
+    public void shouldSearchByNameWithOrderingAscending() {
+        Ordering ordering = new Ordering("name", "ASCENDING");
+        SearchProductRequest request = new SearchProductRequest("Title", null, ordering);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
-        List<Book> books = new ArrayList<>();
-        books.add(new Book("Title", "Author2"));
-        books.add(new Book("Title", "Author1"));
-        Mockito.when(database.findByTitle("Title")).thenReturn(books);
+        List<Product> products = new ArrayList<>();
+        products.add(new Product("Title1", "Author123456789", 345));
+        products.add(new Product("Title2", "Author123456789", 345));
+        Mockito.when(db.filter(any())).thenReturn(products);
 
-        SearchBooksResponse response = service.execute(request);
+        SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        assertEquals(response.getBooks().size(), 2);
-        assertEquals(response.getBooks().get(0).getAuthor(), "Author1");
-        assertEquals(response.getBooks().get(1).getAuthor(), "Author2");
+        assertEquals(response.getProducts().size(), 2);
+        assertEquals(response.getProducts().get(0).getName(), "Title1");
+        assertEquals(response.getProducts().get(1).getName(), "Title2");
     }
 
     @Test
-    public void shouldSearchByTitleWithOrderingDescending() {
-        Ordering ordering = new Ordering("author", "DESCENDING");
-        SearchBooksRequest request = new SearchBooksRequest("Title", null, ordering);
+    public void shouldSearchByNameWithOrderingDescending() {
+        Ordering ordering = new Ordering("name", "DESCENDING");
+        SearchProductRequest request = new SearchProductRequest("Title", null, ordering);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
-        List<Book> books = new ArrayList<>();
-        books.add(new Book("Title", "Author1"));
-        books.add(new Book("Title", "Author2"));
-        Mockito.when(database.findByTitle("Title")).thenReturn(books);
+        List<Product> products = new ArrayList<>();
+        products.add(new Product("Author1", "Author123456789", 345));
+        products.add(new Product("Author2", "Author123456789", 345));
+        Mockito.when(db.filter(any())).thenReturn(products);
 
-        SearchBooksResponse response = service.execute(request);
+        SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        assertEquals(response.getBooks().size(), 2);
-        assertEquals(response.getBooks().get(0).getAuthor(), "Author2");
-        assertEquals(response.getBooks().get(1).getAuthor(), "Author1");
+        assertEquals(response.getProducts().size(), 2);
+        assertEquals(response.getProducts().get(0).getName(), "Author2");
+        assertEquals(response.getProducts().get(1).getName(), "Author1");
     }
 
     @Test
-    public void shouldSearchByTitleWithPagingFirstPage() {
+    public void shouldSearchByNameWithPagingFirstPage() {
         Paging paging = new Paging(1, 1);
-        SearchBooksRequest request = new SearchBooksRequest("Title", null, null, paging);
+        SearchProductRequest request = new SearchProductRequest("Title", null, null, paging);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
-        List<Book> books = new ArrayList<>();
-        books.add(new Book("Title", "Author1"));
-        books.add(new Book("Title", "Author2"));
-        Mockito.when(database.findByTitle("Title")).thenReturn(books);
+        List<Product> products = new ArrayList<>();
+        products.add(new Product("Author1", "Author123456789", 345));
+        products.add(new Product("Author2", "Author123456789", 345));
+        Mockito.when(db.filter(any())).thenReturn(products);
 
-        SearchBooksResponse response = service.execute(request);
+        SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        assertEquals(response.getBooks().size(), 1);
-        assertEquals(response.getBooks().get(0).getTitle(), "Title");
-        assertEquals(response.getBooks().get(0).getAuthor(), "Author1");
+        assertEquals(response.getProducts().size(), 1);
+        assertEquals(response.getProducts().get(0).getName(), "Author1");
+        assertEquals(response.getProducts().get(0).getDescription(), "Author123456789");
     }
 
     @Test
-    public void shouldSearchByTitleWithPagingSecondPage() {
+    public void shouldSearchByNameWithPagingSecondPage() {
         Paging paging = new Paging(2, 1);
-        SearchBooksRequest request = new SearchBooksRequest("Title", null, null, paging);
+        SearchProductRequest request = new SearchProductRequest("Title", null, null, paging);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
-        List<Book> books = new ArrayList<>();
-        books.add(new Book("Title", "Author1"));
-        books.add(new Book("Title", "Author2"));
-        Mockito.when(database.findByTitle("Title")).thenReturn(books);
+        List<Product> products = new ArrayList<>();
+        products.add(new Product("Author1", "Author123456789", 345));
+        products.add(new Product("Author2", "Author123456789", 345));
+        Mockito.when(db.filter(any())).thenReturn(products);
 
-        SearchBooksResponse response = service.execute(request);
+        SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        assertEquals(response.getBooks().size(), 1);
-        assertEquals(response.getBooks().get(0).getTitle(), "Title");
-        assertEquals(response.getBooks().get(0).getAuthor(), "Author2");
-    }*/
-
-
-
-
+        assertEquals(response.getProducts().size(), 1);
+        assertEquals(response.getProducts().get(0).getName(), "Author2");
+        assertEquals(response.getProducts().get(0).getDescription(), "Author123456789");
+    }
 }
