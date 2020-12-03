@@ -20,11 +20,17 @@ public class DeleteCategoryService {
 
     public DeleteCategoryResponse execute(DeleteCategoryRequest request) {
         List<CoreError> errors = validator.validate(request);
-        database.removeCategory(request.getCategoryId());
-        // todo: Добавить проверку, удалился ли объект
         if (!errors.isEmpty()) {
             return new DeleteCategoryResponse(errors);
         }
-        return new DeleteCategoryResponse(true);
+        if (database.getCategory(request.getCategoryId()).isEmpty()) {
+            errors.add(new CoreError("ID", "The category with the given id does not exist"));
+            return new DeleteCategoryResponse(errors);
+        }
+        database.removeCategory(request.getCategoryId());
+        if (database.getCategory(request.getCategoryId()).isEmpty()) {
+            return new DeleteCategoryResponse(true);
+        }
+        return new DeleteCategoryResponse(false);
     }
 }
