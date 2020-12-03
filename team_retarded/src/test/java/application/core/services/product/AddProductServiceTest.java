@@ -5,6 +5,7 @@ import application.core.responses.CoreError;
 import application.core.responses.product.AddProductResponse;
 import application.core.services.validators.product.AddProductValidator;
 import application.database.ProductDatabase;
+import application.matchers.ProductMatcher;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -25,36 +26,43 @@ import static org.mockito.ArgumentMatchers.argThat;
 @ExtendWith(MockitoExtension.class)
 public class AddProductServiceTest {
 
-    @Mock private ProductDatabase db;
-    @Mock private AddProductValidator validator;
-    @InjectMocks private  AddProductService service;
+    @Mock
+    private ProductDatabase db;
+    @Mock
+    private AddProductValidator validator;
+    @InjectMocks
+    private AddProductService subject;
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidationFails() {
-        AddProductRequest request = new AddProductRequest("nam","description",225.5);
+        AddProductRequest request = new AddProductRequest("nam", "description", 225.5);
         List<CoreError> errors = new ArrayList<>();
-        errors.add(new CoreError("Name","Must be between 4 and 100 characters!"));
+        errors.add(new CoreError("Name", "Must be not empty"));
         Mockito.when(validator.validate(request)).thenReturn(errors);
 
-        AddProductResponse response = service.execute(request);
+        AddProductResponse response = subject.execute(request);
         assertTrue(response.hasErrors());
-        assertEquals(response.getErrors().size(),1);
-        assertEquals(response.getErrors().get(0).getField(),"Name");
-        assertEquals(response.getErrors().get(0).getMessage(),"Must be between 4 and 100 characters!");
+        assertEquals(response.getErrors().size(), 1);
+        assertEquals(response.getErrors().get(0).getField(), "Name");
+        assertEquals(response.getErrors().get(0).getMessage(), "Must be not empty");
 
+        Mockito.verify(validator).validate(request);
+        Mockito.verify(validator).validate(any());
         Mockito.verifyNoInteractions(db);
     }
 
 
-   /* @Test
+    @Test
     public void shouldAddProductToDatabase() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        AddProductRequest request = new AddProductRequest("Name","Author",222.2);
-        AddProductResponse response = service.execute(request);
+        AddProductRequest request = new AddProductRequest("Name", "Author", 222.2);
+        AddProductResponse response = subject.execute(request);
         assertFalse(response.hasErrors());
-        Mockito.verify(db).add(                // sdesj ne idet add i save toze,prosit sozdatj metod v productDatabase
-                argThat(new ProductMatcher("Name","description")));
-    }
 
-    */
+        Mockito.verify(validator).validate(request);
+        Mockito.verify(validator).validate(any());
+      //  Mockito.verify(db).add(argThat(new ProductMatcher("Name","Description")));  эта строчка не заходит
+
+
+    }
 }
