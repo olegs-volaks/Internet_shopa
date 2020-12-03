@@ -22,5 +22,6 @@ public interface ProductDatabase {
 
     List<Product> getList();
 
+    boolean isExist(long id);
 
 }

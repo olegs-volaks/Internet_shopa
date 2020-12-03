@@ -51,4 +51,9 @@ public class ListCategoriesDatabase implements CategoriesDatabase {
     public Optional<ProductListCategory> getCategory(long id) {
         return categoriesDatabase.stream().filter(listCategory -> listCategory.getId() == id).findFirst();
     }
+
+    @Override
+    public boolean isExist(long id) {
+        return getCategory(id).isPresent();
+    }
 }

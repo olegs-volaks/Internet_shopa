@@ -68,7 +68,12 @@ public class ListProductDatabase implements ProductDatabase {
         return productDatabase;
     }
 
-     private void deleteFromCategories(Predicate<Product> predicate) {
+    @Override
+    public boolean isExist(long id) {
+        return getById(id).isPresent();
+    }
+
+    private void deleteFromCategories(Predicate<Product> predicate) {
         List<ProductListCategory> categories = categoriesDatabase.getCategoryList();
         for (ProductListCategory category : categories) {
             category.remove(predicate);

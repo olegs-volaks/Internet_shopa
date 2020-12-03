@@ -21,4 +21,6 @@ public interface CategoriesDatabase {
     List<ProductListCategory> getCategoryList();
 
     Optional<ProductListCategory> getCategory(long id);
+
+    boolean isExist(long id);
 }
