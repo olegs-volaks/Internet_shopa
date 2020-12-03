@@ -23,14 +23,10 @@ public class DeleteCategoryService {
         if (!errors.isEmpty()) {
             return new DeleteCategoryResponse(errors);
         }
-        if (database.getCategory(request.getCategoryId()).isEmpty()) {
+        if (!database.isExist(request.getCategoryId())) {
             errors.add(new CoreError("ID", "The category with the given id does not exist"));
             return new DeleteCategoryResponse(errors);
         }
-        database.removeCategory(request.getCategoryId());
-        if (database.getCategory(request.getCategoryId()).isEmpty()) {
-            return new DeleteCategoryResponse(true);
-        }
-        return new DeleteCategoryResponse(false);
+        return new DeleteCategoryResponse(database.removeCategory(request.getCategoryId()));
     }
 }
