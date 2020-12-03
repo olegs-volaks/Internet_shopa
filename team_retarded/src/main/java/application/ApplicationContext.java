@@ -1,8 +1,10 @@
 package application;
 
 import application.core.services.category.AddCategoryService;
+import application.core.services.category.DeleteCategoryService;
 import application.core.services.product.*;
 import application.core.services.validators.category.AddCategoryValidator;
+import application.core.services.validators.category.DeleteCategoryValidator;
 import application.core.services.validators.product.AddProductValidator;
 import application.core.services.validators.product.DeleteProductValidator;
 import application.core.services.validators.product.GetProductByIdValidator;
@@ -12,6 +14,7 @@ import application.database.ProductDatabase;
 import application.database.categories.database.CategoriesDatabase;
 import application.database.categories.database.ListCategoriesDatabase;
 import application.ui.category.AddCategoryUIAction;
+import application.ui.category.DeleteCategoryUIAction;
 import application.ui.product.*;
 
 import java.util.HashMap;
@@ -58,11 +61,16 @@ public class ApplicationContext {
                 getBean(AddCategoryValidator.class)));
         beans.put(AddCategoryUIAction.class, new AddCategoryUIAction(getBean(AddCategoryService.class)));
 
+        beans.put(DeleteCategoryValidator.class, new DeleteCategoryValidator());
+        beans.put(DeleteCategoryService.class, new DeleteCategoryService(getBean(CategoriesDatabase.class),
+                getBean(DeleteCategoryValidator.class)));
+        beans.put(DeleteCategoryUIAction.class, new DeleteCategoryUIAction(getBean(DeleteCategoryService.class)));
+
         /*
         * Template *
         *
         beans.put(TempValidator.class, new TempValidator());
-        beans.put(TempService.class, new TempService(getBean(ProductDatabase.class),
+        beans.put(TempService.class, new TempService(getBean(TempDatabase.class),
                 getBean(TempValidator.class)));
         beans.put(TempUIAction.class, new TempUIAction(getBean(TempService.class)));
         */

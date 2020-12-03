@@ -1,6 +1,7 @@
 package application;
 
 import application.ui.category.AddCategoryUIAction;
+import application.ui.category.DeleteCategoryUIAction;
 import application.ui.product.*;
 
 import java.util.Scanner;
@@ -54,6 +55,10 @@ public class Application {
             case 1 -> {
                 AddCategoryUIAction addCategoryUIAction = CONTEXT.getBean(AddCategoryUIAction.class);
                 addCategoryUIAction.execute();
+            }
+            case 2 -> {
+                DeleteCategoryUIAction deleteCategoryUIAction = CONTEXT.getBean(DeleteCategoryUIAction.class);
+                deleteCategoryUIAction.execute();
             }
         }
     }
