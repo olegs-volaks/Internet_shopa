@@ -5,10 +5,8 @@ import application.core.responses.CoreError;
 import application.core.responses.product.GetProductByIdResponse;
 import application.core.services.validators.product.GetProductByIdValidator;
 import application.database.ProductDatabase;
-import application.items.Product;
 
 import java.util.List;
-import java.util.Optional;
 
 public class GetProductByIdService {
 
@@ -22,12 +20,10 @@ public class GetProductByIdService {
 
     public GetProductByIdResponse execute(GetProductByIdRequest request) {
         List<CoreError> errors = validator.validate(request);
-        Optional<Product> product = db.getById(request.getProductId());
-        if (product.isEmpty()) {
-            errors.add(new CoreError("ID", "No product found with this ID"));
+        if (!db.isExist(request.getProductId())) {
+            errors.add(new CoreError("ID", "The product with the given id does not exist"));
             return new GetProductByIdResponse(errors);
-        } else {
-            return new GetProductByIdResponse(product.get());
         }
+        return new GetProductByIdResponse(db.getById(request.getProductId()).get());
     }
 }
