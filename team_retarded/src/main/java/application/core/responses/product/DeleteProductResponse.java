@@ -17,7 +17,7 @@ public class DeleteProductResponse extends CoreResponse {
         this.isProductDeleted = isProductDeleted;
     }
 
-    public boolean idProductDeleted() {
+    public boolean isProductDeleted() {
         return isProductDeleted;
     }
 }
