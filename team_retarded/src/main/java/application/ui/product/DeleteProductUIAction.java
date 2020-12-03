@@ -27,7 +27,7 @@ public class DeleteProductUIAction implements UIAction {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
                     + coreError.getField() + ": " + coreError.getMessage()));
         } else {
-            if (response.idProductDeleted()) {
+            if (response.isProductDeleted()) {
                 System.out.println("Your product was removed from list.");
             } else {
                 System.out.println("Your product not removed from list.");
