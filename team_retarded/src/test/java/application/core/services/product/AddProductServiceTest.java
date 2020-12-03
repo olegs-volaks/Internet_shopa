@@ -5,7 +5,7 @@ import application.core.responses.CoreError;
 import application.core.responses.product.AddProductResponse;
 import application.core.services.validators.product.AddProductValidator;
 import application.database.ProductDatabase;
-import application.matchers.ProductMatcher;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -20,7 +20,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.argThat;
+
 
 
 @ExtendWith(MockitoExtension.class)
