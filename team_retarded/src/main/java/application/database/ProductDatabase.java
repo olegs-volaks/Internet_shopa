@@ -10,9 +10,9 @@ public interface ProductDatabase {
 
     long add(Product product);
 
-    void delete(long id);
+    boolean delete(long id);
 
-    void delete(Predicate<Product> predicate);
+    boolean delete(Predicate<Product> predicate);
 
     void clear();
 

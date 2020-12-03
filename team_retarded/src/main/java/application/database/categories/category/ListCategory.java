@@ -17,7 +17,7 @@ public interface ListCategory<T> {
 
     void add(T t);
 
-    void remove(T t);
+    boolean remove(T t);
 
     void remove(Predicate<T> predicate);
 }

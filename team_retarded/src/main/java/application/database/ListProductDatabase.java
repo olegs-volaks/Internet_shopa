@@ -30,15 +30,17 @@ public class ListProductDatabase implements ProductDatabase {
     }
 
     @Override
-    public void delete(long id) {
+    public boolean delete(long id) {
         deleteFromCategories(product -> product.getId() == id);
         productDatabase.removeIf(x -> x.getId() == id);
+        return true;
     }
 
     @Override
-    public void delete(Predicate<Product> predicate) {
+    public boolean delete(Predicate<Product> predicate) {
         deleteFromCategories(predicate);
         productDatabase.removeIf(predicate);
+        return true;
     }
 
     @Override
