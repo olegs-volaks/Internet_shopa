@@ -10,9 +10,9 @@ public interface CategoriesDatabase {
 
     long addCategory(ProductListCategory ListCategory);
 
-    void removeCategory(String name);
+    boolean removeCategory(String name);
 
-    void removeCategory(long id);
+    boolean removeCategory(long id);
 
     void removeCategory(Predicate<ProductListCategory> predicate);
 
@@ -21,4 +21,6 @@ public interface CategoriesDatabase {
     List<ProductListCategory> getCategoryList();
 
     Optional<ProductListCategory> getCategory(long id);
+
+    boolean isExist(long id);
 }

@@ -21,13 +21,15 @@ public class ListCategoriesDatabase implements CategoriesDatabase {
     }
 
     @Override
-    public void removeCategory(String name) {
+    public boolean removeCategory(String name) {
         categoriesDatabase.removeIf(ListCategory -> ListCategory.getName().equals(name));
+        return true;
     }
 
     @Override
-    public void removeCategory(long id) {
+    public boolean removeCategory(long id) {
         categoriesDatabase.removeIf(ListCategory -> ListCategory.getId() == id);
+        return true;
     }
 
     @Override
@@ -48,5 +50,10 @@ public class ListCategoriesDatabase implements CategoriesDatabase {
     @Override
     public Optional<ProductListCategory> getCategory(long id) {
         return categoriesDatabase.stream().filter(listCategory -> listCategory.getId() == id).findFirst();
+    }
+
+    @Override
+    public boolean isExist(long id) {
+        return getCategory(id).isPresent();
     }
 }

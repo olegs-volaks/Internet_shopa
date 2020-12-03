@@ -48,8 +48,9 @@ public class ProductListCategory implements ListCategory<Product> {
     }
 
     @Override
-    public void remove(Product product) {
+    public boolean remove(Product product) {
         products.remove(product);
+        return true;
     }
 
     @Override
