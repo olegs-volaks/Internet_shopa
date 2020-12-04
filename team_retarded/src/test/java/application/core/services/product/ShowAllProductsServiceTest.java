@@ -14,22 +14,22 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @ExtendWith(MockitoExtension.class)
 public class ShowAllProductsServiceTest {
 
     @Mock
-    private ProductDatabase db;
+    private ProductDatabase database;
     @InjectMocks
     private ShowAllProductsService subject;
 
     @Test
-    public void shouldGetProductFromDataBase() {
+    public void should_get_product_from_dataBase() {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Name", "Description", 0));
-        Mockito.when(db.getList()).thenReturn(products);
+        Mockito.when(database.getList()).thenReturn(products);
 
         ShowAllProductsRequest request = new ShowAllProductsRequest();
         ShowAllProductsResponse response = subject.execute(request);
@@ -37,6 +37,7 @@ public class ShowAllProductsServiceTest {
         assertEquals(response.getProducts().size(), 1);
         assertEquals(response.getProducts().get(0).getName(), "Name");
         assertEquals(response.getProducts().get(0).getDescription(), "Description");
+
 
     }
 }

@@ -5,36 +5,35 @@ import application.core.responses.CoreError;
 import application.core.responses.product.AddProductResponse;
 import application.core.services.validators.product.AddProductValidator;
 import application.database.ProductDatabase;
-
+import application.matchers.ProductMatcher;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.argThat;
 
 
 @ExtendWith(MockitoExtension.class)
 public class AddProductServiceTest {
 
     @Mock
-    private ProductDatabase db;
+    private ProductDatabase database;
     @Mock
     private AddProductValidator validator;
     @InjectMocks
     private AddProductService subject;
 
     @Test
-    public void shouldReturnResponseWithErrorsWhenValidationFails() {
+    public void should_return_response_with_errors_when_validation_fails() {
         AddProductRequest request = new AddProductRequest("nam", "description", 225.5);
         List<CoreError> errors = new ArrayList<>();
         errors.add(new CoreError("Name", "Must be not empty"));
@@ -45,23 +44,17 @@ public class AddProductServiceTest {
         assertEquals(response.getErrors().size(), 1);
         assertEquals(response.getErrors().get(0).getField(), "Name");
         assertEquals(response.getErrors().get(0).getMessage(), "Must be not empty");
-
-        Mockito.verify(validator).validate(request);
-        Mockito.verify(validator).validate(any());
-        Mockito.verifyNoInteractions(db);
+        Mockito.verifyNoInteractions(database);
     }
 
 
     @Test
-    public void shouldAddProductToDatabase() {
+    public void should_add_product_to_database() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        AddProductRequest request = new AddProductRequest("Name", "Author", 222.2);
+        AddProductRequest request = new AddProductRequest("Name", "Description", 222.2);
         AddProductResponse response = subject.execute(request);
         assertFalse(response.hasErrors());
-
-        Mockito.verify(validator).validate(request);
-        Mockito.verify(validator).validate(any());
-      //  Mockito.verify(db).add(argThat(new ProductMatcher("Name","Description")));  эта строчка не заходит
+        Mockito.verify(database).add(argThat(new ProductMatcher("Name","Description")));
 
 
     }
