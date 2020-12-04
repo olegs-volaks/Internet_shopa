@@ -46,7 +46,7 @@ class DeleteProductServiceTest {
         Mockito.verifyNoInteractions(db);
     }
 
-   /* @Test
+    @Test
     public void shouldDeleteProductWithIdFromDatabase() {
         DeleteProductRequest request = new DeleteProductRequest(1L);
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
@@ -54,5 +54,5 @@ class DeleteProductServiceTest {
         DeleteProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
         assertTrue(response.isProductDeleted());
-    }*/
+    }
 }
