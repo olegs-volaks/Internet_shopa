@@ -20,10 +20,9 @@ public class GetProductByIdService {
 
     public GetProductByIdResponse execute(GetProductByIdRequest request) {
         List<CoreError> errors = validator.validate(request);
-        if (!db.isExist(request.getProductId())) {
-            errors.add(new CoreError("ID", "The product with the given id does not exist"));
+        if (!errors.isEmpty()) {
             return new GetProductByIdResponse(errors);
         }
-        return new GetProductByIdResponse(db.getById(request.getProductId()).get());
+        return new GetProductByIdResponse(db.getById(request.getProductId()));
     }
 }
