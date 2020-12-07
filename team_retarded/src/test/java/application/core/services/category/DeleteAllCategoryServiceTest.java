@@ -20,7 +20,7 @@ public  class DeleteAllCategoryServiceTest {
     private DeleteAllCategoryService subject;
 
     @Test
-    public void should_delete_all_categocires() {
+    public void should_delete_all_categories() {
         DeleteAllCategoryResponse response = subject.execute();
         assertThat(response.hasErrors()).isFalse();
         Mockito.verify(database).clear();
