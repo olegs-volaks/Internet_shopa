@@ -5,9 +5,12 @@ import application.core.responses.CoreError;
 import application.core.responses.category.AddProductToCategoryResponse;
 import application.core.services.validators.category.AddProductToCategoryValidator;
 import application.database.ProductDatabase;
+import application.database.categories.category.ProductListCategory;
 import application.database.categories.database.CategoriesDatabase;
+import application.items.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public class AddProductToCategoryService {
@@ -27,10 +30,11 @@ public class AddProductToCategoryService {
         if (!errors.isEmpty()) {
             return new AddProductToCategoryResponse(errors);
         }
-        if (categoriesDatabase.getCategory(request.AddProductToCategoryCategoryID()).isPresent()&&
-                productDatabase.getById(request.AddProductToCategoryProductID()).isPresent()){
-        categoriesDatabase.getCategory(request.AddProductToCategoryCategoryID()).get().
-                add((productDatabase.getById(request.AddProductToCategoryProductID())).get());
+        Optional <ProductListCategory> categoryID = categoriesDatabase.getCategory(request.AddProductToCategoryCategoryID());
+        Optional <Product> productID = productDatabase.getById(request.AddProductToCategoryProductID());
+
+        if (categoryID .isPresent()&& productID.isPresent()){
+            categoryID.get().add(productID.get());
         }
         return new AddProductToCategoryResponse(request.AddProductToCategoryCategoryID(), request.AddProductToCategoryProductID());
     }
