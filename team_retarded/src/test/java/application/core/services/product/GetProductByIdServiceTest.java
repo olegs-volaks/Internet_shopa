@@ -51,7 +51,7 @@ class GetProductByIdServiceTest {
     }
 
     @Test
-    public void GetProductById() {
+    public void GetProductByIdTest() {
         GetProductByIdRequest request = new GetProductByIdRequest(1L);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
