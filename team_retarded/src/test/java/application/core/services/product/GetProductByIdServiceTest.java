@@ -5,6 +5,7 @@ import application.core.responses.CoreError;
 import application.core.responses.product.GetProductByIdResponse;
 import application.core.services.validators.product.GetProductByIdValidator;
 import application.database.ProductDatabase;
+import application.items.Product;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -14,9 +15,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
@@ -40,18 +41,17 @@ class GetProductByIdServiceTest {
 
         GetProductByIdResponse response = service.execute(request);
         assertTrue(response.hasErrors());
-        assertEquals(response.getErrors().size(), 2);
+        assertEquals(response.getErrors().size(), 1);
         assertEquals(response.getErrors().get(0).getField(),"ID");
         assertEquals(response.getErrors().get(0).getMessage(),"Must be more than 0");
-        assertEquals(response.getErrors().get(1).getMessage(),"The product with the given id does not exist");
 
         Mockito.verify(validator).validate(request);
         Mockito.verify(validator).validate(any());
 
     }
 
-   /* @Test
-    public void GetProductById() {
+    @Test
+    public void GetProductByIdTest() {
         GetProductByIdRequest request = new GetProductByIdRequest(1L);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
@@ -60,7 +60,7 @@ class GetProductByIdServiceTest {
 
         GetProductByIdResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        assertEquals(response.getProduct().getName(), "Title");
-        assertEquals(response.getProduct().getDescription(), "Author123456789");
-    }*/
+        assertEquals(response.getProduct().get().getName(), "Title");
+        assertEquals(response.getProduct().get().getDescription(), "Author123456789");
+    }
 }

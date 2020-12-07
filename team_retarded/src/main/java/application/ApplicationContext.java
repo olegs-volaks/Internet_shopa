@@ -1,9 +1,11 @@
 package application;
 
 import application.core.services.category.AddCategoryService;
+import application.core.services.category.AddProductToCategoryService;
 import application.core.services.category.DeleteCategoryService;
 import application.core.services.product.*;
 import application.core.services.validators.category.AddCategoryValidator;
+import application.core.services.validators.category.AddProductToCategoryValidator;
 import application.core.services.validators.category.DeleteCategoryValidator;
 import application.core.services.validators.product.AddProductValidator;
 import application.core.services.validators.product.DeleteProductValidator;
@@ -14,6 +16,7 @@ import application.database.ProductDatabase;
 import application.database.categories.database.CategoriesDatabase;
 import application.database.categories.database.ListCategoriesDatabase;
 import application.ui.category.AddCategoryUIAction;
+import application.ui.category.AddProductToCategoryUIAction;
 import application.ui.category.DeleteCategoryUIAction;
 import application.ui.product.*;
 
@@ -65,6 +68,12 @@ public class ApplicationContext {
         beans.put(DeleteCategoryService.class, new DeleteCategoryService(getBean(CategoriesDatabase.class),
                 getBean(DeleteCategoryValidator.class)));
         beans.put(DeleteCategoryUIAction.class, new DeleteCategoryUIAction(getBean(DeleteCategoryService.class)));
+
+        beans.put(AddProductToCategoryValidator.class, new AddProductToCategoryValidator());
+        beans.put(AddProductToCategoryService.class,
+                new AddProductToCategoryService(getBean(ProductDatabase.class), getBean(CategoriesDatabase.class),
+                getBean(AddProductToCategoryValidator.class)));
+        beans.put(AddProductToCategoryUIAction.class, new AddProductToCategoryUIAction(getBean(AddProductToCategoryService.class)));
 
         /*
         * Template *
