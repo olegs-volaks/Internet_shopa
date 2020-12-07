@@ -12,7 +12,7 @@ public class ClearAllProductsService {
     }
     public ClearAllProductsResponse execute() {
         db.clear();
-        return null;
+        return new ClearAllProductsResponse();
     }
 }
 
