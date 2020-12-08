@@ -31,8 +31,8 @@ public class ListProductDatabase implements ProductDatabase {
 
     @Override
     public boolean delete(long id) {
-        deleteFromCategories(product -> product.getId() == id);
-        productDatabase.removeIf(x -> x.getId() == id);
+        deleteFromCategories(product -> product.getId()==id);
+        productDatabase.removeIf(x -> x.getId()==id);
         return true;
     }
 

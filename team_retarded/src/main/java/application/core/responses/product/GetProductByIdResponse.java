@@ -5,20 +5,21 @@ import application.core.responses.CoreResponse;
 import application.items.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public class GetProductByIdResponse extends CoreResponse {
 
-    private Product product;
+    private Optional<Product> productOptional;
 
-    public GetProductByIdResponse(Product product) {
-        this.product = product;
+    public GetProductByIdResponse(Optional<Product> productOptional) {
+        this.productOptional = productOptional;
     }
 
     public GetProductByIdResponse(List<CoreError> errors) {
         super(errors);
     }
 
-    public Product getProduct() {
-        return product;
+    public Optional<Product> getProduct() {
+        return  productOptional;
     }
 }

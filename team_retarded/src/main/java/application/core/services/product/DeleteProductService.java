@@ -22,10 +22,7 @@ public class DeleteProductService {
         if (!errors.isEmpty()) {
             return new DeleteProductResponse(errors);
         }
-        if (!db.isExist(request.getProductIdToDelete())) {
-            errors.add(new CoreError("ID", "The product with the given id does not exist"));
-            return new DeleteProductResponse(errors);
-        }
+
         return new DeleteProductResponse(db.delete(request.getProductIdToDelete()));
     }
 }
