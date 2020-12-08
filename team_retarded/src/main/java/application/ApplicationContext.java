@@ -71,8 +71,8 @@ public class ApplicationContext {
 
         beans.put(AddProductToCategoryValidator.class, new AddProductToCategoryValidator());
         beans.put(AddProductToCategoryService.class,
-                new AddProductToCategoryService(getBean(ProductDatabase.class), getBean(CategoriesDatabase.class),
-                getBean(AddProductToCategoryValidator.class)));
+                new AddProductToCategoryService(getBean(CategoriesDatabase.class), getBean(ProductDatabase.class),
+                        getBean(AddProductToCategoryValidator.class)));
         beans.put(AddProductToCategoryUIAction.class, new AddProductToCategoryUIAction(getBean(AddProductToCategoryService.class)));
 
         /*
