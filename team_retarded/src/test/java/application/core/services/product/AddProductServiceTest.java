@@ -46,7 +46,7 @@ public class AddProductServiceTest {
         assertEquals(response.getErrors().get(0).getMessage(), "Must be between 4 and 10 characters");
         Mockito.verifyNoInteractions(database);
         Mockito.verify(validator).validate(request);
-        Mockito.verify(validator).validate(any());
+
     }
 
 
