@@ -1,4 +1,9 @@
 package application.core.responses.product;
 
-public class ClearAllProductsResponse {
-}
+
+import application.core.responses.CoreResponse;
+
+public class ClearAllProductsResponse extends CoreResponse {
+
+    }
+
