@@ -1,5 +1,6 @@
 package application.core.services.category;
 
+import application.core.requests.category.DeleteAllCategoryRequest;
 import application.core.responses.category.DeleteAllCategoryResponse;
 import application.database.categories.database.CategoriesDatabase;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ public  class DeleteAllCategoryServiceTest {
 
     @Test
     public void should_delete_all_categories() {
-        DeleteAllCategoryResponse response = subject.execute();
+        DeleteAllCategoryResponse response = subject.execute(new DeleteAllCategoryRequest());
         assertThat(response.hasErrors()).isFalse();
         Mockito.verify(database).clear();
     }

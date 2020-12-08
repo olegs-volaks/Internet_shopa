@@ -1,5 +1,6 @@
 package application.ui.category;
 
+import application.core.requests.category.DeleteAllCategoryRequest;
 import application.core.services.category.DeleteAllCategoryService;
 import application.ui.UIAction;
 
@@ -22,7 +23,7 @@ public class DeleteAllCategoryUIAction implements UIAction {
         result = result.replaceAll("\\s+", "")
                 .toLowerCase();
         if (result.equals("y")) {
-            service.execute();
+            service.execute(new DeleteAllCategoryRequest());
             System.out.println("Your list of categories successfully deleted ");
         }
     }
