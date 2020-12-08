@@ -36,15 +36,17 @@ public class AddProductServiceTest {
     public void should_return_response_with_errors_when_validation_fails() {
         AddProductRequest request = new AddProductRequest("nam", "description", 225.5);
         List<CoreError> errors = new ArrayList<>();
-        errors.add(new CoreError("Name", "Must be not empty"));
+        errors.add(new CoreError("Name", "Must be between 4 and 10 characters"));
         Mockito.when(validator.validate(request)).thenReturn(errors);
 
         AddProductResponse response = subject.execute(request);
         assertTrue(response.hasErrors());
         assertEquals(response.getErrors().size(), 1);
         assertEquals(response.getErrors().get(0).getField(), "Name");
-        assertEquals(response.getErrors().get(0).getMessage(), "Must be not empty");
+        assertEquals(response.getErrors().get(0).getMessage(), "Must be between 4 and 10 characters");
         Mockito.verifyNoInteractions(database);
+        Mockito.verify(validator).validate(request);
+        Mockito.verify(validator).validate(any());
     }
 
 
