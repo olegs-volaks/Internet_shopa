@@ -3,16 +3,16 @@ package application.ui.product;
 
 import application.core.services.product.ClearAllProductsService;
 import application.ui.UIAction;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class ClearAllProductsUIAction implements UIAction {
 
-    private final ClearAllProductsService service;
-
-    public ClearAllProductsUIAction(ClearAllProductsService service) {
-        this.service = service;
-    }
+    @DIDependency
+    private ClearAllProductsService service;
 
     @Override
     public void execute() {

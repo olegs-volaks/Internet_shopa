@@ -4,16 +4,16 @@ import application.core.requests.category.AddProductToCategoryRequest;
 import application.core.responses.category.AddProductToCategoryResponse;
 import application.core.services.category.AddProductToCategoryService;
 import application.ui.UIAction;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class AddProductToCategoryUIAction implements UIAction {
 
-    private final AddProductToCategoryService service;
-
-    public AddProductToCategoryUIAction(AddProductToCategoryService service) {
-        this.service = service;
-    }
+    @DIDependency
+    private AddProductToCategoryService service;
 
     @Override
     public void execute() {

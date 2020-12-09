@@ -5,18 +5,17 @@ import application.core.requests.product.GetProductByIdRequest;
 import application.core.responses.product.GetProductByIdResponse;
 import application.core.services.product.GetProductByIdService;
 import application.ui.UIAction;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.Optional;
 import java.util.Scanner;
 
-
+@DIComponent
 public class GetProductByIdUIAction implements UIAction {
 
-    private final GetProductByIdService service;
-
-    public GetProductByIdUIAction(GetProductByIdService service) {
-        this.service = service;
-    }
+    @DIDependency
+    private GetProductByIdService service;
 
     @Override
     public void execute() {

@@ -3,16 +3,16 @@ package application.ui.category;
 import application.core.requests.category.DeleteAllCategoryRequest;
 import application.core.services.category.DeleteAllCategoryService;
 import application.ui.UIAction;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class DeleteAllCategoryUIAction implements UIAction {
 
-    private final DeleteAllCategoryService service;
-
-    public DeleteAllCategoryUIAction(DeleteAllCategoryService service) {
-        this.service = service;
-    }
+    @DIDependency
+    private DeleteAllCategoryService service;
 
     @Override
     public void execute() {

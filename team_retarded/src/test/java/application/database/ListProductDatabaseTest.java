@@ -1,7 +1,8 @@
 package application.database;
 
-import application.database.categories.database.ListCategoriesDatabase;
 import application.items.Product;
+import com.retarded.di.ApplicationContext;
+import com.retarded.di.DIApplicationContextBuilder;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -12,7 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ListProductDatabaseTest {
 
-    private final ListProductDatabase subject = new ListProductDatabase(new ListCategoriesDatabase());
+    private final ApplicationContext context = new DIApplicationContextBuilder().build("application");
+    private final ListProductDatabase subject = context.getBean(ListProductDatabase.class);
 
 
     @Test

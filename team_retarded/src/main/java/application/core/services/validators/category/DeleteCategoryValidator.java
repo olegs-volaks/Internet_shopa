@@ -2,11 +2,13 @@ package application.core.services.validators.category;
 
 import application.core.requests.category.DeleteCategoryRequest;
 import application.core.responses.CoreError;
+import com.retarded.di.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@DIComponent
 public class DeleteCategoryValidator {
 
     public List<CoreError> validate(DeleteCategoryRequest request) {

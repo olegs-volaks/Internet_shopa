@@ -3,6 +3,8 @@ package application.database;
 import application.database.categories.category.ProductListCategory;
 import application.database.categories.database.CategoriesDatabase;
 import application.items.Product;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,15 +13,13 @@ import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
+@DIComponent
 public class ListProductDatabase implements ProductDatabase {
 
-    private final CategoriesDatabase categoriesDatabase;
+    @DIDependency
+    private CategoriesDatabase categoriesDatabase;
     private final List<Product> productDatabase = new ArrayList<>();
     private long id;
-
-    public ListProductDatabase(CategoriesDatabase categoriesDatabase) {
-        this.categoriesDatabase = categoriesDatabase;
-    }
 
     @Override
     public long add(Product product) {

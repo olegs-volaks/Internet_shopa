@@ -6,16 +6,16 @@ import application.core.requests.product.SearchProductRequest;
 import application.core.responses.product.SearchProductResponse;
 import application.core.services.product.SearchProductService;
 import application.ui.UIAction;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class SearchProductUIAction implements UIAction {
 
-    private final SearchProductService service;
-
-    public SearchProductUIAction(SearchProductService service) {
-        this.service = service;
-    }
+    @DIDependency
+    private SearchProductService service;
 
     @Override
     public void execute() {
