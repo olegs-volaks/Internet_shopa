@@ -16,7 +16,7 @@ class DIComponentCreator {
                 Object diComponentInstance = createInstanceUsingDefaultConstructor(defaultConstructorOpt.get());
                 applicationContext.addBean(diComponent, diComponentInstance);
             } else {
-                throw new RuntimeException("Class do not have default constructor!");
+                throw new RuntimeException("Class " + diComponent.getName() + " do not have default constructor!");
             }
         });
     }
