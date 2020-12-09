@@ -1,5 +1,6 @@
 package application.core.services.product;
 
+import application.core.responses.product.ClearAllProductsResponse;
 import application.database.ProductDatabase;
 
 public class ClearAllProductsService {
@@ -7,9 +8,11 @@ public class ClearAllProductsService {
 
     public ClearAllProductsService(ProductDatabase db) {
         this.db = db;
-    }
 
-    public void execute() {
+    }
+    public ClearAllProductsResponse execute() {
         db.clear();
+        return new ClearAllProductsResponse();
     }
 }
+
