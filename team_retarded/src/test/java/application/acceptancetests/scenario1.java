@@ -9,10 +9,10 @@ import application.database.ProductDatabase;
 import com.retarded.di.ApplicationContext;
 import com.retarded.di.DIApplicationContextBuilder;
 import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class scenario1 {
+
     private final ApplicationContext context = new DIApplicationContextBuilder().build("application");
 
     @Test

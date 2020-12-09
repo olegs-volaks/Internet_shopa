@@ -8,14 +8,19 @@ import application.database.ProductDatabase;
 import application.database.categories.category.ProductListCategory;
 import application.database.categories.database.CategoriesDatabase;
 import application.items.Product;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.List;
 import java.util.Optional;
 
-
+@DIComponent
 public class AddProductToCategoryService {
+    @DIDependency
     private final CategoriesDatabase categoriesDatabase;
+    @DIDependency
     private final ProductDatabase productDatabase;
+    @DIDependency
     private final AddProductToCategoryValidator validator;
 
     public AddProductToCategoryService(CategoriesDatabase categoriesDatabase,ProductDatabase productDatabase,

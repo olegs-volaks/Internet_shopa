@@ -17,6 +17,8 @@ class ListProductDatabaseTest {
     private final ListProductDatabase subject = context.getBean(ListProductDatabase.class);
 
 
+
+
     @Test
     void delete_by_predicate() {
         subject.add(new Product("name", "d", 12.9));
