@@ -3,10 +3,12 @@ package application;
 import application.core.services.category.AddCategoryService;
 import application.core.services.category.AddProductToCategoryService;
 import application.core.services.category.DeleteCategoryService;
+import application.core.services.category.DeleteProductFromCategoryService;
 import application.core.services.product.*;
 import application.core.services.validators.category.AddCategoryValidator;
 import application.core.services.validators.category.AddProductToCategoryValidator;
 import application.core.services.validators.category.DeleteCategoryValidator;
+import application.core.services.validators.category.DeleteProductFromCategoryValidator;
 import application.core.services.validators.product.AddProductValidator;
 import application.core.services.validators.product.DeleteProductValidator;
 import application.core.services.validators.product.GetProductByIdValidator;
@@ -18,6 +20,7 @@ import application.database.categories.database.ListCategoriesDatabase;
 import application.ui.category.AddCategoryUIAction;
 import application.ui.category.AddProductToCategoryUIAction;
 import application.ui.category.DeleteCategoryUIAction;
+import application.ui.category.DeleteProductFromCategoryUIAction;
 import application.ui.product.*;
 
 import java.util.HashMap;
@@ -74,6 +77,12 @@ public class ApplicationContext {
                 new AddProductToCategoryService(getBean(CategoriesDatabase.class), getBean(ProductDatabase.class),
                         getBean(AddProductToCategoryValidator.class)));
         beans.put(AddProductToCategoryUIAction.class, new AddProductToCategoryUIAction(getBean(AddProductToCategoryService.class)));
+
+        beans.put(DeleteProductFromCategoryValidator.class, new DeleteProductFromCategoryValidator());
+        beans.put(DeleteProductFromCategoryService.class,
+                new DeleteProductFromCategoryService(getBean(CategoriesDatabase.class), getBean(ProductDatabase.class),
+                        getBean(DeleteProductFromCategoryValidator.class)));
+        beans.put(DeleteProductFromCategoryUIAction.class, new DeleteProductFromCategoryUIAction(getBean(DeleteProductFromCategoryService.class)));
 
         /*
         * Template *

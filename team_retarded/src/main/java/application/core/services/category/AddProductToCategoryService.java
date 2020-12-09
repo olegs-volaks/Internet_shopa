@@ -33,7 +33,7 @@ public class AddProductToCategoryService {
         Optional <ProductListCategory> categoryID = categoriesDatabase.getCategory(request.AddProductToCategoryCategoryID());
         Optional <Product> productID = productDatabase.getById(request.AddProductToCategoryProductID());
 
-        if (categoryID .isPresent()&& productID.isPresent()){
+        if (categoryID .isPresent() && productID.isPresent()){
             categoryID.get().add(productID.get());
         }
         return new AddProductToCategoryResponse(request.AddProductToCategoryCategoryID(), request.AddProductToCategoryProductID());

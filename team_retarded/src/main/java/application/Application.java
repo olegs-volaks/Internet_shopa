@@ -3,6 +3,7 @@ package application;
 import application.ui.category.AddCategoryUIAction;
 import application.ui.category.AddProductToCategoryUIAction;
 import application.ui.category.DeleteCategoryUIAction;
+import application.ui.category.DeleteProductFromCategoryUIAction;
 import application.ui.product.*;
 
 import java.util.Scanner;
@@ -64,6 +65,10 @@ public class Application {
             case 3 -> {
                 AddProductToCategoryUIAction addProductToCategoryUIAction = CONTEXT.getBean(AddProductToCategoryUIAction.class);
                 addProductToCategoryUIAction.execute();
+            }
+            case 4 -> {
+                DeleteProductFromCategoryUIAction deleteProductFromCategoryUIAction = CONTEXT.getBean(DeleteProductFromCategoryUIAction.class);
+                deleteProductFromCategoryUIAction.execute();
             }
         }
     }
