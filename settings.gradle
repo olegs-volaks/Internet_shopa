@@ -1,2 +1,3 @@
 include 'teacher'
 include 'team_retarded'
+include 'dependency_injection'

@@ -4,16 +4,16 @@ import application.core.requests.category.AddCategoryRequest;
 import application.core.responses.category.AddCategoryResponse;
 import application.core.services.category.AddCategoryService;
 import application.ui.UIAction;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class AddCategoryUIAction implements UIAction {
 
-    private final AddCategoryService service;
-
-    public AddCategoryUIAction(AddCategoryService service) {
-        this.service = service;
-    }
+    @DIDependency
+    private AddCategoryService service;
 
     @Override
     public void execute() {

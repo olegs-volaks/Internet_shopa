@@ -5,18 +5,18 @@ import application.core.responses.CoreError;
 import application.core.responses.category.DeleteCategoryResponse;
 import application.core.services.validators.category.DeleteCategoryValidator;
 import application.database.categories.database.CategoriesDatabase;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.List;
 
+@DIComponent
 public class DeleteCategoryService {
 
-    private final CategoriesDatabase database;
-    private final DeleteCategoryValidator validator;
-
-    public DeleteCategoryService(CategoriesDatabase database, DeleteCategoryValidator validator) {
-        this.database = database;
-        this.validator = validator;
-    }
+    @DIDependency
+    private CategoriesDatabase database;
+    @DIDependency
+    private DeleteCategoryValidator validator;
 
     public DeleteCategoryResponse execute(DeleteCategoryRequest request) {
         List<CoreError> errors = validator.validate(request);

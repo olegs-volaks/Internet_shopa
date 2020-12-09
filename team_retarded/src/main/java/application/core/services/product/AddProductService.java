@@ -6,18 +6,18 @@ import application.core.responses.product.AddProductResponse;
 import application.core.services.validators.product.AddProductValidator;
 import application.database.ProductDatabase;
 import application.items.Product;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.List;
 
+@DIComponent
 public class AddProductService {
 
-    private final ProductDatabase db;
-    private final AddProductValidator validator;
-
-    public AddProductService(ProductDatabase db, AddProductValidator validator) {
-        this.db = db;
-        this.validator = validator;
-    }
+    @DIDependency
+    private ProductDatabase db;
+    @DIDependency
+    private AddProductValidator validator;
 
     public AddProductResponse execute(AddProductRequest request) {
         List<CoreError> errors = validator.validate(request);

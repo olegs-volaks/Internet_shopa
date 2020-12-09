@@ -6,18 +6,18 @@ import application.core.responses.category.AddCategoryResponse;
 import application.core.services.validators.category.AddCategoryValidator;
 import application.database.categories.category.ProductListCategory;
 import application.database.categories.database.CategoriesDatabase;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.List;
 
+@DIComponent
 public class AddCategoryService {
 
-    private final CategoriesDatabase database;
-    private final AddCategoryValidator validator;
-
-    public AddCategoryService(CategoriesDatabase database, AddCategoryValidator validator) {
-        this.database = database;
-        this.validator = validator;
-    }
+    @DIDependency
+    private CategoriesDatabase database;
+    @DIDependency
+    private AddCategoryValidator validator;
 
     public AddCategoryResponse execute(AddCategoryRequest request) {
         List<CoreError> errors = validator.validate(request);

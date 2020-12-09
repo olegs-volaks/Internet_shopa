@@ -4,14 +4,19 @@ import application.core.requests.category.AddProductToCategoryRequest;
 import application.core.responses.CoreError;
 import application.database.ProductDatabase;
 import application.database.categories.database.CategoriesDatabase;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@DIComponent
 public class AddProductToCategoryValidator {
 
+    @DIDependency
     private ProductDatabase productDatabase;
+    @DIDependency
     private CategoriesDatabase categoriesDatabase;
 
     public List<CoreError> validate(AddProductToCategoryRequest request) {

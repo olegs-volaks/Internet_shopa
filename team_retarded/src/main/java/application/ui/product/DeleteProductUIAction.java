@@ -5,16 +5,16 @@ import application.core.requests.product.DeleteProductRequest;
 import application.core.responses.product.DeleteProductResponse;
 import application.core.services.product.DeleteProductService;
 import application.ui.UIAction;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.Scanner;
 
+@DIComponent
 public class DeleteProductUIAction implements UIAction {
 
-    private final DeleteProductService service;
-
-    public DeleteProductUIAction(DeleteProductService service) {
-        this.service = service;
-    }
+    @DIDependency
+    private DeleteProductService service;
 
     @Override
     public void execute() {
