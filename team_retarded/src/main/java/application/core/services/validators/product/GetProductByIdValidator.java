@@ -2,11 +2,13 @@ package application.core.services.validators.product;
 
 import application.core.requests.product.GetProductByIdRequest;
 import application.core.responses.CoreError;
+import com.retarded.di.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@DIComponent
 public class GetProductByIdValidator {
 
     public List<CoreError> validate(GetProductByIdRequest request) {

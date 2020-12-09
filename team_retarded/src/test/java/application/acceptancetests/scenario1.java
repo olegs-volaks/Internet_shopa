@@ -1,18 +1,19 @@
 package application.acceptancetests;
 
-import application.ApplicationContext;
 import application.core.requests.product.AddProductRequest;
 import application.core.requests.product.DeleteProductRequest;
 import application.core.responses.product.AddProductResponse;
 import application.core.services.product.AddProductService;
 import application.core.services.product.DeleteProductService;
 import application.database.ProductDatabase;
+import com.retarded.di.ApplicationContext;
+import com.retarded.di.DIApplicationContextBuilder;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class scenario1 {
-    private ApplicationContext context = new ApplicationContext();
+    private final ApplicationContext context = new DIApplicationContextBuilder().build("application");
 
     @Test
     void test1() {

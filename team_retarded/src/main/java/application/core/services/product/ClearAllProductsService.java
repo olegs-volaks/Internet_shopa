@@ -2,14 +2,14 @@ package application.core.services.product;
 
 import application.core.responses.product.ClearAllProductsResponse;
 import application.database.ProductDatabase;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
+@DIComponent
 public class ClearAllProductsService {
-    private final ProductDatabase db;
+    @DIDependency
+    private ProductDatabase db;
 
-    public ClearAllProductsService(ProductDatabase db) {
-        this.db = db;
-
-    }
     public ClearAllProductsResponse execute() {
         db.clear();
         return new ClearAllProductsResponse();

@@ -5,18 +5,18 @@ import application.core.responses.CoreError;
 import application.core.responses.product.GetProductByIdResponse;
 import application.core.services.validators.product.GetProductByIdValidator;
 import application.database.ProductDatabase;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.List;
 
+@DIComponent
 public class GetProductByIdService {
 
-    private final ProductDatabase db;
-    private final GetProductByIdValidator validator;
-
-    public GetProductByIdService(ProductDatabase db, GetProductByIdValidator validator) {
-        this.db = db;
-        this.validator = validator;
-    }
+    @DIDependency
+    private ProductDatabase db;
+    @DIDependency
+    private GetProductByIdValidator validator;
 
     public GetProductByIdResponse execute(GetProductByIdRequest request) {
         List<CoreError> errors = validator.validate(request);

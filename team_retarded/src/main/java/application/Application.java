@@ -5,12 +5,14 @@ import application.ui.category.AddProductToCategoryUIAction;
 import application.ui.category.DeleteCategoryUIAction;
 import application.ui.category.DeleteProductFromCategoryUIAction;
 import application.ui.product.*;
+import com.retarded.di.ApplicationContext;
+import com.retarded.di.DIApplicationContextBuilder;
 
 import java.util.Scanner;
 
 public class Application {
 
-    private static final ApplicationContext CONTEXT = new ApplicationContext();
+    private static ApplicationContext CONTEXT = new DIApplicationContextBuilder().build("application");
 
     public static void main(String[] args) {
         while (true) {

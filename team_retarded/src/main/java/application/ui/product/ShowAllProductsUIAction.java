@@ -5,15 +5,14 @@ import application.core.requests.product.ShowAllProductsRequest;
 import application.core.responses.product.ShowAllProductsResponse;
 import application.core.services.product.ShowAllProductsService;
 import application.ui.UIAction;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
-
+@DIComponent
 public class ShowAllProductsUIAction implements UIAction {
 
-    private final ShowAllProductsService service;
-
-    public ShowAllProductsUIAction(ShowAllProductsService service) {
-        this.service = service;
-    }
+    @DIDependency
+    private ShowAllProductsService service;
 
     @Override
     public void execute() {
