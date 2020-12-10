@@ -12,7 +12,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+
 public class scenario1 {
+
+    //private ApplicationContext context = new ApplicationContext();
     private final ApplicationContext context = new DIApplicationContextBuilder().build("application");
 
     @Test

@@ -6,6 +6,7 @@ import application.database.categories.database.CategoriesDatabase;
 import com.retarded.di.DIComponent;
 import com.retarded.di.DIDependency;
 
+
 @DIComponent
 public class DeleteAllCategoryService {
 

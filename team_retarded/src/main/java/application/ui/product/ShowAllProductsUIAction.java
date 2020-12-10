@@ -8,6 +8,7 @@ import application.ui.UIAction;
 import com.retarded.di.DIComponent;
 import com.retarded.di.DIDependency;
 
+
 @DIComponent
 public class ShowAllProductsUIAction implements UIAction {
 

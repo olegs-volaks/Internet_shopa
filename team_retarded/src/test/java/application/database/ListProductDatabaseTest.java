@@ -23,6 +23,8 @@ class ListProductDatabaseTest {
     private ListProductDatabase subject;
 
 
+
+
     @Test
     void delete_by_predicate() {
         subject.add(new Product("name", "d", 12.9));

@@ -17,21 +17,28 @@ import java.util.Optional;
 @DIComponent
 public class AddProductToCategoryService {
     @DIDependency
-    private CategoriesDatabase categoriesDatabase;
+    private  CategoriesDatabase categoriesDatabase;
     @DIDependency
-    private ProductDatabase productDatabase;
+    private  ProductDatabase productDatabase;
     @DIDependency
-    private AddProductToCategoryValidator validator;
+    private  AddProductToCategoryValidator validator;
+
+    //public AddProductToCategoryService(CategoriesDatabase categoriesDatabase,ProductDatabase productDatabase,
+                                       //AddProductToCategoryValidator validator) {
+        //this.categoriesDatabase = categoriesDatabase;
+        //this.productDatabase = productDatabase;
+        //this.validator = validator;
+    //}
 
     public AddProductToCategoryResponse execute(AddProductToCategoryRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new AddProductToCategoryResponse(errors);
         }
-        Optional<ProductListCategory> categoryID = categoriesDatabase.getCategory(request.AddProductToCategoryCategoryID());
-        Optional<Product> productID = productDatabase.getById(request.AddProductToCategoryProductID());
+        Optional <ProductListCategory> categoryID = categoriesDatabase.getCategory(request.AddProductToCategoryCategoryID());
+        Optional <Product> productID = productDatabase.getById(request.AddProductToCategoryProductID());
 
-        if (categoryID.isPresent() && productID.isPresent()) {
+        if (categoryID .isPresent() && productID.isPresent()){
             categoryID.get().add(productID.get());
         }
         return new AddProductToCategoryResponse(request.AddProductToCategoryCategoryID(), request.AddProductToCategoryProductID());
