@@ -6,8 +6,8 @@ import application.core.responses.category.AddCategoryResponse;
 import application.core.services.validators.category.AddCategoryValidator;
 import application.database.categories.category.ProductListCategory;
 import application.database.categories.database.CategoriesDatabase;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import di.DIComponent;
+import di.DIDependency;
 
 import java.util.List;
 

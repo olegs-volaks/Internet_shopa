@@ -5,8 +5,8 @@ import application.core.requests.product.ShowAllProductsRequest;
 import application.core.responses.product.ShowAllProductsResponse;
 import application.core.services.product.ShowAllProductsService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import di.DIComponent;
+import di.DIDependency;
 
 @DIComponent
 public class ShowAllProductsUIAction implements UIAction {

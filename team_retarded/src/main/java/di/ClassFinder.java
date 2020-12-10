@@ -1,4 +1,4 @@
-package com.retarded.di;
+package di;
 
 import java.io.File;
 import java.io.IOException;

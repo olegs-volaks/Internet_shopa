@@ -3,8 +3,8 @@ package application.ui.product;
 
 import application.core.services.product.ClearAllProductsService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import di.DIComponent;
+import di.DIDependency;
 
 import java.util.Scanner;
 

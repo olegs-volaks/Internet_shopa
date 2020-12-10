@@ -6,8 +6,8 @@ import application.core.responses.product.AddProductResponse;
 import application.core.services.validators.product.AddProductValidator;
 import application.database.ProductDatabase;
 import application.items.Product;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import di.DIComponent;
+import di.DIDependency;
 
 import java.util.List;
 

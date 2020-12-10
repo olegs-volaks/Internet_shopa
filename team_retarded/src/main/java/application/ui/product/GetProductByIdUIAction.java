@@ -5,8 +5,8 @@ import application.core.requests.product.GetProductByIdRequest;
 import application.core.responses.product.GetProductByIdResponse;
 import application.core.services.product.GetProductByIdService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import di.DIComponent;
+import di.DIDependency;
 
 import java.util.Optional;
 import java.util.Scanner;

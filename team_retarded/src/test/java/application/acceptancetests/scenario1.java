@@ -6,8 +6,8 @@ import application.core.responses.product.AddProductResponse;
 import application.core.services.product.AddProductService;
 import application.core.services.product.DeleteProductService;
 import application.database.ProductDatabase;
-import com.retarded.di.ApplicationContext;
-import com.retarded.di.DIApplicationContextBuilder;
+import di.ApplicationContext;
+import di.DIApplicationContextBuilder;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 

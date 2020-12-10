@@ -8,8 +8,8 @@ import application.core.responses.product.SearchProductResponse;
 import application.core.services.validators.product.SearchProductValidator;
 import application.database.ProductDatabase;
 import application.items.Product;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import di.DIComponent;
+import di.DIDependency;
 
 import java.util.Comparator;
 import java.util.List;

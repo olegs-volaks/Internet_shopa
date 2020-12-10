@@ -1,4 +1,4 @@
-package com.retarded.di;
+package di;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -2,7 +2,7 @@ package application.core.services.validators.category;
 
 import application.core.requests.category.AddCategoryRequest;
 import application.core.responses.CoreError;
-import com.retarded.di.DIComponent;
+import di.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;

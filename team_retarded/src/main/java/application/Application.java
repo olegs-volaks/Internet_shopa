@@ -5,8 +5,8 @@ import application.ui.category.AddProductToCategoryUIAction;
 import application.ui.category.DeleteCategoryUIAction;
 import application.ui.category.DeleteProductFromCategoryUIAction;
 import application.ui.product.*;
-import com.retarded.di.ApplicationContext;
-import com.retarded.di.DIApplicationContextBuilder;
+import di.ApplicationContext;
+import di.DIApplicationContextBuilder;
 
 
 import java.util.Scanner;

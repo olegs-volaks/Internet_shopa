@@ -2,7 +2,7 @@ package application.core.services.validators.product;
 
 import application.core.requests.product.AddProductRequest;
 import application.core.responses.CoreError;
-import com.retarded.di.DIComponent;
+import di.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;

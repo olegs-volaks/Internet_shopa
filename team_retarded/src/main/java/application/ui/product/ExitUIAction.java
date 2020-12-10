@@ -2,7 +2,7 @@ package application.ui.product;
 
 
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
+import di.DIComponent;
 
 @DIComponent
 public class ExitUIAction implements UIAction {

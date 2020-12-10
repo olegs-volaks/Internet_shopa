@@ -5,8 +5,8 @@ import application.core.requests.product.DeleteProductRequest;
 import application.core.responses.product.DeleteProductResponse;
 import application.core.services.product.DeleteProductService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import di.DIComponent;
+import di.DIDependency;
 
 import java.util.Scanner;
 

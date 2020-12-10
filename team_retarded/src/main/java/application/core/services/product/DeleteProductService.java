@@ -5,8 +5,8 @@ import application.core.responses.CoreError;
 import application.core.responses.product.DeleteProductResponse;
 import application.core.services.validators.product.DeleteProductValidator;
 import application.database.ProductDatabase;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import di.DIComponent;
+import di.DIDependency;
 
 import java.util.List;
 

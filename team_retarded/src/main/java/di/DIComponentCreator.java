@@ -1,4 +1,4 @@
-package com.retarded.di;
+package di;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

@@ -3,8 +3,8 @@ package application.database;
 import application.database.categories.category.ProductListCategory;
 import application.database.categories.database.CategoriesDatabase;
 import application.items.Product;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import di.DIComponent;
+import di.DIDependency;
 
 import java.util.ArrayList;
 import java.util.List;

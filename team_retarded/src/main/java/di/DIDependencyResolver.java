@@ -1,4 +1,4 @@
-package com.retarded.di;
+package di;
 
 import java.lang.reflect.Field;
 import java.util.Arrays;
