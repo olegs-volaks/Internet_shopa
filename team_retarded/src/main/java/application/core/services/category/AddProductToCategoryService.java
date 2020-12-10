@@ -17,18 +17,18 @@ import java.util.Optional;
 @DIComponent
 public class AddProductToCategoryService {
     @DIDependency
-    private final CategoriesDatabase categoriesDatabase;
+    private  CategoriesDatabase categoriesDatabase;
     @DIDependency
-    private final ProductDatabase productDatabase;
+    private  ProductDatabase productDatabase;
     @DIDependency
-    private final AddProductToCategoryValidator validator;
+    private  AddProductToCategoryValidator validator;
 
-    public AddProductToCategoryService(CategoriesDatabase categoriesDatabase,ProductDatabase productDatabase,
-                                       AddProductToCategoryValidator validator) {
-        this.categoriesDatabase = categoriesDatabase;
-        this.productDatabase = productDatabase;
-        this.validator = validator;
-    }
+    //public AddProductToCategoryService(CategoriesDatabase categoriesDatabase,ProductDatabase productDatabase,
+                                       //AddProductToCategoryValidator validator) {
+        //this.categoriesDatabase = categoriesDatabase;
+        //this.productDatabase = productDatabase;
+        //this.validator = validator;
+    //}
 
     public AddProductToCategoryResponse execute(AddProductToCategoryRequest request) {
         List<CoreError> errors = validator.validate(request);

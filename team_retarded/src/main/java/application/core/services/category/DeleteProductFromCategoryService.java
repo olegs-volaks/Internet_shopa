@@ -17,18 +17,18 @@ import java.util.Optional;
 @DIComponent
 public class DeleteProductFromCategoryService {
     @DIDependency
-    private final CategoriesDatabase categoriesDatabase;
+    private  CategoriesDatabase categoriesDatabase;
     @DIDependency
-    private final ProductDatabase productDatabase;
+    private  ProductDatabase productDatabase;
     @DIDependency
-    private final DeleteProductFromCategoryValidator validator;
+    private  DeleteProductFromCategoryValidator validator;
 
-    public DeleteProductFromCategoryService(CategoriesDatabase categoriesDatabase,ProductDatabase productDatabase,
-                                            DeleteProductFromCategoryValidator validator) {
-        this.categoriesDatabase = categoriesDatabase;
-        this.productDatabase = productDatabase;
-        this.validator = validator;
-    }
+    //public DeleteProductFromCategoryService(CategoriesDatabase categoriesDatabase,ProductDatabase productDatabase,
+                                            //DeleteProductFromCategoryValidator validator) {
+        //this.categoriesDatabase = categoriesDatabase;
+        //this.productDatabase = productDatabase;
+        //this.validator = validator;
+    //}
 
     public DeleteProductFromCategoryResponse execute(DeleteProductFromCategoryRequest request) {
         List<CoreError> errors = validator.validate(request);
