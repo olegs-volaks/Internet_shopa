@@ -5,8 +5,8 @@ import application.core.responses.CoreError;
 import application.core.responses.product.GetProductByIdResponse;
 import application.core.services.validators.product.GetProductByIdValidator;
 import application.database.ProductDatabase;
-import di.DIComponent;
-import di.DIDependency;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.List;
 

@@ -3,8 +3,8 @@ package application.ui.category;
 import application.core.requests.category.DeleteAllCategoryRequest;
 import application.core.services.category.DeleteAllCategoryService;
 import application.ui.UIAction;
-import di.DIComponent;
-import di.DIDependency;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.Scanner;
 

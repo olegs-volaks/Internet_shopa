@@ -6,8 +6,8 @@ import application.core.requests.product.SearchProductRequest;
 import application.core.responses.product.SearchProductResponse;
 import application.core.services.product.SearchProductService;
 import application.ui.UIAction;
-import di.DIComponent;
-import di.DIDependency;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.Scanner;
 

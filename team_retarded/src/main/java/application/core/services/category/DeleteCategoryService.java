@@ -5,8 +5,8 @@ import application.core.responses.CoreError;
 import application.core.responses.category.DeleteCategoryResponse;
 import application.core.services.validators.category.DeleteCategoryValidator;
 import application.database.categories.database.CategoriesDatabase;
-import di.DIComponent;
-import di.DIDependency;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@ import application.core.requests.product.Ordering;
 import application.core.requests.product.Paging;
 import application.core.requests.product.SearchProductRequest;
 import application.core.responses.CoreError;
-import di.DIComponent;
+import com.retarded.di.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;

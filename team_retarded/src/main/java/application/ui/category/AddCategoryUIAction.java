@@ -4,8 +4,8 @@ import application.core.requests.category.AddCategoryRequest;
 import application.core.responses.category.AddCategoryResponse;
 import application.core.services.category.AddCategoryService;
 import application.ui.UIAction;
-import di.DIComponent;
-import di.DIDependency;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.Scanner;
 

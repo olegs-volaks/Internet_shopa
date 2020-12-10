@@ -4,8 +4,8 @@ import application.core.requests.category.DeleteProductFromCategoryRequest;
 import application.core.responses.CoreError;
 import application.database.ProductDatabase;
 import application.database.categories.database.CategoriesDatabase;
-import di.DIComponent;
-import di.DIDependency;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.ArrayList;
 import java.util.List;

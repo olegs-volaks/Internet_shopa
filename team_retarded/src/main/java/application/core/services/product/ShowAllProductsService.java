@@ -3,8 +3,9 @@ package application.core.services.product;
 import application.core.requests.product.ShowAllProductsRequest;
 import application.core.responses.product.ShowAllProductsResponse;
 import application.database.ProductDatabase;
-import di.DIComponent;
-import di.DIDependency;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
+
 
 @DIComponent
 public class ShowAllProductsService {

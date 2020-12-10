@@ -4,8 +4,8 @@ import application.core.requests.category.DeleteCategoryRequest;
 import application.core.responses.category.DeleteCategoryResponse;
 import application.core.services.category.DeleteCategoryService;
 import application.ui.UIAction;
-import di.DIComponent;
-import di.DIDependency;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.Scanner;
 

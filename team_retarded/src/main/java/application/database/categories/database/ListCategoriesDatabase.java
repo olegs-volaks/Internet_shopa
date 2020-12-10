@@ -1,7 +1,7 @@
 package application.database.categories.database;
 
 import application.database.categories.category.ProductListCategory;
-import di.DIComponent;
+import com.retarded.di.DIComponent;
 
 import java.util.ArrayList;
 import java.util.List;

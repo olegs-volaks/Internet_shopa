@@ -4,8 +4,8 @@ import application.core.requests.product.AddProductRequest;
 import application.core.responses.product.AddProductResponse;
 import application.core.services.product.AddProductService;
 import application.ui.UIAction;
-import di.DIComponent;
-import di.DIDependency;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.Scanner;
 

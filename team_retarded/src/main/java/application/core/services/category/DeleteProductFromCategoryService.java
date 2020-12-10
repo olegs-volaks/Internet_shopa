@@ -8,8 +8,8 @@ import application.database.ProductDatabase;
 import application.database.categories.category.ProductListCategory;
 import application.database.categories.database.CategoriesDatabase;
 import application.items.Product;
-import di.DIComponent;
-import di.DIDependency;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,12 +23,7 @@ public class DeleteProductFromCategoryService {
     @DIDependency
     private  DeleteProductFromCategoryValidator validator;
 
-    //public DeleteProductFromCategoryService(CategoriesDatabase categoriesDatabase,ProductDatabase productDatabase,
-                                            //DeleteProductFromCategoryValidator validator) {
-        //this.categoriesDatabase = categoriesDatabase;
-        //this.productDatabase = productDatabase;
-        //this.validator = validator;
-    //}
+
 
     public DeleteProductFromCategoryResponse execute(DeleteProductFromCategoryRequest request) {
         List<CoreError> errors = validator.validate(request);

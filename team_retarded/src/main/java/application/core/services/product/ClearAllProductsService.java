@@ -2,8 +2,9 @@ package application.core.services.product;
 
 import application.core.responses.product.ClearAllProductsResponse;
 import application.database.ProductDatabase;
-import di.DIComponent;
-import di.DIDependency;
+import com.retarded.di.DIComponent;
+import com.retarded.di.DIDependency;
+
 
 @DIComponent
 public class ClearAllProductsService {
