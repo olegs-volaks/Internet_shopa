@@ -8,3 +8,4 @@
 * [Lesson 4](https://www.youtube.com/watch?v=QK8wst5zfQw)
 * [Lesson 5](https://www.youtube.com/watch?v=C_1mV9MH3D0)
 * [Lesson 6](https://www.youtube.com/watch?v=C9DvfEauvlg)
+* [Lesson 7](https://www.youtube.com/watch?v=Cv0hoXFJKjI)
