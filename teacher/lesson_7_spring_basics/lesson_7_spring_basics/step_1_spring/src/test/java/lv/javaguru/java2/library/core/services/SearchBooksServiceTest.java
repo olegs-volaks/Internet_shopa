@@ -1,11 +1,13 @@
 package lv.javaguru.java2.library.core.services;
 
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.any;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import lv.javaguru.java2.library.core.database.Database;
+import lv.javaguru.java2.library.core.domain.Book;
+import lv.javaguru.java2.library.core.requests.Ordering;
+import lv.javaguru.java2.library.core.requests.Paging;
+import lv.javaguru.java2.library.core.requests.SearchBooksRequest;
+import lv.javaguru.java2.library.core.responses.CoreError;
+import lv.javaguru.java2.library.core.responses.SearchBooksResponse;
+import lv.javaguru.java2.library.core.services.validators.SearchBooksRequestValidator;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,14 +17,11 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import lv.javaguru.java2.library.core.domain.Book;
-import lv.javaguru.java2.library.core.database.Database;
-import lv.javaguru.java2.library.core.requests.Ordering;
-import lv.javaguru.java2.library.core.requests.Paging;
-import lv.javaguru.java2.library.core.requests.SearchBooksRequest;
-import lv.javaguru.java2.library.core.responses.CoreError;
-import lv.javaguru.java2.library.core.responses.SearchBooksResponse;
-import lv.javaguru.java2.library.core.services.validators.SearchBooksRequestValidator;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SearchBooksServiceTest {

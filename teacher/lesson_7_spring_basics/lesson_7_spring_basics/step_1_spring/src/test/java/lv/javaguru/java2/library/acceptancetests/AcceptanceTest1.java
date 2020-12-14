@@ -1,18 +1,17 @@
 package lv.javaguru.java2.library.acceptancetests;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
 import lv.javaguru.java2.library.config.BookListConfiguration;
 import lv.javaguru.java2.library.core.requests.AddBookRequest;
 import lv.javaguru.java2.library.core.requests.GetAllBooksRequest;
 import lv.javaguru.java2.library.core.responses.GetAllBooksResponse;
 import lv.javaguru.java2.library.core.services.AddBookService;
 import lv.javaguru.java2.library.core.services.GetAllBooksService;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import static org.junit.Assert.assertEquals;
 
 public class AcceptanceTest1 {
 

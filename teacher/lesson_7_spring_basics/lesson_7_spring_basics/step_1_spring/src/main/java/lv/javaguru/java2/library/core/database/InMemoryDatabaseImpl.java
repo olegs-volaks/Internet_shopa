@@ -1,13 +1,12 @@
 package lv.javaguru.java2.library.core.database;
 
+import lv.javaguru.java2.library.core.domain.Book;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Component;
-
-import lv.javaguru.java2.library.core.domain.Book;
 
 @Component
 public class InMemoryDatabaseImpl implements Database {

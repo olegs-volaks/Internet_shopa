@@ -1,13 +1,12 @@
 package lv.javaguru.java2.library.core.services.validators;
 
+import lv.javaguru.java2.library.core.requests.RemoveBookRequest;
+import lv.javaguru.java2.library.core.responses.CoreError;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.stereotype.Component;
-
-import lv.javaguru.java2.library.core.requests.RemoveBookRequest;
-import lv.javaguru.java2.library.core.responses.CoreError;
 
 @Component
 public class RemoveBookRequestValidator {

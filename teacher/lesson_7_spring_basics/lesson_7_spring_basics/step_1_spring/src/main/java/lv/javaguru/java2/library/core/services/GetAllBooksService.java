@@ -1,14 +1,13 @@
 package lv.javaguru.java2.library.core.services;
 
-import java.util.List;
-
+import lv.javaguru.java2.library.core.database.Database;
+import lv.javaguru.java2.library.core.domain.Book;
+import lv.javaguru.java2.library.core.requests.GetAllBooksRequest;
+import lv.javaguru.java2.library.core.responses.GetAllBooksResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import lv.javaguru.java2.library.core.domain.Book;
-import lv.javaguru.java2.library.core.database.Database;
-import lv.javaguru.java2.library.core.requests.GetAllBooksRequest;
-import lv.javaguru.java2.library.core.responses.GetAllBooksResponse;
+import java.util.List;
 
 @Component
 public class GetAllBooksService {
