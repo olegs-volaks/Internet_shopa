@@ -62,7 +62,7 @@ public class AcceptanceTest1 {
         addProductService.execute(request);
         addProductService.execute(request1);
         addProductService.execute(request2);
-        assertThat(database.getList().size()).isEqualTo(3);    // не уверен что этот тэст правильный
+        assertThat(database.getList().size()).isEqualTo(3);
 
     }
 
