@@ -1,95 +1,103 @@
 package application;
 
-import application.core.services.*;
-import application.core.services.validators.*;
-import application.database.Database;
-import application.database.ProductListDatabase;
-import application.ui.*;
+import application.ui.category.AddCategoryUIAction;
+import application.ui.category.AddProductToCategoryUIAction;
+import application.ui.category.DeleteCategoryUIAction;
+import application.ui.category.DeleteProductFromCategoryUIAction;
+import application.ui.product.*;
+import com.retarded.di.ApplicationContext;
+import com.retarded.di.DIApplicationContextBuilder;
 
 import java.util.Scanner;
 
 public class Application {
 
-    private static UIAction addProductUIAction;
-    private static UIAction filterByNameUIAction;
-    private static UIAction getByIdUIAction;
-    private static UIAction deleteUIAction;
-    private static UIAction exitUIAction;
-    private static UIAction getListUIAction;
-    private static UIAction filterByPriceMinMax;
-    private static UIAction clearUIAction;
-    private static UIAction searchProductUIAction;
-
+    private static ApplicationContext CONTEXT = new DIApplicationContextBuilder().build("application");
 
     public static void main(String[] args) {
-        initialization();
         while (true) {
-            showMenu();
+            printMenu();
+
             switch (getChoice()) {
-                case 0 -> exitUIAction.execute();
-                case 1 -> getListUIAction.execute();
-                case 2 -> getByIdUIAction.execute();
-                case 3 -> searchProductUIAction.execute();
-                case 4 -> addProductUIAction.execute();
-                case 5 -> deleteUIAction.execute();
-                case 6 -> clearUIAction.execute();
-                case 7 -> filterByPriceMinMax.execute();
-                case 8 -> filterByNameUIAction.execute();
+                case 0 -> {
+                    ExitUIAction exitUIAction = CONTEXT.getBean(ExitUIAction.class);
+                    exitUIAction.execute();
+                }
+                case 1 -> {
+                    AddProductUIAction addProductUIAction = CONTEXT.getBean(AddProductUIAction.class);
+                    addProductUIAction.execute();
+                }
+                case 2 -> {
+                    DeleteProductUIAction deleteProductUIAction = CONTEXT.getBean(DeleteProductUIAction.class);
+                    deleteProductUIAction.execute();
+                }
+                case 3 -> {
+                    GetProductByIdUIAction getProductByIdUIAction = CONTEXT.getBean(GetProductByIdUIAction.class);
+                    getProductByIdUIAction.execute();
+                }
+                case 4 -> {
+                    SearchProductUIAction searchProductUIAction = CONTEXT.getBean(SearchProductUIAction.class);
+                    searchProductUIAction.execute();
+                }
+                case 5 -> showCategories();
+                case 6 -> {
+                    ClearAllProductsUIAction clearAllProductsUIAction = CONTEXT.getBean(ClearAllProductsUIAction.class);
+                    clearAllProductsUIAction.execute();
+                }
+                case 7 -> {
+                    ShowAllProductsUIAction showAllProductsUIAction = CONTEXT.getBean(ShowAllProductsUIAction.class);
+                    showAllProductsUIAction.execute();
+                }
             }
         }
 
     }
 
-    private static void initialization() {
-        Database db = new ProductListDatabase();
-        AddProductValidator addProductValidator = new AddProductValidator();
-        AddProductService addProductService = new AddProductService(db, addProductValidator);
-        addProductUIAction = new AddProductUIAction(addProductService);
-
-        FilterProductsByNameValidator filterProductsByNameValidator = new FilterProductsByNameValidator();
-        FilterProductsByNameService filterProductsByNameService = new FilterProductsByNameService(db, filterProductsByNameValidator);
-        filterByNameUIAction = new FilterProductsByNameUIAction(filterProductsByNameService);
-
-
-        FilterProductsByPriceValidator filterProductsByPriceValidator = new FilterProductsByPriceValidator();
-        FilterProductsByPriceService filterProductsByPriceService = new FilterProductsByPriceService(db, filterProductsByPriceValidator);
-        filterByPriceMinMax = new FilterProductsByPriceUIAction(filterProductsByPriceService);
-
-        GetProductByIdValidator getProductByIdValidator = new GetProductByIdValidator();
-        GetProductByIdService getProductByIdService = new GetProductByIdService(db, getProductByIdValidator);
-        getByIdUIAction = new GetProductByIdUIAction(getProductByIdService);
-
-
-        DeleteProductValidator deleteProductValidator = new DeleteProductValidator();
-        DeleteProductService deleteProductService = new DeleteProductService(db, deleteProductValidator);
-        deleteUIAction = new DeleteProductUIAction(deleteProductService);
-
-        exitUIAction = new ExitUIAction();
-
-        ShowAllProductsService showAllProductsService = new ShowAllProductsService(db);
-        getListUIAction = new ShowAllProductsUIAction(showAllProductsService);
-
-        ClearAllProductsService clearAllProductsService = new ClearAllProductsService(db);
-        clearUIAction = new ClearAllProductsUIAction(clearAllProductsService);
-
-        SearchProductValidator searchProductValidator = new SearchProductValidator();
-        SearchProductService searchProductService = new SearchProductService(db, searchProductValidator);
-        searchProductUIAction = new SearchProductUIAction(searchProductService);
-
+    private static void showCategories() {
+        printCategories();
+        switch (getChoice()) {
+            case 1 -> {
+                AddCategoryUIAction addCategoryUIAction = CONTEXT.getBean(AddCategoryUIAction.class);
+                addCategoryUIAction.execute();
+            }
+            case 2 -> {
+                DeleteCategoryUIAction deleteCategoryUIAction = CONTEXT.getBean(DeleteCategoryUIAction.class);
+                deleteCategoryUIAction.execute();
+            }
+            case 3 -> {
+                AddProductToCategoryUIAction addProductToCategoryUIAction = CONTEXT.getBean(AddProductToCategoryUIAction.class);
+                addProductToCategoryUIAction.execute();
+            }
+            case 4 -> {
+                DeleteProductFromCategoryUIAction deleteProductFromCategoryUIAction = CONTEXT.getBean(DeleteProductFromCategoryUIAction.class);
+                deleteProductFromCategoryUIAction.execute();
+            }
+        }
     }
 
-    private static void showMenu() {
+    private static void printMenu() {
+
         System.out.println("==========================");
         System.out.println("Internet Store MENU:");
-        System.out.println("[1] - Show all products");
-        System.out.println("[2] - Search by ID");
-        System.out.println("[3] - Search product");
-        System.out.println("[4] - Add product");
-        System.out.println("[5] - Delete product");
-        System.out.println("[6] - Delete All products");
-        System.out.println("[7] - Filter by price");
-        System.out.println("[8] - Filter by names");
+        System.out.println("[1] - Add product");
+        System.out.println("[2] - Delete product");
+        System.out.println("[3] - Show product by ID");
+        System.out.println("[4] - Search product");
+        System.out.println("[5] - Product categories");
+        System.out.println("[6] - Delete all products");
+        System.out.println("[7] - Show all products");
         System.out.println("[0] - Exit");
+        System.out.println("==========================");
+    }
+
+    private static void printCategories() {
+        System.out.println("==========================");
+        System.out.println("Actions with categories:");
+        System.out.println("[1] - Add new category");
+        System.out.println("[2] - Delete category");
+        System.out.println("[3] - Add product to category");
+        System.out.println("[4] - Delete product from category");
+        System.out.println("[5] - Delete all categories");
         System.out.println("==========================");
     }
 

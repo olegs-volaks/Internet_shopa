@@ -2,7 +2,7 @@ package application.core.responses;
 
 import java.util.List;
 
-public class CoreResponse {
+public abstract class CoreResponse {
 
     private List<CoreError> errors;
 
