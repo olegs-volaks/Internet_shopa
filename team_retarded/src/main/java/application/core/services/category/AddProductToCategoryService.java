@@ -23,12 +23,7 @@ public class AddProductToCategoryService {
     @DIDependency
     private  AddProductToCategoryValidator validator;
 
-    //public AddProductToCategoryService(CategoriesDatabase categoriesDatabase,ProductDatabase productDatabase,
-                                       //AddProductToCategoryValidator validator) {
-        //this.categoriesDatabase = categoriesDatabase;
-        //this.productDatabase = productDatabase;
-        //this.validator = validator;
-    //}
+
 
     public AddProductToCategoryResponse execute(AddProductToCategoryRequest request) {
         List<CoreError> errors = validator.validate(request);
