@@ -5,13 +5,12 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Product {
-    private final long id;
+    private Long id;
     private String name;
     private String description;
     private BigDecimal price;
 
-    public Product(long id, String name, String description, double price) {
-        this.id = id;
+    public Product(String name, String description, double price) {
         this.name = name;
         this.description = description;
 //      price from double convert to BigDecimal and rounded to two decimal places
@@ -44,6 +43,10 @@ public class Product {
         this.description = description;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public void setPrice(double price) {
 //      price from double convert to BigDecimal and rounded to two decimal places
         BigDecimal tmp = new BigDecimal(Double.toString(price));
@@ -55,15 +58,10 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return id == product.id &&
+        return //Objects.equals(id, product.id) &&
                 Objects.equals(name, product.name) &&
                 Objects.equals(description, product.description) &&
                 Objects.equals(price, product.price);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, price);
     }
 
     @Override
@@ -74,5 +72,10 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, price);
     }
 }
