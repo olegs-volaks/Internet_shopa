@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AcceptanceTest1 {
 
-    private ApplicationContext context = new DIApplicationContextBuilder().build("application");
+    private final ApplicationContext context = new DIApplicationContextBuilder().build("application");
 
     @Test
     void add_product_request() {
@@ -62,7 +62,7 @@ public class AcceptanceTest1 {
         addProductService.execute(request);
         addProductService.execute(request1);
         addProductService.execute(request2);
-        assertThat(database.getList().size()).isEqualTo(3);    // не уверен что этот тэст правильный
+        assertThat(database.getList().size()).isEqualTo(3);
 
     }
 
