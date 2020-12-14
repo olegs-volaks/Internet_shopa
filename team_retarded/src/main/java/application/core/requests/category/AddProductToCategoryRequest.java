@@ -14,8 +14,6 @@ public class AddProductToCategoryRequest {
         return  categoryId;
     }
 
-
-
     public AddProductToCategoryRequest(long categoryId, long productId) {
         this.categoryId = categoryId;
         this.productId = productId;

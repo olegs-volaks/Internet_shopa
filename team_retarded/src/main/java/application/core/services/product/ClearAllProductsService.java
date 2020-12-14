@@ -5,6 +5,7 @@ import application.database.ProductDatabase;
 import com.retarded.di.DIComponent;
 import com.retarded.di.DIDependency;
 
+
 @DIComponent
 public class ClearAllProductsService {
     @DIDependency
