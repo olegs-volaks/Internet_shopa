@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+//@ExtendWith(SpringExtension.class)
+//@ContextConfiguration(classes = { TempConfiguration.class })
 public class AcceptanceTest1 {
 
     private final ApplicationContext context = new DIApplicationContextBuilder().build("application");
