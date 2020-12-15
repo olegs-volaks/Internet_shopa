@@ -1,14 +1,14 @@
 package application.database.categories.database;
 
 import application.database.categories.category.ProductListCategory;
-import com.retarded.di.DIComponent;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-@DIComponent
+@Component
 public class ListCategoriesDatabase implements CategoriesDatabase {
 
     private final List<ProductListCategory> categoriesDatabase = new ArrayList<>();

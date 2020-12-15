@@ -6,17 +6,17 @@ import application.core.responses.product.AddProductResponse;
 import application.core.services.validators.product.AddProductValidator;
 import application.database.ProductDatabase;
 import application.items.Product;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class AddProductService {
 
-    @DIDependency
+    @Autowired
     private ProductDatabase db;
-    @DIDependency
+    @Autowired
     private AddProductValidator validator;
 
     public AddProductResponse execute(AddProductRequest request) {

@@ -4,15 +4,15 @@ import application.core.requests.category.AddProductToCategoryRequest;
 import application.core.responses.category.AddProductToCategoryResponse;
 import application.core.services.category.AddProductToCategoryService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class AddProductToCategoryUIAction implements UIAction {
 
-    @DIDependency
+    @Autowired
     private AddProductToCategoryService service;
 
     @Override

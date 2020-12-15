@@ -5,17 +5,17 @@ import application.core.responses.CoreError;
 import application.core.responses.product.GetProductByIdResponse;
 import application.core.services.validators.product.GetProductByIdValidator;
 import application.database.ProductDatabase;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class GetProductByIdService {
 
-    @DIDependency
+    @Autowired
     private ProductDatabase db;
-    @DIDependency
+    @Autowired
     private GetProductByIdValidator validator;
 
     public GetProductByIdResponse execute(GetProductByIdRequest request) {

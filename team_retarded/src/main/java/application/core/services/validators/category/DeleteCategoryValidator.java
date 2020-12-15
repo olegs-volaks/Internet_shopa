@@ -2,13 +2,13 @@ package application.core.services.validators.category;
 
 import application.core.requests.category.DeleteCategoryRequest;
 import application.core.responses.CoreError;
-import com.retarded.di.DIComponent;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@DIComponent
+@Component
 public class DeleteCategoryValidator {
 
     public List<CoreError> validate(DeleteCategoryRequest request) {

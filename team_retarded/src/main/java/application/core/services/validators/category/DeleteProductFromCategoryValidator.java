@@ -4,18 +4,18 @@ import application.core.requests.category.DeleteProductFromCategoryRequest;
 import application.core.responses.CoreError;
 import application.database.ProductDatabase;
 import application.database.categories.database.CategoriesDatabase;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@DIComponent
+@Component
 public class DeleteProductFromCategoryValidator {
-    @DIDependency
+    @Autowired
     private ProductDatabase productDatabase;
-    @DIDependency
+    @Autowired
     private CategoriesDatabase categoriesDatabase;
 
     public List<CoreError> validate(DeleteProductFromCategoryRequest request) {

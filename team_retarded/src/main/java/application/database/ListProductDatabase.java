@@ -3,8 +3,8 @@ package application.database;
 import application.database.categories.category.ProductListCategory;
 import application.database.categories.database.CategoriesDatabase;
 import application.items.Product;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +13,10 @@ import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
-@DIComponent
+@Component
 public class ListProductDatabase implements ProductDatabase {
 
-    @DIDependency
+    @Autowired
     private CategoriesDatabase categoriesDatabase;
     private final List<Product> productDatabase = new ArrayList<>();
     private long id;

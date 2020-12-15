@@ -3,13 +3,13 @@ package application.core.services.product;
 import application.core.requests.product.ShowAllProductsRequest;
 import application.core.responses.product.ShowAllProductsResponse;
 import application.database.ProductDatabase;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
-@DIComponent
+@Component
 public class ShowAllProductsService {
-    @DIDependency
+    @Autowired
     private ProductDatabase db;
 
     public ShowAllProductsResponse execute(ShowAllProductsRequest request) {

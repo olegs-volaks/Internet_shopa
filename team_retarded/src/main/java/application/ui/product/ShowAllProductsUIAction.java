@@ -5,14 +5,14 @@ import application.core.requests.product.ShowAllProductsRequest;
 import application.core.responses.product.ShowAllProductsResponse;
 import application.core.services.product.ShowAllProductsService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
-@DIComponent
+@Component
 public class ShowAllProductsUIAction implements UIAction {
 
-    @DIDependency
+    @Autowired
     private ShowAllProductsService service;
 
     @Override

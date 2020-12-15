@@ -4,19 +4,19 @@ import application.core.requests.category.AddProductToCategoryRequest;
 import application.core.responses.CoreError;
 import application.database.ProductDatabase;
 import application.database.categories.database.CategoriesDatabase;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@DIComponent
+@Component
 public class AddProductToCategoryValidator {
 
-    @DIDependency
+    @Autowired
     private ProductDatabase productDatabase;
-    @DIDependency
+    @Autowired
     private CategoriesDatabase categoriesDatabase;
 
     public List<CoreError> validate(AddProductToCategoryRequest request) {

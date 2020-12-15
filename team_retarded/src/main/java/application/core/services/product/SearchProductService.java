@@ -8,19 +8,19 @@ import application.core.responses.product.SearchProductResponse;
 import application.core.services.validators.product.SearchProductValidator;
 import application.database.ProductDatabase;
 import application.items.Product;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@DIComponent
+@Component
 public class SearchProductService {
 
-    @DIDependency
+    @Autowired
     private ProductDatabase db;
-    @DIDependency
+    @Autowired
     private SearchProductValidator validator;
 
     public SearchProductResponse execute(SearchProductRequest request) {

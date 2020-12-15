@@ -5,15 +5,15 @@ import application.core.requests.product.DeleteProductRequest;
 import application.core.responses.product.DeleteProductResponse;
 import application.core.services.product.DeleteProductService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class DeleteProductUIAction implements UIAction {
 
-    @DIDependency
+    @Autowired
     private DeleteProductService service;
 
     @Override

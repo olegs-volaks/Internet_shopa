@@ -5,16 +5,16 @@ import application.core.responses.CoreError;
 import application.core.responses.product.DeleteProductResponse;
 import application.core.services.validators.product.DeleteProductValidator;
 import application.database.ProductDatabase;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class DeleteProductService {
-    @DIDependency
+    @Autowired
     private ProductDatabase db;
-    @DIDependency
+    @Autowired
     private DeleteProductValidator validator;
 
     public DeleteProductResponse execute(DeleteProductRequest request) {

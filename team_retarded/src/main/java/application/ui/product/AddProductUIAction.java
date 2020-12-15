@@ -4,15 +4,15 @@ import application.core.requests.product.AddProductRequest;
 import application.core.responses.product.AddProductResponse;
 import application.core.services.product.AddProductService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class AddProductUIAction implements UIAction {
 
-    @DIDependency
+    @Autowired
     private AddProductService service;
 
     @Override

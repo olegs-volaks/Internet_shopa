@@ -2,10 +2,10 @@ package application.ui.product;
 
 
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
+import org.springframework.stereotype.Component;
 
 
-@DIComponent
+@Component
 public class ExitUIAction implements UIAction {
 
     @Override
