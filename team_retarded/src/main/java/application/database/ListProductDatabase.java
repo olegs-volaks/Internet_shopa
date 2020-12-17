@@ -3,7 +3,6 @@ package application.database;
 import application.database.categories.category.ProductListCategory;
 import application.database.categories.database.CategoriesDatabase;
 import application.items.Product;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,9 +16,10 @@ import static java.util.stream.Collectors.toList;
 @Component
 public class ListProductDatabase implements ProductDatabase {
 
-    @Autowired private CategoriesDatabase categoriesDatabase;
-    @Autowired private final List<Product> productDatabase = new ArrayList<>();
-    @Autowired private long id;
+    @Autowired
+    private CategoriesDatabase categoriesDatabase;
+    private final List<Product> productDatabase = new ArrayList<>();
+    private long id;
 
     @Override
     public long add(Product product) {

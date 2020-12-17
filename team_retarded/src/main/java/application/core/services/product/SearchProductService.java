@@ -8,9 +8,7 @@ import application.core.responses.product.SearchProductResponse;
 import application.core.services.validators.product.SearchProductValidator;
 import application.database.ProductDatabase;
 import application.items.Product;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
@@ -20,11 +18,11 @@ import java.util.stream.Collectors;
 @Component
 public class SearchProductService {
 
-    @Value("${search.paging.enabled}")
+    /*@Value("${search.paging.enabled}")
     private boolean pagingEnabled;
 
     @Value("${search.ordering.enabled}")
-    private boolean orderingEnabled;
+    private boolean orderingEnabled;*/
 
     @Autowired private ProductDatabase database;
     @Autowired private SearchProductValidator validator;
