@@ -7,6 +7,7 @@ import application.core.responses.product.AddProductResponse;
 import application.core.services.product.AddProductService;
 import application.core.services.product.DeleteProductService;
 import application.database.ProductDatabase;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -19,14 +20,14 @@ public class scenario1 {
 
     private ApplicationContext context;
 
-    //@Before
-   // public void setup() {
-        //context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
-    //}
+    @BeforeEach
+    void setUp() {
+        context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+    }
 
     @Test
     void test1() {
-        context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+
         AddProductService service = context.getBean(AddProductService.class);
         ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request1 = new AddProductRequest("name1", "description123123", 123.1);
@@ -38,7 +39,7 @@ public class scenario1 {
 
     @Test
     void test2() {
-        context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+
         AddProductService addService = context.getBean(AddProductService.class);
         ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request1 = new AddProductRequest("name1", "description123123", 123.1);
@@ -54,7 +55,7 @@ public class scenario1 {
 
     @Test
     void test3() {
-        context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+
         AddProductService addService = context.getBean(AddProductService.class);
         ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest addRequest1 = new AddProductRequest("name1", "description123123", 123.1);
@@ -72,7 +73,7 @@ public class scenario1 {
 
     @Test
     void test4() {
-        context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+
         AddProductService addService = context.getBean(AddProductService.class);
         AddProductRequest addRequest1 = new AddProductRequest("nam", "description123123", 123.1);
         AddProductResponse response = addService.execute(addRequest1);
