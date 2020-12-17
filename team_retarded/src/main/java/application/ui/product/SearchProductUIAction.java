@@ -6,16 +6,15 @@ import application.core.requests.product.SearchProductRequest;
 import application.core.responses.product.SearchProductResponse;
 import application.core.services.product.SearchProductService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class SearchProductUIAction implements UIAction {
 
-    @DIDependency
-    private SearchProductService service;
+    @Autowired private SearchProductService service;
 
     @Override
     public void execute() {

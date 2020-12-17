@@ -1,25 +1,26 @@
 package application.acceptancetests;
 
+import application.config.ProductConfiguration;
 import application.core.requests.product.AddProductRequest;
 import application.core.requests.product.DeleteProductRequest;
 import application.core.responses.product.AddProductResponse;
 import application.core.services.product.AddProductService;
 import application.core.services.product.DeleteProductService;
 import application.database.ProductDatabase;
-import com.retarded.di.ApplicationContext;
-import com.retarded.di.DIApplicationContextBuilder;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class scenario1 {
 
-    //private ApplicationContext context = new ApplicationContext();
-    private final ApplicationContext context = new DIApplicationContextBuilder().build("application");
+   private  ApplicationContext context;
 
     @Test
     void test1() {
+        context = new AnnotationConfigApplicationContext(ProductConfiguration.class);
         AddProductService service = context.getBean(AddProductService.class);
         ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request1 = new AddProductRequest("name1", "description123123", 123.1);
@@ -31,6 +32,7 @@ public class scenario1 {
 
     @Test
     void test2() {
+        context = new AnnotationConfigApplicationContext(ProductConfiguration.class);
         AddProductService addService = context.getBean(AddProductService.class);
         ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request1 = new AddProductRequest("name1", "description123123", 123.1);
@@ -46,6 +48,7 @@ public class scenario1 {
 
     @Test
     void test3() {
+        context = new AnnotationConfigApplicationContext(ProductConfiguration.class);
         AddProductService addService = context.getBean(AddProductService.class);
         ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest addRequest1 = new AddProductRequest("name1", "description123123", 123.1);
@@ -63,6 +66,7 @@ public class scenario1 {
 
     @Test
     void test4() {
+        context = new AnnotationConfigApplicationContext(ProductConfiguration.class);
         AddProductService addService = context.getBean(AddProductService.class);
         AddProductRequest addRequest1 = new AddProductRequest("nam", "description123123", 123.1);
         AddProductResponse response = addService.execute(addRequest1);

@@ -3,16 +3,15 @@ package application.ui.category;
 import application.core.requests.category.DeleteAllCategoryRequest;
 import application.core.services.category.DeleteAllCategoryService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class DeleteAllCategoryUIAction implements UIAction {
 
-    @DIDependency
-    private DeleteAllCategoryService service;
+    @Autowired private DeleteAllCategoryService service;
 
     @Override
     public void execute() {

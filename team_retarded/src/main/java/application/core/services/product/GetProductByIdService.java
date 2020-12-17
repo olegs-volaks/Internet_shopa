@@ -5,24 +5,23 @@ import application.core.responses.CoreError;
 import application.core.responses.product.GetProductByIdResponse;
 import application.core.services.validators.product.GetProductByIdValidator;
 import application.database.ProductDatabase;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class GetProductByIdService {
 
-    @DIDependency
-    private ProductDatabase db;
-    @DIDependency
-    private GetProductByIdValidator validator;
+    @Autowired private ProductDatabase database;
+    @Autowired private GetProductByIdValidator validator;
 
     public GetProductByIdResponse execute(GetProductByIdRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new GetProductByIdResponse(errors);
         }
-        return new GetProductByIdResponse(db.getById(request.getProductId()));
+        return new GetProductByIdResponse(database.getById(request.getProductId()));
     }
 }

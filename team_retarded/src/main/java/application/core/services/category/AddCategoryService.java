@@ -6,18 +6,17 @@ import application.core.responses.category.AddCategoryResponse;
 import application.core.services.validators.category.AddCategoryValidator;
 import application.database.categories.category.ProductListCategory;
 import application.database.categories.database.CategoriesDatabase;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class AddCategoryService {
 
-    @DIDependency
-    private CategoriesDatabase database;
-    @DIDependency
-    private AddCategoryValidator validator;
+    @Autowired private CategoriesDatabase database;
+    @Autowired private AddCategoryValidator validator;
 
     public AddCategoryResponse execute(AddCategoryRequest request) {
         List<CoreError> errors = validator.validate(request);

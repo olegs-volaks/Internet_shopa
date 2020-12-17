@@ -2,17 +2,18 @@ package application.core.services.product;
 
 import application.core.responses.product.ClearAllProductsResponse;
 import application.database.ProductDatabase;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
-@DIComponent
+@Component
 public class ClearAllProductsService {
-    @DIDependency
-    private ProductDatabase db;
+
+    @Autowired private ProductDatabase database;
 
     public ClearAllProductsResponse execute() {
-        db.clear();
+        database.clear();
         return new ClearAllProductsResponse();
     }
 }

@@ -1,5 +1,6 @@
 dependencies {
-    compile files ('libs/dependency_injection-0.1.0.jar')
+    implementation 'junit:junit:4.12'
+ //   compile files ('libs/dependency_injection-0.1.0.jar')
     compile('org.springframework:spring-context:5.2.6.RELEASE')
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.7.0'
     testCompile("org.assertj:assertj-core:3.11.1")

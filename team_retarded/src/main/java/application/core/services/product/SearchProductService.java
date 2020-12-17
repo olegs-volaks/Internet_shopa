@@ -8,20 +8,26 @@ import application.core.responses.product.SearchProductResponse;
 import application.core.services.validators.product.SearchProductValidator;
 import application.database.ProductDatabase;
 import application.items.Product;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@DIComponent
+@Component
 public class SearchProductService {
 
-    @DIDependency
-    private ProductDatabase db;
-    @DIDependency
-    private SearchProductValidator validator;
+    @Value("${search.paging.enabled}")
+    private boolean pagingEnabled;
+
+    @Value("${search.ordering.enabled}")
+    private boolean orderingEnabled;
+
+    @Autowired private ProductDatabase database;
+    @Autowired private SearchProductValidator validator;
 
     public SearchProductResponse execute(SearchProductRequest request) {
         List<CoreError> errors = validator.validate(request);
@@ -29,7 +35,7 @@ public class SearchProductService {
             return new SearchProductResponse(errors, null);
         }
 
-        List<Product> products = db.filter(product -> (product.getName().toLowerCase().contains(request.getName().toLowerCase())) ||
+        List<Product> products = database.filter(product -> (product.getName().toLowerCase().contains(request.getName().toLowerCase())) ||
                 (product.getDescription().toLowerCase().contains(request.getDescription().toLowerCase())));
         products = order(products, request.getOrdering());
         products = paging(products, request.getPaging());

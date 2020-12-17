@@ -1,21 +1,19 @@
 package application.ui.product;
 
-
 import application.core.requests.product.GetProductByIdRequest;
 import application.core.responses.product.GetProductByIdResponse;
 import application.core.services.product.GetProductByIdService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class GetProductByIdUIAction implements UIAction {
 
-    @DIDependency
-    private GetProductByIdService service;
+    @Autowired private GetProductByIdService service;
 
     @Override
     public void execute() {

@@ -4,13 +4,14 @@ import application.core.requests.product.Ordering;
 import application.core.requests.product.Paging;
 import application.core.requests.product.SearchProductRequest;
 import application.core.responses.CoreError;
-import com.retarded.di.DIComponent;
+
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@DIComponent
+@Component
 public class SearchProductValidator {
 
     public List<CoreError> validate(SearchProductRequest request) {

@@ -5,18 +5,16 @@ import application.core.responses.CoreError;
 import application.core.responses.category.DeleteCategoryResponse;
 import application.core.services.validators.category.DeleteCategoryValidator;
 import application.database.categories.database.CategoriesDatabase;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@DIComponent
+@Component
 public class DeleteCategoryService {
 
-    @DIDependency
-    private CategoriesDatabase database;
-    @DIDependency
-    private DeleteCategoryValidator validator;
+    @Autowired private CategoriesDatabase database;
+    @Autowired private DeleteCategoryValidator validator;
 
     public DeleteCategoryResponse execute(DeleteCategoryRequest request) {
         List<CoreError> errors = validator.validate(request);

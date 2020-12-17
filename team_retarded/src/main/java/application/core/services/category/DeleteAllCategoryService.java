@@ -3,15 +3,15 @@ package application.core.services.category;
 import application.core.requests.category.DeleteAllCategoryRequest;
 import application.core.responses.category.DeleteAllCategoryResponse;
 import application.database.categories.database.CategoriesDatabase;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 
-@DIComponent
+@Component
 public class DeleteAllCategoryService {
 
-    @DIDependency
-    private CategoriesDatabase database;
+    @Autowired private CategoriesDatabase database;
 
     public DeleteAllCategoryResponse execute(DeleteAllCategoryRequest request) {
         database.clear();

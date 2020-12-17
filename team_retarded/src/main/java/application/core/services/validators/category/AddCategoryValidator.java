@@ -2,13 +2,14 @@ package application.core.services.validators.category;
 
 import application.core.requests.category.AddCategoryRequest;
 import application.core.responses.CoreError;
-import com.retarded.di.DIComponent;
+
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@DIComponent
+@Component
 public class AddCategoryValidator {
 
     public List<CoreError> validate(AddCategoryRequest request) {

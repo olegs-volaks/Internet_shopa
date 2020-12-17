@@ -3,16 +3,15 @@ package application.ui.product;
 
 import application.core.services.product.ClearAllProductsService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class ClearAllProductsUIAction implements UIAction {
 
-    @DIDependency
-    private ClearAllProductsService service;
+    @Autowired private ClearAllProductsService service;
 
     @Override
     public void execute() {

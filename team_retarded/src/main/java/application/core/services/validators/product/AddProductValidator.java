@@ -2,13 +2,14 @@ package application.core.services.validators.product;
 
 import application.core.requests.product.AddProductRequest;
 import application.core.responses.CoreError;
-import com.retarded.di.DIComponent;
+
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@DIComponent
+@Component
 public class AddProductValidator {
 
     public List<CoreError> validate(AddProductRequest request) {

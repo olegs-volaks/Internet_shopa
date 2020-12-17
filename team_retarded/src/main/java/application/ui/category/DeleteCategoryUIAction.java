@@ -4,15 +4,15 @@ import application.core.requests.category.DeleteCategoryRequest;
 import application.core.responses.category.DeleteCategoryResponse;
 import application.core.services.category.DeleteCategoryService;
 import application.ui.UIAction;
-import com.retarded.di.DIComponent;
-import com.retarded.di.DIDependency;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
-@DIComponent
+@Component
 public class DeleteCategoryUIAction implements UIAction {
 
-    @DIDependency
+    @Autowired
     private DeleteCategoryService service;
 
     @Override

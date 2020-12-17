@@ -1,18 +1,19 @@
 package application;
 
+import application.config.ProductConfiguration;
 import application.ui.category.AddCategoryUIAction;
 import application.ui.category.AddProductToCategoryUIAction;
 import application.ui.category.DeleteCategoryUIAction;
 import application.ui.category.DeleteProductFromCategoryUIAction;
 import application.ui.product.*;
-import com.retarded.di.ApplicationContext;
-import com.retarded.di.DIApplicationContextBuilder;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Scanner;
 
 public class Application {
 
-    private static ApplicationContext CONTEXT = new DIApplicationContextBuilder().build("application");
+    private static ApplicationContext CONTEXT = new AnnotationConfigApplicationContext(ProductConfiguration.class);
 
     public static void main(String[] args) {
         while (true) {
