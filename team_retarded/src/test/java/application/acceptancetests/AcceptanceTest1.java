@@ -1,6 +1,6 @@
 package application.acceptancetests;
 
-import application.applicationConfiguration;
+import application.config.applicationConfiguration;
 import application.core.requests.product.AddProductRequest;
 import application.core.requests.product.DeleteProductRequest;
 import application.core.requests.product.GetProductByIdRequest;

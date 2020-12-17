@@ -1,5 +1,6 @@
 package application;
 
+import application.config.applicationConfiguration;
 import application.ui.category.AddCategoryUIAction;
 import application.ui.category.AddProductToCategoryUIAction;
 import application.ui.category.DeleteCategoryUIAction;
