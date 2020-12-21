@@ -1,6 +1,8 @@
 package eu.retarded.internetstore;
 
 import eu.retarded.internetstore.config.applicationConfiguration;
+import eu.retarded.internetstore.ui.ApplicationMenu;
+
 import eu.retarded.internetstore.ui.category.AddCategoryUIAction;
 import eu.retarded.internetstore.ui.category.AddProductToCategoryUIAction;
 import eu.retarded.internetstore.ui.category.DeleteCategoryUIAction;
@@ -15,9 +17,23 @@ import java.util.Scanner;
 public class Application {
 
 
-    private static ApplicationContext CONTEXT = new AnnotationConfigApplicationContext(applicationConfiguration.class);
-
     public static void main(String[] args) {
+        ApplicationContext CONTEXT = createApplicationContext();
+        ApplicationMenu applicationMenu = CONTEXT.getBean(ApplicationMenu.class);
+        while (true) {
+            applicationMenu.printMenu();
+            applicationMenu.printCategories();
+            int menuNumber = applicationMenu.getChoice();
+            applicationMenu.executeSelectedMenu(menuNumber);
+        }
+    }
+    private static ApplicationContext createApplicationContext() {
+        return new AnnotationConfigApplicationContext(applicationConfiguration.class);
+    }
+}
+
+
+   /* public static void main(String[] args) {
         while (true) {
             printMenu();
 
@@ -115,3 +131,5 @@ public class Application {
         return -1;
     }
 }
+
+    */
