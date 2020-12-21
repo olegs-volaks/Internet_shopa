@@ -14,7 +14,6 @@ import java.util.Scanner;
 public class ApplicationMenu {
 
     private Map<Integer, UIAction> productMenu;
-    private Map<Integer, UIAction> categoryMenu; 
 
     @Autowired
     public void ProductMenu(List<UIAction> uiActions) {
@@ -38,7 +37,7 @@ public class ApplicationMenu {
     }
 
     public void CategoryMenu(List<UIAction> uiActions) {
-        categoryMenu = new HashMap<>();
+        Map<Integer, UIAction> categoryMenu = new HashMap<>();
         categoryMenu.put(1,findUIAction(uiActions,AddCategoryUIAction.class));
         categoryMenu.put(2,findUIAction(uiActions, DeleteCategoryUIAction.class));
         categoryMenu.put(3,findUIAction(uiActions, AddProductToCategoryUIAction.class));
