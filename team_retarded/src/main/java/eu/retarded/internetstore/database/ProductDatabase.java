@@ -8,20 +8,20 @@ import java.util.function.Predicate;
 
 public interface ProductDatabase {
 
-    long add(Product product);
+    Long add(Product product);
 
-    boolean delete(long id);
+    boolean delete(Long id);
 
     boolean delete(Predicate<Product> predicate);
 
     void clear();
 
-    Optional<Product> getById(long id);
+    Optional<Product> getById(Long id);
 
     List<Product> filter(Predicate<Product> predicate);
 
     List<Product> getList();
 
-    boolean isExist(long id);
+    boolean isExist(Long id);
 
 }

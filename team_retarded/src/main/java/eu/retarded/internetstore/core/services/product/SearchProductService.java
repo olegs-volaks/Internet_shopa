@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class SearchProductService {
 
     @Autowired
-    private ProductDatabase db;
+    private ProductDatabase productDatabase;
     @Autowired
     private SearchProductValidator validator;
 
@@ -36,8 +36,11 @@ public class SearchProductService {
             return new SearchProductResponse(errors, null);
         }
 
-        List<Product> products = db.filter(product -> (product.getName().toLowerCase().contains(request.getName().toLowerCase())) ||
-                (product.getDescription().toLowerCase().contains(request.getDescription().toLowerCase())));
+        List<Product> products = productDatabase.filter(product ->
+                (product.getName().toLowerCase().contains(request.getName().toLowerCase())
+                        && !request.getName().isBlank()) ||
+                (product.getDescription().toLowerCase().contains(request.getDescription().toLowerCase())
+                        && !request.getDescription().isBlank()));
         products = order(products, request.getOrdering());
         products = paging(products, request.getPaging());
 
@@ -46,16 +49,18 @@ public class SearchProductService {
 
     private List<Product> order(List<Product> products, Ordering ordering) {
         if (orderingEnabled && ordering != null  ) {
-            Comparator<Product> comparator = ordering.getOrderBy().equals("name")
-                    ? Comparator.comparing(Product::getName)
-                    : Comparator.comparing(Product::getDescription);
-            if (ordering.getOrderDirection().equals("DESCENDING")) {
-                comparator = comparator.reversed();
+            if (ordering.getOrderBy() != null) {
+                Comparator<Product> comparator = ordering.getOrderBy().equals("name")
+                        ? Comparator.comparing(Product::getName)
+                        : Comparator.comparing(Product::getDescription);
+                if (ordering.getOrderDirection().equals("DESCENDING")) {
+                    comparator = comparator.reversed();
+                }
+                return products.stream().sorted(comparator).collect(Collectors.toList());
             }
-            return products.stream().sorted(comparator).collect(Collectors.toList());
-        } else {
-            return products;
         }
+            return products;
+
     }
 
     private List<Product> paging(List<Product> products, Paging paging) {

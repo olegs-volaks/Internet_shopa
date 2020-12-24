@@ -12,10 +12,10 @@ import java.util.function.Predicate;
 public class ListCategoriesDatabase implements CategoriesDatabase {
 
     private final List<ProductListCategory> categoriesDatabase = new ArrayList<>();
-    private long id;
+    private Long id=0L;
 
     @Override
-    public long addCategory(ProductListCategory productListCategory) {
+    public Long addCategory(ProductListCategory productListCategory) {
         id++;
         productListCategory.setId(id);
         categoriesDatabase.add(productListCategory);
@@ -29,7 +29,7 @@ public class ListCategoriesDatabase implements CategoriesDatabase {
     }
 
     @Override
-    public boolean removeCategory(long id) {
+    public boolean removeCategory(Long id) {
         categoriesDatabase.removeIf(ListCategory -> ListCategory.getId() == id);
         return true;
     }
@@ -50,12 +50,12 @@ public class ListCategoriesDatabase implements CategoriesDatabase {
     }
 
     @Override
-    public Optional<ProductListCategory> getCategory(long id) {
+    public Optional<ProductListCategory> getCategory(Long id) {
         return categoriesDatabase.stream().filter(listCategory -> listCategory.getId() == id).findFirst();
     }
 
     @Override
-    public boolean isExist(long id) {
+    public boolean isExist(Long id) {
         return getCategory(id).isPresent();
     }
 }

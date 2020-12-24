@@ -59,9 +59,9 @@ public class AcceptanceTest1 {
         deleteProductService.execute(new DeleteProductRequest(1));
         deleteProductService.execute(new DeleteProductRequest(2));
         assertThat(database.getList().size()).isEqualTo(1);
-        assertThat(database.getById(1).isEmpty()).isTrue();
-        assertThat(database.getById(2).isEmpty()).isTrue();
-        assertThat(database.getById(3).isEmpty()).isFalse();
+        assertThat(database.getById(1L).isEmpty()).isTrue();
+        assertThat(database.getById(2L).isEmpty()).isTrue();
+        assertThat(database.getById(3L).isEmpty()).isFalse();
     }
 
     @Test
@@ -91,12 +91,12 @@ public class AcceptanceTest1 {
         addProductService.execute(request);
         addProductService.execute(request1);
         addProductService.execute(request2);
-        getProductByIdService.execute(new GetProductByIdRequest(2));
-        getProductByIdService.execute(new GetProductByIdRequest(3));
+        getProductByIdService.execute(new GetProductByIdRequest(2L));
+        getProductByIdService.execute(new GetProductByIdRequest(3L));
         assertThat(database.getList().size()).isEqualTo(3);
-        assertThat(database.getById(2).isEmpty()).isFalse();
-        assertThat(database.getById(1).isEmpty()).isFalse();
-        assertThat(database.getById(4).isEmpty()).isTrue();
+        assertThat(database.getById(2L).isEmpty()).isFalse();
+        assertThat(database.getById(1L).isEmpty()).isFalse();
+        assertThat(database.getById(4L).isEmpty()).isTrue();
     }
 
     @Test

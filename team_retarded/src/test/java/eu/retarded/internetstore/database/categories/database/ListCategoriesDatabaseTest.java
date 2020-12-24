@@ -42,7 +42,7 @@ class ListCategoriesDatabaseTest {
         subject.addCategory(new ProductListCategory("name1"));
         subject.addCategory(new ProductListCategory("name2"));
         subject.addCategory(new ProductListCategory("name3"));
-        subject.removeCategory(2);
+        subject.removeCategory(2L);
         assertThat(subject.getCategoryList().size()).isEqualTo(2);
         Assertions.assertThat(subject.getCategoryList())
                 .noneMatch(productListCategory -> productListCategory.getId() == 2);
@@ -75,7 +75,7 @@ class ListCategoriesDatabaseTest {
         subject.addCategory(new ProductListCategory("name1"));
         subject.addCategory(new ProductListCategory("name2"));
         subject.addCategory(new ProductListCategory("name3"));
-        Optional<ProductListCategory> result = subject.getCategory(2);
+        Optional<ProductListCategory> result = subject.getCategory(2L);
         assertThat(result.isPresent()).isTrue();
         assertThat(result.get()).matches(productListCategory -> productListCategory.getName().equals("name2") ||
                 productListCategory.getId() == 2);
