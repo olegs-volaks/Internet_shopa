@@ -9,6 +9,7 @@ import eu.retarded.internetstore.core.responses.product.SearchProductResponse;
 import eu.retarded.internetstore.core.services.validators.product.SearchProductValidator;
 import eu.retarded.internetstore.database.ProductDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
@@ -22,6 +23,12 @@ public class SearchProductService {
     private ProductDatabase db;
     @Autowired
     private SearchProductValidator validator;
+
+    @Value("${search.ordering.enabled}")
+    private boolean orderingEnabled;
+
+    @Value("${search.paging.enabled}")
+    private boolean pagingEnabled;
 
     public SearchProductResponse execute(SearchProductRequest request) {
         List<CoreError> errors = validator.validate(request);
@@ -38,7 +45,7 @@ public class SearchProductService {
     }
 
     private List<Product> order(List<Product> products, Ordering ordering) {
-        if (ordering != null) {
+        if (orderingEnabled && ordering != null  ) {
             Comparator<Product> comparator = ordering.getOrderBy().equals("name")
                     ? Comparator.comparing(Product::getName)
                     : Comparator.comparing(Product::getDescription);
@@ -52,7 +59,7 @@ public class SearchProductService {
     }
 
     private List<Product> paging(List<Product> products, Paging paging) {
-        if (paging != null) {
+        if (pagingEnabled && paging != null  ) {
             if (paging.getPageNumber() != null && paging.getPageSize() != null) {
                 int skip = (paging.getPageNumber() - 1) * paging.getPageSize();
                 return products.stream()

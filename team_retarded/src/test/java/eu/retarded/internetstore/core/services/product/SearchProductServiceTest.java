@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,12 +24,15 @@ import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class SearchProductServiceTest {
+
+
     @Mock
     private SearchProductValidator validator;
     @Mock
     private ProductDatabase db;
     @InjectMocks
     private SearchProductService service;
+
 
     @Test
     public void shouldReturnResponseWithErrorsWhenValidatorFails() {
@@ -118,6 +122,8 @@ class SearchProductServiceTest {
 
     @Test
     public void shouldSearchByNameWithOrderingDescending() {
+        ReflectionTestUtils.setField(service, "orderingEnabled", true);
+        ReflectionTestUtils.setField(service, "pagingEnabled", true);
         Ordering ordering = new Ordering("name", "DESCENDING");
         SearchProductRequest request = new SearchProductRequest("Title", null, ordering);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
@@ -136,6 +142,8 @@ class SearchProductServiceTest {
 
     @Test
     public void shouldSearchByNameWithPagingFirstPage() {
+        ReflectionTestUtils.setField(service, "orderingEnabled", true);
+        ReflectionTestUtils.setField(service, "pagingEnabled", true);
         Paging paging = new Paging(1, 1);
         SearchProductRequest request = new SearchProductRequest("Title", null, null, paging);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
@@ -154,6 +162,8 @@ class SearchProductServiceTest {
 
     @Test
     public void shouldSearchByNameWithPagingSecondPage() {
+        ReflectionTestUtils.setField(service, "orderingEnabled", true);
+        ReflectionTestUtils.setField(service, "pagingEnabled", true);
         Paging paging = new Paging(2, 1);
         SearchProductRequest request = new SearchProductRequest("Title", null, null, paging);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
