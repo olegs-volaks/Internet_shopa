@@ -5,9 +5,9 @@ import java.util.function.Predicate;
 
 public interface ListCategory<T> {
 
-    long getId();
+    Long getId();
 
-    void setId(long id);
+    void setId(Long id);
 
     String getName();
 

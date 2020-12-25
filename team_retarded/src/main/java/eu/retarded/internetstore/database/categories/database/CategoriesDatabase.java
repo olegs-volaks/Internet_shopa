@@ -8,11 +8,11 @@ import java.util.function.Predicate;
 
 public interface CategoriesDatabase {
 
-    long addCategory(ProductListCategory ListCategory);
+    Long addCategory(ProductListCategory ListCategory);
 
     boolean removeCategory(String name);
 
-    boolean removeCategory(long id);
+    boolean removeCategory(Long id);
 
     void removeCategory(Predicate<ProductListCategory> predicate);
 
@@ -20,7 +20,7 @@ public interface CategoriesDatabase {
 
     List<ProductListCategory> getCategoryList();
 
-    Optional<ProductListCategory> getCategory(long id);
+    Optional<ProductListCategory> getCategory(Long id);
 
-    boolean isExist(long id);
+    boolean isExist(Long id);
 }
