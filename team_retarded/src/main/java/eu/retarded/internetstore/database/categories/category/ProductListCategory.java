@@ -72,7 +72,7 @@ public class ProductListCategory implements ListCategory<Product> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductListCategory listProductCategory = (ProductListCategory) o;
-        return id == listProductCategory.id &&
+        return id.equals(listProductCategory.id) &&
                 Objects.equals(name, listProductCategory.name) &&
                 Objects.equals(products, listProductCategory.products);
     }

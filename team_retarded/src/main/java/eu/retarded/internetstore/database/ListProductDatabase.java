@@ -31,8 +31,8 @@ public class ListProductDatabase implements ProductDatabase {
 
     @Override
     public boolean delete(Long id) {
-        deleteFromCategories(product -> product.getId() == id);
-        productDatabase.removeIf(x -> x.getId() == id);
+        deleteFromCategories(product -> product.getId().equals(id));
+        productDatabase.removeIf(x -> x.getId().equals(id));
         return true;
     }
 
@@ -52,7 +52,7 @@ public class ListProductDatabase implements ProductDatabase {
     @Override
     public Optional<Product> getById(Long id) {
         return productDatabase.stream()
-                .filter(t -> t.getId() == id)
+                .filter(t -> t.getId().equals(id))
                 .findAny();
     }
 

@@ -179,4 +179,24 @@ class SearchProductServiceTest {
         assertEquals(response.getProducts().get(0).getName(), "Author2");
         assertEquals(response.getProducts().get(0).getDescription(), "Author123456789");
     }
+
+    @Test
+    public void onlyNameFiled() {
+        ReflectionTestUtils.setField(service, "orderingEnabled", true);
+        ReflectionTestUtils.setField(service, "pagingEnabled", true);
+        Paging paging = new Paging(null, null);
+        Ordering ordering = new Ordering(null, null);
+        SearchProductRequest request = new SearchProductRequest("Author2", null, ordering, paging);
+        Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
+
+        List<Product> products = new ArrayList<>();
+        products.add(new Product("Author2", "Author1234567899", 345));
+        Mockito.when(db.filter(any())).thenReturn(products);
+
+        SearchProductResponse response = service.execute(request);
+        assertFalse(response.hasErrors());
+        assertEquals(response.getProducts().size(), 1);
+        assertEquals(response.getProducts().get(0).getName(), "Author2");
+        assertEquals(response.getProducts().get(0).getDescription(), "Author1234567899");
+    }
 }

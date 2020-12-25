@@ -30,7 +30,7 @@ public class ListCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public boolean removeCategory(Long id) {
-        categoriesDatabase.removeIf(ListCategory -> ListCategory.getId() == id);
+        categoriesDatabase.removeIf(ListCategory -> ListCategory.getId().equals(id));
         return true;
     }
 
@@ -51,7 +51,7 @@ public class ListCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public Optional<ProductListCategory> getCategory(Long id) {
-        return categoriesDatabase.stream().filter(listCategory -> listCategory.getId() == id).findFirst();
+        return categoriesDatabase.stream().filter(listCategory -> listCategory.getId().equals(id)).findFirst();
     }
 
     @Override
