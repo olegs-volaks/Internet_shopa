@@ -4,15 +4,20 @@ import eu.retarded.internetstore.core.requests.category.DeleteProductFromCategor
 import eu.retarded.internetstore.core.responses.category.DeleteProductFromCategoryResponse;
 import eu.retarded.internetstore.core.services.category.DeleteProductFromCategoryService;
 import eu.retarded.internetstore.ui.UIAction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
 
+@Component
 public class DeleteProductFromCategoryUIAction implements UIAction {
-    private final DeleteProductFromCategoryService service;
 
-    public DeleteProductFromCategoryUIAction(DeleteProductFromCategoryService service) {
-        this.service = service;
-    }
+    @Autowired
+    private DeleteProductFromCategoryService service;
+
+    //public DeleteProductFromCategoryUIAction(DeleteProductFromCategoryService service) {
+        //this.service = service;
+    //}
 
     @Override
     public void execute() {
