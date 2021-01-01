@@ -26,7 +26,7 @@ public class CategoriesMenu implements MenuUIAction  {
         categoriesMenuNumberToUIActionMap.put(5, findUIAction(categoriesUIActions, DeleteAllCategoryUIAction.class));
     }
 
-
+    @Override
     public void execute() {
 
         while (true) {

@@ -12,29 +12,27 @@ import java.util.Scanner;
 
 
 @Component
-
 public class ProductMenu implements MenuUIAction {
-   private  Map<Integer, UIAction> productMenuNumberToUIActionMap;
+    private Map<Integer, UIAction> productMenuNumberToUIActionMap;
 
-   @Autowired
-    public ProductMenu( List<UIAction> productMenuUIActions) {
-       productMenuNumberToUIActionMap = new HashMap<>();
-       productMenuNumberToUIActionMap.put(1, findUIAction(productMenuUIActions, AddProductUIAction.class));
-       productMenuNumberToUIActionMap.put(2, findUIAction(productMenuUIActions, DeleteProductUIAction.class));
-       productMenuNumberToUIActionMap.put(3, findUIAction(productMenuUIActions, GetProductByIdUIAction.class));
-       productMenuNumberToUIActionMap.put(4, findUIAction(productMenuUIActions, SearchProductUIAction.class));
-       productMenuNumberToUIActionMap.put(5, findUIAction(productMenuUIActions, ClearAllProductsUIAction.class));
-       productMenuNumberToUIActionMap.put(6, findUIAction(productMenuUIActions, ShowAllProductsUIAction.class));
-
+    @Autowired
+    public ProductMenu(List<UIAction> productMenuUIActions) {
+        productMenuNumberToUIActionMap = new HashMap<>();
+        productMenuNumberToUIActionMap.put(1, findUIAction(productMenuUIActions, AddProductUIAction.class));
+        productMenuNumberToUIActionMap.put(2, findUIAction(productMenuUIActions, DeleteProductUIAction.class));
+        productMenuNumberToUIActionMap.put(3, findUIAction(productMenuUIActions, GetProductByIdUIAction.class));
+        productMenuNumberToUIActionMap.put(4, findUIAction(productMenuUIActions, SearchProductUIAction.class));
+        productMenuNumberToUIActionMap.put(5, findUIAction(productMenuUIActions, ClearAllProductsUIAction.class));
+        productMenuNumberToUIActionMap.put(6, findUIAction(productMenuUIActions, ShowAllProductsUIAction.class));
     }
 
-
+    @Override
     public void execute() {
 
         while (true) {
             print();
             int menuNumber = getMenuNumberFromUser();
-            if (menuNumber==0){
+            if (menuNumber == 0) {
                 break;
             }
             executeSelectedMenuItem(menuNumber);
