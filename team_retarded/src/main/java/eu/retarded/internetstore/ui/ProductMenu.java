@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 @Component
 public class ProductMenu implements MenuUIAction {
-    private Map<Integer, UIAction> productMenuNumberToUIActionMap;
+    private final Map<Integer, UIAction> productMenuNumberToUIActionMap;
 
     @Autowired
     public ProductMenu(List<UIAction> productMenuUIActions) {

@@ -14,7 +14,7 @@ import java.util.Scanner;
 @Component
 public class CategoriesMenu implements MenuUIAction  {
 
-    private Map<Integer, UIAction> categoriesMenuNumberToUIActionMap;
+    private final Map<Integer, UIAction> categoriesMenuNumberToUIActionMap;
 
    @Autowired
     public CategoriesMenu( List<UIAction> categoriesUIActions) {
