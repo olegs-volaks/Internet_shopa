@@ -32,6 +32,9 @@ public class CategoriesMenu implements MenuUIAction  {
         while (true) {
             print();
             int menuNumber = getMenuNumberFromUser();
+            if (menuNumber==-1){
+                continue;
+            }
             if (menuNumber==0){
                 break;
             }
@@ -62,8 +65,16 @@ public class CategoriesMenu implements MenuUIAction  {
     public int getMenuNumberFromUser() {
         System.out.println("Enter menu item number to execute:");
         Scanner scanner = new Scanner(System.in);
-        return Integer.parseInt(scanner.nextLine());
+        String menuNumber = scanner.nextLine();
+        menuNumber = menuNumber.replaceAll("[^0-5]", "");
+        try {
+            return Integer.parseInt(menuNumber);
+        } catch (NumberFormatException ex) {
+            System.out.println("Incorrect value, try again ");
+        }
+        return -1;
     }
+
 
     public void executeSelectedMenuItem(int selectedMenu) {
         categoriesMenuNumberToUIActionMap.get(selectedMenu).execute();

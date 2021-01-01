@@ -40,7 +40,14 @@ public class ProgramMenu {
     public int getMenuNumberFromUser() {
         System.out.println("Enter menu item number to execute:");
         Scanner scanner = new Scanner(System.in);
-        return Integer.parseInt(scanner.nextLine());
+        String menuNumber = scanner.nextLine();
+        menuNumber = menuNumber.replaceAll("[^0-2]", "");
+        try {
+            return Integer.parseInt(menuNumber);
+        } catch (NumberFormatException ex) {
+            System.out.println("Incorrect value, try again ");
+        }
+        return -1;
     }
 
     public void executeSelectedMenuItem(int selectedMenu) {
