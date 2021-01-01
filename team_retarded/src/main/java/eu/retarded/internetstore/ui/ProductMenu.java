@@ -1,7 +1,7 @@
-package eu.retarded.internetstore.ui.product;
+package eu.retarded.internetstore.ui;
 
 
-import eu.retarded.internetstore.ui.UIAction;
+import eu.retarded.internetstore.ui.product.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 @Component
 
-public class ProductMenu implements UIAction {
+public class ProductMenu implements MenuUIAction {
    private  Map<Integer, UIAction> productMenuNumberToUIActionMap;
 
    @Autowired
@@ -28,7 +28,7 @@ public class ProductMenu implements UIAction {
 
     }
 
-    @Override
+
     public void execute() {
 
         while (true) {

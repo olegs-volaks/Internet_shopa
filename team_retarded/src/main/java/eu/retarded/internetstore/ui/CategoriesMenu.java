@@ -1,7 +1,9 @@
-package eu.retarded.internetstore.ui.category;
+package eu.retarded.internetstore.ui;
 
 
-import eu.retarded.internetstore.ui.UIAction;
+import eu.retarded.internetstore.ui.category.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,12 +11,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 
-//@Component
-public class CategoriesMenu implements UIAction {
+@Component
+public class CategoriesMenu implements MenuUIAction  {
 
     private Map<Integer, UIAction> categoriesMenuNumberToUIActionMap;
 
-   // @Autowired
+   @Autowired
     public CategoriesMenu( List<UIAction> categoriesUIActions) {
         categoriesMenuNumberToUIActionMap=new HashMap<>();
         categoriesMenuNumberToUIActionMap.put(1, findUIAction(categoriesUIActions, AddCategoryUIAction.class));
@@ -24,7 +26,7 @@ public class CategoriesMenu implements UIAction {
         categoriesMenuNumberToUIActionMap.put(5, findUIAction(categoriesUIActions, DeleteAllCategoryUIAction.class));
     }
 
-   //@Override
+
     public void execute() {
 
         while (true) {

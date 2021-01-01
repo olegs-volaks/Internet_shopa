@@ -1,8 +1,5 @@
 package eu.retarded.internetstore.ui;
 
-import eu.retarded.internetstore.ui.product.ExitUIAction;
-import eu.retarded.internetstore.ui.product.ProductMenu;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -13,20 +10,20 @@ import java.util.Scanner;
 @Component
 public class ProgramMenu {
 
-    private final Map<Integer, UIAction> ProgramMenuNumberToUIActionMap;
+    private final Map<Integer, MenuUIAction> ProgramMenuNumberToUIActionMap;
 
-    @Autowired
-    public ProgramMenu( List<UIAction> uiActions) {
+
+    public ProgramMenu( List<MenuUIAction> uiActions) {
         ProgramMenuNumberToUIActionMap = new HashMap<>();
         ProgramMenuNumberToUIActionMap.put(1, findUIAction(uiActions, ProductMenu.class));
-        //ProgramMenuNumberToUIActionMap.put( 2, findUIAction(uiActions, CategoriesMenu.class));
+        ProgramMenuNumberToUIActionMap.put(2, findUIAction(uiActions, CategoriesMenu.class));
         ProgramMenuNumberToUIActionMap.put(0, findUIAction(uiActions, ExitUIAction.class));
     }
 
 
-    private UIAction findUIAction(List<UIAction> uiActions, Class uiActionClass) {
+    private MenuUIAction findUIAction(List<MenuUIAction> uiActions, Class MenuUIActionClass) {
         return uiActions.stream()
-                .filter(uiAction -> uiAction.getClass().equals(uiActionClass))
+                .filter(uiAction -> uiAction.getClass().equals(MenuUIActionClass))
                 .findFirst()
                 .get();
     }
