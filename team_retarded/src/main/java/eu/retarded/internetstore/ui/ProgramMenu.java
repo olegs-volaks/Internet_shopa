@@ -1,6 +1,7 @@
 package eu.retarded.internetstore.ui;
 
 import eu.retarded.internetstore.ui.product.ExitUIAction;
+import eu.retarded.internetstore.ui.product.ProductMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,16 +13,16 @@ import java.util.Scanner;
 @Component
 public class ProgramMenu {
 
-    private Map<Integer, UIAction> menuNumberToUIActionMap;
+    private final Map<Integer, UIAction> ProgramMenuNumberToUIActionMap;
 
     @Autowired
-    public ProgramMenu(List<UIAction> uiActions) {
-        menuNumberToUIActionMap = new HashMap<>();
-        //menuNumberToUIActionMap.put(1, findUIAction(uiActions, ProductMenu.class));
-        //menuNumberToUIActionMap.put(2, findUIAction(uiActions, CategoriesMenu.class));
-        menuNumberToUIActionMap.put(0, findUIAction(uiActions, ExitUIAction.class));
-
+    public ProgramMenu( List<UIAction> uiActions) {
+        ProgramMenuNumberToUIActionMap = new HashMap<>();
+        ProgramMenuNumberToUIActionMap.put(1, findUIAction(uiActions, ProductMenu.class));
+        //ProgramMenuNumberToUIActionMap.put( 2, findUIAction(uiActions, CategoriesMenu.class));
+        ProgramMenuNumberToUIActionMap.put(0, findUIAction(uiActions, ExitUIAction.class));
     }
+
 
     private UIAction findUIAction(List<UIAction> uiActions, Class uiActionClass) {
         return uiActions.stream()
@@ -46,7 +47,6 @@ public class ProgramMenu {
     }
 
     public void executeSelectedMenuItem(int selectedMenu) {
-        menuNumberToUIActionMap.get(selectedMenu).execute();
+        ProgramMenuNumberToUIActionMap.get(selectedMenu).execute();
     }
-
 }
