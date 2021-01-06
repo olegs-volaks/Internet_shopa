@@ -49,8 +49,8 @@ public class scenario1 {
         DeleteProductService deleteService = context.getBean(DeleteProductService.class);
         deleteService.execute(new DeleteProductRequest(2));
         assertThat(database.getList().size()).isEqualTo(1);
-        assertThat(database.getById(2).isEmpty()).isTrue();
-        assertThat(database.getById(1).isEmpty()).isFalse();
+        assertThat(database.getById(2L).isEmpty()).isTrue();
+        assertThat(database.getById(1L).isEmpty()).isFalse();
     }
 
     @Test
@@ -66,9 +66,9 @@ public class scenario1 {
         DeleteProductService deleteService = context.getBean(DeleteProductService.class);
         addService.execute(addRequest3);
         deleteService.execute(new DeleteProductRequest(2));
-        assertThat(database.getById(2).isEmpty()).isTrue();
+        assertThat(database.getById(2L).isEmpty()).isTrue();
         assertThat(database.getList().size()).isEqualTo(2);
-        assertThat(database.getById(3).get().getName()).isEqualTo("name3");
+        assertThat(database.getById(3L).get().getName()).isEqualTo("name3");
     }
 
     @Test

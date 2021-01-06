@@ -19,10 +19,10 @@ public class ListProductDatabase implements ProductDatabase {
     @Autowired
     private CategoriesDatabase categoriesDatabase;
     private final List<Product> productDatabase = new ArrayList<>();
-    private long id;
+    private Long id =0L;
 
     @Override
-    public long add(Product product) {
+    public Long add(Product product) {
         id++;
         product.setId(id);
         productDatabase.add(product);
@@ -30,9 +30,9 @@ public class ListProductDatabase implements ProductDatabase {
     }
 
     @Override
-    public boolean delete(long id) {
-        deleteFromCategories(product -> product.getId() == id);
-        productDatabase.removeIf(x -> x.getId() == id);
+    public boolean delete(Long id) {
+        deleteFromCategories(product -> product.getId().equals(id));
+        productDatabase.removeIf(x -> x.getId().equals(id));
         return true;
     }
 
@@ -50,9 +50,9 @@ public class ListProductDatabase implements ProductDatabase {
     }
 
     @Override
-    public Optional<Product> getById(long id) {
+    public Optional<Product> getById(Long id) {
         return productDatabase.stream()
-                .filter(t -> t.getId() == id)
+                .filter(t -> t.getId().equals(id))
                 .findAny();
     }
 
@@ -69,7 +69,7 @@ public class ListProductDatabase implements ProductDatabase {
     }
 
     @Override
-    public boolean isExist(long id) {
+    public boolean isExist(Long id) {
         return getById(id).isPresent();
     }
 

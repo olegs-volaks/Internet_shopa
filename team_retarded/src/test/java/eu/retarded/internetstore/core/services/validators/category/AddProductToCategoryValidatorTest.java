@@ -33,8 +33,8 @@ class AddProductToCategoryValidatorTest {
     @Test
     void CategoryID_and_ProductID_is_not_exist() {
         AddProductToCategoryRequest request = new AddProductToCategoryRequest(1, 1);
-        Mockito.when(categoriesDatabase.getCategory(1)).thenReturn(Optional.empty());
-        Mockito.when(productDatabase.getById(1)).thenReturn(Optional.empty());
+        Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.empty());
+        Mockito.when(productDatabase.getById(1L)).thenReturn(Optional.empty());
         List<CoreError> actual = subject.validate(request);
         List<CoreError> expected = new ArrayList<>();
         expected.add(new CoreError("ProductID", "Product with this ID does not exist"));
@@ -46,8 +46,8 @@ class AddProductToCategoryValidatorTest {
     @Test
     void CategoryID_is_not_exist() {
         AddProductToCategoryRequest request = new AddProductToCategoryRequest(1, 1);
-        Mockito.when(categoriesDatabase.getCategory(1)).thenReturn(Optional.empty());
-        Mockito.when(productDatabase.getById(1)).
+        Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.empty());
+        Mockito.when(productDatabase.getById(1L)).
                 thenReturn(Optional.of(new Product("Audi", "red1234567890", 345)));
         List<CoreError> actual = subject.validate(request);
         List<CoreError> expected = new ArrayList<>();
@@ -59,8 +59,8 @@ class AddProductToCategoryValidatorTest {
     @Test
     void ProductID_is_not_exist() {
         AddProductToCategoryRequest request = new AddProductToCategoryRequest(1, 1);
-        Mockito.when(categoriesDatabase.getCategory(1)).thenReturn(Optional.of(new ProductListCategory("Phone")));
-        Mockito.when(productDatabase.getById(1)).thenReturn(Optional.empty());
+        Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.of(new ProductListCategory("Phone")));
+        Mockito.when(productDatabase.getById(1L)).thenReturn(Optional.empty());
         List<CoreError> actual = subject.validate(request);
         List<CoreError> expected = new ArrayList<>();
         expected.add(new CoreError("ProductID", "Product with this ID does not exist"));
@@ -71,7 +71,7 @@ class AddProductToCategoryValidatorTest {
     @Test
     void ProductID_is_negative() {
         AddProductToCategoryRequest request = new AddProductToCategoryRequest(1, -1);
-        Mockito.when(categoriesDatabase.getCategory(1)).thenReturn(Optional.of(new ProductListCategory("Phone")));
+        Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.of(new ProductListCategory("Phone")));
         List<CoreError> actual = subject.validate(request);
         List<CoreError> expected = new ArrayList<>();
         expected.add(new CoreError("ProductID", "Must not be empty or negative"));
@@ -82,7 +82,7 @@ class AddProductToCategoryValidatorTest {
     @Test
     void CategoryID_is_negative() {
         AddProductToCategoryRequest request = new AddProductToCategoryRequest(-1, 1);
-        Mockito.when(productDatabase.getById(1)).
+        Mockito.when(productDatabase.getById(1L)).
                 thenReturn(Optional.of(new Product("Audi", "red1234567890", 345)));
         List<CoreError> actual = subject.validate(request);
         List<CoreError> expected = new ArrayList<>();
@@ -105,10 +105,10 @@ class AddProductToCategoryValidatorTest {
     @Test
     void All_successful() {
         AddProductToCategoryRequest request = new AddProductToCategoryRequest(1, 1);
-        Mockito.when(productDatabase.getById(1)).
+        Mockito.when(productDatabase.getById(1L)).
                 thenReturn(Optional.of(new Product("Audi", "red1234567890", 345)));
         List<CoreError> expected = new ArrayList<>();
-        Mockito.when(categoriesDatabase.getCategory(1)).thenReturn(Optional.of(new ProductListCategory("Phone")));
+        Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.of(new ProductListCategory("Phone")));
         List<CoreError> actual = subject.validate(request);
         assertThat(actual).isEqualTo(expected);
         assertThat(actual).isEmpty();

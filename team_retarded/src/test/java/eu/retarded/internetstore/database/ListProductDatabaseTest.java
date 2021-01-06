@@ -60,11 +60,11 @@ class ListProductDatabaseTest {
         subject.add(new Product("PS4", "Pro", 350.0));
         subject.add(new Product("BeatsByDRE", "", 100.0));
         subject.add(new Product("AppleMac", "Pro", 555.0));
-        subject.delete(2);
-        subject.delete(10);
-        subject.delete(5);
-        subject.delete(8);
-        subject.delete(9);
+        subject.delete(2L);
+        subject.delete(10L);
+        subject.delete(5L);
+        subject.delete(8L);
+        subject.delete(9L);
         assertThat(subject.getList()).isNotEmpty();
         assertThat(subject.getList()).allMatch(product -> product.getId() == 1 || product.getId() == 3 ||
                 product.getId() == 4 || product.getId() == 6 || product.getId() == 7);
@@ -148,7 +148,7 @@ class ListProductDatabaseTest {
         subject.add(new Product("PS4", "Pro", 350.0));
         subject.add(new Product("BeatsByDRE", "", 100.0));
         subject.add(new Product("AppleMac", "Pro", 555.0));
-        Optional<Product> result = subject.getById(1);
+        Optional<Product> result = subject.getById(1L);
         assertThat(result.isPresent()).isTrue();
         assertThat(result.get()).matches(product -> product.getId() == 1 || product.getId() == 3 ||
                 product.getId() == 5 || product.getId() == 6);

@@ -19,7 +19,7 @@ public class Product {
     }
 
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -43,7 +43,7 @@ public class Product {
         this.description = description;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
