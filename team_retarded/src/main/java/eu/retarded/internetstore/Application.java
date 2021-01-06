@@ -22,7 +22,6 @@ public class Application {
         ApplicationMenu applicationMenu = CONTEXT.getBean(ApplicationMenu.class);
         while (true) {
             applicationMenu.printMenu();
-            applicationMenu.printCategories();
             int menuNumber = applicationMenu.getChoice();
             applicationMenu.executeSelectedMenu(menuNumber);
         }
