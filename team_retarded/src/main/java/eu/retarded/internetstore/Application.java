@@ -1,21 +1,34 @@
 package eu.retarded.internetstore;
 
 import eu.retarded.internetstore.config.applicationConfiguration;
-import eu.retarded.internetstore.ui.category.AddCategoryUIAction;
-import eu.retarded.internetstore.ui.category.AddProductToCategoryUIAction;
-import eu.retarded.internetstore.ui.category.DeleteCategoryUIAction;
-import eu.retarded.internetstore.ui.category.DeleteProductFromCategoryUIAction;
-import eu.retarded.internetstore.ui.product.*;
+import eu.retarded.internetstore.ui.ProgramMenu;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.util.Scanner;
-
 
 public class Application {
+    public static void main(String[] args) {
+        ApplicationContext applicationContext = createApplicationContext();
+        ProgramMenu programMenu = applicationContext.getBean(ProgramMenu.class);
 
 
-    private static ApplicationContext CONTEXT = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+        while (true) {
+            programMenu.print();
+            int menuNumber = programMenu.getMenuNumberFromUser();
+            if (menuNumber==-1){
+                continue;
+            }
+            programMenu.executeSelectedMenuItem(menuNumber);
+
+        }
+    }
+
+    private static ApplicationContext createApplicationContext() {
+        return new AnnotationConfigApplicationContext(applicationConfiguration.class);
+    }
+
+}
+/*private static ApplicationContext CONTEXT = new AnnotationConfigApplicationContext(applicationConfiguration.class);
 
     public static void main(String[] args) {
         while (true) {
@@ -114,4 +127,4 @@ public class Application {
         }
         return -1;
     }
-}
+}*/

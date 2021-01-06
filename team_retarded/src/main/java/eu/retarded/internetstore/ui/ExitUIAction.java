@@ -1,12 +1,11 @@
-package eu.retarded.internetstore.ui.product;
+package eu.retarded.internetstore.ui;
 
 
-import eu.retarded.internetstore.ui.UIAction;
 import org.springframework.stereotype.Component;
 
 
 @Component
-public class ExitUIAction implements UIAction {
+public class ExitUIAction implements MenuUIAction {
 
     @Override
     public void execute() {
