@@ -1,5 +1,6 @@
 package eu.retarded.internetstore.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ public class ProgramMenu {
 
     private final Map<Integer, MenuUIAction> ProgramMenuNumberToUIActionMap;
 
-
+    @Autowired
     public ProgramMenu( List<MenuUIAction> uiActions) {
         ProgramMenuNumberToUIActionMap = new HashMap<>();
         ProgramMenuNumberToUIActionMap.put(1, findUIAction(uiActions, ProductMenu.class));
