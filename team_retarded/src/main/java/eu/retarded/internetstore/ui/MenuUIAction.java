@@ -1,8 +1,5 @@
 package eu.retarded.internetstore.ui;
 
-
-public interface UIAction {
-
+public interface MenuUIAction {
     void execute();
 }
-
