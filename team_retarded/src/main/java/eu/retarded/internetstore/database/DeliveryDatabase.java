@@ -1,52 +1,28 @@
 package eu.retarded.internetstore.database;
 
-import eu.retarded.internetstore.core.domain.Product;
-import org.springframework.stereotype.Component;
+import eu.retarded.internetstore.core.domain.Delivery;
+
 
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-@Component
-public class DeliveryDatabase implements ProductDatabase {
+public interface DeliveryDatabase {
 
-    @Override
-    public Long add(Product product) {
-        return null;
-    }
+    Long add(Delivery delivery);
 
-    @Override
-    public boolean delete(Long id) {
-        return false;
-    }
+    boolean delete(Long id);
 
-    @Override
-    public boolean delete(Predicate<Product> predicate) {
-        return false;
-    }
+    boolean delete(Predicate<Delivery> predicate);
 
-    @Override
-    public void clear() {
+    void clear();
 
-    }
+    Optional<Delivery> getById(Long id);
 
-    @Override
-    public Optional<Product> getById(Long id) {
-        return Optional.empty();
-    }
+    List<Delivery> filter(Predicate<Delivery> predicate);
 
-    @Override
-    public List<Product> filter(Predicate<Product> predicate) {
-        return null;
-    }
+    List<Delivery> getList();
 
-    @Override
-    public List<Product> getList() {
-        return null;
-    }
+    boolean isExist(Long id);
 
-    @Override
-    public boolean isExist(Long id) {
-        return false;
-    }
 }
