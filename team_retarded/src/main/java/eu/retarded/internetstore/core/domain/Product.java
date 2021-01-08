@@ -13,7 +13,6 @@ public class Product {
     public Product(String name, String description, double price) {
         this.name = name;
         this.description = description;
-//      price from double convert to BigDecimal and rounded to two decimal places
         BigDecimal tmp = new BigDecimal(Double.toString(price));
         this.price = tmp.setScale(2, RoundingMode.DOWN);
     }
@@ -48,7 +47,7 @@ public class Product {
     }
 
     public void setPrice(double price) {
-//      price from double convert to BigDecimal and rounded to two decimal places
+
         BigDecimal tmp = new BigDecimal(Double.toString(price));
         this.price = tmp.setScale(2, RoundingMode.DOWN);
     }

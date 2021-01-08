@@ -19,14 +19,11 @@ public class Application {
                 continue;
             }
             programMenu.executeSelectedMenuItem(menuNumber);
-
         }
     }
-
     private static ApplicationContext createApplicationContext() {
         return new AnnotationConfigApplicationContext(applicationConfiguration.class);
     }
-
 }
 /*private static ApplicationContext CONTEXT = new AnnotationConfigApplicationContext(applicationConfiguration.class);
 

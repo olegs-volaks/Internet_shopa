@@ -19,7 +19,6 @@ import java.util.stream.Collectors;
 @Component
 public class SearchProductService {
 
-
     @Autowired
     private ProductDatabase productDatabase;
     @Autowired
