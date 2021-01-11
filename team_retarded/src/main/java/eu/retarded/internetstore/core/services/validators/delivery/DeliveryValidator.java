@@ -13,9 +13,9 @@ public class DeliveryValidator {
 
     public List<CoreError> validate(DeliveryRequest request) {
         List<CoreError> errors = new ArrayList<>();
-        validateTitle(request).isPresent(errors::add);   // ?
-        validateRegion(request).isPresent(errors::add); // ?
-        validatePrice(request).isPresent(errors::add); // ?
+        validateTitle(request).ifPresent(errors::add);
+        validateRegion(request).ifPresent(errors::add);
+        validatePrice(request).ifPresent(errors::add);
         return errors;
     }
 

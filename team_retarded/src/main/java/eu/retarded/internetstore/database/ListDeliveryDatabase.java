@@ -1,6 +1,7 @@
 package eu.retarded.internetstore.database;
 
 import eu.retarded.internetstore.core.domain.Delivery;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+@Component
 public class ListDeliveryDatabase  implements  DeliveryDatabase{
 
     private String title;

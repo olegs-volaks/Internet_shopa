@@ -14,10 +14,8 @@ import java.util.List;
 @Component
 public class DeliveryService {
 
-    @Autowired
-    private DeliveryDatabase deliveryDatabase;
-    @Autowired
-    private DeliveryValidator validator;
+    @Autowired private DeliveryDatabase deliveryDatabase;
+    @Autowired private DeliveryValidator validator;
 
     public DeliveryResponse execute(DeliveryRequest request) {
         List<CoreError> errors = validator.validate(request);
