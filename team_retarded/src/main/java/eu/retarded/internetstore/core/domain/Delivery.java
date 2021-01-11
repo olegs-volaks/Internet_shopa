@@ -1,6 +1,7 @@
 package eu.retarded.internetstore.core.domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Delivery {
@@ -9,10 +10,11 @@ public class Delivery {
     private BigDecimal price;
     private String region;
 
-    public Delivery(String title, BigDecimal price, String region) {
+    public Delivery(String title,String region, double price) {
         this.title = title;
-        this.price = price;
         this.region = region;
+        BigDecimal tmp = new BigDecimal(Double.toString(price));
+        this.price = tmp.setScale(2, RoundingMode.DOWN);
     }
 
     public String getTitle() {

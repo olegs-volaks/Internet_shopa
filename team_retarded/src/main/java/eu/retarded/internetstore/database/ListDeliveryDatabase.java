@@ -20,14 +20,14 @@ public class ListDeliveryDatabase  implements  DeliveryDatabase{
         id++;
         delivery.setTitle(title);
         deliveryDatabase.add(delivery);
-        return null;
+        return id;
     }
+
 
     @Override
     public boolean delete(Long id) {
         delete(delivery -> delivery.getTitle().equals(title));
-        deliveryDatabase.removeIf(delivery -> delivery.getTitle().equals(title)); // не уверен , думаю вместо title надо id
-        return false;
+        return deliveryDatabase.removeIf(delivery -> delivery.getTitle().equals(title));
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ListDeliveryDatabase  implements  DeliveryDatabase{
     @Override
     public Optional<Delivery> getById(Long id) {
         return deliveryDatabase.stream()
-                .filter(delivery -> delivery.getTitle().equals(title)) // тут тоже самое ;/
+                .filter(delivery -> delivery.getTitle().equals(title))
                 .findAny();
     }
 
