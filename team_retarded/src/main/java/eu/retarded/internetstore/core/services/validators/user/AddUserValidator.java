@@ -31,11 +31,11 @@ public class AddUserValidator {
 
     private Optional<CoreError> validatePassword(AddUserRequest request) {
         if (request.getPassword() == null || request.getPassword().isEmpty()) {
-            return Optional.of(new CoreError("Description", "Must not be empty!"));
+            return Optional.of(new CoreError("Password", "Must not be empty!"));
         }
 
-        if (request.getPassword().length() < 6 || request.getPassword().length() > 10) {
-            return Optional.of(new CoreError("Description", "Must be between 6 and 10 characters"));
+        if (request.getPassword().length() < 6 || request.getPassword().length() > 16) {
+            return Optional.of(new CoreError("Password", "Must be between 6 and 16 characters"));
         }
         return Optional.empty();
     }

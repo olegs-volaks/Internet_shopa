@@ -24,14 +24,12 @@ public class ListCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public boolean removeCategory(String name) {
-        categoriesDatabase.removeIf(ListCategory -> ListCategory.getName().equals(name));
-        return true;
+        return categoriesDatabase.removeIf(ListCategory -> ListCategory.getName().equals(name));
     }
 
     @Override
     public boolean removeCategory(Long id) {
-        categoriesDatabase.removeIf(ListCategory -> ListCategory.getId().equals(id));
-        return true;
+        return categoriesDatabase.removeIf(ListCategory -> ListCategory.getId().equals(id));
     }
 
     @Override

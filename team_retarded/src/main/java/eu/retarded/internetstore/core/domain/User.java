@@ -5,6 +5,7 @@ public class User {
     private String name;
     private String password;
     private String role;
+    private Basket usersBasket;
 
 
     public User(String name, String password) {

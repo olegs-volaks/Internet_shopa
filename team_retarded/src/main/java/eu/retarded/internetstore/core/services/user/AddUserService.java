@@ -5,7 +5,7 @@ import eu.retarded.internetstore.core.requests.user.AddUserRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.user.AddUserResponse;
 import eu.retarded.internetstore.core.services.validators.user.AddUserValidator;
-import eu.retarded.internetstore.database.user.UsersDatabase;
+import eu.retarded.internetstore.database.user.ListUsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import java.util.List;
 public class AddUserService {
 
     @Autowired
-    private UsersDatabase db;
+    private ListUsersDatabase db;
     @Autowired
     private AddUserValidator validator;
 
