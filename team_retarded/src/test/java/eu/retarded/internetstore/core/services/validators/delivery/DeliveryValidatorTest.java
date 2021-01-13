@@ -20,7 +20,7 @@ class DeliveryValidatorTest {
     }
 
     @Test
-    void validate_title_is_3_characters() {
+    void validate_title_is_less_than_4_characters() {
         DeliveryRequest request = new DeliveryRequest("Mar", "description", 222.34);
         List<CoreError> result = subject.validate(request);
         assertThat(result).isNotEmpty();
@@ -55,7 +55,7 @@ class DeliveryValidatorTest {
     }
 
     @Test
-    void valida_region_is_more_than_10_characters() {
+    void validate_region_is_more_than_10_characters() {
         DeliveryRequest request = new DeliveryRequest("Roma","Internacional",44.67);
         List<CoreError> result = subject.validate(request);
         assertThat(result).isEmpty();
