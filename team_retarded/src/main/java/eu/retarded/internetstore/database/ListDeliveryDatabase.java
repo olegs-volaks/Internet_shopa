@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 @Component
 public class ListDeliveryDatabase  implements  DeliveryDatabase{
 
-    private String title;
     private final List<Delivery> deliveryDatabase = new ArrayList<>();
     private Long id =0L;
 
@@ -20,7 +19,6 @@ public class ListDeliveryDatabase  implements  DeliveryDatabase{
     @Override
     public Long add(Delivery delivery) {
         id++;
-        delivery.setTitle(title);
         deliveryDatabase.add(delivery);
         return id;
     }
@@ -28,7 +26,7 @@ public class ListDeliveryDatabase  implements  DeliveryDatabase{
 
     @Override
     public boolean delete(Long id) {
-        delete(delivery -> delivery.getTitle().equals(title));
+        delete(delivery -> delivery.get().equals(title));
         return deliveryDatabase.removeIf(delivery -> delivery.getTitle().equals(title));
     }
 

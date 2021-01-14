@@ -6,15 +6,24 @@ import java.util.Objects;
 
 public class Delivery {
 
+    private Long id;
     private String title;
     private BigDecimal price;
     private String region;
 
-    public Delivery(String title,String region, double price) {
+    public Delivery(String title, String region, double price) {
         this.title = title;
         this.region = region;
         BigDecimal tmp = new BigDecimal(Double.toString(price));
         this.price = tmp.setScale(2, RoundingMode.DOWN);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -44,7 +53,8 @@ public class Delivery {
     @Override
     public String toString() {
         return "Delivery{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", price=" + price +
                 ", region='" + region + '\'' +
                 '}';
@@ -55,11 +65,11 @@ public class Delivery {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Delivery delivery = (Delivery) o;
-        return title.equals(delivery.title) && price.equals(delivery.price) && region.equals(delivery.region);
+        return Objects.equals(id, delivery.id) && Objects.equals(title, delivery.title) && Objects.equals(price, delivery.price) && Objects.equals(region, delivery.region);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, price, region);
+        return Objects.hash(id, title, price, region);
     }
 }
