@@ -25,7 +25,7 @@ import static org.mockito.ArgumentMatchers.argThat;
 
 
 @ExtendWith(MockitoExtension.class)
-public class DeliveryServiceTest {
+public class AddDeliveryServiceTest {
 
     @Mock private DeliveryDatabase deliveryDatabase;
     @Mock private AddDeliveryValidator validator;

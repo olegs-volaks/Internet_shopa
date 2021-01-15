@@ -20,6 +20,7 @@ public class ListDeliveryDatabase  implements  DeliveryDatabase{
     @Override
     public Long add(Delivery delivery) {
         id++;
+        delivery.setId(id);
         deliveryDatabase.add(delivery);
         return id;
     }
@@ -27,14 +28,13 @@ public class ListDeliveryDatabase  implements  DeliveryDatabase{
 
     @Override
     public boolean delete(Long id) {
-        delete(delivery -> delivery.getId().equals(id));
-        deliveryDatabase.removeIf(delivery -> delivery.getId().equals(id));
-        return false;
+        return deliveryDatabase.removeIf(delivery -> delivery.getId().equals(id));
+
     }
 
     @Override
     public boolean delete(Predicate<Delivery> predicate) {
-        return true;
+        return deliveryDatabase.removeIf(predicate);
     }
 
     @Override
