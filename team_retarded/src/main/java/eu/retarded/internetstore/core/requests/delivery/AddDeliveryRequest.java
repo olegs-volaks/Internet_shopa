@@ -1,7 +1,7 @@
 package eu.retarded.internetstore.core.requests.delivery;
 
 
-public class DeliveryRequest {
+public class AddDeliveryRequest {
 
     private final String title;
     private final String region;
@@ -19,7 +19,8 @@ public class DeliveryRequest {
     public double getPrice() {
         return price;
     }
-    public DeliveryRequest(String title, String region, double price) {
+
+    public AddDeliveryRequest(String title, String region, double price) {
         this.title = title;
         this.region = region;
         this.price = price;

@@ -27,7 +27,7 @@ class ListDeliveryDatabaseTest {
         subject.add(new Delivery("Audi", "Liepaja", 15000.0));
         subject.add(new Delivery("Honda", "Daugavpils", 3000.0));
         assertThat(subject.getList()).isNotEmpty();
-        assertThat(subject.getList()).anyMatch(delivery -> delivery.getTitle().equals("Audi") && // тут ошибка
+        assertThat(subject.getList()).anyMatch(delivery -> delivery.getTitle().equals("Audi") &&
                 delivery.getRegion().equals("Liepaja") &&
                 delivery.getPrice().compareTo(new BigDecimal("15000")) == 0);
     }
@@ -62,7 +62,7 @@ class ListDeliveryDatabaseTest {
         subject.add(new Delivery("Honda", "Daugavpils", 3000.0));
         subject.delete(delivery -> delivery.getRegion().equals("Kurzeme") || delivery.getRegion().equals("Olaine"));
         assertThat(subject.getList()).isNotEmpty();
-        assertThat(subject.getList()).noneMatch(delivery -> delivery.getRegion().equals("Kurzeme")  //tut
+        assertThat(subject.getList()).noneMatch(delivery -> delivery.getRegion().equals("Kurzeme")  // !!!
                 || delivery.getRegion().equals("Olaine"));
 
 

@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class DeleteProductService {
     @Autowired
-    private ProductDatabase db;
+    private ProductDatabase database;
     @Autowired
     private DeleteProductValidator validator;
 
@@ -23,7 +23,7 @@ public class DeleteProductService {
             return new DeleteProductResponse(errors);
         }
 
-        return new DeleteProductResponse(db.delete(request.getProductIdToDelete()));
+        return new DeleteProductResponse(database.delete(request.getProductIdToDelete()));
     }
 }
 

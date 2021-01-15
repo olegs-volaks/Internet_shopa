@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Component
 public class ListDeliveryDatabase  implements  DeliveryDatabase{
@@ -26,13 +27,14 @@ public class ListDeliveryDatabase  implements  DeliveryDatabase{
 
     @Override
     public boolean delete(Long id) {
-        delete(delivery -> delivery.get().equals(title));
-        return deliveryDatabase.removeIf(delivery -> delivery.getTitle().equals(title));
+        delete(delivery -> delivery.getId().equals(id));
+        deliveryDatabase.removeIf(delivery -> delivery.getId().equals(id));
+        return false;
     }
 
     @Override
     public boolean delete(Predicate<Delivery> predicate) {
-        return false;
+        return true;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class ListDeliveryDatabase  implements  DeliveryDatabase{
     @Override
     public Optional<Delivery> getById(Long id) {
         return deliveryDatabase.stream()
-                .filter(delivery -> delivery.getTitle().equals(title))
+                .filter(delivery -> delivery.getId().equals(id))
                 .findAny();
     }
 
@@ -51,7 +53,7 @@ public class ListDeliveryDatabase  implements  DeliveryDatabase{
     public List<Delivery> filter(Predicate<Delivery> predicate) {
         return deliveryDatabase.stream()
                 .filter(predicate)
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     @Override

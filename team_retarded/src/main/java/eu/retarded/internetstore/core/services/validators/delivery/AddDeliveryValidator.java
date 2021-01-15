@@ -1,6 +1,5 @@
 package eu.retarded.internetstore.core.services.validators.delivery;
-
-import eu.retarded.internetstore.core.requests.delivery.DeliveryRequest;
+import eu.retarded.internetstore.core.requests.delivery.AddDeliveryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import org.springframework.stereotype.Component;
 
@@ -9,9 +8,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class DeliveryValidator {
+public class AddDeliveryValidator {
 
-    public List<CoreError> validate(DeliveryRequest request) {
+    public List<CoreError> validate(AddDeliveryRequest request) {
         List<CoreError> errors = new ArrayList<>();
         validateTitle(request).ifPresent(errors::add);
         validateRegion(request).ifPresent(errors::add);
@@ -19,7 +18,7 @@ public class DeliveryValidator {
         return errors;
     }
 
-    private Optional<CoreError> validateTitle(DeliveryRequest request) {
+    private Optional<CoreError> validateTitle(AddDeliveryRequest request) {
         if (request.getTitle() == null || request.getTitle().isEmpty()) {
             return Optional.of(new CoreError("Title", "Must not be empty"));
         }
@@ -29,7 +28,7 @@ public class DeliveryValidator {
         return Optional.empty();
     }
 
-    private Optional<CoreError> validateRegion(DeliveryRequest request) {
+    private Optional<CoreError> validateRegion(AddDeliveryRequest request) {
         if (request.getRegion() == null || request.getRegion().isEmpty()) {
             return Optional.of(new CoreError("Region", "Must not be empty"));
         }
@@ -39,7 +38,7 @@ public class DeliveryValidator {
         return Optional.empty();
     }
 
-    private Optional<CoreError> validatePrice(DeliveryRequest request) {
+    private Optional<CoreError> validatePrice(AddDeliveryRequest request) {
         return (request.getPrice() <= 0 || request.getPrice() > 100000)
                 ? Optional.of(new CoreError("Price", "Must be between 0 and 100000"))
                 : Optional.empty();
