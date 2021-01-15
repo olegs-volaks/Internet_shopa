@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class AddProductToBasketService {
@@ -29,8 +30,13 @@ public class AddProductToBasketService {
         if (!errors.isEmpty()) {
             return new AddProductToBasketResponse(errors);
         }
-        User user = usersDatabase.getUserById(request.getUserId()).get();
-        Product product = productDatabase.getById(request.getProductId()).get();
-        return new AddProductToBasketResponse(user.getUsersBasket().add(product, request.getQuantity()));
+        Optional<User> user = usersDatabase.getUserById(request.getUserId());
+        Optional<Product> product = productDatabase.getById(request.getProductId());
+
+        if (user.isPresent() && product.isPresent()) {
+            user.get().getUsersBasket().add(product.get(), request.getQuantity());
+        }
+
+        return new AddProductToBasketResponse(user.isPresent() && product.isPresent());
     }
 }

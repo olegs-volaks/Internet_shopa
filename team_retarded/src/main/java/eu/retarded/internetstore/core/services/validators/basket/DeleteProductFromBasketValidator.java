@@ -1,6 +1,6 @@
 package eu.retarded.internetstore.core.services.validators.basket;
 
-import eu.retarded.internetstore.core.requests.basket.AddProductToBasketRequest;
+import eu.retarded.internetstore.core.requests.basket.DeleteProductFromBasketRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.database.ProductDatabase;
 import eu.retarded.internetstore.database.user.UsersDatabase;
@@ -12,22 +12,21 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class AddProductToBasketValidator {
+public class DeleteProductFromBasketValidator {
 
     @Autowired
     private UsersDatabase usersDatabase;
     @Autowired
     private ProductDatabase productDatabase;
 
-    public List<CoreError> validate(AddProductToBasketRequest request) {
+    public List<CoreError> validate(DeleteProductFromBasketRequest request) {
         List<CoreError> errors = new ArrayList<>();
         validateProductID(request).ifPresent(errors::add);
         validateUserID(request).ifPresent(errors::add);
-        validateQuantity(request).ifPresent(errors::add);
         return errors;
     }
 
-    private Optional<CoreError> validateProductID(AddProductToBasketRequest request) {
+    private Optional<CoreError> validateProductID(DeleteProductFromBasketRequest request) {
         if (request.getProductId() <= 0) {
             return Optional.of(new CoreError("ProductID", "Must not be empty or negative"));
         }
@@ -37,7 +36,7 @@ public class AddProductToBasketValidator {
         return Optional.empty();
     }
 
-    private Optional<CoreError> validateUserID(AddProductToBasketRequest request) {
+    private Optional<CoreError> validateUserID(DeleteProductFromBasketRequest request) {
         if (request.getUserId() <= 0) {
             return Optional.of(new CoreError("UserID", "Must not be empty or negative"));
         }
@@ -47,9 +46,5 @@ public class AddProductToBasketValidator {
         return Optional.empty();
     }
 
-    private Optional<CoreError> validateQuantity(AddProductToBasketRequest request) {
-        return (request.getQuantity() <= 0 || request.getQuantity() == null)
-                ? Optional.of(new CoreError("Price", "Must be more than 0 and not empty "))
-                : Optional.empty();
-    }
 }
+
