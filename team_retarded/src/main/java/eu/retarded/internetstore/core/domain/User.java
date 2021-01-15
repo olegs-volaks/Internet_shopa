@@ -1,16 +1,21 @@
 package eu.retarded.internetstore.core.domain;
 
+
 public class User {
+
+
+    private Basket usersBasket;
+
     private Long id;
     private String name;
     private String password;
     private String role;
-    private Basket usersBasket;
 
 
     public User(String name, String password) {
         this.name = name;
         this.password = password;
+        usersBasket=new Basket();
     }
 
     public Long getId() {
@@ -39,5 +44,9 @@ public class User {
 
     public String getRole() {
         return role;
+    }
+
+    public Basket getUsersBasket() {
+        return usersBasket;
     }
 }

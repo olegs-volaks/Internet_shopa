@@ -2,12 +2,18 @@ package eu.retarded.internetstore.core.requests.basket;
 
 public class AddProductToBasketRequest {
 
-    private final Long id;
+
+    private final Long userId;
+    private final Long productId;
     private final Integer quantity;
 
 
-    public Long getId() {
-        return id;
+    public Long getProductId() {
+        return productId;
+    }
+
+    public Long getUserId() {
+        return userId;
     }
 
     public Integer getQuantity() {
@@ -15,8 +21,9 @@ public class AddProductToBasketRequest {
     }
 
 
-    public AddProductToBasketRequest(Long id, Integer quantity) {
-        this.id = id;
+    public AddProductToBasketRequest(Long userId, Long productId, Integer quantity) {
+        this.userId = userId;
+        this.productId = productId;
         this.quantity = quantity;
 
     }

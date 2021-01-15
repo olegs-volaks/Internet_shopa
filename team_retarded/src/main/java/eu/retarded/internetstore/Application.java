@@ -11,7 +11,6 @@ public class Application {
         ApplicationContext applicationContext = createApplicationContext();
         ProgramMenu programMenu = applicationContext.getBean(ProgramMenu.class);
 
-
         while (true) {
             programMenu.print();
             int menuNumber = programMenu.getMenuNumberFromUser();
@@ -26,5 +25,4 @@ public class Application {
     private static ApplicationContext createApplicationContext() {
         return new AnnotationConfigApplicationContext(applicationConfiguration.class);
     }
-
 }

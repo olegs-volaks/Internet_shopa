@@ -7,17 +7,17 @@ import java.util.List;
 
 public class AddProductToBasketResponse extends CoreResponse {
 
-    private long userId;
+    private boolean productInBasket;
 
-    public AddProductToBasketResponse(long userId) {
-        this.userId = userId;
+    public AddProductToBasketResponse(boolean productInBasket) {
+        this.productInBasket = productInBasket;
     }
 
     public AddProductToBasketResponse(List<CoreError> errors) {
         super(errors);
     }
 
-    public long getUserId() {
-        return userId;
+    public boolean productInBasket() {
+        return productInBasket;
     }
 }

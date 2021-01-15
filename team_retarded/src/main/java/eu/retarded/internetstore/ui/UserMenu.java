@@ -1,5 +1,6 @@
 package eu.retarded.internetstore.ui;
 
+import eu.retarded.internetstore.ui.basket.AddProductToBasketUIAction;
 import eu.retarded.internetstore.ui.user.AddUserUIAction;
 import eu.retarded.internetstore.ui.user.DeleteUserUIAction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class UserMenu implements MenuUIAction  {
         userMenuNumberToUIActionMap = new HashMap<>();
         userMenuNumberToUIActionMap.put(1, findUIAction(userMenuUIActions, AddUserUIAction.class));
         userMenuNumberToUIActionMap.put(2, findUIAction(userMenuUIActions, DeleteUserUIAction.class));
+        userMenuNumberToUIActionMap.put(3, findUIAction(userMenuUIActions, AddProductToBasketUIAction.class));
     }
 
     @Override
@@ -50,6 +52,7 @@ public class UserMenu implements MenuUIAction  {
         System.out.println("Internet Store MENU:");
         System.out.println("[1] - Add user");
         System.out.println("[2] - Delete user");
+        System.out.println("[3] - Add product to basket");
         System.out.println("[0] - Main menu");
         System.out.println("==========================");
     }
@@ -58,7 +61,7 @@ public class UserMenu implements MenuUIAction  {
         System.out.println("Enter menu item number to execute:");
         Scanner scanner = new Scanner(System.in);
         String menuNumber = scanner.nextLine();
-        menuNumber = menuNumber.replaceAll("[^0-2]", "");
+        menuNumber = menuNumber.replaceAll("[^0-3]", "");
         try {
             return Integer.parseInt(menuNumber);
         } catch (NumberFormatException ex) {
