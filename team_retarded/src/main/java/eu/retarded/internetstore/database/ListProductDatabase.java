@@ -4,7 +4,6 @@ import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.database.categories.category.ProductListCategory;
 import eu.retarded.internetstore.database.categories.database.CategoriesDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
-@Component
+//@Component
 public class ListProductDatabase implements ProductDatabase {
 
     @Autowired
