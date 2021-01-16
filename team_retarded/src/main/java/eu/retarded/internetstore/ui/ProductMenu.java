@@ -1,6 +1,5 @@
 package eu.retarded.internetstore.ui;
 
-
 import eu.retarded.internetstore.ui.product.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -45,7 +45,6 @@ public class SearchProductUIAction implements UIAction {
             response.getProducts().forEach(System.out::println);
         }
     }
-
     private String getChoseNameOrDescription() {
         Scanner scanner = new Scanner(System.in);
         String getChose = scanner.nextLine();
@@ -63,7 +62,6 @@ public class SearchProductUIAction implements UIAction {
         }
         return null;
     }
-
     private String getChoseAscendOrDescend() {
         Scanner scanner = new Scanner(System.in);
         String getChose = scanner.nextLine();
@@ -105,8 +103,6 @@ public class SearchProductUIAction implements UIAction {
         }
         return null;
     }
-
-
 }
 
 

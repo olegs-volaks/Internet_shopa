@@ -45,9 +45,7 @@ public class AddProductServiceTest {
         Assertions.assertEquals(response.getErrors().get(0).getMessage(), "Must be between 4 and 10 characters");
         Mockito.verifyNoInteractions(database);
         Mockito.verify(validator).validate(request);
-
     }
-
 
     @Test
     public void should_add_product_to_database() {
@@ -56,7 +54,6 @@ public class AddProductServiceTest {
         AddProductResponse response = subject.execute(request);
         Assertions.assertFalse(response.hasErrors());
         Mockito.verify(database).add(argThat(new ProductMatcher("Name", "Description")));
-
 
     }
 }

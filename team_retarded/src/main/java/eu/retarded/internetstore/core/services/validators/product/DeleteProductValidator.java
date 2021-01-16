@@ -21,9 +21,7 @@ public class DeleteProductValidator {
         if (request.getProductIdToDelete() <= 0) {
             return Optional.of(new CoreError("ID", "Must not be empty, negative or fractional"));
         }
-
         return Optional.empty();
     }
-
 }
 
