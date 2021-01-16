@@ -17,11 +17,10 @@ public class SqlProductDatabase implements ProductDatabase {
 
     @Override
     public Long add(Product product) {
-        jdbcTemplate.update(
-
-        )
-
-
+        return (long) jdbcTemplate.update("INSERT INTO products (name, description, price)"
+                +"VALUES (?, ?, ?)",
+                product.getName(), product.getDescription(), product.getPrice()
+        );
     }
 
     @Override
