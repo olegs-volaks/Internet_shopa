@@ -1,6 +1,6 @@
 dependencies {
     compile('mysql:mysql-connector-java:8.0.22')
-    compile('org.springframework:spring-jdbc:5.2.12.RELEASE')
+    compile('org.springframework:spring-jdbc:5.2.6.RELEASE')
     compile('org.apache.commons:commons-dbcp2:2.8.0')
     compile files('libs/dependency_injection-0.1.0.jar')
     implementation 'junit:junit:4.12'
