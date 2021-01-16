@@ -4,11 +4,13 @@ import eu.retarded.internetstore.config.applicationConfiguration;
 import eu.retarded.internetstore.core.requests.product.AddProductRequest;
 import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
 import eu.retarded.internetstore.core.requests.product.GetProductByIdRequest;
+
 import eu.retarded.internetstore.core.requests.product.SearchProductRequest;
 import eu.retarded.internetstore.core.responses.product.AddProductResponse;
 import eu.retarded.internetstore.core.services.product.AddProductService;
 import eu.retarded.internetstore.core.services.product.DeleteProductService;
 import eu.retarded.internetstore.core.services.product.GetProductByIdService;
+
 import eu.retarded.internetstore.core.services.product.SearchProductService;
 import eu.retarded.internetstore.database.ProductDatabase;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,8 +21,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-//@ExtendWith(SpringExtension.class)
-//@ContextConfiguration(classes = {applicationConfiguration.class})
 public class AcceptanceTest1 {
 
     private ApplicationContext context;
@@ -81,7 +81,7 @@ public class AcceptanceTest1 {
 
     @Test
     void get_product_by_id_request() {
-        //context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+
         AddProductService addProductService = context.getBean(AddProductService.class);
         GetProductByIdService getProductByIdService = context.getBean(GetProductByIdService.class);
         ProductDatabase database = context.getBean(ProductDatabase.class);
@@ -99,9 +99,9 @@ public class AcceptanceTest1 {
         assertThat(database.getById(4L).isEmpty()).isTrue();
     }
 
-    @Test
+   @Test
     void search_product_request() {
-        //context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+
         AddProductService addProductService = context.getBean(AddProductService.class);
         SearchProductService searchProductService = context.getBean(SearchProductService.class);
         ProductDatabase database = context.getBean(ProductDatabase.class);
@@ -125,7 +125,7 @@ public class AcceptanceTest1 {
 
     @Test
     void add_product_validator_request() {
-        //context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+
         AddProductService addProductService = context.getBean(AddProductService.class);
         AddProductRequest request = new AddProductRequest("XR", "Macbook", 150.0);
         AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax", 899.99);

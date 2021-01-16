@@ -24,3 +24,4 @@ public interface CategoriesDatabase {
 
     boolean isExist(Long id);
 }
+

@@ -18,6 +18,8 @@ public class ProgramMenu {
         ProgramMenuNumberToUIActionMap = new HashMap<>();
         ProgramMenuNumberToUIActionMap.put(1, findUIAction(uiActions, ProductMenu.class));
         ProgramMenuNumberToUIActionMap.put(2, findUIAction(uiActions, CategoriesMenu.class));
+        ProgramMenuNumberToUIActionMap.put(3, findUIAction(uiActions, UserMenu.class));
+        ProgramMenuNumberToUIActionMap.put(4, findUIAction(uiActions, DeliveryMenu.class));
         ProgramMenuNumberToUIActionMap.put(0, findUIAction(uiActions, ExitUIAction.class));
     }
 
@@ -34,6 +36,8 @@ public class ProgramMenu {
         System.out.println("Internet Store MENU:");
         System.out.println("[1] - Product  menu");
         System.out.println("[2] - Categories menu");
+        System.out.println("[3] - Users menu");
+        System.out.println("[4] - Delivery menu");
         System.out.println("[0] - Exit");
         System.out.println("==========================");
     }
@@ -42,7 +46,7 @@ public class ProgramMenu {
         System.out.println("Enter menu item number to execute:");
         Scanner scanner = new Scanner(System.in);
         String menuNumber = scanner.nextLine();
-        menuNumber = menuNumber.replaceAll("[^0-2]", "");
+        menuNumber = menuNumber.replaceAll("[^0-4]", "");
         try {
             return Integer.parseInt(menuNumber);
         } catch (NumberFormatException ex) {

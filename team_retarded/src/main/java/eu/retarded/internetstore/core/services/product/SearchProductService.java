@@ -39,8 +39,8 @@ public class SearchProductService {
         List<Product> products = productDatabase.filter(product ->
                 (product.getName().toLowerCase().contains(request.getName().toLowerCase())
                         && !request.getName().isBlank()) ||
-                (product.getDescription().toLowerCase().contains(request.getDescription().toLowerCase())
-                        && !request.getDescription().isBlank()));
+                        (product.getDescription().toLowerCase().contains(request.getDescription().toLowerCase())
+                                && !request.getDescription().isBlank()));
         products = order(products, request.getOrdering());
         products = paging(products, request.getPaging());
 
@@ -48,7 +48,7 @@ public class SearchProductService {
     }
 
     private List<Product> order(List<Product> products, Ordering ordering) {
-        if (orderingEnabled && ordering != null  ) {
+        if (orderingEnabled && ordering != null) {
             if (ordering.getOrderBy() != null) {
                 Comparator<Product> comparator = ordering.getOrderBy().equals("name")
                         ? Comparator.comparing(Product::getName)
@@ -59,12 +59,12 @@ public class SearchProductService {
                 return products.stream().sorted(comparator).collect(Collectors.toList());
             }
         }
-            return products;
+        return products;
 
     }
 
     private List<Product> paging(List<Product> products, Paging paging) {
-        if (pagingEnabled && paging != null  ) {
+        if (pagingEnabled && paging != null) {
             if (paging.getPageNumber() != null && paging.getPageSize() != null) {
                 int skip = (paging.getPageNumber() - 1) * paging.getPageSize();
                 return products.stream()
