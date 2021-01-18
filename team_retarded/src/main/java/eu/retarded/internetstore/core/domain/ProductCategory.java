@@ -9,7 +9,7 @@ public class ProductCategory {
 
     private Long id;
     private String name;
-    private final List<Product> products = new ArrayList<>();
+    private List<Product> products = new ArrayList<>();
 
     public ProductCategory(String name) {
         this.name = name;
@@ -17,6 +17,10 @@ public class ProductCategory {
 
     public Long getId() {
         return id;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public void setId(Long id) {

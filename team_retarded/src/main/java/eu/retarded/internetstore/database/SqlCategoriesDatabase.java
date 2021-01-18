@@ -1,12 +1,17 @@
 package eu.retarded.internetstore.database;
 
+import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.domain.ProductCategory;
+import eu.retarded.internetstore.core.domain.row_mapper.ProductCategoryMapper;
+import eu.retarded.internetstore.core.domain.row_mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 @Component
@@ -24,14 +29,22 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public boolean removeCategory(String name) {
-        jdbcTemplate.update("DELETE FROM product_category WHERE name = `?`", name);
-        return true;
+        try {
+            jdbcTemplate.update("DELETE FROM product_category WHERE name = `?`", name);
+            return true;
+        } catch (DataAccessException ex) {
+            return false;
+        }
     }
 
     @Override
     public boolean removeCategory(Long id) {
-        jdbcTemplate.update("DELETE FROM product_category WHERE id = ?", id);
-        return true;
+        try {
+            jdbcTemplate.update("DELETE FROM product_category WHERE id = ?", id);
+            return true;
+        } catch (DataAccessException ex) {
+            return false;
+        }
     }
 
     @Override
@@ -46,7 +59,15 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public List<ProductCategory> getCategoryList() {
-        return null;
+        List<ProductCategory> categories = jdbcTemplate.query("SELECT * FROM product_category", new ProductCategoryMapper());
+        categories.forEach(new Consumer<ProductCategory>() {
+            @Override
+            public void accept(ProductCategory productCategory) {
+                List<Product> products = jdbcTemplate.query("SELECT * FROM products WHERE category_id = ?",
+                        new ProductMapper(), productCategory.getId());
+            }
+        });
+        return categories;
     }
 
     @Override
