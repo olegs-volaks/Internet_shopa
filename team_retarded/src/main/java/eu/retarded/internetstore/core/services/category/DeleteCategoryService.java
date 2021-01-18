@@ -4,7 +4,7 @@ import eu.retarded.internetstore.core.requests.category.DeleteCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.category.DeleteCategoryResponse;
 import eu.retarded.internetstore.core.services.validators.category.DeleteCategoryValidator;
-import eu.retarded.internetstore.database.categories.database.CategoriesDatabase;
+import eu.retarded.internetstore.database.CategoriesDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,10 +23,11 @@ public class DeleteCategoryService {
         if (!errors.isEmpty()) {
             return new DeleteCategoryResponse(errors);
         }
-        if (!database.isExist(request.getCategoryId())) {
+        //todo: испрпавить
+        /*if (!database.isExist(request.getCategoryId())) {
             errors.add(new CoreError("ID", "The category with the given id does not exist"));
             return new DeleteCategoryResponse(errors);
-        }
+        }*/
         return new DeleteCategoryResponse(database.removeCategory(request.getCategoryId()));
     }
 }

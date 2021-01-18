@@ -1,58 +1,48 @@
-package eu.retarded.internetstore.database.categories.category;
-
-import eu.retarded.internetstore.core.domain.Product;
+package eu.retarded.internetstore.core.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-public class ProductListCategory implements ListCategory<Product> {
+public class ProductCategory {
 
     private Long id;
     private String name;
     private final List<Product> products = new ArrayList<>();
 
-    public ProductListCategory(String name) {
+    public ProductCategory(String name) {
         this.name = name;
     }
 
-    @Override
     public Long getId() {
         return id;
     }
 
-    @Override
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public void setName(String name) {
         this.name = name;
     }
 
-    @Override
     public List<Product> getList() {
         return products;
     }
 
-    @Override
     public void add(Product product) {
         products.add(product);
     }
 
-    @Override
     public boolean remove(Product product) {
         return products.remove(product);
     }
 
-    @Override
     public void remove(Predicate<Product> predicate) {
         products.removeIf(predicate);
     }
@@ -70,7 +60,7 @@ public class ProductListCategory implements ListCategory<Product> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProductListCategory listProductCategory = (ProductListCategory) o;
+        ProductCategory listProductCategory = (ProductCategory) o;
         return id.equals(listProductCategory.id) &&
                 Objects.equals(name, listProductCategory.name) &&
                 Objects.equals(products, listProductCategory.products);

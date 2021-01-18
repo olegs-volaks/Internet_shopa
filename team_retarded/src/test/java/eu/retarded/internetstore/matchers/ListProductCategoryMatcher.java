@@ -1,9 +1,9 @@
 package eu.retarded.internetstore.matchers;
 
-import eu.retarded.internetstore.database.categories.category.ProductListCategory;
+import eu.retarded.internetstore.core.domain.ProductCategory;
 import org.mockito.ArgumentMatcher;
 
-public class ListProductCategoryMatcher implements ArgumentMatcher<ProductListCategory> {
+public class ListProductCategoryMatcher implements ArgumentMatcher<ProductCategory> {
 
     private final String name;
 
@@ -12,7 +12,7 @@ public class ListProductCategoryMatcher implements ArgumentMatcher<ProductListCa
     }
 
     @Override
-    public boolean matches(ProductListCategory argument) {
+    public boolean matches(ProductCategory argument) {
         return argument.getName().equals(name);
     }
 }

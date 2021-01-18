@@ -1,12 +1,12 @@
 package eu.retarded.internetstore.core.services.category;
 
+import eu.retarded.internetstore.core.domain.ProductCategory;
 import eu.retarded.internetstore.core.requests.category.AddProductToCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.category.AddProductToCategoryResponse;
 import eu.retarded.internetstore.core.services.validators.category.AddProductToCategoryValidator;
+import eu.retarded.internetstore.database.CategoriesDatabase;
 import eu.retarded.internetstore.database.ProductDatabase;
-import eu.retarded.internetstore.database.categories.category.ProductListCategory;
-import eu.retarded.internetstore.database.categories.database.CategoriesDatabase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,7 +27,7 @@ class AddProductToCategoryServiceTest {
     @Mock
     private ProductDatabase productDatabase;
     @Mock
-    private ProductListCategory productListCategory;
+    private ProductCategory productCategory;
     @Mock
     private AddProductToCategoryValidator validator;
     @InjectMocks

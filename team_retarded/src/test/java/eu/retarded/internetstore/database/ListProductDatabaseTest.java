@@ -1,7 +1,6 @@
 package eu.retarded.internetstore.database;
 
 import eu.retarded.internetstore.core.domain.Product;
-import eu.retarded.internetstore.database.categories.database.CategoriesDatabase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
