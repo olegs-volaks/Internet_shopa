@@ -54,7 +54,7 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public void clear() {
-
+        jdbcTemplate.update("DELETE FROM product_category");
     }
 
     @Override
@@ -72,11 +72,12 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public Optional<ProductCategory> getCategory(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(jdbcTemplate.queryForObject("SELECT * FROM product_category WHERE id = ?",
+                new ProductCategoryMapper(), id));
     }
 
     @Override
     public boolean isExist(Long id) {
-        return false;
+        return getCategory(id).isPresent();
     }
 }
