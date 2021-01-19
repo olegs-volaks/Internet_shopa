@@ -24,4 +24,6 @@ public interface ProductDatabase {
 
     boolean isExist(Long id);
 
+    boolean addProductToCategory(Product product, Long categoryId);
+
 }
