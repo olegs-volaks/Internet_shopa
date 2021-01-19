@@ -1,4 +1,4 @@
-package eu.retarded.internetstore.database;
+package eu.retarded.internetstore.database.delivery;
 
 import eu.retarded.internetstore.core.domain.Delivery;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import java.util.function.Predicate;
 import static java.util.stream.Collectors.toList;
 
 @Component
-public class ListDeliveryDatabase  implements  DeliveryDatabase{
+public class ListDeliveryDatabase  implements DeliveryDatabase {
 
     private final List<Delivery> deliveryDatabase = new ArrayList<>();
     private Long id =0L;

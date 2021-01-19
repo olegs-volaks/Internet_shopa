@@ -1,13 +1,13 @@
 package eu.retarded.internetstore.core.services.category;
 
 import eu.retarded.internetstore.core.domain.Product;
+import eu.retarded.internetstore.core.domain.ProductCategory;
 import eu.retarded.internetstore.core.requests.category.DeleteProductFromCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.category.DeleteProductFromCategoryResponse;
 import eu.retarded.internetstore.core.services.validators.category.DeleteProductFromCategoryValidator;
-import eu.retarded.internetstore.database.ProductDatabase;
-import eu.retarded.internetstore.database.categories.category.ProductListCategory;
-import eu.retarded.internetstore.database.categories.database.CategoriesDatabase;
+import eu.retarded.internetstore.database.category.CategoriesDatabase;
+import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +29,7 @@ public class DeleteProductFromCategoryService {
         if (!errors.isEmpty()) {
             return new DeleteProductFromCategoryResponse(errors);
         }
-        Optional<ProductListCategory> categoryID = categoriesDatabase.getCategory(request.DeleteProductFromCategoryCategoryID());
+        Optional<ProductCategory> categoryID = categoriesDatabase.getCategory(request.DeleteProductFromCategoryCategoryID());
         Optional<Product> productID = productDatabase.getById(request.DeleteProductFromCategoryProductId());
 
         if (categoryID.isPresent() && productID.isPresent()) {

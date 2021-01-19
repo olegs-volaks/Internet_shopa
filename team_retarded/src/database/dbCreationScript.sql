@@ -3,46 +3,51 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=1;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 
-CREATE SCHEMA IF NOT EXISTS `retarded` DEFAULT CHARACTER SET utf8 ;
-USE `retarded` ;
+CREATE SCHEMA IF NOT EXISTS Shop DEFAULT CHARACTER SET utf8;
+USE Shop;
 
-CREATE TABLE IF NOT EXISTS `products` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(200) NOT NULL,
-  `description` VARCHAR(100) NOT NULL,
-  `price` BIGINT NOT NULL,
-  PRIMARY KEY (`id`)
+
+CREATE TABLE IF NOT EXISTS product_categories (
+                                                  id BIGINT NOT NULL AUTO_INCREMENT,
+                                                  name VARCHAR(100) NOT NULL,
+                                                  PRIMARY KEY (`id`)
 )
-ENGINE = InnoDB
-AUTO_INCREMENT = 1002;
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 1;
 
-
-
-CREATE TABLE IF NOT EXISTS `categories` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(200) NOT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE IF NOT EXISTS products (
+                                        id BIGINT NOT NULL AUTO_INCREMENT,
+                                        category_id BIGINT,
+                                        name VARCHAR(100) NOT NULL,
+                                        description VARCHAR(2000) NOT NULL,
+                                        price DOUBLE NOT NULL,
+                                        count INT DEFAULT 0,
+                                        PRIMARY KEY (`id`),
+                                        FOREIGN KEY (`category_id`) REFERENCES `product_categories`(`id`)
 )
-ENGINE = InnoDB
-AUTO_INCREMENT = 1002;
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 1;
 
-
-CREATE TABLE IF NOT EXISTS `categories-products` (
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `category_id` BIGINT NOT NULL,
-  `product_id` BIGINT NOT NULL,
-  PRIMARY KEY (id)
+CREATE TABLE IF NOT EXISTS users (
+                                     id BIGINT NOT NULL AUTO_INCREMENT,
+                                     login VARCHAR(100) NOT NULL,
+                                     password VARCHAR(100) NOT NULL,
+                                     role INT DEFAULT 1,
+                                     basket_id BIGINT NOT NULL,
+                                     PRIMARY KEY (id)
 )
-ENGINE = InnoDB
-AUTO_INCREMENT = 1002;
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 1;
 
-
-ALTER TABLE `categories-products`
-ADD FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`);
-
-ALTER TABLE `categories-products`
-ADD FOREIGN KEY (`product_id`) REFERENCES `products`(`id`);
-
+CREATE TABLE IF NOT EXISTS deliveries (
+                                          id BIGINT NOT NULL AUTO_INCREMENT,
+                                          title VARCHAR(100) NOT NULL,
+                                          region VARCHAR(100) NOT NULL,
+                                          price DOUBLE NOT NULL,
+                                          PRIMARY KEY (id)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 1;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

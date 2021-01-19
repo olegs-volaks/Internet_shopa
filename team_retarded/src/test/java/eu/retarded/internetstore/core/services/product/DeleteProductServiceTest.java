@@ -4,7 +4,7 @@ import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.DeleteProductResponse;
 import eu.retarded.internetstore.core.services.validators.product.DeleteProductValidator;
-import eu.retarded.internetstore.database.ProductDatabase;
+import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

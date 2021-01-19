@@ -7,7 +7,7 @@ import eu.retarded.internetstore.core.requests.product.SearchProductRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.SearchProductResponse;
 import eu.retarded.internetstore.core.services.validators.product.SearchProductValidator;
-import eu.retarded.internetstore.database.ProductDatabase;
+import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

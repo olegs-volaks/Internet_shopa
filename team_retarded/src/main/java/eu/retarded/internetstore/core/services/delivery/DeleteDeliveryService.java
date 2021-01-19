@@ -4,7 +4,7 @@ import eu.retarded.internetstore.core.requests.delivery.DeleteDeliveryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.delivery.DeleteDeliveryResponse;
 import eu.retarded.internetstore.core.services.validators.delivery.DeleteDeliveryValidator;
-import eu.retarded.internetstore.database.DeliveryDatabase;
+import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

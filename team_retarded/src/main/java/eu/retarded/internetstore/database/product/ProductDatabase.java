@@ -1,4 +1,4 @@
-package eu.retarded.internetstore.database;
+package eu.retarded.internetstore.database.product;
 
 import eu.retarded.internetstore.core.domain.Product;
 
@@ -23,5 +23,8 @@ public interface ProductDatabase {
     List<Product> getList();
 
     boolean isExist(Long id);
+
+
+    //boolean addProductToCategory(Product product, Long categoryId);
 
 }

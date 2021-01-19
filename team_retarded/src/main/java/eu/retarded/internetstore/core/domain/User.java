@@ -7,13 +7,13 @@ public class User {
     private Basket usersBasket;
 
     private Long id;
-    private String name;
+    private String login;
     private String password;
     private String role;
 
 
-    public User(String name, String password) {
-        this.name = name;
+    public User(String login, String password) {
+        this.login = login;
         this.password = password;
         usersBasket=new Basket();
     }
@@ -34,8 +34,8 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLogin() {
+        return login;
     }
 
     public String getPassword() {

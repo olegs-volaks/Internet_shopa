@@ -4,7 +4,7 @@ import eu.retarded.internetstore.core.requests.category.AddCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.category.AddCategoryResponse;
 import eu.retarded.internetstore.core.services.validators.category.AddCategoryValidator;
-import eu.retarded.internetstore.database.categories.database.CategoriesDatabase;
+import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import eu.retarded.internetstore.matchers.ListProductCategoryMatcher;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

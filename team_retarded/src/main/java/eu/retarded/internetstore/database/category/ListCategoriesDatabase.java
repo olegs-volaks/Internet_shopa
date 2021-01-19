@@ -1,24 +1,23 @@
-package eu.retarded.internetstore.database.categories.database;
+package eu.retarded.internetstore.database.category;
 
-import eu.retarded.internetstore.database.categories.category.ProductListCategory;
-import org.springframework.stereotype.Component;
+import eu.retarded.internetstore.core.domain.ProductCategory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-@Component
+//@Component
 public class ListCategoriesDatabase implements CategoriesDatabase {
 
-    private final List<ProductListCategory> categoriesDatabase = new ArrayList<>();
-    private Long id=0L;
+    private final List<ProductCategory> categoriesDatabase = new ArrayList<>();
+    private Long id = 0L;
 
     @Override
-    public Long addCategory(ProductListCategory productListCategory) {
+    public Long addCategory(ProductCategory productCategory) {
         id++;
-        productListCategory.setId(id);
-        categoriesDatabase.add(productListCategory);
+        productCategory.setId(id);
+        categoriesDatabase.add(productCategory);
         return id;
     }
 
@@ -33,7 +32,7 @@ public class ListCategoriesDatabase implements CategoriesDatabase {
     }
 
     @Override
-    public void removeCategory(Predicate<ProductListCategory> predicate) {
+    public void removeCategory(Predicate<ProductCategory> predicate) {
         categoriesDatabase.removeIf(predicate);
     }
 
@@ -43,12 +42,12 @@ public class ListCategoriesDatabase implements CategoriesDatabase {
     }
 
     @Override
-    public List<ProductListCategory> getCategoryList() {
+    public List<ProductCategory> getCategoryList() {
         return categoriesDatabase;
     }
 
     @Override
-    public Optional<ProductListCategory> getCategory(Long id) {
+    public Optional<ProductCategory> getCategory(Long id) {
         return categoriesDatabase.stream().filter(listCategory -> listCategory.getId().equals(id)).findFirst();
     }
 

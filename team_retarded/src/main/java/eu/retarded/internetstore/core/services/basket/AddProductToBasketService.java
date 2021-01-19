@@ -7,7 +7,7 @@ import eu.retarded.internetstore.core.requests.basket.AddProductToBasketRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.basket.AddProductToBasketResponse;
 import eu.retarded.internetstore.core.services.validators.basket.AddProductToBasketValidator;
-import eu.retarded.internetstore.database.ProductDatabase;
+import eu.retarded.internetstore.database.product.ProductDatabase;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
