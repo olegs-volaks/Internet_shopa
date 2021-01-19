@@ -1,4 +1,5 @@
 package eu.retarded.internetstore.ui;
+
 import eu.retarded.internetstore.ui.category.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,18 +11,19 @@ import java.util.Scanner;
 
 
 @Component
-public class CategoriesMenu implements MenuUIAction  {
+public class CategoriesMenu implements MenuUIAction {
 
     private final Map<Integer, UIAction> categoriesMenuNumberToUIActionMap;
 
-   @Autowired
-    public CategoriesMenu( List<UIAction> categoriesUIActions) {
-        categoriesMenuNumberToUIActionMap=new HashMap<>();
+    @Autowired
+    public CategoriesMenu(List<UIAction> categoriesUIActions) {
+        categoriesMenuNumberToUIActionMap = new HashMap<>();
         categoriesMenuNumberToUIActionMap.put(1, findUIAction(categoriesUIActions, AddCategoryUIAction.class));
         categoriesMenuNumberToUIActionMap.put(2, findUIAction(categoriesUIActions, DeleteCategoryUIAction.class));
         categoriesMenuNumberToUIActionMap.put(3, findUIAction(categoriesUIActions, AddProductToCategoryUIAction.class));
         categoriesMenuNumberToUIActionMap.put(4, findUIAction(categoriesUIActions, DeleteProductFromCategoryUIAction.class));
         categoriesMenuNumberToUIActionMap.put(5, findUIAction(categoriesUIActions, DeleteAllCategoryUIAction.class));
+        categoriesMenuNumberToUIActionMap.put(6, findUIAction(categoriesUIActions, ShowAllCategoryUIAction.class));
     }
 
     @Override
@@ -30,10 +32,10 @@ public class CategoriesMenu implements MenuUIAction  {
         while (true) {
             print();
             int menuNumber = getMenuNumberFromUser();
-            if (menuNumber==-1){
+            if (menuNumber == -1) {
                 continue;
             }
-            if (menuNumber==0){
+            if (menuNumber == 0) {
                 break;
             }
             executeSelectedMenuItem(menuNumber);
@@ -64,7 +66,7 @@ public class CategoriesMenu implements MenuUIAction  {
         System.out.println("Enter menu item number to execute:");
         Scanner scanner = new Scanner(System.in);
         String menuNumber = scanner.nextLine();
-        menuNumber = menuNumber.replaceAll("[^0-5]", "");
+        menuNumber = menuNumber.replaceAll("[^0-6]", "");
         try {
             return Integer.parseInt(menuNumber);
         } catch (NumberFormatException ex) {

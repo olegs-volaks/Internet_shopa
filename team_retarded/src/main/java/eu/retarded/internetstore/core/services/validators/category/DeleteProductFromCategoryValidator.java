@@ -2,8 +2,8 @@ package eu.retarded.internetstore.core.services.validators.category;
 
 import eu.retarded.internetstore.core.requests.category.DeleteProductFromCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.database.CategoriesDatabase;
 import eu.retarded.internetstore.database.ProductDatabase;
-import eu.retarded.internetstore.database.categories.database.CategoriesDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

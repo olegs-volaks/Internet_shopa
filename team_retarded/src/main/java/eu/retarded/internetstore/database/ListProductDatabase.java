@@ -1,8 +1,7 @@
 package eu.retarded.internetstore.database;
 
 import eu.retarded.internetstore.core.domain.Product;
-import eu.retarded.internetstore.database.categories.category.ProductListCategory;
-import eu.retarded.internetstore.database.categories.database.CategoriesDatabase;
+import eu.retarded.internetstore.core.domain.ProductCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -71,8 +70,8 @@ public class ListProductDatabase implements ProductDatabase {
     }
 
     private void deleteFromCategories(Predicate<Product> predicate) {
-        List<ProductListCategory> categories = categoriesDatabase.getCategoryList();
-        for (ProductListCategory category : categories) {
+        List<ProductCategory> categories = categoriesDatabase.getCategoryList();
+        for (ProductCategory category : categories) {
             category.remove(predicate);
         }
     }

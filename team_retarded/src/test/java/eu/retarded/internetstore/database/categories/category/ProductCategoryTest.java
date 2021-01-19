@@ -1,19 +1,20 @@
 package eu.retarded.internetstore.database.categories.category;
 
 import eu.retarded.internetstore.core.domain.Product;
+import eu.retarded.internetstore.core.domain.ProductCategory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ProductListCategoryTest {
+class ProductCategoryTest {
 
-    private ProductListCategory subject;
+    private ProductCategory subject;
 
     @BeforeEach
     void setUp() {
-        subject = new ProductListCategory("subject");
+        subject = new ProductCategory("subject");
     }
 
     @Test

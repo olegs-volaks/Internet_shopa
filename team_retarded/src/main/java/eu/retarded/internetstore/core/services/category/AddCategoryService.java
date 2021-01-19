@@ -1,11 +1,11 @@
 package eu.retarded.internetstore.core.services.category;
 
+import eu.retarded.internetstore.core.domain.ProductCategory;
 import eu.retarded.internetstore.core.requests.category.AddCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.category.AddCategoryResponse;
 import eu.retarded.internetstore.core.services.validators.category.AddCategoryValidator;
-import eu.retarded.internetstore.database.categories.category.ProductListCategory;
-import eu.retarded.internetstore.database.categories.database.CategoriesDatabase;
+import eu.retarded.internetstore.database.CategoriesDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +24,6 @@ public class AddCategoryService {
         if (!errors.isEmpty()) {
             return new AddCategoryResponse(errors);
         }
-        return new AddCategoryResponse(database.addCategory(new ProductListCategory(request.getName())));
+        return new AddCategoryResponse(database.addCategory(new ProductCategory(request.getName())));
     }
 }
