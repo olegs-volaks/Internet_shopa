@@ -10,8 +10,6 @@ import java.util.Optional;
 @Component
 public class ListUsersDatabase implements UsersDatabase {
 
-
-
     private final List<User> usersDatabase = new ArrayList<>();
     private Long id =0L;
 
@@ -35,5 +33,8 @@ public class ListUsersDatabase implements UsersDatabase {
         return usersDatabase.stream().filter(x -> x.getId().equals(id)).findFirst();
     }
 
-
+    @Override
+    public List<User> getList() {
+        return null;
+    }
 }

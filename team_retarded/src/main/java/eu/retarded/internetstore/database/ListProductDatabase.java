@@ -69,6 +69,7 @@ public class ListProductDatabase implements ProductDatabase {
         return getById(id).isPresent();
     }
 
+
     private void deleteFromCategories(Predicate<Product> predicate) {
         List<ProductCategory> categories = categoriesDatabase.getCategoryList();
         for (ProductCategory category : categories) {

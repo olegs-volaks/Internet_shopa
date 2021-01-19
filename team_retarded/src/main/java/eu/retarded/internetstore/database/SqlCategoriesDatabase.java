@@ -29,7 +29,7 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
     @Override
     public boolean removeCategory(String name) {
         try {
-            jdbcTemplate.update("DELETE FROM product_category WHERE name = `?`", name);
+            jdbcTemplate.update("DELETE FROM product_category WHERE name = ?", name);
             return true;
         } catch (DataAccessException ex) {
             return false;
@@ -72,6 +72,8 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
         return Optional.ofNullable(jdbcTemplate.queryForObject("SELECT * FROM product_category WHERE id = ?",
                 new ProductCategoryMapper(), id));
     }
+
+
 
     @Override
     public boolean isExist(Long id) {

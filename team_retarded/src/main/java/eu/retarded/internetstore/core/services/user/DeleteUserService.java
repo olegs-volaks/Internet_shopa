@@ -4,7 +4,7 @@ import eu.retarded.internetstore.core.requests.user.DeleteUserRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.user.DeleteUserResponse;
 import eu.retarded.internetstore.core.services.validators.user.DeleteUserValidator;
-import eu.retarded.internetstore.database.user.ListUsersDatabase;
+import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class DeleteUserService {
     @Autowired
-    private ListUsersDatabase db;
+    private UsersDatabase db;
     @Autowired
     private DeleteUserValidator validator;
 
