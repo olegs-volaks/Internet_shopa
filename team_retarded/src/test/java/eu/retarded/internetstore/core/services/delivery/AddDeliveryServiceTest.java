@@ -5,7 +5,7 @@ import eu.retarded.internetstore.core.responses.CoreError;
 
 import eu.retarded.internetstore.core.responses.delivery.AddDeliveryResponse;
 import eu.retarded.internetstore.core.services.validators.delivery.AddDeliveryValidator;
-import eu.retarded.internetstore.database.DeliveryDatabase;
+import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
 import eu.retarded.internetstore.matchers.DeliveryMatcher;
 
 import org.junit.jupiter.api.Assertions;

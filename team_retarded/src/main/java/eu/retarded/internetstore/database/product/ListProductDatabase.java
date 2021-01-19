@@ -1,7 +1,8 @@
-package eu.retarded.internetstore.database;
+package eu.retarded.internetstore.database.product;
 
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.domain.ProductCategory;
+import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;

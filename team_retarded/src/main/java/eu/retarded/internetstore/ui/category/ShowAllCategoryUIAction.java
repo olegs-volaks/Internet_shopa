@@ -1,7 +1,7 @@
 package eu.retarded.internetstore.ui.category;
 
 import eu.retarded.internetstore.core.domain.ProductCategory;
-import eu.retarded.internetstore.database.CategoriesDatabase;
+import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import eu.retarded.internetstore.ui.UIAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

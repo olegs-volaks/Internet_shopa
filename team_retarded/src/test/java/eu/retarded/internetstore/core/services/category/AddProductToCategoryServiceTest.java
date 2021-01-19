@@ -5,8 +5,8 @@ import eu.retarded.internetstore.core.requests.category.AddProductToCategoryRequ
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.category.AddProductToCategoryResponse;
 import eu.retarded.internetstore.core.services.validators.category.AddProductToCategoryValidator;
-import eu.retarded.internetstore.database.CategoriesDatabase;
-import eu.retarded.internetstore.database.ProductDatabase;
+import eu.retarded.internetstore.database.category.CategoriesDatabase;
+import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

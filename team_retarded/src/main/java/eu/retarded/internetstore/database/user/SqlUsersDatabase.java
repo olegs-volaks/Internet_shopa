@@ -18,22 +18,22 @@ public class SqlUsersDatabase implements UsersDatabase {
 
     @Override
     public Long add(User user) {
-        jdbcTemplate.update("INSERT INTO user (login,pasword ) VALUES (?,?)", user.getLogin(),
+        jdbcTemplate.update("INSERT INTO users (login,password ) VALUES (?,?)", user.getLogin(),
                 user.getPassword());
-        return jdbcTemplate.queryForObject("SELECT id FROM user WHERE id=(SELECT max(id) FROM products)",
+        return jdbcTemplate.queryForObject("SELECT id FROM users WHERE id=(SELECT max(id) FROM products)",
                 Long.class);
     }
 
     @Override
     public boolean delete(Long id) {
-        return jdbcTemplate.update("DELETE FROM user WHERE id=?",id)==1;
+        return jdbcTemplate.update("DELETE FROM users WHERE id=?",id)==1;
     }
 
     @Override
     public Optional<User> getUserById(Long id) {
         User user;
         try {
-            user=jdbcTemplate.queryForObject("SELECT * FROM user WHERE id = ?",new UserMapper(), id);
+            user=jdbcTemplate.queryForObject("SELECT * FROM users WHERE id = ?",new UserMapper(), id);
         }catch (IncorrectResultSizeDataAccessException exception){
             user=null;
         }
@@ -42,7 +42,7 @@ public class SqlUsersDatabase implements UsersDatabase {
 
     @Override
     public List<User> getList() {
-        return jdbcTemplate.query("SELECT * FROM user", new UserMapper());
+        return jdbcTemplate.query("SELECT * FROM users", new UserMapper());
     }
 
 }

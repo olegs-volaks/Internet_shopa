@@ -4,7 +4,7 @@ import eu.retarded.internetstore.core.requests.category.DeleteCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.category.DeleteCategoryResponse;
 import eu.retarded.internetstore.core.services.validators.category.DeleteCategoryValidator;
-import eu.retarded.internetstore.database.CategoriesDatabase;
+import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

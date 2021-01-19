@@ -1,7 +1,7 @@
 package eu.retarded.internetstore.database.categories.database;
 
 import eu.retarded.internetstore.core.domain.ProductCategory;
-import eu.retarded.internetstore.database.ListCategoriesDatabase;
+import eu.retarded.internetstore.database.category.ListCategoriesDatabase;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

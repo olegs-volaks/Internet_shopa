@@ -1,4 +1,4 @@
-package eu.retarded.internetstore.database;
+package eu.retarded.internetstore.database.category;
 
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.domain.ProductCategory;
@@ -21,15 +21,15 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public Long addCategory(ProductCategory ListCategory) {
-        jdbcTemplate.update("INSERT INTO product_category(name) VALUES (?)", ListCategory.getName());
-        return jdbcTemplate.queryForObject("SELECT id FROM product_category WHERE id=(SELECT max(id) FROM product_category)",
+        jdbcTemplate.update("INSERT INTO product_categories(name) VALUES (?)", ListCategory.getName());
+        return jdbcTemplate.queryForObject("SELECT id FROM product_categories WHERE id=(SELECT max(id) FROM product_categories)",
                 Long.class);
     }
 
     @Override
     public boolean removeCategory(String name) {
         try {
-            jdbcTemplate.update("DELETE FROM product_category WHERE name = ?", name);
+            jdbcTemplate.update("DELETE FROM product_categories WHERE name = ?", name);
             return true;
         } catch (DataAccessException ex) {
             return false;
@@ -39,7 +39,7 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
     @Override
     public boolean removeCategory(Long id) {
         try {
-            jdbcTemplate.update("DELETE FROM product_category WHERE id = ?", id);
+            jdbcTemplate.update("DELETE FROM product_categories WHERE id = ?", id);
             return true;
         } catch (DataAccessException ex) {
             return false;
@@ -53,12 +53,12 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public void clear() {
-        jdbcTemplate.update("DELETE FROM product_category");
+        jdbcTemplate.update("DELETE FROM product_categories");
     }
 
     @Override
     public List<ProductCategory> getCategoryList() {
-        List<ProductCategory> categories = jdbcTemplate.query("SELECT * FROM product_category", new ProductCategoryMapper());
+        List<ProductCategory> categories = jdbcTemplate.query("SELECT * FROM product_categories", new ProductCategoryMapper());
         categories.forEach(productCategory -> {
             List<Product> products = jdbcTemplate.query("SELECT * FROM products WHERE category_id = ?",
                     new ProductMapper(), productCategory.getId());
@@ -69,7 +69,7 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public Optional<ProductCategory> getCategory(Long id) {
-        return Optional.ofNullable(jdbcTemplate.queryForObject("SELECT * FROM product_category WHERE id = ?",
+        return Optional.ofNullable(jdbcTemplate.queryForObject("SELECT * FROM product_categories WHERE id = ?",
                 new ProductCategoryMapper(), id));
     }
 

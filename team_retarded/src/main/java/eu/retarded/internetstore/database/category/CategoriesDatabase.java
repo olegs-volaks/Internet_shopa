@@ -1,4 +1,4 @@
-package eu.retarded.internetstore.database;
+package eu.retarded.internetstore.database.category;
 
 import eu.retarded.internetstore.core.domain.ProductCategory;
 

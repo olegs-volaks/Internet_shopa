@@ -1,4 +1,4 @@
-package eu.retarded.internetstore.database;
+package eu.retarded.internetstore.database.product;
 
 
 import eu.retarded.internetstore.core.domain.Product;
@@ -44,7 +44,7 @@ public class SqlProductDatabase implements ProductDatabase {
 
     @Override
     public void clear() {
-        jdbcTemplate.update( "DROP TABLE products");
+        jdbcTemplate.update("DELETE FROM products");
     }
 
     @Override
@@ -72,7 +72,7 @@ public class SqlProductDatabase implements ProductDatabase {
     }
 
     private void deleteFromCategories(Predicate<Product> predicate) {
-        List<ProductCategory> categories = jdbcTemplate.query("SELECT * FROM product_category", new ProductCategoryMapper());
+        List<ProductCategory> categories = jdbcTemplate.query("SELECT * FROM product_categories", new ProductCategoryMapper());
         categories.forEach(category -> category.remove(predicate));
     }
 
