@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 @Component
@@ -60,12 +59,10 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
     @Override
     public List<ProductCategory> getCategoryList() {
         List<ProductCategory> categories = jdbcTemplate.query("SELECT * FROM product_category", new ProductCategoryMapper());
-        categories.forEach(new Consumer<ProductCategory>() {
-            @Override
-            public void accept(ProductCategory productCategory) {
-                List<Product> products = jdbcTemplate.query("SELECT * FROM products WHERE category_id = ?",
-                        new ProductMapper(), productCategory.getId());
-            }
+        categories.forEach(productCategory -> {
+            List<Product> products = jdbcTemplate.query("SELECT * FROM products WHERE category_id = ?",
+                    new ProductMapper(), productCategory.getId());
+            productCategory.setProducts(products);
         });
         return categories;
     }

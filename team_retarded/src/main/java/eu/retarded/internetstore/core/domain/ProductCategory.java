@@ -23,6 +23,7 @@ public class ProductCategory {
         this.products = products;
     }
 
+
     public void setId(Long id) {
         this.id = id;
     }
