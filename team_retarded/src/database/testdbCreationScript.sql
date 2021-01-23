@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS products
     category_id BIGINT,
     name        VARCHAR(100)  NOT NULL,
     description VARCHAR(2000) NOT NULL,
-    price       DOUBLE        NOT NULL,
+    price       DECIMAL       NOT NULL,
     count       INT DEFAULT 0,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`category_id`) REFERENCES `product_categories` (`id`)
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS deliveries
     id     BIGINT       NOT NULL AUTO_INCREMENT,
     title  VARCHAR(100) NOT NULL,
     region VARCHAR(100) NOT NULL,
-    price  DOUBLE       NOT NULL,
+    price  DECIMAL      NOT NULL,
     PRIMARY KEY (id)
 )
     ENGINE = InnoDB
