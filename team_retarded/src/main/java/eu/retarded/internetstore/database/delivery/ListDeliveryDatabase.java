@@ -46,7 +46,7 @@ public class ListDeliveryDatabase  implements DeliveryDatabase {
     public Optional<Delivery> getById(Long id) {
         return deliveryDatabase.stream()
                 .filter(delivery -> delivery.getId().equals(id))
-                .findAny();
+                .findAny(); // может тут findFirst()?
     }
 
     @Override
