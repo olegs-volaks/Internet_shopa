@@ -14,7 +14,7 @@ public class DeliveryMapper implements RowMapper<Delivery> {
         String region = resultSet.getString("region");
         double price = resultSet.getDouble("price");
         Delivery delivery = new Delivery(title, region, price);
-        delivery.setId(resultSet.getLong("id")); // ид нужен?
+        delivery.setId(resultSet.getLong("id"));
         return delivery;
     }
 }

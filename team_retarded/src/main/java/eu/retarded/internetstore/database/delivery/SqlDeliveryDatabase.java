@@ -25,7 +25,7 @@ public class SqlDeliveryDatabase implements DeliveryDatabase {
         jdbcTemplate.update("INSERT INTO deliveries(title, region, price)" +
                         "VALUES (?, ? , ?)",
                 delivery.getTitle(), delivery.getRegion(), delivery.getPrice());
-        return jdbcTemplate.queryForObject("SELECT id FROM deliveries WHERE id=(SELECT max(id) FROM deliveries)", // ид или title?
+        return jdbcTemplate.queryForObject("SELECT id FROM deliveries WHERE id=(SELECT max(id) FROM deliveries)",
                 Long.class);
     }
 
