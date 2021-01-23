@@ -9,6 +9,15 @@ public class Product {
     private String name;
     private String description;
     private BigDecimal price;
+    private Long categoryId;
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
 
     public Product(String name, String description, double price) {
         this.name = name;

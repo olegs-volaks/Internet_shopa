@@ -1,4 +1,4 @@
-package eu.retarded.internetstore.core.requests.category;
+package eu.retarded.internetstore.core.requests.product;
 
 public class AddProductToCategoryRequest {
 

@@ -1,8 +1,8 @@
-package eu.retarded.internetstore.ui.category;
+package eu.retarded.internetstore.ui.product;
 
-import eu.retarded.internetstore.core.requests.category.AddProductToCategoryRequest;
-import eu.retarded.internetstore.core.responses.category.AddProductToCategoryResponse;
-import eu.retarded.internetstore.core.services.category.AddProductToCategoryService;
+import eu.retarded.internetstore.core.requests.product.AddProductToCategoryRequest;
+import eu.retarded.internetstore.core.responses.product.AddProductToCategoryResponse;
+import eu.retarded.internetstore.core.services.product.AddProductToCategoryService;
 import eu.retarded.internetstore.ui.UIAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,8 +27,14 @@ public class AddProductToCategoryUIAction implements UIAction {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
                     + coreError.getField() + ": " + coreError.getMessage()));
         } else {
-            System.out.println("Product ID " + response.getProductIdId() +
-                    " was added successfully to category ID " + response.getCategoryId());
+            if (response.productInCategory()){
+                System.out.println("Product ID " + productId +
+                        " was added successfully to category ID " + categoryId);
+            }else {
+                System.out.println("Product ID " + productId +
+                        " was not added to category ID " + categoryId);
+            }
+
         }
     }
 }
