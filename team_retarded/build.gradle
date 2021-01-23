@@ -1,9 +1,12 @@
 dependencies {
     compile('mysql:mysql-connector-java:8.0.23')
-    compile('org.springframework:spring-jdbc:5.3.3.RELEASE')
     compile('org.apache.commons:commons-dbcp2:2.8.0')
-    implementation 'junit:junit:4.12'
+    compile('org.springframework:spring-jdbc:5.3.3.RELEASE')
     compile('org.springframework:spring-context:5.3.3.RELEASE')
+    compile('org.springframework:spring-orm:5.3.3.RELEASE')
+    compile('org.springframework:spring-tx:5.3.3.RELEASE')
+    compile('org.hibernate:hibernate-core:5.4.27.Final')
+
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.7.0'
     testCompile("org.assertj:assertj-core:3.18.1")
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
