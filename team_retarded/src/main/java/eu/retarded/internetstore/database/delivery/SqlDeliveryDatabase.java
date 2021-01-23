@@ -22,27 +22,27 @@ public class SqlDeliveryDatabase implements DeliveryDatabase {
 
     @Override
     public Long add(Delivery delivery) {
-        jdbcTemplate.update("INSERT INTO delivery(title, region, price)" +
+        jdbcTemplate.update("INSERT INTO deliveries(title, region, price)" +
                         "VALUES (?, ? , ?)",
                 delivery.getTitle(), delivery.getRegion(), delivery.getPrice());
-        return jdbcTemplate.queryForObject("SELECT id FROM delivery WHERE id=(SELECT max(id) FROM delivery", // ид или title?
+        return jdbcTemplate.queryForObject("SELECT id FROM deliveries WHERE id=(SELECT max(id) FROM deliveries)", // ид или title?
                 Long.class);
     }
 
     @Override
     public boolean delete(Long id) {
-        return jdbcTemplate.update("DELETE FROM delivery WHERE id=?", id) == 1;
+        return jdbcTemplate.update("DELETE FROM deliveries WHERE id=?", id) == 1;
     }
 
     @Override
     public boolean delete(Predicate<Delivery> predicate) {
-        List<Delivery> deliveries = jdbcTemplate.query("SELECT * FROM delivery", new DeliveryMapper());
+        List<Delivery> deliveries = jdbcTemplate.query("SELECT * FROM deliveries", new DeliveryMapper());
         return deliveries.removeIf(predicate);
     }
 
     @Override
     public void clear() {
-        jdbcTemplate.update("DELETE FROM delivery");
+        jdbcTemplate.update("DELETE FROM deliveries");
 
     }
 
@@ -50,7 +50,7 @@ public class SqlDeliveryDatabase implements DeliveryDatabase {
     public Optional<Delivery> getById(Long id) {
         Delivery delivery;
         try {
-            delivery = jdbcTemplate.queryForObject("SELECT * FROM delivery WHERE id = ?", new DeliveryMapper(), id);
+            delivery = jdbcTemplate.queryForObject("SELECT * FROM deliveries WHERE id = ?", new DeliveryMapper(), id);
         } catch (IncorrectResultSizeDataAccessException exception) {
             delivery = null;
         }
@@ -59,7 +59,7 @@ public class SqlDeliveryDatabase implements DeliveryDatabase {
 
     @Override
     public List<Delivery> filter(Predicate<Delivery> predicate) {
-        List<Delivery> deliveries = jdbcTemplate.query("SELECT * FROM delivery", new DeliveryMapper());
+        List<Delivery> deliveries = jdbcTemplate.query("SELECT * FROM deliveries", new DeliveryMapper());
         return deliveries.stream()
                 .filter(predicate)
                 .collect(toList());
@@ -67,7 +67,7 @@ public class SqlDeliveryDatabase implements DeliveryDatabase {
 
     @Override
     public List<Delivery> getList() {
-        return jdbcTemplate.query("SELECT * FROM delivery", new DeliveryMapper());
+        return jdbcTemplate.query("SELECT * FROM deliveries", new DeliveryMapper());
     }
 
     @Override
