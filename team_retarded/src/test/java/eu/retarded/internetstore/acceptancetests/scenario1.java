@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.stereotype.Component;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,45 +19,45 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class scenario1 {
 
     private ApplicationContext context;
+    private ProductDatabase productDatabase;
 
     @BeforeEach
     void setUp() {
         context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+        productDatabase = context.getBean(ProductDatabase.class);
+        productDatabase.clear();
     }
 
     @Test
     void test1() {
 
         AddProductService service = context.getBean(AddProductService.class);
-        ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request1 = new AddProductRequest("name1", "description123123", 123.1);
         AddProductRequest request2 = new AddProductRequest("name1", "description123123", 123.1);
         service.execute(request1);
         service.execute(request2);
-        assertThat(database.getList().size()).isEqualTo(2);
+        assertThat(productDatabase.getList().size()).isEqualTo(2);
     }
 
     @Test
     void test2() {
 
         AddProductService addService = context.getBean(AddProductService.class);
-        ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request1 = new AddProductRequest("name1", "description123123", 123.1);
         AddProductRequest request2 = new AddProductRequest("name2", "description456456", 123.1);
         addService.execute(request1);
         addService.execute(request2);
         DeleteProductService deleteService = context.getBean(DeleteProductService.class);
         deleteService.execute(new DeleteProductRequest(2));
-        assertThat(database.getList().size()).isEqualTo(1);
-        assertThat(database.getById(2L).isEmpty()).isTrue();
-        assertThat(database.getById(1L).isEmpty()).isFalse();
+        assertThat(productDatabase.getList().size()).isEqualTo(1);
+        assertThat(productDatabase.getById(2L).isEmpty()).isTrue();
+        assertThat(productDatabase.getById(1L).isEmpty()).isFalse();
     }
 
     @Test
     void test3() {
 
         AddProductService addService = context.getBean(AddProductService.class);
-        ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest addRequest1 = new AddProductRequest("name1", "description123123", 123.1);
         AddProductRequest addRequest2 = new AddProductRequest("name2", "description456456", 123.1);
         AddProductRequest addRequest3 = new AddProductRequest("name3", "description456456", 123.1);
@@ -67,9 +66,9 @@ public class scenario1 {
         DeleteProductService deleteService = context.getBean(DeleteProductService.class);
         addService.execute(addRequest3);
         deleteService.execute(new DeleteProductRequest(2));
-        assertThat(database.getById(2L).isEmpty()).isTrue();
-        assertThat(database.getList().size()).isEqualTo(2);
-        assertThat(database.getById(3L).get().getName()).isEqualTo("name3");
+        assertThat(productDatabase.getById(2L).isEmpty()).isTrue();
+        assertThat(productDatabase.getList().size()).isEqualTo(2);
+        assertThat(productDatabase.getById(3L).get().getName()).isEqualTo("name3");
     }
 
     @Test
