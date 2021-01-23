@@ -1,17 +1,18 @@
 dependencies {
     compile('mysql:mysql-connector-java:8.0.23')
     compile('org.apache.commons:commons-dbcp2:2.8.0')
-    compile('org.springframework:spring-jdbc:5.3.3.RELEASE')
-    compile('org.springframework:spring-context:5.3.3.RELEASE')
-    compile('org.springframework:spring-orm:5.3.3.RELEASE')
-    compile('org.springframework:spring-tx:5.3.3.RELEASE')
+    compile('org.springframework:spring-jdbc:5.3.3')
+    compile('org.springframework:spring-context:5.3.3')
+    compile('org.springframework:spring-orm:5.3.3')
+    compile('org.springframework:spring-tx:5.3.3')
     compile('org.hibernate:hibernate-core:5.4.27.Final')
+    implementation 'org.projectlombok:lombok:1.18.16'
 
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.7.0'
     testCompile("org.assertj:assertj-core:3.18.1")
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
     testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.7.7'
-    testCompile('org.springframework:spring-test:5.3.3.RELEASE')
+    testCompile('org.springframework:spring-test:5.3.3')
 }
 test {
     useJUnitPlatform()
