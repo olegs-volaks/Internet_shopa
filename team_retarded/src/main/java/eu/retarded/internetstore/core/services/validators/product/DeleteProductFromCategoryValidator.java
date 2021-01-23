@@ -1,6 +1,6 @@
-package eu.retarded.internetstore.core.services.validators.category;
+package eu.retarded.internetstore.core.services.validators.product;
 
-import eu.retarded.internetstore.core.requests.category.DeleteProductFromCategoryRequest;
+import eu.retarded.internetstore.core.requests.product.DeleteProductFromCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import eu.retarded.internetstore.database.product.ProductDatabase;
@@ -21,7 +21,6 @@ public class DeleteProductFromCategoryValidator {
     public List<CoreError> validate(DeleteProductFromCategoryRequest request) {
         List<CoreError> errors = new ArrayList<>();
         validateProductId(request).ifPresent(errors::add);
-        validateCategoryId(request).ifPresent(errors::add);
         return errors;
     }
 
@@ -35,14 +34,5 @@ public class DeleteProductFromCategoryValidator {
         return Optional.empty();
     }
 
-    private Optional<CoreError> validateCategoryId(DeleteProductFromCategoryRequest request) {
-        if (request.DeleteProductFromCategoryCategoryID() <= 0) {
-            return Optional.of(new CoreError("CategoryID", "Must not be empty or negative"));
-        }
-        if (categoriesDatabase.getCategory(request.DeleteProductFromCategoryCategoryID()).isEmpty()) {
-            return Optional.of(new CoreError("CategoryID", "Category with this ID does not exist"));
-        }
-        return Optional.empty();
-    }
 }
 

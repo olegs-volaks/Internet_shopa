@@ -1,15 +1,11 @@
 package eu.retarded.internetstore.core.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.function.Predicate;
 
 public class ProductCategory {
 
     private Long id;
     private String name;
-    private List<Product> products = new ArrayList<>();
 
     public ProductCategory(String name) {
         this.name = name;
@@ -17,10 +13,6 @@ public class ProductCategory {
 
     public Long getId() {
         return id;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 
 
@@ -36,29 +28,11 @@ public class ProductCategory {
         this.name = name;
     }
 
-    public List<Product> getList() {
-        return products;
-    }
-
-    public void add(Product product) {
-        products.add(product);
-    }
-
-    public boolean remove(Product product) {
-        return products.remove(product);
-    }
-
-    public void remove(Predicate<Product> predicate) {
-        products.removeIf(predicate);
-    }
-
     @Override
     public String toString() {
         return "Category{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", productsIdList=" + products +
-                '}';
+                ", name='" + name +"}";
     }
 
     @Override
@@ -67,12 +41,11 @@ public class ProductCategory {
         if (o == null || getClass() != o.getClass()) return false;
         ProductCategory listProductCategory = (ProductCategory) o;
         return id.equals(listProductCategory.id) &&
-                Objects.equals(name, listProductCategory.name) &&
-                Objects.equals(products, listProductCategory.products);
+                Objects.equals(name, listProductCategory.name) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, products);
+        return Objects.hash(id, name);
     }
 }

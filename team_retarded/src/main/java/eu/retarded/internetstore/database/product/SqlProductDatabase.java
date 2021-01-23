@@ -2,8 +2,6 @@ package eu.retarded.internetstore.database.product;
 
 
 import eu.retarded.internetstore.core.domain.Product;
-import eu.retarded.internetstore.core.domain.ProductCategory;
-import eu.retarded.internetstore.core.domain.row_mapper.ProductCategoryMapper;
 import eu.retarded.internetstore.core.domain.row_mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
@@ -37,7 +35,6 @@ public class SqlProductDatabase implements ProductDatabase {
 
     @Override
     public boolean delete(Predicate<Product> predicate) {
-        deleteFromCategories(predicate);
         List<Product> products = jdbcTemplate.query("SELECT * FROM products", new ProductMapper());
         return products.removeIf(predicate);
     }
@@ -71,13 +68,24 @@ public class SqlProductDatabase implements ProductDatabase {
         return jdbcTemplate.query("SELECT * FROM products", new ProductMapper());
     }
 
-    private void deleteFromCategories(Predicate<Product> predicate) {
+   /* private void deleteFromCategories(Predicate<Product> predicate) {
         List<ProductCategory> categories = jdbcTemplate.query("SELECT * FROM product_categories", new ProductCategoryMapper());
         categories.forEach(category -> category.remove(predicate));
-    }
+    }*/
 
     @Override
     public boolean isExist(Long id) {
         return getById(id).isPresent();
     }
+
+    @Override
+    public boolean addProductToCategory(Long productId, Long categoryId){
+        return jdbcTemplate.update("UPDATE products SET category_id = ? WHERE id = ? ",categoryId,productId)==1;
+    }
+
+    @Override
+    public boolean removeProductFromCategory(Long productId ) {
+        return jdbcTemplate.update("UPDATE products SET category_id=null WHERE id = ? ",productId)==1;
+    }
+
 }

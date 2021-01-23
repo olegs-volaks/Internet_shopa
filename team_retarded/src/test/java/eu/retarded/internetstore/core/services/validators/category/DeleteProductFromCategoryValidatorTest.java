@@ -2,8 +2,9 @@ package eu.retarded.internetstore.core.services.validators.category;
 
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.domain.ProductCategory;
-import eu.retarded.internetstore.core.requests.category.DeleteProductFromCategoryRequest;
+import eu.retarded.internetstore.core.requests.product.DeleteProductFromCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.services.validators.product.DeleteProductFromCategoryValidator;
 import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,7 @@ class DeleteProductFromCategoryValidatorTest {
 
     @Test
     void CategoryID_and_ProductID_is_not_exist() {
-        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(1, 1);
+        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(1);
         Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.empty());
         Mockito.when(productDatabase.getById(1L)).thenReturn(Optional.empty());
         List<CoreError> actual = subject.validate(request);
@@ -45,7 +46,7 @@ class DeleteProductFromCategoryValidatorTest {
 
     @Test
     void CategoryID_is_not_exist() {
-        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(1, 1);
+        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(1);
         Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.empty());
         Mockito.when(productDatabase.getById(1L)).
                 thenReturn(Optional.of(new Product("Audi", "red1234567890", 345)));
@@ -58,7 +59,7 @@ class DeleteProductFromCategoryValidatorTest {
 
     @Test
     void ProductID_is_not_exist() {
-        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(1, 1);
+        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(1);
         Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.of(new ProductCategory("Phone")));
         Mockito.when(productDatabase.getById(1L)).thenReturn(Optional.empty());
         List<CoreError> actual = subject.validate(request);
@@ -70,7 +71,7 @@ class DeleteProductFromCategoryValidatorTest {
 
     @Test
     void ProductID_is_negative() {
-        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(1, -1);
+        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(1);
         Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.of(new ProductCategory("Phone")));
         List<CoreError> actual = subject.validate(request);
         List<CoreError> expected = new ArrayList<>();
@@ -81,7 +82,7 @@ class DeleteProductFromCategoryValidatorTest {
 
     @Test
     void CategoryID_is_negative() {
-        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(-1, 1);
+        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(-1);
         Mockito.when(productDatabase.getById(1L)).
                 thenReturn(Optional.of(new Product("Audi", "red1234567890", 345)));
         List<CoreError> actual = subject.validate(request);
@@ -93,7 +94,7 @@ class DeleteProductFromCategoryValidatorTest {
 
     @Test
     void CategoryID_ProductID_and_is_negative() {
-        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(-1, -1);
+        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(-1);
         List<CoreError> actual = subject.validate(request);
         List<CoreError> expected = new ArrayList<>();
         expected.add(new CoreError("ProductID", "Must not be empty or negative"));
@@ -104,7 +105,7 @@ class DeleteProductFromCategoryValidatorTest {
 
     @Test
     void All_successful() {
-        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(1, 1);
+        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(1);
         Mockito.when(productDatabase.getById(1L)).
                 thenReturn(Optional.of(new Product("Audi", "red1234567890", 345)));
         List<CoreError> expected = new ArrayList<>();

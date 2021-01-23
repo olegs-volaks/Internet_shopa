@@ -1,7 +1,6 @@
 package eu.retarded.internetstore.database.product;
 
 import eu.retarded.internetstore.core.domain.Product;
-import eu.retarded.internetstore.core.domain.ProductCategory;
 import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,13 +29,11 @@ public class ListProductDatabase implements ProductDatabase {
 
     @Override
     public boolean delete(Long id) {
-        deleteFromCategories(product -> product.getId().equals(id));
         return productDatabase.removeIf(x -> x.getId().equals(id));
     }
 
     @Override
     public boolean delete(Predicate<Product> predicate) {
-        deleteFromCategories(predicate);
         return productDatabase.removeIf(predicate);
     }
 
@@ -70,11 +67,14 @@ public class ListProductDatabase implements ProductDatabase {
         return getById(id).isPresent();
     }
 
-
-    private void deleteFromCategories(Predicate<Product> predicate) {
-        List<ProductCategory> categories = categoriesDatabase.getCategoryList();
-        for (ProductCategory category : categories) {
-            category.remove(predicate);
-        }
+    @Override
+    public boolean addProductToCategory(Long productId, Long categoryId) {
+        return false;
     }
+
+    @Override
+    public boolean removeProductFromCategory(Long productId) {
+        return false;
+    }
+
 }

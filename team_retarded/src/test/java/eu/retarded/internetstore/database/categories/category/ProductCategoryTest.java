@@ -1,12 +1,7 @@
 package eu.retarded.internetstore.database.categories.category;
 
-import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.domain.ProductCategory;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 class ProductCategoryTest {
 
@@ -17,7 +12,7 @@ class ProductCategoryTest {
         subject = new ProductCategory("subject");
     }
 
-    @Test
+   /* @Test
     void add_product_test() {
         subject.add(new Product("name1", "desc1", 12.6));
         subject.add(new Product("name2", "desc2", 12.6));
@@ -53,5 +48,5 @@ class ProductCategoryTest {
         assertThat(subject.getList().size()).isEqualTo(2);
         Assertions.assertThat(subject.getList()).noneMatch(product -> product.getName().equals("name2") ||
                 product.getName().equals("name3"));
-    }
+    }*/
 }

@@ -1,6 +1,6 @@
-package eu.retarded.internetstore.core.services.validators.category;
+package eu.retarded.internetstore.core.services.validators.product;
 
-import eu.retarded.internetstore.core.requests.category.AddProductToCategoryRequest;
+import eu.retarded.internetstore.core.requests.product.AddProductToCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import eu.retarded.internetstore.database.product.ProductDatabase;

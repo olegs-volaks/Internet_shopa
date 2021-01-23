@@ -1,11 +1,11 @@
-package eu.retarded.internetstore.core.services.category;
+package eu.retarded.internetstore.core.services.product;
 
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.domain.ProductCategory;
-import eu.retarded.internetstore.core.requests.category.AddProductToCategoryRequest;
+import eu.retarded.internetstore.core.requests.product.AddProductToCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
-import eu.retarded.internetstore.core.responses.category.AddProductToCategoryResponse;
-import eu.retarded.internetstore.core.services.validators.category.AddProductToCategoryValidator;
+import eu.retarded.internetstore.core.responses.product.AddProductToCategoryResponse;
+import eu.retarded.internetstore.core.services.validators.product.AddProductToCategoryValidator;
 import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +32,10 @@ public class AddProductToCategoryService {
         Optional<ProductCategory> categoryID = categoriesDatabase.getCategory(request.AddProductToCategoryCategoryID());
         Optional<Product> productID = productDatabase.getById(request.AddProductToCategoryProductID());
 
-        if (categoryID.isPresent() && productID.isPresent()) {
-            categoryID.get().add(productID.get());
-        }
-        return new AddProductToCategoryResponse(request.AddProductToCategoryCategoryID(), request.AddProductToCategoryProductID());
+
+        return new AddProductToCategoryResponse
+                    (productDatabase.addProductToCategory(productID.get().getId(), categoryID.get().getId()));
+
+
     }
 }
