@@ -18,7 +18,7 @@ public class DeleteUserValidator {
     }
 
     private Optional<CoreError> validateId(DeleteUserRequest request) {
-        if (request.getUserIdToDelete() <= 0) {
+        if (request.getUserId() <= 0) {
             return Optional.of(new CoreError("ID", "Must not be empty, negative or fractional"));
         }
 

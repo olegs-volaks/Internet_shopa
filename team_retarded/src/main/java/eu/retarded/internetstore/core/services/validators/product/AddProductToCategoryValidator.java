@@ -27,20 +27,20 @@ public class AddProductToCategoryValidator {
     }
 
     private Optional<CoreError> validateProductId(AddProductToCategoryRequest request) {
-        if (request.AddProductToCategoryProductID() <= 0) {
+        if (request.getProductId() <= 0) {
             return Optional.of(new CoreError("ProductID", "Must not be empty or negative"));
         }
-        if (productDatabase.getById(request.AddProductToCategoryProductID()).isEmpty()) {
+        if (productDatabase.getById(request.getProductId()).isEmpty()) {
             return Optional.of(new CoreError("ProductID", "Product with this ID does not exist"));
         }
         return Optional.empty();
     }
 
     private Optional<CoreError> validateCategoryId(AddProductToCategoryRequest request) {
-        if (request.AddProductToCategoryCategoryID() <= 0) {
+        if (request.getCategoryId() <= 0) {
             return Optional.of(new CoreError("CategoryID", "Must not be empty or negative"));
         }
-        if (categoriesDatabase.getCategory(request.AddProductToCategoryCategoryID()).isEmpty()) {
+        if (categoriesDatabase.getCategory(request.getCategoryId()).isEmpty()) {
             return Optional.of(new CoreError("CategoryID", "Category with this ID does not exist"));
         }
         return Optional.empty();

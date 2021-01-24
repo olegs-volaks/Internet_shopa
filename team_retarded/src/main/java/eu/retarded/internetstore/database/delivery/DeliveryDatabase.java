@@ -2,7 +2,6 @@ package eu.retarded.internetstore.database.delivery;
 
 import eu.retarded.internetstore.core.domain.Delivery;
 
-
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;

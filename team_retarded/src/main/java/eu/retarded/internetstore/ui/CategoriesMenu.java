@@ -1,6 +1,9 @@
 package eu.retarded.internetstore.ui;
 
-import eu.retarded.internetstore.ui.category.*;
+import eu.retarded.internetstore.ui.category.AddCategoryUIAction;
+import eu.retarded.internetstore.ui.category.DeleteAllCategoryUIAction;
+import eu.retarded.internetstore.ui.category.DeleteCategoryUIAction;
+import eu.retarded.internetstore.ui.category.ShowAllCategoryUIAction;
 import eu.retarded.internetstore.ui.product.AddProductToCategoryUIAction;
 import eu.retarded.internetstore.ui.product.DeleteProductFromCategoryUIAction;
 import org.springframework.beans.factory.annotation.Autowired;

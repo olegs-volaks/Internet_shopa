@@ -20,17 +20,17 @@ class AddDeliveryValidatorTest {
     }
 
     @Test
-    void validate_title_is_less_than_4_characters() {
-        AddDeliveryRequest request = new AddDeliveryRequest("Mar", "description", 222.34);
+    void validate_title_is_less_than_3_characters() {
+        AddDeliveryRequest request = new AddDeliveryRequest("Ma", "description", 222.34);
         List<CoreError> result = subject.validate(request);
         assertThat(result).isNotEmpty();
         assertThat(result).allMatch(coreError -> coreError.getField().equals("Title") &&
-                coreError.getMessage().equals("Must be between 4 and 100 characters"));
+                coreError.getMessage().equals("Must be between 3 and 100 characters"));
     }
 
     @Test
-    void validate_title_is_more_than_4_characters() {
-        AddDeliveryRequest request = new AddDeliveryRequest("Snickers", "description", 222.34);
+    void validate_title_is_more_than_3_characters() {
+        AddDeliveryRequest request = new AddDeliveryRequest("Sni", "description", 222.34);
         List<CoreError> result = subject.validate(request);
         assertThat(result).isEmpty();
     }
@@ -42,7 +42,7 @@ class AddDeliveryValidatorTest {
         List<CoreError> result = subject.validate(request);
         assertThat(result).isNotEmpty();
         assertThat(result).allMatch(coreError -> coreError.getField().equals("Title") &&
-                coreError.getMessage().equals("Must be between 4 and 100 characters"));
+                coreError.getMessage().equals("Must be between 3 and 100 characters"));
     }
 
     @Test
@@ -76,7 +76,7 @@ class AddDeliveryValidatorTest {
         List<CoreError> result = subject.validate(request);
         assertThat(result).isNotEmpty();
         assertThat(result).allMatch(coreError -> coreError.getField().equals("Price") &&
-                coreError.getMessage().equals("Must be between 0 and 100000"));
+                coreError.getMessage().equals("Must be between 0 and 1000000000"));
     }
 
     @Test
@@ -87,11 +87,11 @@ class AddDeliveryValidatorTest {
     }
 
     @Test
-    void valida_price_is_more_than_100000() {
-        AddDeliveryRequest request = new AddDeliveryRequest("Nike","football ball",1000000000.00);
+    void valida_price_is_more_than_1000000000() {
+        AddDeliveryRequest request = new AddDeliveryRequest("Nike", "football ball", 10000000000.00);
         List<CoreError> result = subject.validate(request);
         assertThat(result).isNotEmpty();
         assertThat(result).allMatch(coreError -> coreError.getField().equals("Price") &&
-                coreError.getMessage().equals("Must be between 0 and 100000"));
+                coreError.getMessage().equals("Must be between 0 and 1000000000"));
     }
 }

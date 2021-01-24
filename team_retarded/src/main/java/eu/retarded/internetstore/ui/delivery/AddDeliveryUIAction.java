@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.util.Scanner;
 
 @Component
-public class AddDeliveryUIAction  implements UIAction {
+public class AddDeliveryUIAction implements UIAction {
 
     @Autowired
     private AddDeliveryService service;

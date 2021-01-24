@@ -17,7 +17,7 @@ public class ListProductDatabase implements ProductDatabase {
     @Autowired
     private CategoriesDatabase categoriesDatabase;
     private final List<Product> productDatabase = new ArrayList<>();
-    private Long id =0L;
+    private Long id = 0L;
 
     @Override
     public Long add(Product product) {

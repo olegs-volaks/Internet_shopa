@@ -37,17 +37,17 @@ class AddCategoryValidatorTest {
     }
 
     @Test
-    void name_is_3_characters() {
-        AddCategoryRequest request = new AddCategoryRequest("123");
+    void name_is_2_characters() {
+        AddCategoryRequest request = new AddCategoryRequest("12");
         List<CoreError> result = subject.validate(request);
         assertThat(result.size()).isEqualTo(1);
         assertThat(result).allMatch(coreError -> coreError.getField().equals("Name") &&
-                coreError.getMessage().equals("Must be between 4 and 100 characters"));
+                coreError.getMessage().equals("Must be between 3 and 100 characters"));
     }
 
     @Test
-    void name_is_4_characters() {
-        AddCategoryRequest request = new AddCategoryRequest("1234");
+    void name_is_3_characters() {
+        AddCategoryRequest request = new AddCategoryRequest("134");
         List<CoreError> result = subject.validate(request);
         assertThat(result).isEmpty();
     }
@@ -59,7 +59,7 @@ class AddCategoryValidatorTest {
         List<CoreError> result = subject.validate(request);
         assertThat(result.size()).isEqualTo(1);
         assertThat(result).allMatch(coreError -> coreError.getField().equals("Name") &&
-                coreError.getMessage().equals("Must be between 4 and 100 characters"));
+                coreError.getMessage().equals("Must be between 3 and 100 characters"));
     }
 
     @Test

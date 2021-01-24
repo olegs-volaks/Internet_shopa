@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 @Component
-public class UserMenu implements MenuUIAction  {
+public class UserMenu implements MenuUIAction {
     private final Map<Integer, UIAction> userMenuNumberToUIActionMap;
 
     @Autowired
@@ -31,7 +31,7 @@ public class UserMenu implements MenuUIAction  {
         while (true) {
             print();
             int menuNumber = getMenuNumberFromUser();
-            if (menuNumber==-1){
+            if (menuNumber == -1) {
                 continue;
             }
             if (menuNumber == 0) {

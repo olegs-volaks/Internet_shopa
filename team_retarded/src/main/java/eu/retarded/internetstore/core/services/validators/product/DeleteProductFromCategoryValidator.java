@@ -2,7 +2,6 @@ package eu.retarded.internetstore.core.services.validators.product;
 
 import eu.retarded.internetstore.core.requests.product.DeleteProductFromCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
-import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,8 +14,6 @@ import java.util.Optional;
 public class DeleteProductFromCategoryValidator {
     @Autowired
     private ProductDatabase productDatabase;
-    @Autowired
-    private CategoriesDatabase categoriesDatabase;
 
     public List<CoreError> validate(DeleteProductFromCategoryRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -25,10 +22,10 @@ public class DeleteProductFromCategoryValidator {
     }
 
     private Optional<CoreError> validateProductId(DeleteProductFromCategoryRequest request) {
-        if (request.DeleteProductFromCategoryProductId() <= 0) {
+        if (request.getProductId() <= 0) {
             return Optional.of(new CoreError("ProductID", "Must not be empty or negative"));
         }
-        if (productDatabase.getById(request.DeleteProductFromCategoryProductId()).isEmpty()) {
+        if (!productDatabase.isExist(request.getProductId())) {
             return Optional.of(new CoreError("ProductID", "Product with this ID does not exist"));
         }
         return Optional.empty();
