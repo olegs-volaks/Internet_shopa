@@ -2,6 +2,7 @@ package eu.retarded.internetstore.database.product;
 
 import eu.retarded.internetstore.core.domain.Product;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +27,9 @@ public class OrmProductDatabase implements ProductDatabase {
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        Query query = sessionFactory.getCurrentSession().createQuery("DELETE Product WHERE id =: id");
+        query.setParameter("id", id);
+        return query.executeUpdate() == 1;
     }
 
     @Override
