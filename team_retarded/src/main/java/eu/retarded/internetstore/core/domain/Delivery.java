@@ -65,7 +65,8 @@ public class Delivery {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Delivery delivery = (Delivery) o;
-        return Objects.equals(id, delivery.id) && Objects.equals(title, delivery.title) && Objects.equals(price, delivery.price) && Objects.equals(region, delivery.region);
+        return Objects.equals(id, delivery.id) && Objects.equals(title, delivery.title) && Objects.equals(price, delivery.price)
+                && Objects.equals(region, delivery.region);
     }
 
     @Override

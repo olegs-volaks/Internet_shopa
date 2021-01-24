@@ -1,16 +1,15 @@
 package eu.retarded.internetstore.acceptancetests;
 
 import eu.retarded.internetstore.config.applicationConfiguration;
+import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.AddProductRequest;
 import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
 import eu.retarded.internetstore.core.requests.product.GetProductByIdRequest;
-
 import eu.retarded.internetstore.core.requests.product.SearchProductRequest;
 import eu.retarded.internetstore.core.responses.product.AddProductResponse;
 import eu.retarded.internetstore.core.services.product.AddProductService;
 import eu.retarded.internetstore.core.services.product.DeleteProductService;
 import eu.retarded.internetstore.core.services.product.GetProductByIdService;
-
 import eu.retarded.internetstore.core.services.product.SearchProductService;
 import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,30 +17,35 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class AcceptanceTest1 {
 
     private ApplicationContext context;
+    private ProductDatabase productDatabase;
 
     @BeforeEach
     void setUp() {
         context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+        productDatabase = context.getBean(ProductDatabase.class);
+        productDatabase.clear();
+
     }
 
     @Test
     void add_product_request() {
 
         AddProductService service = context.getBean(AddProductService.class);
-        ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request = new AddProductRequest("Apple", "MackBook-Pro", 150.0);
         AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax", 899.99);
         AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 5", 500.0);
         service.execute(request);
         service.execute(request1);
         service.execute(request2);
-        assertThat(database.getList().size()).isEqualTo(3);
+        assertThat(productDatabase.getList().size()).isEqualTo(3);
     }
 
     @Test
@@ -49,33 +53,32 @@ public class AcceptanceTest1 {
 
         AddProductService addProductService = context.getBean(AddProductService.class);
         DeleteProductService deleteProductService = context.getBean(DeleteProductService.class);
-        ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request = new AddProductRequest("Apple", "MackBook-Pro", 150.0);
         AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax", 899.99);
         AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 5", 500.0);
-        addProductService.execute(request);
-        addProductService.execute(request1);
-        addProductService.execute(request2);
-        deleteProductService.execute(new DeleteProductRequest(1));
-        deleteProductService.execute(new DeleteProductRequest(2));
-        assertThat(database.getList().size()).isEqualTo(1);
-        assertThat(database.getById(1L).isEmpty()).isTrue();
-        assertThat(database.getById(2L).isEmpty()).isTrue();
-        assertThat(database.getById(3L).isEmpty()).isFalse();
+        long id1 = addProductService.execute(request).getProductId();
+        long id2 = addProductService.execute(request1).getProductId();
+        long id3 = addProductService.execute(request2).getProductId();
+        deleteProductService.execute(new DeleteProductRequest(id1));
+        deleteProductService.execute(new DeleteProductRequest(id2));
+        List<Product> productList = productDatabase.getList();
+        assertThat(productDatabase.getList().size()).isEqualTo(1);
+        assertThat(productDatabase.getById(id1).isEmpty()).isTrue();
+        assertThat(productDatabase.getById(id2).isEmpty()).isTrue();
+        assertThat(productDatabase.getById(id3).isEmpty()).isFalse();
     }
 
     @Test
     void show_all_product_request() {
 
         AddProductService addProductService = context.getBean(AddProductService.class);
-        ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request = new AddProductRequest("Apple", "MackBook-Pro", 150.0);
         AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax", 899.99);
         AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 5", 500.0);
         addProductService.execute(request);
         addProductService.execute(request1);
         addProductService.execute(request2);
-        assertThat(database.getList().size()).isEqualTo(3);
+        assertThat(productDatabase.getList().size()).isEqualTo(3);
 
     }
 
@@ -84,7 +87,6 @@ public class AcceptanceTest1 {
 
         AddProductService addProductService = context.getBean(AddProductService.class);
         GetProductByIdService getProductByIdService = context.getBean(GetProductByIdService.class);
-        ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request = new AddProductRequest("Apple", "MackBook-Pro", 150.0);
         AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax", 899.99);
         AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 5", 500.0);
@@ -93,10 +95,10 @@ public class AcceptanceTest1 {
         addProductService.execute(request2);
         getProductByIdService.execute(new GetProductByIdRequest(2L));
         getProductByIdService.execute(new GetProductByIdRequest(3L));
-        assertThat(database.getList().size()).isEqualTo(3);
-        assertThat(database.getById(2L).isEmpty()).isFalse();
-        assertThat(database.getById(1L).isEmpty()).isFalse();
-        assertThat(database.getById(4L).isEmpty()).isTrue();
+        assertThat(productDatabase.getList().size()).isEqualTo(3);
+        assertThat(productDatabase.getById(2L).isEmpty()).isFalse();
+        assertThat(productDatabase.getById(1L).isEmpty()).isFalse();
+        assertThat(productDatabase.getById(4L).isEmpty()).isTrue();
     }
 
    @Test
@@ -104,7 +106,6 @@ public class AcceptanceTest1 {
 
         AddProductService addProductService = context.getBean(AddProductService.class);
         SearchProductService searchProductService = context.getBean(SearchProductService.class);
-        ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request = new AddProductRequest("Apple", "MackBook-Pro", 150.0);
         AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax", 899.99);
         AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 5", 500.0);
@@ -119,8 +120,8 @@ public class AcceptanceTest1 {
         addProductService.execute(request5);
         searchProductService.execute(new SearchProductRequest("Apple", "Iphone XRMax"));
         searchProductService.execute(new SearchProductRequest("Sony", "Fridge"));
-        searchProductService.execute(new SearchProductRequest("Samsung", "Dishwasher"));
-        assertThat(database.getList().size()).isEqualTo(4);
+       searchProductService.execute(new SearchProductRequest("Samsung", "Dishwasher"));
+       assertThat(productDatabase.getList().size()).isEqualTo(4);
     }
 
     @Test
