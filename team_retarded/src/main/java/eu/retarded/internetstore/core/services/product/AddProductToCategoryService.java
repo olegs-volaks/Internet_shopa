@@ -34,7 +34,7 @@ public class AddProductToCategoryService {
 
 
         return new AddProductToCategoryResponse
-                    (productDatabase.addProductToCategory(productID.get().getId(), categoryID.get().getId()));
+                (productDatabase.addProductToCategory(productID.get().getId(), categoryID.get().getId()));
 
 
     }

@@ -1,4 +1,5 @@
 package eu.retarded.internetstore.core.services.validators.delivery;
+
 import eu.retarded.internetstore.core.requests.delivery.AddDeliveryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import org.springframework.stereotype.Component;

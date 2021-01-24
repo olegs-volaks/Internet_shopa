@@ -8,7 +8,7 @@ import java.util.HashMap;
 public class Basket {
 
 
-    private final HashMap<Product , Integer> basket = new HashMap<>();
+    private final HashMap<Product, Integer> basket = new HashMap<>();
 
     public boolean add(Product product, Integer quantity) {
         basket.put(product, quantity);
@@ -16,12 +16,12 @@ public class Basket {
     }
 
     public boolean removeProduct(Product product) {
-         basket.remove(product);
+        basket.remove(product);
         return !basket.containsValue(product);
     }
 
     public boolean changeQuantity(Product product, Integer quantity) {
-         basket.replace(product, quantity);
+        basket.replace(product, quantity);
         return basket.containsValue(quantity);
     }
 

@@ -5,15 +5,15 @@ public class DeleteProductFromBasketRequest {
     private final Long productId;
 
 
-
     public Long getProductId() {
         return productId;
     }
+
     public Long getUserId() {
         return userId;
     }
 
-    public DeleteProductFromBasketRequest(Long userId, Long productId ) {
+    public DeleteProductFromBasketRequest(Long userId, Long productId) {
         this.userId = userId;
         this.productId = productId;
     }

@@ -31,7 +31,7 @@ public class ProductMenu implements MenuUIAction {
         while (true) {
             print();
             int menuNumber = getMenuNumberFromUser();
-            if (menuNumber==-1){
+            if (menuNumber == -1) {
                 continue;
             }
             if (menuNumber == 0) {

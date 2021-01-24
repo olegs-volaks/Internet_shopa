@@ -58,10 +58,10 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
     public List<ProductCategory> getCategoryList() {
         List<ProductCategory> categories = jdbcTemplate.query("SELECT * FROM product_categories", new ProductCategoryMapper());
         //categories.forEach(productCategory -> {
-            //List<Product> products = jdbcTemplate.query("SELECT * FROM products WHERE category_id = ?",
-                    //new ProductMapper(), productCategory.getId());
-            //вопрос что возвращать?
-       // });
+        //List<Product> products = jdbcTemplate.query("SELECT * FROM products WHERE category_id = ?",
+        //new ProductMapper(), productCategory.getId());
+        //вопрос что возвращать?
+        // });
         return categories;
     }
 

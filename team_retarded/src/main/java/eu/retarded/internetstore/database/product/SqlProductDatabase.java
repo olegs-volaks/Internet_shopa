@@ -30,7 +30,7 @@ public class SqlProductDatabase implements ProductDatabase {
 
     @Override
     public boolean delete(Long id) {
-       return jdbcTemplate.update("DELETE FROM products WHERE id=?",id)==1;
+        return jdbcTemplate.update("DELETE FROM products WHERE id=?", id) == 1;
     }
 
     @Override
@@ -48,9 +48,9 @@ public class SqlProductDatabase implements ProductDatabase {
     public Optional<Product> getById(Long id) {
         Product product;
         try {
-            product=jdbcTemplate.queryForObject("SELECT * FROM products WHERE id = ?",new ProductMapper(), id);
-        }catch (IncorrectResultSizeDataAccessException exception){
-            product=null;
+            product = jdbcTemplate.queryForObject("SELECT * FROM products WHERE id = ?", new ProductMapper(), id);
+        } catch (IncorrectResultSizeDataAccessException exception) {
+            product = null;
         }
         return Optional.ofNullable(product);
     }
@@ -79,13 +79,13 @@ public class SqlProductDatabase implements ProductDatabase {
     }
 
     @Override
-    public boolean addProductToCategory(Long productId, Long categoryId){
-        return jdbcTemplate.update("UPDATE products SET category_id = ? WHERE id = ? ",categoryId,productId)==1;
+    public boolean addProductToCategory(Long productId, Long categoryId) {
+        return jdbcTemplate.update("UPDATE products SET category_id = ? WHERE id = ? ", categoryId, productId) == 1;
     }
 
     @Override
-    public boolean removeProductFromCategory(Long productId ) {
-        return jdbcTemplate.update("UPDATE products SET category_id=null WHERE id = ? ",productId)==1;
+    public boolean removeProductFromCategory(Long productId) {
+        return jdbcTemplate.update("UPDATE products SET category_id=null WHERE id = ? ", productId) == 1;
     }
 
 }

@@ -28,5 +28,5 @@ public interface ProductDatabase {
     boolean addProductToCategory(Long productId, Long categoryId);
 
 
-    boolean removeProductFromCategory(Long productId) ;
+    boolean removeProductFromCategory(Long productId);
 }

@@ -34,7 +34,7 @@ public class AddProductToBasketUIAction implements UIAction {
             quantity = getQuantity();
         } while (quantity < 0);
 
-        AddProductToBasketResponse response = service.execute(new AddProductToBasketRequest(userID, productID,quantity));
+        AddProductToBasketResponse response = service.execute(new AddProductToBasketRequest(userID, productID, quantity));
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
                     + coreError.getField() + ": " + coreError.getMessage()));
