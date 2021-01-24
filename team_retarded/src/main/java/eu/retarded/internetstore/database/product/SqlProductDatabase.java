@@ -6,7 +6,6 @@ import eu.retarded.internetstore.core.domain.row_mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +13,7 @@ import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
-@Component
+//@Component
 public class SqlProductDatabase implements ProductDatabase {
 
     @Autowired
