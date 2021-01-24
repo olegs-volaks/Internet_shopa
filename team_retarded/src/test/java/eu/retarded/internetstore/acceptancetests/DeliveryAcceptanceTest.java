@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DeliveryAcceptanceTest {
@@ -51,10 +50,10 @@ public class DeliveryAcceptanceTest {
         DeleteDeliveryService deleteDeliveryService = context.getBean(DeleteDeliveryService.class);
         AddDeliveryRequest request = new AddDeliveryRequest("Iphone", "Ilguciemsz", 345.0);
         AddDeliveryRequest request1 = new AddDeliveryRequest("Samsung", "Bolderaja rajons", 800.0);
-        AddDeliveryRequest request2 = new AddDeliveryRequest("Huawei", "Vecmilgravis", 349.0);
+        AddDeliveryRequest request2 = new AddDeliveryRequest("Huawei", "Vecmilgravis2323", 349.0);
         AddDeliveryRequest request3 = new AddDeliveryRequest("Sonny", "Zepniekalns", 159.0);
-        AddDeliveryRequest request4 = new AddDeliveryRequest("LG", "Imanta", 450.0);
-        AddDeliveryRequest request5 = new AddDeliveryRequest("Audi", "Mangalsala", 50000.0);
+        AddDeliveryRequest request4 = new AddDeliveryRequest("LG43", "Imanta1212112", 450.0);
+        AddDeliveryRequest request5 = new AddDeliveryRequest("Audi", "Mangalsala121212", 50000.0);
         long id = addDeliveryService.execute(request).getDeliveryId();
         long id1 = addDeliveryService.execute(request1).getDeliveryId();
         long id2 = addDeliveryService.execute(request2).getDeliveryId();
@@ -65,22 +64,22 @@ public class DeliveryAcceptanceTest {
         deleteDeliveryService.execute(new DeleteDeliveryRequest(id1));
         deleteDeliveryService.execute(new DeleteDeliveryRequest(id2));
         //List<Delivery> deliveryList = deliveryDatabase.getList();
-        assertThat(deliveryDatabase.getList().size()).isEqualTo(2);
-        assertThat(deliveryDatabase.getById(id3).isEmpty()).isFalse(); // same
-        assertThat(deliveryDatabase.getById(id4).isEmpty()).isTrue(); // почему true если я его не удалил и он есть ?
-        assertThat(deliveryDatabase.getById(id5).isEmpty()).isFalse(); // same
+        assertThat(deliveryDatabase.getList().size()).isEqualTo(3);
+        assertThat(deliveryDatabase.isExist(id3)).isTrue(); // same
+        assertThat(deliveryDatabase.isExist(id4)).isTrue(); // почему true если я его не удалил и он есть ?
+        assertThat(deliveryDatabase.isExist(id5)).isTrue(); // same
     }
 
     @Test
     void show_all_delivery_request() {
         AddDeliveryService addDeliveryService = context.getBean(AddDeliveryService.class);
         AddDeliveryRequest request = new AddDeliveryRequest("Apple", "Vecmilgravis", 467.0);
-        AddDeliveryRequest request1 = new AddDeliveryRequest("LG", "Imanta", 3200.0);
+        AddDeliveryRequest request1 = new AddDeliveryRequest("LG222222", "Imanta22222222", 3200.0);
         AddDeliveryRequest request2 = new AddDeliveryRequest("Huawei", "Ziepniekalns", 355.0);
         addDeliveryService.execute(request);
         addDeliveryService.execute(request1);
         addDeliveryService.execute(request2);
-        assertThat(deliveryDatabase.getList().size()).isEqualTo(2); // почему 2 я же 3 requesta закинул ???? 3 и 1 не заходят :/
+        assertThat(deliveryDatabase.getList().size()).isEqualTo(3); // почему 2 я же 3 requesta закинул ???? 3 и 1 не заходят :/
     }
 
     @Test
@@ -90,7 +89,7 @@ public class DeliveryAcceptanceTest {
         AddDeliveryRequest request1 = new AddDeliveryRequest("Samsung", "Bolderaja rajons", 800.0);
         AddDeliveryRequest request2 = new AddDeliveryRequest("Huawei", "Vecmilgravis", 349.0);
         AddDeliveryRequest request3 = new AddDeliveryRequest("Sonny", "Zepniekalns", 159.0);
-        AddDeliveryRequest request4 = new AddDeliveryRequest("LG", "Imanta", 450.0);
+        AddDeliveryRequest request4 = new AddDeliveryRequest("LG2222222222", "Imanta2222222222", 450.0);
         AddDeliveryRequest request5 = new AddDeliveryRequest("Audi", "Mangalsala", 50000.0);
      /*   long id = addDeliveryService.execute(request).getDeliveryId();
         long id1 = addDeliveryService.execute(request1).getDeliveryId();
@@ -104,7 +103,7 @@ public class DeliveryAcceptanceTest {
         addDeliveryService.execute(request3);
         addDeliveryService.execute(request4);
         addDeliveryService.execute(request5);
-        assertThat(deliveryDatabase.getList().size()).isEqualTo(5); // почему 5 если их 6 ?
+        assertThat(deliveryDatabase.getList().size()).isEqualTo(6); // почему 5 если их 6 ?
     }
 
     @Test
