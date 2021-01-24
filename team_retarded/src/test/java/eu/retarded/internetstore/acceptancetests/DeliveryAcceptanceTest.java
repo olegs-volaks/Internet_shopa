@@ -1,12 +1,11 @@
 package eu.retarded.internetstore.acceptancetests;
 
 import eu.retarded.internetstore.config.applicationConfiguration;
-import eu.retarded.internetstore.core.domain.Delivery;
 import eu.retarded.internetstore.core.requests.delivery.AddDeliveryRequest;
 import eu.retarded.internetstore.core.services.delivery.AddDeliveryService;
 import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
