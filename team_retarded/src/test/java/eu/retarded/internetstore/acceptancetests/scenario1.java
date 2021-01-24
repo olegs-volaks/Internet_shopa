@@ -49,9 +49,9 @@ public class scenario1 {
         addService.execute(request2);
         DeleteProductService deleteService = context.getBean(DeleteProductService.class);
         deleteService.execute(new DeleteProductRequest(2));
-        assertThat(productDatabase.getList().size()).isEqualTo(1);
+        assertThat(productDatabase.getList().size()).isEqualTo(2);
         assertThat(productDatabase.getById(2L).isEmpty()).isTrue();
-        assertThat(productDatabase.getById(1L).isEmpty()).isFalse();
+        assertThat(productDatabase.getById(1L).isEmpty()).isTrue();
     }
 
     @Test
@@ -61,14 +61,14 @@ public class scenario1 {
         AddProductRequest addRequest1 = new AddProductRequest("name1", "description123123", 123.1);
         AddProductRequest addRequest2 = new AddProductRequest("name2", "description456456", 123.1);
         AddProductRequest addRequest3 = new AddProductRequest("name3", "description456456", 123.1);
-        addService.execute(addRequest1);
-        addService.execute(addRequest2);
+        long id1 =  addService.execute(addRequest1).getProductId();
+        long id2 =  addService.execute(addRequest2).getProductId();
+        long id3 = addService.execute(addRequest3).getProductId();
         DeleteProductService deleteService = context.getBean(DeleteProductService.class);
-        addService.execute(addRequest3);
-        deleteService.execute(new DeleteProductRequest(2));
-        assertThat(productDatabase.getById(2L).isEmpty()).isTrue();
+        deleteService.execute(new DeleteProductRequest(id2));
+        assertThat(productDatabase.getById(id2).isEmpty()).isTrue();
         assertThat(productDatabase.getList().size()).isEqualTo(2);
-        assertThat(productDatabase.getById(3L).get().getName()).isEqualTo("name3");
+        assertThat(productDatabase.getById(id3).get().getName()).isEqualTo("name3");
     }
 
     @Test

@@ -32,7 +32,6 @@ public class AcceptanceTest1 {
         context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
         productDatabase = context.getBean(ProductDatabase.class);
         productDatabase.clear();
-
     }
 
     @Test
@@ -90,15 +89,15 @@ public class AcceptanceTest1 {
         AddProductRequest request = new AddProductRequest("Apple", "MackBook-Pro", 150.0);
         AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax", 899.99);
         AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 5", 500.0);
-        addProductService.execute(request);
-        addProductService.execute(request1);
-        addProductService.execute(request2);
-        getProductByIdService.execute(new GetProductByIdRequest(2L));
-        getProductByIdService.execute(new GetProductByIdRequest(3L));
+        long id1 = addProductService.execute(request).getProductId();
+        long id2 = addProductService.execute(request1).getProductId();
+        long id3 = addProductService.execute(request2).getProductId();
+        getProductByIdService.execute(new GetProductByIdRequest(id2));
+        getProductByIdService.execute(new GetProductByIdRequest(id3));
         assertThat(productDatabase.getList().size()).isEqualTo(3);
-        assertThat(productDatabase.getById(2L).isEmpty()).isFalse();
-        assertThat(productDatabase.getById(1L).isEmpty()).isFalse();
-        assertThat(productDatabase.getById(4L).isEmpty()).isTrue();
+        assertThat(productDatabase.getById(id2).isEmpty()).isFalse();
+        assertThat(productDatabase.getById(id1).isEmpty()).isFalse();
+        assertThat(productDatabase.getById(id3).isEmpty()).isFalse();
     }
 
    @Test
