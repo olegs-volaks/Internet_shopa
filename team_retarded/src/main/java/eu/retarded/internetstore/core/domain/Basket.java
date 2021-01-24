@@ -1,8 +1,10 @@
 package eu.retarded.internetstore.core.domain;
 
+import lombok.Data;
+
 import java.util.HashMap;
 
-
+@Data
 public class Basket {
 
 

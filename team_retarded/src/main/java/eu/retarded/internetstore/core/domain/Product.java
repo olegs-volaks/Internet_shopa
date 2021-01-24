@@ -1,23 +1,17 @@
 package eu.retarded.internetstore.core.domain;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Objects;
 
+@Data
 public class Product {
     private Long id;
     private String name;
     private String description;
     private BigDecimal price;
     private Long categoryId;
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
 
     public Product(String name, String description, double price) {
         this.name = name;
@@ -26,64 +20,6 @@ public class Product {
         this.price = tmp.setScale(2, RoundingMode.DOWN);
     }
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setPrice(double price) {
-
-        BigDecimal tmp = new BigDecimal(Double.toString(price));
-        this.price = tmp.setScale(2, RoundingMode.DOWN);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return //Objects.equals(id, product.id) &&
-                Objects.equals(name, product.name) &&
-                        Objects.equals(description, product.description) &&
-                        Objects.equals(price, product.price);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                '}';
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, price);
+    public Product() {
     }
 }
