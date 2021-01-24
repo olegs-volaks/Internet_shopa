@@ -23,8 +23,8 @@ public class AddUserValidator {
             return Optional.of(new CoreError("Name", "Must not be empty!"));
         }
 
-        if (request.getName().length() < 4 || request.getName().length() > 20) {
-            return Optional.of(new CoreError("Name", "Must be between 4 and 20 characters"));
+        if (request.getName().length() < 3 || request.getName().length() > 32) {
+            return Optional.of(new CoreError("Name", "Must be between 3 and 32 characters"));
         }
         return Optional.empty();
     }
@@ -34,8 +34,8 @@ public class AddUserValidator {
             return Optional.of(new CoreError("Password", "Must not be empty!"));
         }
 
-        if (request.getPassword().length() < 6 || request.getPassword().length() > 16) {
-            return Optional.of(new CoreError("Password", "Must be between 6 and 16 characters"));
+        if (request.getPassword().length() < 6 || request.getPassword().length() > 32) {
+            return Optional.of(new CoreError("Password", "Must be between 6 and 32 characters"));
         }
         return Optional.empty();
     }

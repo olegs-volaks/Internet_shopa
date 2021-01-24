@@ -23,7 +23,7 @@ public class DeleteProductService {
             return new DeleteProductResponse(errors);
         }
 
-        return new DeleteProductResponse(database.delete(request.getProductIdToDelete()));
+        return new DeleteProductResponse(database.delete(request.getProductId()));
     }
 }
 

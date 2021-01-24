@@ -23,8 +23,8 @@ public class AddDeliveryValidator {
         if (request.getTitle() == null || request.getTitle().isEmpty()) {
             return Optional.of(new CoreError("Title", "Must not be empty"));
         }
-        if (request.getTitle().length() < 4 || request.getTitle().length() > 100) {
-            return Optional.of(new CoreError("Title", "Must be between 4 and 100 characters"));
+        if (request.getTitle().length() < 3 || request.getTitle().length() > 100) {
+            return Optional.of(new CoreError("Title", "Must be between 3 and 100 characters"));
         }
         return Optional.empty();
     }
@@ -40,8 +40,8 @@ public class AddDeliveryValidator {
     }
 
     private Optional<CoreError> validatePrice(AddDeliveryRequest request) {
-        return (request.getPrice() <= 0 || request.getPrice() > 100000)
-                ? Optional.of(new CoreError("Price", "Must be between 0 and 100000"))
+        return (request.getPrice() <= 0 || request.getPrice() > 1000000000)
+                ? Optional.of(new CoreError("Price", "Must be between 0 and 1000000000"))
                 : Optional.empty();
     }
 }

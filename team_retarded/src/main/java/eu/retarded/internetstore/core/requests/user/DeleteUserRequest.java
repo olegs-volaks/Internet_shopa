@@ -2,14 +2,14 @@ package eu.retarded.internetstore.core.requests.user;
 
 public class DeleteUserRequest {
 
-    private final long userIdToDelete;
+    private final long userId;
 
-    public DeleteUserRequest(long userIdToDelete) {
-        this.userIdToDelete = userIdToDelete;
+    public DeleteUserRequest(long userId) {
+        this.userId = userId;
     }
 
-    public long getUserIdToDelete() {
-        return userIdToDelete;
+    public long getUserId() {
+        return userId;
     }
 }
 

@@ -15,14 +15,9 @@ import java.util.List;
 public class AddDeliveryService {
 
     @Autowired
-    private final DeliveryDatabase deliveryDatabase;
+    private DeliveryDatabase deliveryDatabase;
     @Autowired
-    private final AddDeliveryValidator validator;
-
-    public AddDeliveryService(DeliveryDatabase deliveryDatabase, AddDeliveryValidator validator) {
-        this.deliveryDatabase = deliveryDatabase;
-        this.validator = validator;
-    }
+    private AddDeliveryValidator validator;
 
     public AddDeliveryResponse execute(AddDeliveryRequest request) {
         List<CoreError> errors = validator.validate(request);

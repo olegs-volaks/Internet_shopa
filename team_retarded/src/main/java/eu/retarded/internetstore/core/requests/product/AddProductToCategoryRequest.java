@@ -6,11 +6,11 @@ public class AddProductToCategoryRequest {
     private final long productId;
 
 
-    public long AddProductToCategoryProductID() {
+    public long getProductId() {
         return productId;
     }
 
-    public long AddProductToCategoryCategoryID() {
+    public long getCategoryId() {
         return categoryId;
     }
 

@@ -23,6 +23,6 @@ public class DeleteUserService {
             return new DeleteUserResponse(errors);
         }
 
-        return new DeleteUserResponse(db.delete(request.getUserIdToDelete()));
+        return new DeleteUserResponse(db.delete(request.getUserId()));
     }
 }
