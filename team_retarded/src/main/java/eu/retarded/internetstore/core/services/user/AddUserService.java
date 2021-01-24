@@ -24,6 +24,6 @@ public class AddUserService {
         if (!errors.isEmpty()) {
             return new AddUserResponse(errors);
         }
-        return new AddUserResponse(db.add(new User(request.getName(), request.getPassword())));
+        return new AddUserResponse(db.add(new User(request.getLogin(), request.getPassword())));
     }
 }

@@ -48,7 +48,7 @@ public class scenario1 {
         addService.execute(request1);
         addService.execute(request2);
         DeleteProductService deleteService = context.getBean(DeleteProductService.class);
-        deleteService.execute(new DeleteProductRequest(2));
+        deleteService.execute(new DeleteProductRequest(2L));
         assertThat(productDatabase.getList().size()).isEqualTo(1);
         assertThat(productDatabase.getById(2L).isEmpty()).isTrue();
         assertThat(productDatabase.getById(1L).isEmpty()).isFalse();

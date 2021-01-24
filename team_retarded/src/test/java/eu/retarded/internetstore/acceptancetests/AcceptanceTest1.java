@@ -87,18 +87,19 @@ public class AcceptanceTest1 {
 
         AddProductService addProductService = context.getBean(AddProductService.class);
         GetProductByIdService getProductByIdService = context.getBean(GetProductByIdService.class);
-        AddProductRequest request = new AddProductRequest("Apple", "MackBook-Pro", 150.0);
-        AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax", 899.99);
-        AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 5", 500.0);
+        AddProductRequest request = new AddProductRequest("Apple", "MackBook-Pro111111", 150.0);
+        AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax11111", 899.99);
+        AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 511111", 500.0);
         addProductService.execute(request);
         addProductService.execute(request1);
         addProductService.execute(request2);
+        getProductByIdService.execute(new GetProductByIdRequest(1L));
         getProductByIdService.execute(new GetProductByIdRequest(2L));
         getProductByIdService.execute(new GetProductByIdRequest(3L));
         assertThat(productDatabase.getList().size()).isEqualTo(3);
-        assertThat(productDatabase.getById(2L).isEmpty()).isFalse();
-        assertThat(productDatabase.getById(1L).isEmpty()).isFalse();
-        assertThat(productDatabase.getById(4L).isEmpty()).isTrue();
+        assertThat(productDatabase.getById(1L).isPresent()).isTrue();
+        assertThat(productDatabase.getById(2L).isPresent()).isTrue();
+        assertThat(productDatabase.getById(4L).isPresent()).isFalse();
     }
 
    @Test

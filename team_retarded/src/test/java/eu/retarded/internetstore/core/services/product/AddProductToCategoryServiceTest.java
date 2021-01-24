@@ -1,13 +1,13 @@
-package eu.retarded.internetstore.core.services.category;
+package eu.retarded.internetstore.core.services.product;
 
-import eu.retarded.internetstore.core.requests.product.DeleteProductFromCategoryRequest;
+import eu.retarded.internetstore.core.domain.Product;
+import eu.retarded.internetstore.core.domain.ProductCategory;
+import eu.retarded.internetstore.core.requests.product.AddProductToCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
-import eu.retarded.internetstore.core.responses.product.DeleteProductFromCategoryResponse;
-import eu.retarded.internetstore.core.services.product.DeleteProductFromCategoryService;
-import eu.retarded.internetstore.core.services.validators.product.DeleteProductFromCategoryValidator;
+import eu.retarded.internetstore.core.responses.product.AddProductToCategoryResponse;
+import eu.retarded.internetstore.core.services.validators.product.AddProductToCategoryValidator;
 import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import eu.retarded.internetstore.database.product.ProductDatabase;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,33 +17,34 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 
-
 @ExtendWith(MockitoExtension.class)
-class DeleteProductFromCategoryServiceTest {
+class AddProductToCategoryServiceTest {
     @Mock
     private CategoriesDatabase categoriesDatabase;
     @Mock
     private ProductDatabase productDatabase;
     @Mock
-    private DeleteProductFromCategoryValidator validator;
+    private AddProductToCategoryValidator validator;
     @InjectMocks
-    private DeleteProductFromCategoryService subject;
+    private AddProductToCategoryService subject;
 
     @Test
     void should_return_response_with_errors_when_validation_fails() {
-        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(-1);
+        AddProductToCategoryRequest request = new AddProductToCategoryRequest(-1, -1);
         List<CoreError> errors = new ArrayList<>();
         errors.add(new CoreError("ProductID", "Must not be empty or negative"));
         errors.add(new CoreError("CategoryID", "Must not be empty or negative"));
         Mockito.when(validator.validate(request)).thenReturn(errors);
 
-        DeleteProductFromCategoryResponse response = subject.execute(request);
-        Assertions.assertThat(response.hasErrors()).isTrue();
-        Assertions.assertThat(response.getErrors().size()).isEqualTo(2);
-        Assertions.assertThat(response.getErrors()).allMatch(coreError -> coreError.getField().equals("ProductID") ||
+        AddProductToCategoryResponse response = subject.execute(request);
+        assertThat(response.hasErrors()).isTrue();
+        assertThat(response.getErrors().size()).isEqualTo(2);
+        assertThat(response.getErrors()).allMatch(coreError -> coreError.getField().equals("ProductID") ||
                 coreError.getMessage().equals("Must not be empty or negative"));
         Mockito.verifyNoInteractions(categoriesDatabase);
         Mockito.verifyNoInteractions(productDatabase);
@@ -51,26 +52,30 @@ class DeleteProductFromCategoryServiceTest {
 
     @Test
     void should_return_response_with_errors_when_validation_fails_notInDataBase() {
-        DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(1);
+        AddProductToCategoryRequest request = new AddProductToCategoryRequest(1, 1);
         List<CoreError> errors = new ArrayList<>();
         errors.add(new CoreError("ProductID", "Product with this ID does not exist"));
         errors.add(new CoreError("CategoryID", "Product with this ID does not exist"));
         Mockito.when(validator.validate(request)).thenReturn(errors);
 
-        DeleteProductFromCategoryResponse response = subject.execute(request);
-        Assertions.assertThat(response.hasErrors()).isTrue();
-        Assertions.assertThat(response.getErrors().size()).isEqualTo(2);
-        Assertions.assertThat(response.getErrors()).allMatch(coreError -> coreError.getField().equals("ProductID") ||
+        AddProductToCategoryResponse response = subject.execute(request);
+        assertThat(response.hasErrors()).isTrue();
+        assertThat(response.getErrors().size()).isEqualTo(2);
+        assertThat(response.getErrors()).allMatch(coreError -> coreError.getField().equals("ProductID") ||
                 coreError.getMessage().equals("Product with this ID does not exist"));
         Mockito.verifyNoInteractions(categoriesDatabase);
         Mockito.verifyNoInteractions(productDatabase);
     }
 
     @Test
-    void should_delete_product_in_category() {
+    void should_add_product_to_category() {
+        Mockito.when(productDatabase.getById(any())).
+                thenReturn(Optional.of(new Product("Audi", "red1234567890", 347)));
+        Mockito.when( categoriesDatabase.getCategory(any())).
+                thenReturn(Optional.of(new ProductCategory("cars")));
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        DeleteProductFromCategoryResponse response = subject.execute(new DeleteProductFromCategoryRequest(1));
-        Assertions.assertThat(response.hasErrors()).isFalse();
+        AddProductToCategoryResponse response = subject.execute(new AddProductToCategoryRequest(1, 1));
+        assertThat(response.hasErrors()).isFalse();
     }
 
 }
