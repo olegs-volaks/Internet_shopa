@@ -18,11 +18,11 @@ CREATE TABLE IF NOT EXISTS product_categories
 
 CREATE TABLE IF NOT EXISTS products
 (
-    id          BIGINT        NOT NULL AUTO_INCREMENT,
+    id          BIGINT         NOT NULL AUTO_INCREMENT,
     category_id BIGINT,
-    name        VARCHAR(100)  NOT NULL,
-    description VARCHAR(2000) NOT NULL,
-    price       DECIMAL       NOT NULL,
+    name        VARCHAR(100)   NOT NULL,
+    description VARCHAR(2000)  NOT NULL,
+    price       DECIMAL(18, 2) NOT NULL,
     count       INT DEFAULT 0,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`category_id`) REFERENCES `product_categories` (`id`)
@@ -44,10 +44,10 @@ CREATE TABLE IF NOT EXISTS users
 
 CREATE TABLE IF NOT EXISTS deliveries
 (
-    id     BIGINT       NOT NULL AUTO_INCREMENT,
-    title  VARCHAR(100) NOT NULL,
-    region VARCHAR(100) NOT NULL,
-    price  DECIMAL      NOT NULL,
+    id     BIGINT         NOT NULL AUTO_INCREMENT,
+    title  VARCHAR(100)   NOT NULL,
+    region VARCHAR(100)   NOT NULL,
+    price  DECIMAL(18, 2) NOT NULL,
     PRIMARY KEY (id)
 )
     ENGINE = InnoDB
