@@ -11,3 +11,5 @@
 * [Lesson 7 (spring_basics)](https://www.youtube.com/watch?v=Cv0hoXFJKjI)
 * [Lesson 8 (introduction_to_sql)](https://www.youtube.com/watch?v=OJI1lzhBAOw)
 * [Lesson 9 (advanced_sql)](https://www.youtube.com/watch?v=LmW-KPVsikM)
+* [Lesson 10 (jdbc_api)](https://www.youtube.com/watch?v=Q9v6EnielRk)
+* [Lesson 11 (orm_introduction)](https://www.youtube.com/watch?v=T3Yg2ytN-ps)
