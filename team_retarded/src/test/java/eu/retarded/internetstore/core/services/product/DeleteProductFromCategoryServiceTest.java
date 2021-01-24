@@ -1,6 +1,5 @@
 package eu.retarded.internetstore.core.services.product;
 
-import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.DeleteProductFromCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.DeleteProductFromCategoryResponse;
@@ -17,7 +16,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 
@@ -69,9 +67,6 @@ class DeleteProductFromCategoryServiceTest {
 
     @Test
     void should_delete_product_in_category() {
-        Mockito.when(productDatabase.getById(any())).
-                thenReturn(Optional.of(new Product("Audi", "red1234567890", 347)));
-
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
         DeleteProductFromCategoryResponse response = subject.execute(new DeleteProductFromCategoryRequest(1));
         Assertions.assertThat(response.hasErrors()).isFalse();

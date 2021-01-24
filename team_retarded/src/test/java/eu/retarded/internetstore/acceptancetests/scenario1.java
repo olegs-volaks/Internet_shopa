@@ -75,7 +75,7 @@ public class scenario1 {
     void test4() {
 
         AddProductService addService = context.getBean(AddProductService.class);
-        AddProductRequest addRequest1 = new AddProductRequest("nam", "description123123", 123.1);
+        AddProductRequest addRequest1 = new AddProductRequest("nm", "description123123", 123.1);
         AddProductResponse response = addService.execute(addRequest1);
         Assertions.assertThat(response.hasErrors()).isTrue();
     }

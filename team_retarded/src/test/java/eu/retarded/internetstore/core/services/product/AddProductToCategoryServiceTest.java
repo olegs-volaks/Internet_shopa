@@ -1,7 +1,5 @@
 package eu.retarded.internetstore.core.services.product;
 
-import eu.retarded.internetstore.core.domain.Product;
-import eu.retarded.internetstore.core.domain.ProductCategory;
 import eu.retarded.internetstore.core.requests.product.AddProductToCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.AddProductToCategoryResponse;
@@ -17,7 +15,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -69,10 +66,6 @@ class AddProductToCategoryServiceTest {
 
     @Test
     void should_add_product_to_category() {
-        Mockito.when(productDatabase.getById(any())).
-                thenReturn(Optional.of(new Product("Audi", "red1234567890", 347)));
-        Mockito.when( categoriesDatabase.getCategory(any())).
-                thenReturn(Optional.of(new ProductCategory("cars")));
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
         AddProductToCategoryResponse response = subject.execute(new AddProductToCategoryRequest(1, 1));
         assertThat(response.hasErrors()).isFalse();

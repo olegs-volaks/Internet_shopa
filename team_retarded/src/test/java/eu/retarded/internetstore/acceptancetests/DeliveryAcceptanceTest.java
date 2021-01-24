@@ -103,7 +103,7 @@ public class DeliveryAcceptanceTest {
     @Test
     void add_delivery_validator_request() {
         AddDeliveryService addDeliveryService = context.getBean(AddDeliveryService.class);
-        AddDeliveryRequest request = new AddDeliveryRequest("Iph", "Ilguciemsz", 345.0);
+        AddDeliveryRequest request = new AddDeliveryRequest("Ip", "Ilguciemsz", 345.0);
         AddDeliveryRequest request1 = new AddDeliveryRequest("Samsung", "Bo", 800.0);
         AddDeliveryRequest request2 = new AddDeliveryRequest("Huawei", "Vecmilgravis", 0);
         AddDeliveryRequest request3 = new AddDeliveryRequest("Sonny", "Zepniekalns", 1000.0);
