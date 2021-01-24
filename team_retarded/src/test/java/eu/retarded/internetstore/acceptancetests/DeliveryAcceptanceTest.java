@@ -19,6 +19,7 @@ public class DeliveryAcceptanceTest {
     private ApplicationContext context;
     private DeliveryDatabase deliveryDatabase;
 
+
     @BeforeEach
     void setUp() {
         context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
@@ -63,11 +64,10 @@ public class DeliveryAcceptanceTest {
         deleteDeliveryService.execute(new DeleteDeliveryRequest(id));
         deleteDeliveryService.execute(new DeleteDeliveryRequest(id1));
         deleteDeliveryService.execute(new DeleteDeliveryRequest(id2));
-        //List<Delivery> deliveryList = deliveryDatabase.getList();
         assertThat(deliveryDatabase.getList().size()).isEqualTo(3);
-        assertThat(deliveryDatabase.isExist(id3)).isTrue(); // same
-        assertThat(deliveryDatabase.isExist(id4)).isTrue(); // почему true если я его не удалил и он есть ?
-        assertThat(deliveryDatabase.isExist(id5)).isTrue(); // same
+        assertThat(deliveryDatabase.isExist(id3)).isTrue();
+        assertThat(deliveryDatabase.isExist(id4)).isTrue();
+        assertThat(deliveryDatabase.isExist(id5)).isTrue();
     }
 
     @Test
@@ -79,7 +79,7 @@ public class DeliveryAcceptanceTest {
         addDeliveryService.execute(request);
         addDeliveryService.execute(request1);
         addDeliveryService.execute(request2);
-        assertThat(deliveryDatabase.getList().size()).isEqualTo(3); // почему 2 я же 3 requesta закинул ???? 3 и 1 не заходят :/
+        assertThat(deliveryDatabase.getList().size()).isEqualTo(3);
     }
 
     @Test
@@ -91,25 +91,13 @@ public class DeliveryAcceptanceTest {
         AddDeliveryRequest request3 = new AddDeliveryRequest("Sonny", "Zepniekalns", 159.0);
         AddDeliveryRequest request4 = new AddDeliveryRequest("LG2222222222", "Imanta2222222222", 450.0);
         AddDeliveryRequest request5 = new AddDeliveryRequest("Audi", "Mangalsala", 50000.0);
-     /*   long id = addDeliveryService.execute(request).getDeliveryId();
-        long id1 = addDeliveryService.execute(request1).getDeliveryId();
-        long id2 = addDeliveryService.execute(request2).getDeliveryId();
-        long id3 = addDeliveryService.execute(request3).getDeliveryId();
-        long id4 = addDeliveryService.execute(request4).getDeliveryId();
-        long id5 = addDeliveryService.execute(request5).getDeliveryId(); */
         addDeliveryService.execute(request);
         addDeliveryService.execute(request1);
         addDeliveryService.execute(request2);
         addDeliveryService.execute(request3);
         addDeliveryService.execute(request4);
         addDeliveryService.execute(request5);
-        assertThat(deliveryDatabase.getList().size()).isEqualTo(6); // почему 5 если их 6 ?
-    }
-
-    @Test
-    void search_delivery_request() {
-
-
+        assertThat(deliveryDatabase.getList().size()).isEqualTo(6);
     }
 
     @Test
