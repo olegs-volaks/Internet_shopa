@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-
 import static java.util.stream.Collectors.toList;
 
 @Component
@@ -29,14 +28,14 @@ public class OrmDeliveryDatabase implements DeliveryDatabase {
 
     @Override
     public boolean delete(Long id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("DELETE delivery WHERE id =: id");
+        Query query = sessionFactory.getCurrentSession().createQuery("DELETE Delivery WHERE id =: id");
         query.setParameter("id", id);
         return query.executeUpdate() == 1;
     }
 
     @Override
     public void clear() {
-        sessionFactory.getCurrentSession().createQuery("DELETE  FROM delivery ").executeUpdate();
+        sessionFactory.getCurrentSession().createQuery("DELETE  FROM Delivery ").executeUpdate();
     }
 
     @Override
@@ -46,8 +45,8 @@ public class OrmDeliveryDatabase implements DeliveryDatabase {
 
     @Override
     public List<Delivery> filter(Predicate<Delivery> predicate) {
-       List<Delivery> deliveries =sessionFactory.getCurrentSession()
-               .createQuery("SELECT c FROM delivery c", Delivery.class)
+       List<Delivery> deliveries = sessionFactory.getCurrentSession()
+               .createQuery("SELECT c FROM Delivery c", Delivery.class)
                .getResultList();
         return deliveries.stream().filter(predicate).collect(toList());
     }
@@ -55,7 +54,7 @@ public class OrmDeliveryDatabase implements DeliveryDatabase {
     @Override
     public List<Delivery> getList() {
         return sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM delivery c", Delivery.class)
+                .createQuery("SELECT c FROM Delivery c", Delivery.class)
                 .getResultList();
     }
 
