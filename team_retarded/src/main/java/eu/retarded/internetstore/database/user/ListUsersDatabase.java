@@ -36,4 +36,14 @@ public class ListUsersDatabase implements UsersDatabase {
     public List<User> getList() {
         return null;
     }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public boolean isExist() {
+        return false;
+    }
 }
