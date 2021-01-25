@@ -31,11 +31,6 @@ public class ListDeliveryDatabase implements DeliveryDatabase {
     }
 
     @Override
-    public boolean delete(Predicate<Delivery> predicate) {
-        return deliveryDatabase.removeIf(predicate);
-    }
-
-    @Override
     public void clear() {
         deliveryDatabase.clear();
     }
