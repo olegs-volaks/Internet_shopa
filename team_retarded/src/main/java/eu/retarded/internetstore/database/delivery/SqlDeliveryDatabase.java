@@ -5,7 +5,6 @@ import eu.retarded.internetstore.core.domain.row_mapper.DeliveryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +12,7 @@ import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
-@Component
+
 public class SqlDeliveryDatabase implements DeliveryDatabase {
 
     @Autowired
@@ -32,12 +31,6 @@ public class SqlDeliveryDatabase implements DeliveryDatabase {
     @Override
     public boolean delete(Long id) {
         return jdbcTemplate.update("DELETE FROM deliveries WHERE id=?", id) == 1;
-    }
-
-    @Override
-    public boolean delete(Predicate<Delivery> predicate) {
-        List<Delivery> deliveries = jdbcTemplate.query("SELECT * FROM deliveries", new DeliveryMapper());
-        return deliveries.removeIf(predicate);
     }
 
     @Override
