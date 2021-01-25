@@ -1,23 +1,22 @@
 package eu.retarded.internetstore.database.category;
 
-import eu.retarded.internetstore.core.domain.ProductCategory;
+import eu.retarded.internetstore.core.domain.Category;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 //@Component
 public class ListCategoriesDatabase implements CategoriesDatabase {
 
-    private final List<ProductCategory> categoriesDatabase = new ArrayList<>();
+    private final List<Category> categoriesDatabase = new ArrayList<>();
     private Long id = 0L;
 
     @Override
-    public Long addCategory(ProductCategory productCategory) {
+    public Long addCategory(Category category) {
         id++;
-        productCategory.setId(id);
-        categoriesDatabase.add(productCategory);
+        category.setId(id);
+        categoriesDatabase.add(category);
         return id;
     }
 
@@ -32,22 +31,17 @@ public class ListCategoriesDatabase implements CategoriesDatabase {
     }
 
     @Override
-    public void removeCategory(Predicate<ProductCategory> predicate) {
-        categoriesDatabase.removeIf(predicate);
-    }
-
-    @Override
     public void clear() {
         categoriesDatabase.clear();
     }
 
     @Override
-    public List<ProductCategory> getCategoryList() {
+    public List<Category> getCategoryList() {
         return categoriesDatabase;
     }
 
     @Override
-    public Optional<ProductCategory> getCategory(Long id) {
+    public Optional<Category> getCategory(Long id) {
         return categoriesDatabase.stream().filter(listCategory -> listCategory.getId().equals(id)).findFirst();
     }
 

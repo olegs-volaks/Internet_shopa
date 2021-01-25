@@ -1,7 +1,7 @@
 package eu.retarded.internetstore.core.services.validators.product;
 
+import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.core.domain.Product;
-import eu.retarded.internetstore.core.domain.ProductCategory;
 import eu.retarded.internetstore.core.requests.product.AddProductToCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.database.category.CategoriesDatabase;
@@ -59,7 +59,7 @@ class AddProductToCategoryValidatorTest {
     @Test
     void ProductID_is_not_exist() {
         AddProductToCategoryRequest request = new AddProductToCategoryRequest(1, 1);
-        Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.of(new ProductCategory("Phone")));
+        Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.of(new Category("Phone")));
         Mockito.when(productDatabase.getById(1L)).thenReturn(Optional.empty());
         List<CoreError> actual = subject.validate(request);
         List<CoreError> expected = new ArrayList<>();
@@ -71,7 +71,7 @@ class AddProductToCategoryValidatorTest {
     @Test
     void ProductID_is_negative() {
         AddProductToCategoryRequest request = new AddProductToCategoryRequest(1, -1);
-        Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.of(new ProductCategory("Phone")));
+        Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.of(new Category("Phone")));
         List<CoreError> actual = subject.validate(request);
         List<CoreError> expected = new ArrayList<>();
         expected.add(new CoreError("ProductID", "Must not be empty or negative"));
@@ -108,7 +108,7 @@ class AddProductToCategoryValidatorTest {
         Mockito.when(productDatabase.getById(1L)).
                 thenReturn(Optional.of(new Product("Audi", "red1234567890", 345)));
         List<CoreError> expected = new ArrayList<>();
-        Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.of(new ProductCategory("Phone")));
+        Mockito.when(categoriesDatabase.getCategory(1L)).thenReturn(Optional.of(new Category("Phone")));
         List<CoreError> actual = subject.validate(request);
         assertThat(actual).isEqualTo(expected);
         assertThat(actual).isEmpty();

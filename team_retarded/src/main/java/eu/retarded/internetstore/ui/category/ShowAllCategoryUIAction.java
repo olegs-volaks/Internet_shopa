@@ -1,6 +1,6 @@
 package eu.retarded.internetstore.ui.category;
 
-import eu.retarded.internetstore.core.domain.ProductCategory;
+import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import eu.retarded.internetstore.ui.UIAction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class ShowAllCategoryUIAction implements UIAction {
 
     @Override
     public void execute() {
-        List<ProductCategory> categories = database.getCategoryList();
+        List<Category> categories = database.getCategoryList();
         categories.forEach(System.out::println);
     }
 }
