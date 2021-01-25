@@ -34,7 +34,7 @@ public class DeleteProductFromBasketService {
         Optional<Product> product = productDatabase.getById(request.getProductId());
 
         if (user.isPresent() && product.isPresent()) {
-            user.get().getUsersBasket().removeProduct(product.get());
+            //user.get().getUsersBasket().removeProduct(product.get());
         }
 
         return new DeleteProductFromBasketResponse(user.isPresent() && product.isPresent());
