@@ -1,70 +1,67 @@
 package eu.retarded.internetstore.database.product;
 
 import eu.retarded.internetstore.core.domain.Product;
-import eu.retarded.internetstore.database.category.CategoriesDatabase;
+import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import static java.util.stream.Collectors.toList;
-
-//@Component
-public class ListProductDatabase implements ProductDatabase {
+@Component
+@Transactional
+public class OrmProductDatabase implements ProductDatabase {
 
     @Autowired
-    private CategoriesDatabase categoriesDatabase;
-    private final List<Product> productDatabase = new ArrayList<>();
-    private Long id = 0L;
+    private SessionFactory sessionFactory;
+
 
     @Override
     public Long add(Product product) {
-        id++;
-        product.setId(id);
-        productDatabase.add(product);
-        return id;
+        sessionFactory.getCurrentSession().save(product);
+        return null;
     }
 
     @Override
     public boolean delete(Long id) {
-        return productDatabase.removeIf(x -> x.getId().equals(id));
+        Query query = sessionFactory.getCurrentSession().createQuery("DELETE Product WHERE id =: id");
+        query.setParameter("id", id);
+        return query.executeUpdate() == 1;
     }
 
     @Override
     public boolean delete(Predicate<Product> predicate) {
-        return productDatabase.removeIf(predicate);
+        return false;
     }
 
     @Override
     public void clear() {
-        categoriesDatabase.clear();
-        productDatabase.clear();
+
     }
 
     @Override
     public Optional<Product> getById(Long id) {
-        return productDatabase.stream()
-                .filter(t -> t.getId().equals(id))
-                .findAny();
+        return Optional.of(sessionFactory.getCurrentSession().get(Product.class, id));
     }
 
     @Override
     public List<Product> filter(Predicate<Product> predicate) {
-        return productDatabase.stream()
-                .filter(predicate)
-                .collect(toList());
+        return null;
     }
 
     @Override
     public List<Product> getList() {
-        return productDatabase;
+        return sessionFactory.getCurrentSession()
+                .createQuery("SELECT b FROM Product b", Product.class)
+                .getResultList();
     }
 
     @Override
     public boolean isExist(Long id) {
-        return getById(id).isPresent();
+        return false;
     }
 
     @Override
@@ -76,5 +73,4 @@ public class ListProductDatabase implements ProductDatabase {
     public boolean removeProductFromCategory(Long productId) {
         return false;
     }
-
 }

@@ -14,12 +14,13 @@ public class Application {
         while (true) {
             programMenu.print();
             int menuNumber = programMenu.getMenuNumberFromUser();
-            if (menuNumber==-1){
+            if (menuNumber == -1) {
                 continue;
             }
             programMenu.executeSelectedMenuItem(menuNumber);
         }
     }
+
     private static ApplicationContext createApplicationContext() {
         return new AnnotationConfigApplicationContext(applicationConfiguration.class);
     }

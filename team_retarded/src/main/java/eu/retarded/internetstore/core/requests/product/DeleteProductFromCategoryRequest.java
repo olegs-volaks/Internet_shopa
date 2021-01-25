@@ -3,7 +3,7 @@ package eu.retarded.internetstore.core.requests.product;
 public class DeleteProductFromCategoryRequest {
     private final long productId;
 
-    public long DeleteProductFromCategoryProductId() {
+    public long getProductId() {
         return productId;
     }
 

@@ -5,7 +5,7 @@ import eu.retarded.internetstore.core.responses.CoreResponse;
 
 import java.util.List;
 
-public class DeleteDeliveryResponse  extends CoreResponse {
+public class DeleteDeliveryResponse extends CoreResponse {
 
     private boolean isDeliveryDeleted;
 
@@ -16,6 +16,7 @@ public class DeleteDeliveryResponse  extends CoreResponse {
     public DeleteDeliveryResponse(List<CoreError> errors) {
         super(errors);
     }
+
     public boolean isDeliveryDeleted() {
         return isDeliveryDeleted;
     }

@@ -14,7 +14,7 @@ public class ProgramMenu {
     private final Map<Integer, MenuUIAction> ProgramMenuNumberToUIActionMap;
 
     @Autowired
-    public ProgramMenu( List<MenuUIAction> uiActions) {
+    public ProgramMenu(List<MenuUIAction> uiActions) {
         ProgramMenuNumberToUIActionMap = new HashMap<>();
         ProgramMenuNumberToUIActionMap.put(1, findUIAction(uiActions, ProductMenu.class));
         ProgramMenuNumberToUIActionMap.put(2, findUIAction(uiActions, CategoriesMenu.class));

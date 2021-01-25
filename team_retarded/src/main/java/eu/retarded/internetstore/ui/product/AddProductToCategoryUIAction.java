@@ -27,10 +27,10 @@ public class AddProductToCategoryUIAction implements UIAction {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
                     + coreError.getField() + ": " + coreError.getMessage()));
         } else {
-            if (response.productInCategory()){
+            if (response.productInCategory()) {
                 System.out.println("Product ID " + productId +
                         " was added successfully to category ID " + categoryId);
-            }else {
+            } else {
                 System.out.println("Product ID " + productId +
                         " was not added to category ID " + categoryId);
             }

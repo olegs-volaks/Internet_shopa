@@ -14,8 +14,10 @@ import java.util.List;
 public class DeleteDeliveryService {
 
 
-    @Autowired DeliveryDatabase deliveryDatabase;
-    @Autowired DeleteDeliveryValidator validator;
+    @Autowired
+    DeliveryDatabase deliveryDatabase;
+    @Autowired
+    DeleteDeliveryValidator validator;
 
     public DeleteDeliveryResponse execute(DeleteDeliveryRequest request) {
         List<CoreError> errors = validator.validate(request);

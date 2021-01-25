@@ -11,7 +11,7 @@ import java.util.Optional;
 public class ListUsersDatabase implements UsersDatabase {
 
     private final List<User> usersDatabase = new ArrayList<>();
-    private Long id =0L;
+    private Long id = 0L;
 
     @Override
     public Long add(User user) {

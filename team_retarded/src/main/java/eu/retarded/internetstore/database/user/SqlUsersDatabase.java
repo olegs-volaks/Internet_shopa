@@ -26,16 +26,16 @@ public class SqlUsersDatabase implements UsersDatabase {
 
     @Override
     public boolean delete(Long id) {
-        return jdbcTemplate.update("DELETE FROM users WHERE id=?",id)==1;
+        return jdbcTemplate.update("DELETE FROM users WHERE id=?", id) == 1;
     }
 
     @Override
     public Optional<User> getUserById(Long id) {
         User user;
         try {
-            user=jdbcTemplate.queryForObject("SELECT * FROM users WHERE id = ?",new UserMapper(), id);
-        }catch (IncorrectResultSizeDataAccessException exception){
-            user=null;
+            user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE id = ?", new UserMapper(), id);
+        } catch (IncorrectResultSizeDataAccessException exception) {
+            user = null;
         }
         return Optional.ofNullable(user);
     }
