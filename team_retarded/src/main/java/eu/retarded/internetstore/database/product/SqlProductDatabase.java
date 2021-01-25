@@ -32,7 +32,7 @@ public class SqlProductDatabase implements ProductDatabase {
         return jdbcTemplate.update("DELETE FROM products WHERE id=?", id) == 1;
     }
 
-    @Override
+
     public boolean delete(Predicate<Product> predicate) {
         List<Product> products = jdbcTemplate.query("SELECT * FROM products", new ProductMapper());
         return products.removeIf(predicate);

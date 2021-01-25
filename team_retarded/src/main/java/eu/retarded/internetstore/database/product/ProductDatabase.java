@@ -12,7 +12,7 @@ public interface ProductDatabase {
 
     boolean delete(Long id);
 
-    boolean delete(Predicate<Product> predicate);
+    //boolean delete(Predicate<Product> predicate);
 
     void clear();
 
