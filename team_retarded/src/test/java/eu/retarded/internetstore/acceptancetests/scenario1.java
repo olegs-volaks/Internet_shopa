@@ -10,21 +10,25 @@ import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {ApplicationConfiguration.class})
 public class scenario1 {
 
+    @Autowired
     private ApplicationContext context;
+    @Autowired
     private ProductDatabase productDatabase;
 
     @BeforeEach
     void setUp() {
-        context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
-        productDatabase = context.getBean(ProductDatabase.class);
         productDatabase.clear();
     }
 
