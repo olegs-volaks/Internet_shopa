@@ -26,7 +26,7 @@ public class DeleteUserUIAction implements UIAction {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
                     + coreError.getField() + ": " + coreError.getMessage()));
         } else {
-            if (response.isUserDeleted()) {
+            if (response.isDeleted()) {
                 System.out.println("User was removed from list.");
             } else {
                 System.out.println("User not removed from list.");

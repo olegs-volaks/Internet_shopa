@@ -50,7 +50,7 @@ class DeleteUserServiceTest {
         DeleteUserRequest request = new DeleteUserRequest(1L);
         DeleteUserResponse response = subject.execute(request);
         assertFalse(response.hasErrors());
-        assertTrue(response.isUserDeleted());
+        assertTrue(response.isDeleted());
 
     }
 }
