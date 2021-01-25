@@ -22,7 +22,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = "eu.retarded.internetstore")
 @PropertySource(value = "classpath:application.properties")
 @EnableTransactionManagement
-public class applicationConfiguration {
+public class ApplicationConfiguration {
 
     @Value("${jdbc.url}")
     private String jdbcUrl;
