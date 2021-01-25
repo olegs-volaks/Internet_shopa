@@ -2,13 +2,13 @@ package eu.retarded.internetstore.core.requests.product;
 
 public class DeleteProductRequest {
 
-    private final long productIdToDelete;
+    private final long productId;
 
-    public DeleteProductRequest(long productIdToDelete) {
-        this.productIdToDelete = productIdToDelete;
+    public DeleteProductRequest(long productId) {
+        this.productId = productId;
     }
 
-    public long getProductIdToDelete() {
-        return productIdToDelete;
+    public long getProductId() {
+        return productId;
     }
 }

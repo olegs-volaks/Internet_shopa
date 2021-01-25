@@ -18,12 +18,12 @@ public class AddCategoryValidator {
     }
 
     private Optional<CoreError> validateName(AddCategoryRequest request) {
-        if (request.getName() == null || request.getName().isEmpty()) {
+        if (request.getName() == null || request.getName().isBlank()) {
             return Optional.of(new CoreError("Name", "Must not be empty!"));
         }
 
-        if (request.getName().length() < 4 || request.getName().length() > 100) {
-            return Optional.of(new CoreError("Name", "Must be between 4 and 100 characters"));
+        if (request.getName().length() < 3 || request.getName().length() > 100) {
+            return Optional.of(new CoreError("Name", "Must be between 3 and 100 characters"));
         }
         return Optional.empty();
     }

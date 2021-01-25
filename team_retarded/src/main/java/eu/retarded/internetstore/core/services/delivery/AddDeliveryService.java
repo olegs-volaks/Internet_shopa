@@ -14,19 +14,16 @@ import java.util.List;
 @Component
 public class AddDeliveryService {
 
-    @Autowired private final DeliveryDatabase deliveryDatabase;
-    @Autowired private final AddDeliveryValidator validator;
-
-    public AddDeliveryService(DeliveryDatabase deliveryDatabase, AddDeliveryValidator validator) {
-        this.deliveryDatabase = deliveryDatabase;
-        this.validator = validator;
-    }
+    @Autowired
+    private DeliveryDatabase deliveryDatabase;
+    @Autowired
+    private AddDeliveryValidator validator;
 
     public AddDeliveryResponse execute(AddDeliveryRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new AddDeliveryResponse(errors);
         }
-        return new AddDeliveryResponse(deliveryDatabase.add(new Delivery(request.getTitle(),request.getRegion(),request.getPrice())));
+        return new AddDeliveryResponse(deliveryDatabase.add(new Delivery(request.getTitle(), request.getRegion(), request.getPrice())));
     }
 }

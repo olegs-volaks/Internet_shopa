@@ -23,7 +23,7 @@ public class AddUserValidator {
             return Optional.of(new CoreError("Login", "Must not be empty!"));
         }
 
-        if (request.getLogin().length() < 3|| request.getLogin().length() > 32) {
+        if (request.getLogin().length() < 3 || request.getLogin().length() > 32) {
             return Optional.of(new CoreError("Login", "Must be between 3 and 32 characters"));
         }
         return Optional.empty();

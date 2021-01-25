@@ -17,6 +17,7 @@ public class AddDeliveryResponse extends CoreResponse {
     public AddDeliveryResponse(List<CoreError> errors) {
         super(errors);
     }
+
     public long getDeliveryId() {
         return deliveryId;
     }

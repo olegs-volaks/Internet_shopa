@@ -3,7 +3,7 @@ package eu.retarded.internetstore.database.category;
 import eu.retarded.internetstore.core.domain.ProductCategory;
 import eu.retarded.internetstore.core.domain.row_mapper.ProductCategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -26,27 +26,16 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public boolean removeCategory(String name) {
-        try {
-            jdbcTemplate.update("DELETE FROM product_categories WHERE name = ?", name);
-            return true;
-        } catch (DataAccessException ex) {
-            return false;
-        }
+        return jdbcTemplate.update("DELETE FROM product_categories WHERE name = ?", name) == 1;
     }
 
     @Override
     public boolean removeCategory(Long id) {
-        try {
-            jdbcTemplate.update("DELETE FROM product_categories WHERE id = ?", id);
-            return true;
-        } catch (DataAccessException ex) {
-            return false;
-        }
+        return jdbcTemplate.update("DELETE FROM product_categories WHERE id = ?", id) == 1;
     }
 
     @Override
     public void removeCategory(Predicate<ProductCategory> predicate) {
-
     }
 
     @Override
@@ -56,19 +45,17 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public List<ProductCategory> getCategoryList() {
-        List<ProductCategory> categories = jdbcTemplate.query("SELECT * FROM product_categories", new ProductCategoryMapper());
-        //categories.forEach(productCategory -> {
-            //List<Product> products = jdbcTemplate.query("SELECT * FROM products WHERE category_id = ?",
-                    //new ProductMapper(), productCategory.getId());
-            //вопрос что возвращать?
-       // });
-        return categories;
+        return jdbcTemplate.query("SELECT * FROM product_categories", new ProductCategoryMapper());
     }
 
     @Override
     public Optional<ProductCategory> getCategory(Long id) {
-        return Optional.ofNullable(jdbcTemplate.queryForObject("SELECT * FROM product_categories WHERE id = ?",
-                new ProductCategoryMapper(), id));
+        try {
+            return Optional.ofNullable(jdbcTemplate.queryForObject("SELECT * FROM product_categories WHERE id = ?",
+                    new ProductCategoryMapper(), id));
+        } catch (IncorrectResultSizeDataAccessException ex) {
+            return Optional.empty();
+        }
     }
 
     @Override

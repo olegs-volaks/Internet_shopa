@@ -42,6 +42,7 @@ class DeleteUserServiceTest {
         Mockito.verify(validator).validate(any());
         Mockito.verifyNoInteractions(userDatabase);
     }
+
     @Test
     public void should_delete_user_with_id_from_database () {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());

@@ -24,8 +24,8 @@ public class AddProductValidator {
             return Optional.of(new CoreError("Name", "Must not be empty!"));
         }
 
-        if (request.getName().length() < 4 || request.getName().length() > 100) {
-            return Optional.of(new CoreError("Name", "Must be between 4 and 100 characters"));
+        if (request.getName().length() < 3 || request.getName().length() > 100) {
+            return Optional.of(new CoreError("Name", "Must be between 3 and 100 characters"));
         }
         return Optional.empty();
     }
@@ -43,8 +43,8 @@ public class AddProductValidator {
 
     private Optional<CoreError> validatePrice(AddProductRequest request) {
 
-        return (request.getPrice() <= 0 || request.getPrice() >= 100000)
-                ? Optional.of(new CoreError("Price", "Must be between 0 and 100000"))
+        return (request.getPrice() <= 0 || request.getPrice() >= 1000000000)
+                ? Optional.of(new CoreError("Price", "Must be between 0 and 1000000000"))
                 : Optional.empty();
     }
 }

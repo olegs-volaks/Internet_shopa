@@ -23,11 +23,6 @@ public class DeleteCategoryService {
         if (!errors.isEmpty()) {
             return new DeleteCategoryResponse(errors);
         }
-        //todo: испрпавить
-        /*if (!database.isExist(request.getCategoryId())) {
-            errors.add(new CoreError("ID", "The category with the given id does not exist"));
-            return new DeleteCategoryResponse(errors);
-        }*/
         return new DeleteCategoryResponse(database.removeCategory(request.getCategoryId()));
     }
 }
