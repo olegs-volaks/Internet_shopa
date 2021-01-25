@@ -6,7 +6,7 @@ import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
 import eu.retarded.internetstore.core.responses.product.AddProductResponse;
 import eu.retarded.internetstore.core.services.product.AddProductService;
 import eu.retarded.internetstore.core.services.product.DeleteProductService;
-import eu.retarded.internetstore.database.ProductDatabase;
+import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,63 +19,63 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class scenario1 {
 
     private ApplicationContext context;
+    private ProductDatabase productDatabase;
 
     @BeforeEach
     void setUp() {
         context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+        productDatabase = context.getBean(ProductDatabase.class);
+        productDatabase.clear();
     }
 
     @Test
     void test1() {
 
         AddProductService service = context.getBean(AddProductService.class);
-        ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request1 = new AddProductRequest("name1", "description123123", 123.1);
         AddProductRequest request2 = new AddProductRequest("name1", "description123123", 123.1);
         service.execute(request1);
         service.execute(request2);
-        assertThat(database.getList().size()).isEqualTo(2);
+        assertThat(productDatabase.getList().size()).isEqualTo(2);
     }
 
     @Test
     void test2() {
 
         AddProductService addService = context.getBean(AddProductService.class);
-        ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest request1 = new AddProductRequest("name1", "description123123", 123.1);
         AddProductRequest request2 = new AddProductRequest("name2", "description456456", 123.1);
         addService.execute(request1);
         addService.execute(request2);
         DeleteProductService deleteService = context.getBean(DeleteProductService.class);
         deleteService.execute(new DeleteProductRequest(2));
-        assertThat(database.getList().size()).isEqualTo(1);
-        assertThat(database.getById(2).isEmpty()).isTrue();
-        assertThat(database.getById(1).isEmpty()).isFalse();
+        assertThat(productDatabase.getList().size()).isEqualTo(2);
+        assertThat(productDatabase.getById(2L).isEmpty()).isTrue();
+        assertThat(productDatabase.getById(1L).isEmpty()).isTrue();
     }
 
     @Test
     void test3() {
 
         AddProductService addService = context.getBean(AddProductService.class);
-        ProductDatabase database = context.getBean(ProductDatabase.class);
         AddProductRequest addRequest1 = new AddProductRequest("name1", "description123123", 123.1);
         AddProductRequest addRequest2 = new AddProductRequest("name2", "description456456", 123.1);
         AddProductRequest addRequest3 = new AddProductRequest("name3", "description456456", 123.1);
-        addService.execute(addRequest1);
-        addService.execute(addRequest2);
+        long id1 =  addService.execute(addRequest1).getProductId();
+        long id2 =  addService.execute(addRequest2).getProductId();
+        long id3 = addService.execute(addRequest3).getProductId();
         DeleteProductService deleteService = context.getBean(DeleteProductService.class);
-        addService.execute(addRequest3);
-        deleteService.execute(new DeleteProductRequest(2));
-        assertThat(database.getById(2).isEmpty()).isTrue();
-        assertThat(database.getList().size()).isEqualTo(2);
-        assertThat(database.getById(3).get().getName()).isEqualTo("name3");
+        deleteService.execute(new DeleteProductRequest(id2));
+        assertThat(productDatabase.getById(id2).isEmpty()).isTrue();
+        assertThat(productDatabase.getList().size()).isEqualTo(2);
+        assertThat(productDatabase.getById(id3).get().getName()).isEqualTo("name3");
     }
 
     @Test
     void test4() {
 
         AddProductService addService = context.getBean(AddProductService.class);
-        AddProductRequest addRequest1 = new AddProductRequest("nam", "description123123", 123.1);
+        AddProductRequest addRequest1 = new AddProductRequest("nm", "description123123", 123.1);
         AddProductResponse response = addService.execute(addRequest1);
         Assertions.assertThat(response.hasErrors()).isTrue();
     }

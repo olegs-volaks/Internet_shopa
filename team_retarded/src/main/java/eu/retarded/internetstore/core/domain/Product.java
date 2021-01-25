@@ -1,81 +1,41 @@
 package eu.retarded.internetstore.core.domain;
 
+import lombok.Data;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Objects;
 
+@Entity
+@Table(name = "products")
+@Data
 public class Product {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "price")
     private BigDecimal price;
+
+    @Column(name = "category_id")
+    private Long categoryId;
 
     public Product(String name, String description, double price) {
         this.name = name;
         this.description = description;
-//      price from double convert to BigDecimal and rounded to two decimal places
         BigDecimal tmp = new BigDecimal(Double.toString(price));
         this.price = tmp.setScale(2, RoundingMode.DOWN);
     }
 
-
-    public long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setPrice(double price) {
-//      price from double convert to BigDecimal and rounded to two decimal places
-        BigDecimal tmp = new BigDecimal(Double.toString(price));
-        this.price = tmp.setScale(2, RoundingMode.DOWN);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return //Objects.equals(id, product.id) &&
-                Objects.equals(name, product.name) &&
-                        Objects.equals(description, product.description) &&
-                        Objects.equals(price, product.price);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                '}';
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, price);
+    public Product() {
     }
 }
+

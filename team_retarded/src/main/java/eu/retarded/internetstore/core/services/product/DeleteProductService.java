@@ -4,7 +4,7 @@ import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.DeleteProductResponse;
 import eu.retarded.internetstore.core.services.validators.product.DeleteProductValidator;
-import eu.retarded.internetstore.database.ProductDatabase;
+import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import java.util.List;
 @Component
 public class DeleteProductService {
     @Autowired
-    private ProductDatabase db;
+    private ProductDatabase database;
     @Autowired
     private DeleteProductValidator validator;
 
@@ -23,7 +23,7 @@ public class DeleteProductService {
             return new DeleteProductResponse(errors);
         }
 
-        return new DeleteProductResponse(db.delete(request.getProductIdToDelete()));
+        return new DeleteProductResponse(database.delete(request.getProductId()));
     }
 }
 

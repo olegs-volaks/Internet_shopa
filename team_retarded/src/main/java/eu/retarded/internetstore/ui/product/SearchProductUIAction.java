@@ -105,8 +105,6 @@ public class SearchProductUIAction implements UIAction {
         }
         return null;
     }
-
-
 }
 
 

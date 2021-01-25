@@ -4,7 +4,7 @@ import eu.retarded.internetstore.core.requests.product.AddProductRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.AddProductResponse;
 import eu.retarded.internetstore.core.services.validators.product.AddProductValidator;
-import eu.retarded.internetstore.database.ProductDatabase;
+import eu.retarded.internetstore.database.product.ProductDatabase;
 import eu.retarded.internetstore.matchers.ProductMatcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -45,9 +45,7 @@ public class AddProductServiceTest {
         Assertions.assertEquals(response.getErrors().get(0).getMessage(), "Must be between 4 and 10 characters");
         Mockito.verifyNoInteractions(database);
         Mockito.verify(validator).validate(request);
-
     }
-
 
     @Test
     public void should_add_product_to_database() {
@@ -56,7 +54,6 @@ public class AddProductServiceTest {
         AddProductResponse response = subject.execute(request);
         Assertions.assertFalse(response.hasErrors());
         Mockito.verify(database).add(argThat(new ProductMatcher("Name", "Description")));
-
 
     }
 }

@@ -2,7 +2,7 @@ package eu.retarded.internetstore.core.services.category;
 
 import eu.retarded.internetstore.core.requests.category.DeleteAllCategoryRequest;
 import eu.retarded.internetstore.core.responses.category.DeleteAllCategoryResponse;
-import eu.retarded.internetstore.database.categories.database.CategoriesDatabase;
+import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
