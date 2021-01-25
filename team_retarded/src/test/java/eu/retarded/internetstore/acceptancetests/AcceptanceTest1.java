@@ -1,6 +1,6 @@
 package eu.retarded.internetstore.acceptancetests;
 
-import eu.retarded.internetstore.config.applicationConfiguration;
+import eu.retarded.internetstore.config.ApplicationConfiguration;
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.AddProductRequest;
 import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
@@ -29,7 +29,7 @@ public class AcceptanceTest1 {
 
     @BeforeEach
     void setUp() {
-        context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+        context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         productDatabase = context.getBean(ProductDatabase.class);
         productDatabase.clear();
     }

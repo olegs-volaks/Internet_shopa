@@ -1,6 +1,6 @@
 package eu.retarded.internetstore.acceptancetests;
 
-import eu.retarded.internetstore.config.applicationConfiguration;
+import eu.retarded.internetstore.config.ApplicationConfiguration;
 import eu.retarded.internetstore.core.requests.delivery.AddDeliveryRequest;
 import eu.retarded.internetstore.core.requests.delivery.DeleteDeliveryRequest;
 import eu.retarded.internetstore.core.responses.delivery.AddDeliveryResponse;
@@ -22,7 +22,7 @@ public class DeliveryAcceptanceTest {
 
     @BeforeEach
     void setUp() {
-        context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
+        context = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
         deliveryDatabase = context.getBean(DeliveryDatabase.class);
         deliveryDatabase.clear();
     }
