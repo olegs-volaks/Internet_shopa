@@ -1,13 +1,12 @@
 package eu.retarded.internetstore.database.user;
 
 import eu.retarded.internetstore.core.domain.User;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+//@Component
 public class ListUsersDatabase implements UsersDatabase {
 
     private final List<User> usersDatabase = new ArrayList<>();
@@ -17,7 +16,7 @@ public class ListUsersDatabase implements UsersDatabase {
     public Long add(User user) {
         id++;
         user.setId(id);
-        String role = "Guest";
+        Integer role = 0;
         user.setRole(role);
         usersDatabase.add(user);
         return id;

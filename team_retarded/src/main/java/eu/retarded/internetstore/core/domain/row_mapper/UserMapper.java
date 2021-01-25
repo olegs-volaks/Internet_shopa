@@ -13,7 +13,7 @@ public class UserMapper implements RowMapper<User> {
         User user = new User();
         String login = rs.getString("login");
         String password = rs.getString("password");
-        String role = rs.getString("role");
+        Integer role = rs.getInt("role");
         user.setId(rs.getLong("id"));
         user.setLogin(login);
         user.setPassword(password);

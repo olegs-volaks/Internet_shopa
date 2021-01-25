@@ -1,7 +1,7 @@
 package eu.retarded.internetstore.integrationtests;
 
 
-import eu.retarded.internetstore.config.applicationConfiguration;
+import eu.retarded.internetstore.config.ApplicationConfiguration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {applicationConfiguration.class})
+@ContextConfiguration(classes = {ApplicationConfiguration.class})
 public class SpringContextTest {
 
     @Autowired

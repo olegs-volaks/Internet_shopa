@@ -12,8 +12,6 @@ public interface DeliveryDatabase {
 
     boolean delete(Long id);
 
-    boolean delete(Predicate<Delivery> predicate);
-
     void clear();
 
     Optional<Delivery> getById(Long id);

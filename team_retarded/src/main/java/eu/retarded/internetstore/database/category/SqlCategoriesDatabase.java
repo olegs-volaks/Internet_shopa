@@ -1,25 +1,23 @@
 package eu.retarded.internetstore.database.category;
 
-import eu.retarded.internetstore.core.domain.ProductCategory;
+import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.core.domain.row_mapper.ProductCategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
-@Component
+//@Component
 public class SqlCategoriesDatabase implements CategoriesDatabase {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public Long addCategory(ProductCategory ListCategory) {
-        jdbcTemplate.update("INSERT INTO product_categories(name) VALUES (?)", ListCategory.getName());
+    public Long addCategory(Category category) {
+        jdbcTemplate.update("INSERT INTO product_categories(name) VALUES (?)", category.getName());
         return jdbcTemplate.queryForObject("SELECT id FROM product_categories WHERE id=(SELECT max(id) FROM product_categories)",
                 Long.class);
     }
@@ -35,21 +33,17 @@ public class SqlCategoriesDatabase implements CategoriesDatabase {
     }
 
     @Override
-    public void removeCategory(Predicate<ProductCategory> predicate) {
-    }
-
-    @Override
     public void clear() {
         jdbcTemplate.update("DELETE FROM product_categories");
     }
 
     @Override
-    public List<ProductCategory> getCategoryList() {
+    public List<Category> getCategoryList() {
         return jdbcTemplate.query("SELECT * FROM product_categories", new ProductCategoryMapper());
     }
 
     @Override
-    public Optional<ProductCategory> getCategory(Long id) {
+    public Optional<Category> getCategory(Long id) {
         try {
             return Optional.ofNullable(jdbcTemplate.queryForObject("SELECT * FROM product_categories WHERE id = ?",
                     new ProductCategoryMapper(), id));

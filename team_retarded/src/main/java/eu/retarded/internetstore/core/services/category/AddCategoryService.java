@@ -1,6 +1,6 @@
 package eu.retarded.internetstore.core.services.category;
 
-import eu.retarded.internetstore.core.domain.ProductCategory;
+import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.core.requests.category.AddCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.category.AddCategoryResponse;
@@ -24,6 +24,6 @@ public class AddCategoryService {
         if (!errors.isEmpty()) {
             return new AddCategoryResponse(errors);
         }
-        return new AddCategoryResponse(database.addCategory(new ProductCategory(request.getName())));
+        return new AddCategoryResponse(database.addCategory(new Category(request.getName())));
     }
 }

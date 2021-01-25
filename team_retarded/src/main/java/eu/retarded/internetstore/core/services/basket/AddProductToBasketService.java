@@ -18,6 +18,7 @@ import java.util.Optional;
 @Component
 public class AddProductToBasketService {
 
+
     @Autowired
     private UsersDatabase usersDatabase;
     @Autowired
@@ -34,7 +35,7 @@ public class AddProductToBasketService {
         Optional<Product> product = productDatabase.getById(request.getProductId());
 
         if (user.isPresent() && product.isPresent()) {
-            user.get().getUsersBasket().add(product.get(), request.getQuantity());
+            //user.get().getUsersBasket().add(product.get(), request.getQuantity());
         }
 
         return new AddProductToBasketResponse(user.isPresent() && product.isPresent());

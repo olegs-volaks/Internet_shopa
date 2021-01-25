@@ -1,6 +1,6 @@
-package eu.retarded.internetstore.acceptancetests;
+package eu.retarded.internetstore.integrationtests;
 
-import eu.retarded.internetstore.config.applicationConfiguration;
+import eu.retarded.internetstore.config.ApplicationConfiguration;
 import eu.retarded.internetstore.core.requests.delivery.AddDeliveryRequest;
 import eu.retarded.internetstore.core.requests.delivery.DeleteDeliveryRequest;
 import eu.retarded.internetstore.core.responses.delivery.AddDeliveryResponse;
@@ -9,21 +9,26 @@ import eu.retarded.internetstore.core.services.delivery.DeleteDeliveryService;
 import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DeliveryAcceptanceTest {
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {ApplicationConfiguration.class})
+public class DeliveryIntegrationTest {
 
+    @Autowired
     private ApplicationContext context;
+    @Autowired
     private DeliveryDatabase deliveryDatabase;
 
 
     @BeforeEach
     void setUp() {
-        context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
-        deliveryDatabase = context.getBean(DeliveryDatabase.class);
         deliveryDatabase.clear();
     }
 

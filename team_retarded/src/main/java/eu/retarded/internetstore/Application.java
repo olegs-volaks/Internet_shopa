@@ -1,6 +1,6 @@
 package eu.retarded.internetstore;
 
-import eu.retarded.internetstore.config.applicationConfiguration;
+import eu.retarded.internetstore.config.ApplicationConfiguration;
 import eu.retarded.internetstore.ui.ProgramMenu;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -22,6 +22,6 @@ public class Application {
     }
 
     private static ApplicationContext createApplicationContext() {
-        return new AnnotationConfigApplicationContext(applicationConfiguration.class);
+        return new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
     }
 }

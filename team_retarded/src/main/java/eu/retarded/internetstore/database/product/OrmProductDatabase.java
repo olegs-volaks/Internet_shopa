@@ -2,14 +2,15 @@ package eu.retarded.internetstore.database.product;
 
 import eu.retarded.internetstore.core.domain.Product;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Component
 @Transactional
@@ -18,11 +19,9 @@ public class OrmProductDatabase implements ProductDatabase {
     @Autowired
     private SessionFactory sessionFactory;
 
-
     @Override
     public Long add(Product product) {
-        sessionFactory.getCurrentSession().save(product);
-        return null;
+        return (Long) sessionFactory.getCurrentSession().save(product);
     }
 
     @Override
@@ -32,24 +31,23 @@ public class OrmProductDatabase implements ProductDatabase {
         return query.executeUpdate() == 1;
     }
 
-    @Override
-    public boolean delete(Predicate<Product> predicate) {
-        return false;
-    }
+    //public boolean delete(Predicate<Product> predicate) { return false; }
 
     @Override
     public void clear() {
-
+        sessionFactory.getCurrentSession().createQuery("DELETE from Product ").executeUpdate();
     }
 
     @Override
     public Optional<Product> getById(Long id) {
-        return Optional.of(sessionFactory.getCurrentSession().get(Product.class, id));
+        return Optional.ofNullable(sessionFactory.getCurrentSession().get(Product.class, id));
     }
 
     @Override
     public List<Product> filter(Predicate<Product> predicate) {
-        return null;
+         return sessionFactory.getCurrentSession().createQuery("SELECT b FROM Product b", Product.class)
+                 .stream().filter(predicate)
+                 .collect(Collectors.toList());
     }
 
     @Override
@@ -60,17 +58,22 @@ public class OrmProductDatabase implements ProductDatabase {
     }
 
     @Override
-    public boolean isExist(Long id) {
-        return false;
-    }
+    public boolean isExist(Long id) { return getById(id).isPresent(); }
 
     @Override
     public boolean addProductToCategory(Long productId, Long categoryId) {
-        return false;
+        Query query =sessionFactory.getCurrentSession().
+                createQuery("UPDATE Product SET categoryId =: categoryId WHERE id =: id ");
+        query.setParameter("categoryId", categoryId);
+        query.setParameter("id", productId);
+        return query.executeUpdate() == 1;
     }
 
     @Override
     public boolean removeProductFromCategory(Long productId) {
-        return false;
+        Query query=sessionFactory.getCurrentSession().
+                createQuery("UPDATE Product SET categoryId=null WHERE id =: id ");
+        query.setParameter("id", productId);
+        return query.executeUpdate() == 1;
     }
 }

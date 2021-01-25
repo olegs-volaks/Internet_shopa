@@ -1,6 +1,6 @@
-package eu.retarded.internetstore.acceptancetests;
+package eu.retarded.internetstore.integrationtests;
 
-import eu.retarded.internetstore.config.applicationConfiguration;
+import eu.retarded.internetstore.config.ApplicationConfiguration;
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.AddProductRequest;
 import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
@@ -14,23 +14,27 @@ import eu.retarded.internetstore.core.services.product.SearchProductService;
 import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {ApplicationConfiguration.class})
+public class ProductIntegrationTest {
 
-public class AcceptanceTest1 {
-
+    @Autowired
     private ApplicationContext context;
+    @Autowired
     private ProductDatabase productDatabase;
 
     @BeforeEach
     void setUp() {
-        context = new AnnotationConfigApplicationContext(applicationConfiguration.class);
-        productDatabase = context.getBean(ProductDatabase.class);
         productDatabase.clear();
     }
 
@@ -100,7 +104,7 @@ public class AcceptanceTest1 {
         assertThat(productDatabase.getById(id3).isEmpty()).isFalse();
     }
 
-   @Test
+    @Test
     void search_product_request() {
 
         AddProductService addProductService = context.getBean(AddProductService.class);
@@ -119,8 +123,8 @@ public class AcceptanceTest1 {
         addProductService.execute(request5);
         searchProductService.execute(new SearchProductRequest("Apple", "Iphone XRMax"));
         searchProductService.execute(new SearchProductRequest("Sony", "Fridge"));
-       searchProductService.execute(new SearchProductRequest("Samsung", "Dishwasher"));
-       assertThat(productDatabase.getList().size()).isEqualTo(4);
+        searchProductService.execute(new SearchProductRequest("Samsung", "Dishwasher"));
+        assertThat(productDatabase.getList().size()).isEqualTo(4);
     }
 
     @Test

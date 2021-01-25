@@ -1,26 +1,23 @@
 package eu.retarded.internetstore.database.category;
 
-import eu.retarded.internetstore.core.domain.ProductCategory;
+import eu.retarded.internetstore.core.domain.Category;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 public interface CategoriesDatabase {
 
-    Long addCategory(ProductCategory ListCategory);
+    Long addCategory(Category category);
 
     boolean removeCategory(String name);
 
     boolean removeCategory(Long id);
 
-    void removeCategory(Predicate<ProductCategory> predicate);
-
     void clear();
 
-    List<ProductCategory> getCategoryList();
+    List<Category> getCategoryList();
 
-    Optional<ProductCategory> getCategory(Long id);
+    Optional<Category> getCategory(Long id);
 
     boolean isExist(Long id);
 }
