@@ -43,7 +43,7 @@ public class ListUsersDatabase implements UsersDatabase {
     }
 
     @Override
-    public boolean isExist() {
+    public boolean isExist(Long id) {
         return false;
     }
 }

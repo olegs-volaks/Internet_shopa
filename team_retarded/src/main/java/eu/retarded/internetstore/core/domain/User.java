@@ -24,11 +24,14 @@ public class User {
     @Column(name = "role")
     private Integer role;
 
+    @Column(name = "basket_id")
+    private Long basketId;
+
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
-       //usersBasket = new Basket();
+        //usersBasket = new Basket();
     }
 
     public User() {
