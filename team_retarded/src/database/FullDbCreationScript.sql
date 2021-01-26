@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS users
     login     VARCHAR(100) NOT NULL,
     password  VARCHAR(100) NOT NULL,
     role      INT DEFAULT 1,
-    basket_id BIGINT       NOT NULL,
+    basket_id BIGINT,
     PRIMARY KEY (id)
 )
     ENGINE = InnoDB
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS users
     login     VARCHAR(100) NOT NULL,
     password  VARCHAR(100) NOT NULL,
     role      INT DEFAULT 1,
-    basket_id BIGINT       NOT NULL,
+    basket_id BIGINT,
     PRIMARY KEY (id)
 )
     ENGINE = InnoDB
