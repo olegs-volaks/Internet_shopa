@@ -24,15 +24,14 @@ public class User {
     @Column(name = "role")
     private Integer role;
 
-    @Column(name = "basket_id")
-    private Long basketId;
+    @Column(name = "name")
+    private String name;
 
+    @Column(name = "surname")
+    private String surname;
 
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-        //usersBasket = new Basket();
-    }
+    @Column(name = "email")
+    private String email;
 
     public User() {
     }

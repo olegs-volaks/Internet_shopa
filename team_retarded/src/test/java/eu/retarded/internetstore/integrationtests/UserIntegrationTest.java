@@ -38,9 +38,12 @@ public class UserIntegrationTest {
     @Test
     void add_user_test() {
         AddUserService addUserService = context.getBean(AddUserService.class);
-        long id1 = addUserService.execute(new AddUserRequest("First", "Password 1")).getUserId();
-        long id2 = addUserService.execute(new AddUserRequest("Second", "Password 2")).getUserId();
-        long id3 = addUserService.execute(new AddUserRequest("Third", "Password 3")).getUserId();
+        long id1 = addUserService.execute(new AddUserRequest("First", "Password 1", 1, "Jon",
+                "Dou", "jond@mail.com")).getUserId();
+        long id2 = addUserService.execute(new AddUserRequest("Second", "Password 2", 1, "Jon",
+                "Dou", "jond@mail.com")).getUserId();
+        long id3 = addUserService.execute(new AddUserRequest("Third", "Password 3", 1, "Jon",
+                "Dou", "jond@mail.com")).getUserId();
         assertThat(id1).isLessThan(id2);
         assertThat(id2).isLessThan(id3);
         List<User> result = usersDatabase.getList();
@@ -51,9 +54,12 @@ public class UserIntegrationTest {
     void delete_user_test() {
         AddUserService addUserService = context.getBean(AddUserService.class);
         DeleteUserService deleteUserService = context.getBean(DeleteUserService.class);
-        long id1 = addUserService.execute(new AddUserRequest("First", "Password 1")).getUserId();
-        long id2 = addUserService.execute(new AddUserRequest("Second", "Password 2")).getUserId();
-        long id3 = addUserService.execute(new AddUserRequest("Third", "Password 3")).getUserId();
+        long id1 = addUserService.execute(new AddUserRequest("First", "Password 1", 1, "Jon",
+                "Dou", "jond@mail.com")).getUserId();
+        long id2 = addUserService.execute(new AddUserRequest("Second", "Password 2", 1, "Jon",
+                "Dou", "jond@mail.com")).getUserId();
+        long id3 = addUserService.execute(new AddUserRequest("Third", "Password 3", 1, "Jon",
+                "Dou", "jond@mail.com")).getUserId();
         boolean firstResult = deleteUserService.execute(new DeleteUserRequest(id2)).isDeleted();
         boolean secondResult = deleteUserService.execute(new DeleteUserRequest(id3 + 1)).isDeleted();
         assertThat(firstResult).isTrue();
