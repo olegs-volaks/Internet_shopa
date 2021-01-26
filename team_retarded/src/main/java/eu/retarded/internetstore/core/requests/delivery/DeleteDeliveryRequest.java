@@ -2,13 +2,13 @@ package eu.retarded.internetstore.core.requests.delivery;
 
 public class DeleteDeliveryRequest {
 
-    private final long deliveryIdToDelete;
+    private final long deleteDeliveryId;
 
-    public DeleteDeliveryRequest(long deliveryIdToDelete) {
-        this.deliveryIdToDelete = deliveryIdToDelete;
+    public DeleteDeliveryRequest(long deleteDeliveryId) {
+        this.deleteDeliveryId = deleteDeliveryId;
     }
 
-    public long getDeliveryIdToDelete() {
-        return deliveryIdToDelete;
+    public long getDeleteDeliveryId() {
+        return deleteDeliveryId;
     }
 }

@@ -2,6 +2,7 @@ package eu.retarded.internetstore.database.delivery;
 
 import eu.retarded.internetstore.core.domain.Delivery;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -21,5 +22,11 @@ public interface DeliveryDatabase {
     List<Delivery> getList();
 
     boolean isExist(Long id);
+
+    boolean changeTitle(Long id,String title);
+
+    boolean changeRegion(Long id,String region);
+
+    boolean changePrice(Long id,BigDecimal price);
 
 }

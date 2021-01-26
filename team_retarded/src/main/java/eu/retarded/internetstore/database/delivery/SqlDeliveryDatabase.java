@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -66,5 +67,20 @@ public class SqlDeliveryDatabase implements DeliveryDatabase {
     @Override
     public boolean isExist(Long id) {
         return getById(id).isPresent();
+    }
+
+    @Override
+    public boolean changeTitle(Long id,String title) {
+        return false;
+    }
+
+    @Override
+    public boolean changeRegion(Long id,String region) {
+        return false;
+    }
+
+    @Override
+    public boolean changePrice(Long id,BigDecimal price) {
+        return false;
     }
 }
