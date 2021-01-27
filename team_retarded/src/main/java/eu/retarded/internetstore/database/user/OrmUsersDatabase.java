@@ -51,4 +51,9 @@ public class OrmUsersDatabase implements UsersDatabase {
     public boolean isExist(Long id) {
         return getUserById(id).isPresent();
     }
+
+    @Override
+    public void updateUser(User user) {
+        sessionFactory.getCurrentSession().update(user);
+    }
 }

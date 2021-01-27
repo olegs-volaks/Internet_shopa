@@ -55,4 +55,8 @@ public class SqlUsersDatabase implements UsersDatabase {
         return getUserById(id).isPresent();
     }
 
+    @Override
+    public void updateUser(User user) {
+    }
+
 }
