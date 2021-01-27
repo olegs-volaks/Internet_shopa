@@ -24,6 +24,13 @@ public class AddUserService {
         if (!errors.isEmpty()) {
             return new AddUserResponse(errors);
         }
-        return new AddUserResponse(db.add(new User(request.getLogin(), request.getPassword())));
+        User user = new User();
+        user.setLogin(request.getLogin());
+        user.setPassword(request.getPassword());
+        user.setRole(request.getRole());
+        user.setName(request.getName());
+        user.setSurname(request.getSurname());
+        user.setEmail(request.getEmail());
+        return new AddUserResponse(db.add(user));
     }
 }

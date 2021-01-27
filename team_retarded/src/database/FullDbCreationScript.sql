@@ -36,11 +36,13 @@ CREATE TABLE IF NOT EXISTS products
 
 CREATE TABLE IF NOT EXISTS users
 (
-    id        BIGINT       NOT NULL AUTO_INCREMENT,
-    login     VARCHAR(100) NOT NULL,
-    password  VARCHAR(100) NOT NULL,
-    role      INT DEFAULT 1,
-    basket_id BIGINT,
+    id       BIGINT       NOT NULL AUTO_INCREMENT,
+    login    VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    role     INT DEFAULT 1,
+    name     VARCHAR(100),
+    surname  VARCHAR(100),
+    email    VARCHAR(100),
     PRIMARY KEY (id)
 )
     ENGINE = InnoDB
@@ -88,11 +90,13 @@ CREATE TABLE IF NOT EXISTS products
 
 CREATE TABLE IF NOT EXISTS users
 (
-    id        BIGINT       NOT NULL AUTO_INCREMENT,
-    login     VARCHAR(100) NOT NULL,
-    password  VARCHAR(100) NOT NULL,
-    role      INT DEFAULT 1,
-    basket_id BIGINT,
+    id       BIGINT       NOT NULL AUTO_INCREMENT,
+    login    VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    role     INT DEFAULT 1,
+    name     VARCHAR(100),
+    surname  VARCHAR(100),
+    email    VARCHAR(100),
     PRIMARY KEY (id)
 )
     ENGINE = InnoDB
