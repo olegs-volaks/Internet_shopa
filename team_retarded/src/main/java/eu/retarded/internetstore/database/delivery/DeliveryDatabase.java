@@ -23,10 +23,6 @@ public interface DeliveryDatabase {
 
     boolean isExist(Long id);
 
-    boolean changeTitle(Long id,String title);
-
-    boolean changeRegion(Long id,String region);
-
-    boolean changePrice(Long id,BigDecimal price);
+    void updateDelivery(Delivery delivery);
 
 }

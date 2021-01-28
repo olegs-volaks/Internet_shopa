@@ -61,17 +61,7 @@ public class ListDeliveryDatabase implements DeliveryDatabase {
     }
 
     @Override
-    public boolean changeTitle(Long id,String title) {
-        return false;
-    }
+    public void updateDelivery(Delivery delivery) {
 
-    @Override
-    public boolean changeRegion(Long id,String region) {
-        return false;
-    }
-
-    @Override
-    public boolean changePrice(Long id,BigDecimal price) {
-        return false;
     }
 }

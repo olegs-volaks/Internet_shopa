@@ -65,17 +65,7 @@ public class OrmDeliveryDatabase implements DeliveryDatabase {
     }
 
     @Override
-    public boolean changeTitle(Long id ,String title) {
-        return false;
-    }
-
-    @Override
-    public boolean changeRegion(Long id,String region) {
-        return false;
-    }
-
-    @Override
-    public boolean changePrice(Long id,BigDecimal price) {
-        return false;
+    public void updateDelivery(Delivery delivery) {
+        sessionFactory.getCurrentSession().update(delivery);
     }
 }
