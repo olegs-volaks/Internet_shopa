@@ -24,13 +24,12 @@ public class User {
     @Column(name = "role")
     private Integer role;
 
+    @Column(name = "name")
+    private String name;
 
-    public User(String login, String password) {
-        this.login = login;
-        this.password = password;
-       //usersBasket = new Basket();
-    }
+    @Column(name = "surname")
+    private String surname;
 
-    public User() {
-    }
+    @Column(name = "email")
+    private String email;
 }

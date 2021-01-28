@@ -45,4 +45,18 @@ public class SqlUsersDatabase implements UsersDatabase {
         return jdbcTemplate.query("SELECT * FROM users", new UserMapper());
     }
 
+    @Override
+    public void clear() {
+        jdbcTemplate.update("DELETE FROM users");
+    }
+
+    @Override
+    public boolean isExist(Long id) {
+        return getUserById(id).isPresent();
+    }
+
+    @Override
+    public void updateUser(User user) {
+    }
+
 }

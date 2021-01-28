@@ -7,17 +7,17 @@ import java.util.List;
 
 public class DeleteUserResponse extends CoreResponse {
 
-    private boolean isUserDeleted;
+    private boolean isDeleted;
 
     public DeleteUserResponse(List<CoreError> errors) {
         super(errors);
     }
 
-    public DeleteUserResponse(boolean isUserDeleted) {
-        this.isUserDeleted = isUserDeleted;
+    public DeleteUserResponse(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
-    public boolean isUserDeleted() {
-        return isUserDeleted;
+    public boolean isDeleted() {
+        return isDeleted;
     }
 }

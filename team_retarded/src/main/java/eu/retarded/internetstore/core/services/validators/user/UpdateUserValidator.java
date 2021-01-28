@@ -1,7 +1,9 @@
 package eu.retarded.internetstore.core.services.validators.user;
 
-import eu.retarded.internetstore.core.requests.user.AddUserRequest;
+import eu.retarded.internetstore.core.requests.user.UpdateUserRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.database.user.UsersDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -9,12 +11,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class AddUserValidator {
+public class UpdateUserValidator {
 
-    public List<CoreError> validate(AddUserRequest request) {
+    @Autowired
+    private UsersDatabase usersDatabase;
+
+    public List<CoreError> validate(UpdateUserRequest request) {
         List<CoreError> errors = new ArrayList<>();
-        validateLogin(request).ifPresent(errors::add);
-        validatePassword(request).ifPresent(errors::add);
+        validateId(request).ifPresent(errors::add);
         validateRole(request).ifPresent(errors::add);
         validateName(request).ifPresent(errors::add);
         validateSurname(request).ifPresent(errors::add);
@@ -22,36 +26,24 @@ public class AddUserValidator {
         return errors;
     }
 
-    private Optional<CoreError> validateLogin(AddUserRequest request) {
-        if (request.getLogin() == null || request.getLogin().isEmpty()) {
-            return Optional.of(new CoreError("Login", "Must not be empty!"));
+    private Optional<CoreError> validateId(UpdateUserRequest request) {
+        if (request.getId() <= 0) {
+            return Optional.of(new CoreError("ID", "Must not be empty or negative"));
         }
-
-        if (request.getLogin().length() < 4 || request.getLogin().length() > 32) {
-            return Optional.of(new CoreError("Login", "Must be between 4 and 32 characters"));
-        }
-        return Optional.empty();
-    }
-
-    private Optional<CoreError> validatePassword(AddUserRequest request) {
-        if (request.getPassword() == null || request.getPassword().isEmpty()) {
-            return Optional.of(new CoreError("Password", "Must not be empty!"));
-        }
-
-        if (request.getPassword().length() < 6 || request.getPassword().length() > 32) {
-            return Optional.of(new CoreError("Password", "Must be between 6 and 32 characters"));
+        if (!usersDatabase.isExist(request.getId())) {
+            return Optional.of(new CoreError("ID", "The user with the given id does not exist"));
         }
         return Optional.empty();
     }
 
-    private Optional<CoreError> validateRole(AddUserRequest request) {
+    private Optional<CoreError> validateRole(UpdateUserRequest request) {
         if (request.getRole() < 0 && request.getRole() > 4) {
             return Optional.of(new CoreError("Role", "Must be between 1 and 3 characters"));
         }
         return Optional.empty();
     }
 
-    private Optional<CoreError> validateName(AddUserRequest request) {
+    private Optional<CoreError> validateName(UpdateUserRequest request) {
         if (request.getName() == null || request.getName().isEmpty()) {
             return Optional.of(new CoreError("Name", "Must not be empty!"));
         }
@@ -62,7 +54,7 @@ public class AddUserValidator {
         return Optional.empty();
     }
 
-    private Optional<CoreError> validateSurname(AddUserRequest request) {
+    private Optional<CoreError> validateSurname(UpdateUserRequest request) {
         if (request.getSurname() == null || request.getSurname().isEmpty()) {
             return Optional.of(new CoreError("Surname", "Must not be empty!"));
         }
@@ -73,7 +65,7 @@ public class AddUserValidator {
         return Optional.empty();
     }
 
-    private Optional<CoreError> validateEmail(AddUserRequest request) {
+    private Optional<CoreError> validateEmail(UpdateUserRequest request) {
         if (request.getEmail() == null || request.getEmail().isEmpty()) {
             return Optional.of(new CoreError("Email", "Must not be empty!"));
         }

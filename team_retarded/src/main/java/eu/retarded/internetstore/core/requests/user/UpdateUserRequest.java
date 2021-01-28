@@ -5,10 +5,8 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class AddUserRequest {
-
-    private final String login;
-    private final String password;
+public class UpdateUserRequest {
+    private final long id;
     private final int role;
     private final String name;
     private final String surname;

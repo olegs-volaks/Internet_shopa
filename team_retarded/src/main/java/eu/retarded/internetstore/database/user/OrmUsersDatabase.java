@@ -41,4 +41,19 @@ public class OrmUsersDatabase implements UsersDatabase {
                 .createQuery("SELECT b FROM User b", User.class)
                 .getResultList();
     }
+
+    @Override
+    public void clear() {
+        sessionFactory.getCurrentSession().createQuery("DELETE FROM User").executeUpdate();
+    }
+
+    @Override
+    public boolean isExist(Long id) {
+        return getUserById(id).isPresent();
+    }
+
+    @Override
+    public void updateUser(User user) {
+        sessionFactory.getCurrentSession().update(user);
+    }
 }

@@ -7,13 +7,17 @@ import java.util.Optional;
 
 public interface UsersDatabase {
 
-    public Long add(User user);
+    Long add(User user);
 
-    public boolean delete(Long id);
+    boolean delete(Long id);
 
-    public Optional<User> getUserById(Long id);
+    Optional<User> getUserById(Long id);
 
-    public List<User> getList();
+    List<User> getList();
 
+    void clear();
 
+    boolean isExist(Long id);
+
+    void updateUser(User user);
 }

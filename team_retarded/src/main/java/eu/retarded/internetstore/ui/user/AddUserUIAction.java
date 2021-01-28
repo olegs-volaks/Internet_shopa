@@ -23,7 +23,8 @@ public class AddUserUIAction implements UIAction {
         System.out.print("Please, enter new user password: ");
         String password = scanner.nextLine();
 
-        AddUserResponse response = service.execute(new AddUserRequest(name, password));
+        AddUserResponse response = service.execute(new AddUserRequest(name, password, 1, "Demo Name",
+                "Demo Surname", "demo@mail.com"));
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
                     + coreError.getField() + ": " + coreError.getMessage()));

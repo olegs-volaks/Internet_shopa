@@ -33,4 +33,12 @@ public class CoreError {
     public int hashCode() {
         return Objects.hash(field, message);
     }
+
+    @Override
+    public String toString() {
+        return "CoreError{" +
+                "field='" + field + '\'' +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }

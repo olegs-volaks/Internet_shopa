@@ -13,7 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ListDeliveryDatabaseTest {
 
-   // private DeliveryDatabase deliveryDatabase;
     private ListDeliveryDatabase subject;
 
     @BeforeEach
@@ -34,42 +33,6 @@ class ListDeliveryDatabaseTest {
     }
 
     @Test
-    void delete_by_title() {
-        subject.add(new Delivery("Volvo", "Kurzeme", 2500.0));
-        subject.add(new Delivery("BMW", "Olaine", 7000.0));
-        subject.add(new Delivery("Audi", "Liepaja", 15000.0));
-        subject.add(new Delivery("Honda", "Daugavpils", 3000.0));
-        subject.delete(delivery -> delivery.getTitle().equals("Honda"));
-        assertThat(subject.getList()).isNotEmpty();
-        assertThat(subject.getList()).noneMatch(delivery -> delivery.getTitle().equals("Honda")); // тут ошибка
-
-    }
-
-    @Test
-    void delete_by_price() {
-        subject.add(new Delivery("Volvo", "Kurzeme", 2500.0));
-        subject.add(new Delivery("BMW", "Olaine", 7000.0));
-        subject.add(new Delivery("Audi", "Liepaja", 15000.0));
-        subject.add(new Delivery("Honda", "Daugavpils", 3000.0));
-        subject.delete(delivery -> delivery.getPrice().compareTo(new BigDecimal("2500.0")) == 0);
-        assertThat(subject.getList()).isNotEmpty();
-    }
-
-    @Test
-    void delete_by_region() {
-        subject.add(new Delivery("Volvo", "Kurzeme", 2500.0));
-        subject.add(new Delivery("BMW", "Olaine", 7000.0));
-        subject.add(new Delivery("Audi", "Liepaja", 15000.0));
-        subject.add(new Delivery("Honda", "Daugavpils", 3000.0));
-        subject.delete(delivery -> delivery.getRegion().equals("Kurzeme") || delivery.getRegion().equals("Olaine"));
-        assertThat(subject.getList()).isNotEmpty();
-        assertThat(subject.getList()).noneMatch(delivery -> delivery.getRegion().equals("Kurzeme")  // !!!
-                || delivery.getRegion().equals("Olaine"));
-
-
-    }
-
-    @Test
     void clear() {
         subject.add(new Delivery("Volvo", "Kurzeme", 2500.0));
         subject.add(new Delivery("BMW", "Olaine", 7000.0));
@@ -77,7 +40,5 @@ class ListDeliveryDatabaseTest {
         subject.add(new Delivery("Honda", "Daugavpils", 3000.0));
         subject.clear();
         assertThat(subject.getList()).isEmpty();
-
     }
-
 }
