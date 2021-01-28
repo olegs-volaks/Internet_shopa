@@ -7,13 +7,13 @@ import java.util.List;
 
 public class UpdateDeliveryResponse extends CoreResponse {
 
-   private long deliveryId;
+   private Long deliveryId;
 
-   public long getDeliveryId() {
+   public Long getDeliveryId() {
       return deliveryId;
    }
 
-   public UpdateDeliveryResponse(long deliveryId) {
+   public UpdateDeliveryResponse(Long deliveryId) {
       this.deliveryId = deliveryId;
    }
 
