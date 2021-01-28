@@ -6,8 +6,6 @@ import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.xml.bind.annotation.XmlSchemaTypes;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,10 +47,10 @@ public class UpdateDeliveryValidator {
 
     private Optional<CoreError> validateRegion(UpdateDeliveryRequest request) {
         if (request.getRegion() == null || request.getRegion().isEmpty()) {
-            return Optional.of(new CoreError("Region","Must not be empty"));
+            return Optional.of(new CoreError("Region", "Must not be empty"));
         }
-        if (request.getRegion().length() < 4 || request.getRegion().length() > 2000) {
-            return Optional.of(new CoreError("Region","Must be between 4 and 2000 characters"));
+        if (request.getRegion().length() < 3 || request.getRegion().length() > 2000) {
+            return Optional.of(new CoreError("Region", "Must be between 3 and 2000 characters"));
         }
         return Optional.empty();
     }
