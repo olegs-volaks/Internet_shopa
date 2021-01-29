@@ -4,9 +4,9 @@ import eu.retarded.internetstore.core.domain.Delivery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -15,14 +15,14 @@ import static java.util.stream.Collectors.toList;
 
 @Component
 @Transactional
-public class OrmDeliveryDatabase implements DeliveryDatabase {
+class OrmDeliveryDatabase implements DeliveryDatabase {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
     public Long add(Delivery delivery) {
-       return (long) sessionFactory.getCurrentSession().save(delivery);
+        return (long) sessionFactory.getCurrentSession().save(delivery);
 
     }
 

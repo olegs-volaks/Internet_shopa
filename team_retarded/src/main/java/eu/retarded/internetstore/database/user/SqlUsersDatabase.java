@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 //@Component
-public class SqlUsersDatabase implements UsersDatabase {
+class SqlUsersDatabase implements UsersDatabase {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

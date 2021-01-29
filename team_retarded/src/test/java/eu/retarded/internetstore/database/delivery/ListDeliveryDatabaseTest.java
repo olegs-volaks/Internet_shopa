@@ -1,8 +1,6 @@
-package eu.retarded.internetstore.database;
+package eu.retarded.internetstore.database.delivery;
 
 import eu.retarded.internetstore.core.domain.Delivery;
-
-import eu.retarded.internetstore.database.delivery.ListDeliveryDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
