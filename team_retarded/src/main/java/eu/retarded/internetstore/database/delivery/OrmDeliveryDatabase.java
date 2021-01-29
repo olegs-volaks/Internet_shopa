@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.Query;
 import javax.transaction.Transactional;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
