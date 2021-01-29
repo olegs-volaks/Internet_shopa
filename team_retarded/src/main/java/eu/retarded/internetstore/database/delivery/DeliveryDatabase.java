@@ -22,4 +22,6 @@ public interface DeliveryDatabase {
 
     boolean isExist(Long id);
 
+    void updateDelivery(Delivery delivery);
+
 }

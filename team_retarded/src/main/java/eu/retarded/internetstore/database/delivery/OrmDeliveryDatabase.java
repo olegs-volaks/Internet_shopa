@@ -62,4 +62,9 @@ class OrmDeliveryDatabase implements DeliveryDatabase {
     public boolean isExist(Long id) {
         return getById(id).isPresent();
     }
+
+    @Override
+    public void updateDelivery(Delivery delivery) {
+        sessionFactory.getCurrentSession().update(delivery);
+    }
 }

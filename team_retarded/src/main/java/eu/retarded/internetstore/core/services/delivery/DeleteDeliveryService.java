@@ -24,6 +24,6 @@ public class DeleteDeliveryService {
         if (!errors.isEmpty()) {
             return new DeleteDeliveryResponse(errors);
         }
-        return new DeleteDeliveryResponse(deliveryDatabase.delete(request.getDeliveryIdToDelete()));
+        return new DeleteDeliveryResponse(deliveryDatabase.delete(request.getDeleteDeliveryId()));
     }
 }

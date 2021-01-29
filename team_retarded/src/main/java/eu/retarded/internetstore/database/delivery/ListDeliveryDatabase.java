@@ -2,6 +2,7 @@ package eu.retarded.internetstore.database.delivery;
 
 import eu.retarded.internetstore.core.domain.Delivery;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -57,5 +58,10 @@ class ListDeliveryDatabase implements DeliveryDatabase {
     @Override
     public boolean isExist(Long id) {
         return getById(id).isPresent();
+    }
+
+    @Override
+    public void updateDelivery(Delivery delivery) {
+
     }
 }
