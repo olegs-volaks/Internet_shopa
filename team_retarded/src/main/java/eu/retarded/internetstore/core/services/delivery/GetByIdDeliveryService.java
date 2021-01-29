@@ -22,6 +22,6 @@ public class GetByIdDeliveryService {
         if (!errors.isEmpty()) {
             return new GetByIdDeliveryResponse(errors);
         }
-        return new GetByIdDeliveryResponse(deliveryDatabase.getById(request.getId()));
+        return new GetByIdDeliveryResponse(deliveryDatabase.getById(request.getId()).get());
     }
 }

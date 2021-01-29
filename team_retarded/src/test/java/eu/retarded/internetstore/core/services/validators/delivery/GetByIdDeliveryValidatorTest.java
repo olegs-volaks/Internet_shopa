@@ -32,6 +32,5 @@ class GetByIdDeliveryValidatorTest {
         List<CoreError> result = subject.validate(new GetByIdDeliveryRequest(0L));
         assertThat(result).isNotEmpty();
         assertThat(result).allMatch(coreError -> coreError.getMessage().equals("Must not be empty or negative"));
-
     }
 }
