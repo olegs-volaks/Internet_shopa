@@ -51,7 +51,6 @@ class OrmCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public Optional<Category> getCategory(Long id) {
-
         return Optional.ofNullable(sessionFactory.getCurrentSession().get(Category.class, id));
     }
 

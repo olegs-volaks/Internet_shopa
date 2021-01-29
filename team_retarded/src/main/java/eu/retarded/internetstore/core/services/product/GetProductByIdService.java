@@ -23,6 +23,6 @@ public class GetProductByIdService {
         if (!errors.isEmpty()) {
             return new GetProductByIdResponse(errors);
         }
-        return new GetProductByIdResponse(db.getById(request.getProductId()));
+        return new GetProductByIdResponse(db.getById(request.getProductId()).get());
     }
 }
