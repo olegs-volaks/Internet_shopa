@@ -61,7 +61,7 @@ import static org.mockito.ArgumentMatchers.any;
 
             GetCategoryByIdResponse response = service.execute(request);
             assertFalse(response.hasErrors());
-            assertEquals(response.getCategory().get().getName(), "Title");
+            assertEquals(response.getCategory().getName(), "Title");
 
         }
     }

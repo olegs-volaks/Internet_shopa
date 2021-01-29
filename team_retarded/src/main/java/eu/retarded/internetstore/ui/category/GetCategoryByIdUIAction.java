@@ -7,7 +7,6 @@ import eu.retarded.internetstore.ui.UIAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
 import java.util.Scanner;
 
 @Component
@@ -25,11 +24,8 @@ public class GetCategoryByIdUIAction implements UIAction {
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
                     + coreError.getField() + ": " + coreError.getMessage()));
-        } else if (response.getCategory().equals(Optional.empty())) {
-            System.out.println("The category with the given id does not exist");
-        } else if (response.getCategory().isPresent()) {
+        } else  {
             System.out.println("Your category was got by ID");
-            System.out.println(response.getCategory().get());
         }
     }
 }

@@ -22,7 +22,7 @@ public class GetCategoryByIdService {
         if (!errors.isEmpty()) {
             return new GetCategoryByIdResponse(errors);
         }
-        return new GetCategoryByIdResponse(categoriesDatabase.getCategory(request.getCategoryId()));
+        return new GetCategoryByIdResponse(categoriesDatabase.getCategory(request.getCategoryId()).get());
     }
 }
 
