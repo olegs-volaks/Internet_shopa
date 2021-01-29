@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
-public class ListDeliveryDatabase implements DeliveryDatabase {
+class ListDeliveryDatabase implements DeliveryDatabase {
 
     private final List<Delivery> deliveryDatabase = new ArrayList<>();
     private Long id = 0L;

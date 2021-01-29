@@ -8,6 +8,7 @@ import eu.retarded.internetstore.core.services.validators.user.UpdateUserValidat
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class UpdateUserService {
     @Autowired
     private UpdateUserValidator validator;
 
+    @Transactional
     public UpdateUserResponse execute(UpdateUserRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {

@@ -14,7 +14,7 @@ import java.util.function.Predicate;
 import static java.util.stream.Collectors.toList;
 
 //@Component
-public class SqlProductDatabase implements ProductDatabase {
+class SqlProductDatabase implements ProductDatabase {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
