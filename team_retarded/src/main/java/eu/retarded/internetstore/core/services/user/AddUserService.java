@@ -8,6 +8,7 @@ import eu.retarded.internetstore.core.services.validators.user.AddUserValidator;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class AddUserService {
     @Autowired
     private AddUserValidator validator;
 
+    @Transactional
     public AddUserResponse execute(AddUserRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {

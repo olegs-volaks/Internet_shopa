@@ -7,6 +7,7 @@ import eu.retarded.internetstore.core.services.validators.user.GetUserByIdValida
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class GetUserByIdService {
     @Autowired
     private GetUserByIdValidator validator;
 
+    @Transactional
     public GetUserByIdResponse execute(GetUserByIdRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
