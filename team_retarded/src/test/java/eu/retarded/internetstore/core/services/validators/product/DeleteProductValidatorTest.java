@@ -4,15 +4,18 @@ import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@ExtendWith(MockitoExtension.class)
 class DeleteProductValidatorTest {
 
     @Mock
@@ -22,10 +25,10 @@ class DeleteProductValidatorTest {
     private DeleteProductValidator subject;
 
     @Test
-    void test1() {
+    void testProductNotInBase() {
         long id = 1;
         DeleteProductRequest request = new DeleteProductRequest(id);
-        Mockito.when(!productDatabase.isExist(request.getProductId())).thenReturn(true);
+        Mockito.when(productDatabase.isExist(request.getProductId())).thenReturn(false);
         List<CoreError> actual = subject.validate(request);
         List<CoreError> expected = new ArrayList<>();
         expected.add(new CoreError("ProductID", "Product with this ID does not exist"));
@@ -34,13 +37,22 @@ class DeleteProductValidatorTest {
     }
 
     @Test
-    void test2() {
-        long id = 1;
-        DeleteProductRequest request = new DeleteProductRequest(id);
+    void testIdIsZero() {
         List<CoreError> actual = subject.validate(new DeleteProductRequest(0));
-        Mockito.when(productDatabase.isExist(request.getProductId())).thenReturn(false);
         assertThat(actual).isNotEmpty();
         assertThat(actual).allMatch(coreError -> coreError.getField().equals("ID") &&
                 coreError.getMessage().equals("Must not be empty, negative or fractional"));
     }
+
+    @Test
+    void testProductAllIsOk() {
+        long id = 1;
+        DeleteProductRequest request = new DeleteProductRequest(id);
+        Mockito.when(productDatabase.isExist(request.getProductId())).thenReturn(true);
+        List<CoreError> actual = subject.validate(request);
+        List<CoreError> expected = new ArrayList<>();
+        assertThat(actual).isEqualTo(expected);
+        assertThat(actual).isEmpty();
+    }
+
 }
