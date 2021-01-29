@@ -4,6 +4,7 @@ package eu.retarded.internetstore.integrationtests;
 import eu.retarded.internetstore.config.ApplicationConfiguration;
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.user.*;
+import eu.retarded.internetstore.core.responses.user.ChangeUserPasswordResponse;
 import eu.retarded.internetstore.core.services.user.*;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.junit.jupiter.api.BeforeEach;
@@ -89,5 +90,23 @@ public class UserIntegrationTest {
         expecting.setSurname("Surname3");
         expecting.setEmail("mail3@mail.com");
         assertThat(result).isEqualTo(expecting);
+    }
+
+    @Test
+    void change_user_password_test() {
+        AddUserService addUserService = context.getBean(AddUserService.class);
+        ChangeUserPasswordService changeUserPasswordService = context.getBean(ChangeUserPasswordService.class);
+        GetUserByIdService getUserByIdService = context.getBean(GetUserByIdService.class);
+        long id1 = addUserService.execute(new AddUserRequest("First", "Password 1", 1, "Name 1",
+                "Surname 1", "mail1@mail.com")).getUserId();
+        String firstPassword = usersDatabase.getUserById(id1).get().getPassword();
+        ChangeUserPasswordResponse result = changeUserPasswordService.execute(new ChangeUserPasswordRequest(id1,
+                "Password 1", "newPassword"));
+        String secondPassword = usersDatabase.getUserById(id1).get().getPassword();
+        assertThat(firstPassword.equals(secondPassword)).isFalse();
+        assertThat(firstPassword.length()).isEqualTo(60);
+        assertThat(secondPassword.length()).isEqualTo(60);
+        assertThat(result.hasErrors()).isFalse();
+        assertThat(result.getUserId()).isEqualTo(id1);
     }
 }
