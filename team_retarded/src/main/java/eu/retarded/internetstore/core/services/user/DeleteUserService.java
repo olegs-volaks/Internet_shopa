@@ -7,6 +7,7 @@ import eu.retarded.internetstore.core.services.validators.user.DeleteUserValidat
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class DeleteUserService {
     @Autowired
     private DeleteUserValidator validator;
 
+    @Transactional
     public DeleteUserResponse execute(DeleteUserRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {

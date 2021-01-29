@@ -2,6 +2,7 @@ package eu.retarded.internetstore.database.delivery;
 
 import eu.retarded.internetstore.core.domain.Delivery;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,7 @@ import java.util.function.Predicate;
 
 import static java.util.stream.Collectors.toList;
 
-public class ListDeliveryDatabase implements DeliveryDatabase {
+class ListDeliveryDatabase implements DeliveryDatabase {
 
     private final List<Delivery> deliveryDatabase = new ArrayList<>();
     private Long id = 0L;
@@ -57,5 +58,10 @@ public class ListDeliveryDatabase implements DeliveryDatabase {
     @Override
     public boolean isExist(Long id) {
         return getById(id).isPresent();
+    }
+
+    @Override
+    public void updateDelivery(Delivery delivery) {
+
     }
 }

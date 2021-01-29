@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 //@Component
-public class ListCategoriesDatabase implements CategoriesDatabase {
+class ListCategoriesDatabase implements CategoriesDatabase {
 
     private final List<Category> categoriesDatabase = new ArrayList<>();
     private Long id = 0L;

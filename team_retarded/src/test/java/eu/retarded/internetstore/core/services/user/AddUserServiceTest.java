@@ -32,7 +32,8 @@ public class AddUserServiceTest {
 
     @Test
     public void should_return_response_with_errors_when_validation_fails() {
-        AddUserRequest request = new AddUserRequest("123", "region123456");
+        AddUserRequest request = new AddUserRequest("123", "region123456", 1, "Jon",
+                "Dou", "jond@mail.com");
         List<CoreError> errors = new ArrayList<>();
         errors.add(new CoreError("Login", "Must be between 3 and 32 characters"));
         Mockito.when(validator.validate(request)).thenReturn(errors);
@@ -49,7 +50,8 @@ public class AddUserServiceTest {
     @Test
     public void add_user_to_database() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
-        AddUserRequest request = new AddUserRequest("Title", "Region1234567");
+        AddUserRequest request = new AddUserRequest("Title", "Region1234567", 1, "Jon",
+                "Dou", "jond@mail.com");
         AddUserResponse response = subject.execute(request);
         Assertions.assertFalse(response.hasErrors());
         Mockito.verify(userDatabase).add(argThat(new UserMatcher("Title", "Region1234567")));

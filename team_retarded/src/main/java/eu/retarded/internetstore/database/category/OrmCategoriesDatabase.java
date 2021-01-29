@@ -4,15 +4,15 @@ import eu.retarded.internetstore.core.domain.Category;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Transactional
 @Component
-public class OrmCategoriesDatabase implements CategoriesDatabase {
+class OrmCategoriesDatabase implements CategoriesDatabase {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -51,7 +51,6 @@ public class OrmCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public Optional<Category> getCategory(Long id) {
-
         return Optional.ofNullable(sessionFactory.getCurrentSession().get(Category.class, id));
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 //@Component
-public class ListUsersDatabase implements UsersDatabase {
+class ListUsersDatabase implements UsersDatabase {
 
     private final List<User> usersDatabase = new ArrayList<>();
     private Long id = 0L;
@@ -45,5 +45,9 @@ public class ListUsersDatabase implements UsersDatabase {
     @Override
     public boolean isExist(Long id) {
         return false;
+    }
+
+    @Override
+    public void updateUser(User user) {
     }
 }

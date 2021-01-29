@@ -4,14 +4,15 @@ import eu.retarded.internetstore.core.domain.User;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 @Component
 @Transactional
-public class OrmUsersDatabase implements UsersDatabase {
+class OrmUsersDatabase implements UsersDatabase {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -50,5 +51,11 @@ public class OrmUsersDatabase implements UsersDatabase {
     @Override
     public boolean isExist(Long id) {
         return getUserById(id).isPresent();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Override
+    public void updateUser(User user) {
+        sessionFactory.getCurrentSession().update(user);
     }
 }

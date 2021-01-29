@@ -60,7 +60,7 @@ class GetProductByIdServiceTest {
 
         GetProductByIdResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        assertEquals(response.getProduct().get().getName(), "Title");
-        assertEquals(response.getProduct().get().getDescription(), "Author123456789");
+        assertEquals(response.getProduct().getName(), "Title");
+        assertEquals(response.getProduct().getDescription(), "Author123456789");
     }
 }

@@ -8,6 +8,7 @@ import eu.retarded.internetstore.core.services.validators.user.AddUserValidator;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,11 +20,19 @@ public class AddUserService {
     @Autowired
     private AddUserValidator validator;
 
+    @Transactional
     public AddUserResponse execute(AddUserRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new AddUserResponse(errors);
         }
-        return new AddUserResponse(db.add(new User(request.getLogin(), request.getPassword())));
+        User user = new User();
+        user.setLogin(request.getLogin());
+        user.setPassword(request.getPassword());
+        user.setRole(request.getRole());
+        user.setName(request.getName());
+        user.setSurname(request.getSurname());
+        user.setEmail(request.getEmail());
+        return new AddUserResponse(db.add(user));
     }
 }

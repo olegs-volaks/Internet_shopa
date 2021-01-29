@@ -7,9 +7,9 @@ import java.util.List;
 
 public class AddUserResponse extends CoreResponse {
 
-    private long userId;
+    private Long userId;
 
-    public AddUserResponse(long userId) {
+    public AddUserResponse(Long userId) {
         this.userId = userId;
     }
 
@@ -17,7 +17,7 @@ public class AddUserResponse extends CoreResponse {
         super(errors);
     }
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 }

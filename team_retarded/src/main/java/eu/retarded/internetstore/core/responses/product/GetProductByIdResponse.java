@@ -5,21 +5,20 @@ import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
 import java.util.List;
-import java.util.Optional;
 
 public class GetProductByIdResponse extends CoreResponse {
 
-    private Optional<Product> productOptional;
+    private Product product;
 
-    public GetProductByIdResponse(Optional<Product> productOptional) {
-        this.productOptional = productOptional;
+    public GetProductByIdResponse(Product product) {
+        this.product = product;
     }
 
     public GetProductByIdResponse(List<CoreError> errors) {
         super(errors);
     }
 
-    public Optional<Product> getProduct() {
-        return productOptional;
+    public Product getProduct() {
+        return product;
     }
 }

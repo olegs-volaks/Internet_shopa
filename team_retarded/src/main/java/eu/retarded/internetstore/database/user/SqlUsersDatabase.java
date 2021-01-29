@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 //@Component
-public class SqlUsersDatabase implements UsersDatabase {
+class SqlUsersDatabase implements UsersDatabase {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -53,6 +53,10 @@ public class SqlUsersDatabase implements UsersDatabase {
     @Override
     public boolean isExist(Long id) {
         return getUserById(id).isPresent();
+    }
+
+    @Override
+    public void updateUser(User user) {
     }
 
 }

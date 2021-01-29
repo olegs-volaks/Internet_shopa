@@ -1,12 +1,16 @@
 package eu.retarded.internetstore.integrationtests;
 
 import eu.retarded.internetstore.config.ApplicationConfiguration;
+import eu.retarded.internetstore.core.domain.Delivery;
 import eu.retarded.internetstore.core.requests.delivery.AddDeliveryRequest;
 import eu.retarded.internetstore.core.requests.delivery.DeleteDeliveryRequest;
+import eu.retarded.internetstore.core.requests.delivery.UpdateDeliveryRequest;
 import eu.retarded.internetstore.core.responses.delivery.AddDeliveryResponse;
 import eu.retarded.internetstore.core.services.delivery.AddDeliveryService;
 import eu.retarded.internetstore.core.services.delivery.DeleteDeliveryService;
+import eu.retarded.internetstore.core.services.delivery.UpdateDeliveryService;
 import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -120,6 +126,21 @@ public class DeliveryIntegrationTest {
         assertThat(response1.hasErrors()).isTrue();
         assertThat(response2.hasErrors()).isTrue();
         assertThat(response3.hasErrors()).isFalse();
+    }
 
+    @Test
+    void update_delivery() {
+        AddDeliveryService deliveryService = context.getBean(AddDeliveryService.class);
+        UpdateDeliveryService updateDeliveryService = context.getBean(UpdateDeliveryService.class);
+        long id = deliveryService.execute(new AddDeliveryRequest("APPLE","region",1890.00)).getDeliveryId();
+        long id2 = deliveryService.execute(new AddDeliveryRequest("APPLE23","region23",450.00)).getDeliveryId();
+        updateDeliveryService.execute(new UpdateDeliveryRequest(id2,"APPLE45","region45",20.00));
+        Delivery result = deliveryDatabase.getById(id2).get();
+        Delivery expecting = new Delivery();
+        expecting.setId(id2);
+        expecting.setTitle("APPLE45");
+        expecting.setRegion("region45");
+        expecting.setPrice(new BigDecimal("20.00"));
+        assertThat(result).isEqualTo(expecting);
     }
 }

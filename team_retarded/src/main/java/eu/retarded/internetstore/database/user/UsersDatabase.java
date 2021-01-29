@@ -19,5 +19,5 @@ public interface UsersDatabase {
 
     boolean isExist(Long id);
 
-
+    void updateUser(User user);
 }
