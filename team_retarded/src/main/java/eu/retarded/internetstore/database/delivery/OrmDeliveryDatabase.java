@@ -15,14 +15,14 @@ import static java.util.stream.Collectors.toList;
 
 @Component
 @Transactional
-public class OrmDeliveryDatabase implements DeliveryDatabase {
+class OrmDeliveryDatabase implements DeliveryDatabase {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
     public Long add(Delivery delivery) {
-       return (long) sessionFactory.getCurrentSession().save(delivery);
+        return (long) sessionFactory.getCurrentSession().save(delivery);
 
     }
 

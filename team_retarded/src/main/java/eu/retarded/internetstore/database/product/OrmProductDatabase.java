@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 @Component
 @Transactional
-public class OrmProductDatabase implements ProductDatabase {
+class OrmProductDatabase implements ProductDatabase {
 
     @Autowired
     private SessionFactory sessionFactory;

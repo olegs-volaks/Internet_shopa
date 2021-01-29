@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Component
 @Transactional
-public class OrmUsersDatabase implements UsersDatabase {
+class OrmUsersDatabase implements UsersDatabase {
 
     @Autowired
     private SessionFactory sessionFactory;

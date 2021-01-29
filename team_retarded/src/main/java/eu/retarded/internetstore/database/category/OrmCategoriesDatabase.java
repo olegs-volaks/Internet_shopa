@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Transactional
 @Component
-public class OrmCategoriesDatabase implements CategoriesDatabase {
+class OrmCategoriesDatabase implements CategoriesDatabase {
 
     @Autowired
     private SessionFactory sessionFactory;
