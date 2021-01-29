@@ -3,14 +3,8 @@ package eu.retarded.internetstore.integrationtests;
 
 import eu.retarded.internetstore.config.ApplicationConfiguration;
 import eu.retarded.internetstore.core.domain.User;
-import eu.retarded.internetstore.core.requests.user.AddUserRequest;
-import eu.retarded.internetstore.core.requests.user.DeleteUserRequest;
-import eu.retarded.internetstore.core.requests.user.GetUserByIdRequest;
-import eu.retarded.internetstore.core.requests.user.UpdateUserRequest;
-import eu.retarded.internetstore.core.services.user.AddUserService;
-import eu.retarded.internetstore.core.services.user.DeleteUserService;
-import eu.retarded.internetstore.core.services.user.GetUserByIdService;
-import eu.retarded.internetstore.core.services.user.UpdateUserService;
+import eu.retarded.internetstore.core.requests.user.*;
+import eu.retarded.internetstore.core.services.user.*;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,6 +36,7 @@ public class UserIntegrationTest {
     @Test
     void add_user_test() {
         AddUserService addUserService = context.getBean(AddUserService.class);
+        GetUsersListService getUsersListService = context.getBean(GetUsersListService.class);
         long id1 = addUserService.execute(new AddUserRequest("First", "Password 1", 1, "Jon",
                 "Dou", "jond@mail.com")).getUserId();
         long id2 = addUserService.execute(new AddUserRequest("Second", "Password 2", 1, "Jon",
@@ -50,7 +45,7 @@ public class UserIntegrationTest {
                 "Dou", "jond@mail.com")).getUserId();
         assertThat(id1).isLessThan(id2);
         assertThat(id2).isLessThan(id3);
-        List<User> result = usersDatabase.getList();
+        List<User> result = getUsersListService.execute(new GetUsersListRequest()).getUsers();
         assertThat(result.size()).isEqualTo(3);
     }
 
@@ -58,6 +53,7 @@ public class UserIntegrationTest {
     void delete_user_test() {
         AddUserService addUserService = context.getBean(AddUserService.class);
         DeleteUserService deleteUserService = context.getBean(DeleteUserService.class);
+        GetUsersListService getUsersListService = context.getBean(GetUsersListService.class);
         long id1 = addUserService.execute(new AddUserRequest("First", "Password 1", 1, "Jon",
                 "Dou", "jond@mail.com")).getUserId();
         long id2 = addUserService.execute(new AddUserRequest("Second", "Password 2", 1, "Jon",
@@ -68,7 +64,7 @@ public class UserIntegrationTest {
         boolean secondResult = deleteUserService.execute(new DeleteUserRequest(id3 + 1)).isDeleted();
         assertThat(firstResult).isTrue();
         assertThat(secondResult).isFalse();
-        List<User> resultList = usersDatabase.getList();
+        List<User> resultList = getUsersListService.execute(new GetUsersListRequest()).getUsers();
         assertThat(resultList.size()).isEqualTo(2);
         assertThat(resultList).noneMatch(user -> user.getId() == id2);
     }
