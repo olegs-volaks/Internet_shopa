@@ -5,9 +5,11 @@ import eu.retarded.internetstore.config.ApplicationConfiguration;
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.user.AddUserRequest;
 import eu.retarded.internetstore.core.requests.user.DeleteUserRequest;
+import eu.retarded.internetstore.core.requests.user.GetUserByIdRequest;
 import eu.retarded.internetstore.core.requests.user.UpdateUserRequest;
 import eu.retarded.internetstore.core.services.user.AddUserService;
 import eu.retarded.internetstore.core.services.user.DeleteUserService;
+import eu.retarded.internetstore.core.services.user.GetUserByIdService;
 import eu.retarded.internetstore.core.services.user.UpdateUserService;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.junit.jupiter.api.BeforeEach;
@@ -75,12 +77,13 @@ public class UserIntegrationTest {
     void update_user_test() {
         AddUserService addUserService = context.getBean(AddUserService.class);
         UpdateUserService updateUserService = context.getBean(UpdateUserService.class);
+        GetUserByIdService getUserByIdService = context.getBean(GetUserByIdService.class);
         long id1 = addUserService.execute(new AddUserRequest("First", "Password 1", 1, "Name 1",
                 "Surname 1", "mail1@mail.com")).getUserId();
         long id2 = addUserService.execute(new AddUserRequest("Second", "Password 2", 1, "Name 2",
                 "Surname 2", "mail1@mail.com")).getUserId();
         updateUserService.execute(new UpdateUserRequest(id2, 2, "Name3", "Surname3", "mail3@mail.com"));
-        User result = usersDatabase.getUserById(id2).get();
+        User result = getUserByIdService.execute(new GetUserByIdRequest(id2)).getUser();
         User expecting = new User();
         expecting.setId(id2);
         expecting.setLogin("Second");
