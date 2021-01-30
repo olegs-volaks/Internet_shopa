@@ -34,12 +34,22 @@ public class ChangeUserPasswordValidator {
     }
 
     private Optional<CoreError> validatePassword(ChangeUserPasswordRequest request) {
-        if (request.getNewPassword() == null || request.getNewPassword().isEmpty()) {
+        String newPassword = request.getNewPassword();
+        String newPasswordAgain = request.getNewPasswordAgain();
+        if (newPassword == null || newPassword.isEmpty()) {
             return Optional.of(new CoreError("New password", "Must not be empty!"));
         }
 
-        if (request.getNewPassword().length() < 6 || request.getNewPassword().length() > 32) {
+        if (newPassword.length() < 6 || newPassword.length() > 32) {
             return Optional.of(new CoreError("New password", "Must be between 6 and 32 characters"));
+        }
+
+        if (newPasswordAgain == null || newPasswordAgain.isEmpty()) {
+            return Optional.of(new CoreError("New password again", "Must not be empty!"));
+        }
+
+        if (!newPassword.equals(newPasswordAgain)) {
+            return Optional.of(new CoreError("New password again", "Passwords do not match"));
         }
         return Optional.empty();
     }

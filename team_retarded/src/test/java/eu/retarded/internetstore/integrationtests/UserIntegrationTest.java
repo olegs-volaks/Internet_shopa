@@ -79,12 +79,13 @@ public class UserIntegrationTest {
                 "Surname 1", "mail1@mail.com")).getUserId();
         long id2 = addUserService.execute(new AddUserRequest("Second", "Password 2", 1, "Name 2",
                 "Surname 2", "mail1@mail.com")).getUserId();
+        String password = usersDatabase.getUserById(id2).get().getPassword();
         updateUserService.execute(new UpdateUserRequest(id2, 2, "Name3", "Surname3", "mail3@mail.com"));
         User result = getUserByIdService.execute(new GetUserByIdRequest(id2)).getUser();
         User expecting = new User();
         expecting.setId(id2);
         expecting.setLogin("Second");
-        expecting.setPassword("Password 2");
+        expecting.setPassword(password);
         expecting.setRole(2);
         expecting.setName("Name3");
         expecting.setSurname("Surname3");
@@ -101,7 +102,7 @@ public class UserIntegrationTest {
                 "Surname 1", "mail1@mail.com")).getUserId();
         String firstPassword = usersDatabase.getUserById(id1).get().getPassword();
         ChangeUserPasswordResponse result = changeUserPasswordService.execute(new ChangeUserPasswordRequest(id1,
-                "Password 1", "newPassword"));
+                "Password 1", "newPassword", "newPassword"));
         String secondPassword = usersDatabase.getUserById(id1).get().getPassword();
         assertThat(firstPassword.equals(secondPassword)).isFalse();
         assertThat(firstPassword.length()).isEqualTo(60);

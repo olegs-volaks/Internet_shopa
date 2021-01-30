@@ -10,7 +10,7 @@ dependencies {
     compile('org.springframework:spring-context:5.3.3')
     compile('org.springframework:spring-orm:5.3.3')
     compile('org.springframework:spring-tx:5.3.3')
-    implementation 'org.springframework.security:spring-security-core:5.3.3.RELEASE'
+    compile('org.springframework.security:spring-security-crypto:5.3.3.RELEASE')
 
     compile('org.hibernate:hibernate-core:5.4.27.Final')
 
@@ -19,6 +19,7 @@ dependencies {
     testCompile group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
     testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.7.7'
     testCompile('org.springframework:spring-test:5.3.3')
+
 
 }
 test {

@@ -10,5 +10,6 @@ public class ChangeUserPasswordRequest {
     private final long userId;
     private final String oldPassword;
     private final String newPassword;
+    private final String newPasswordAgain;
 
 }
