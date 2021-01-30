@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 import static java.util.stream.Collectors.toList;
 
 //@Component
-public class ListProductDatabase implements ProductDatabase {
+class ListProductDatabase implements ProductDatabase {
 
     @Autowired
     private CategoriesDatabase categoriesDatabase;

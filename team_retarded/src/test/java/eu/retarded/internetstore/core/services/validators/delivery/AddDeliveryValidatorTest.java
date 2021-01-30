@@ -46,17 +46,17 @@ class AddDeliveryValidatorTest {
     }
 
     @Test
-    void validate_region_is_less_than_10_characters() {
-        AddDeliveryRequest request = new AddDeliveryRequest("Roma", "Inter", 24567.33);
+    void validate_region_is_less_than_3_characters() {
+        AddDeliveryRequest request = new AddDeliveryRequest("Roma", "In", 24567.33);
         List<CoreError> result = subject.validate(request);
         assertThat(result).isNotEmpty();
         assertThat(result).allMatch(coreError -> coreError.getField().equals("Region") &&
-                coreError.getMessage().equals("Must be between 10 and 2000 characters"));
+                coreError.getMessage().equals("Must be between 3 and 2000 characters"));
     }
 
     @Test
-    void validate_region_is_more_than_10_characters() {
-        AddDeliveryRequest request = new AddDeliveryRequest("Roma","Internacional",44.67);
+    void validate_region_is_more_than_3_characters() {
+        AddDeliveryRequest request = new AddDeliveryRequest("Roma", "Internacional", 44.67);
         List<CoreError> result = subject.validate(request);
         assertThat(result).isEmpty();
     }

@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 import static java.util.stream.Collectors.toList;
 
 
-public class SqlDeliveryDatabase implements DeliveryDatabase {
+class SqlDeliveryDatabase implements DeliveryDatabase {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -66,5 +66,10 @@ public class SqlDeliveryDatabase implements DeliveryDatabase {
     @Override
     public boolean isExist(Long id) {
         return getById(id).isPresent();
+    }
+
+    @Override
+    public void updateDelivery(Delivery delivery) {
+
     }
 }

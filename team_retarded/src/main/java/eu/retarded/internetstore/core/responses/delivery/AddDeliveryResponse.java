@@ -8,9 +8,9 @@ import java.util.List;
 
 public class AddDeliveryResponse extends CoreResponse {
 
-    private long deliveryId;
+    private Long deliveryId;
 
-    public AddDeliveryResponse(long deliveryId) {
+    public AddDeliveryResponse(Long deliveryId) {
         this.deliveryId = deliveryId;
     }
 
@@ -18,7 +18,7 @@ public class AddDeliveryResponse extends CoreResponse {
         super(errors);
     }
 
-    public long getDeliveryId() {
+    public Long getDeliveryId() {
         return deliveryId;
     }
 }

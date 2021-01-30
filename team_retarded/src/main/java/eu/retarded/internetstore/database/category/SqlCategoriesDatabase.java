@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 //@Component
-public class SqlCategoriesDatabase implements CategoriesDatabase {
+class SqlCategoriesDatabase implements CategoriesDatabase {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
