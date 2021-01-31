@@ -76,4 +76,9 @@ class ListProductDatabase implements ProductDatabase {
         return false;
     }
 
+    @Override
+    public void updateProduct(Product product) {
+
+    }
+
 }

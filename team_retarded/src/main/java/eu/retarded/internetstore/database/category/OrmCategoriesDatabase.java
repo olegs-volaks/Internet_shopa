@@ -4,6 +4,7 @@ import eu.retarded.internetstore.core.domain.Category;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
@@ -57,5 +58,11 @@ class OrmCategoriesDatabase implements CategoriesDatabase {
     @Override
     public boolean isExist(Long id) {
         return getCategory(id).isPresent();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Override
+    public void updateCategory(Category category) {
+        sessionFactory.getCurrentSession().update(category);
     }
 }

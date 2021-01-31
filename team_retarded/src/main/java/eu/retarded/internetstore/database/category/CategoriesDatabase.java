@@ -21,6 +21,8 @@ public interface CategoriesDatabase {
 
     boolean isExist(Long id);
 
+    void updateCategory(Category category);
+
 //    List<Product> getProducts(Category category);
 }
 

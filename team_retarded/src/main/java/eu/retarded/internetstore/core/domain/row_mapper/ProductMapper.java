@@ -1,5 +1,6 @@
 package eu.retarded.internetstore.core.domain.row_mapper;
 
+import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.core.domain.Product;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -14,12 +15,12 @@ public class ProductMapper implements RowMapper<Product> {
         String name = rs.getString("name");
         String description = rs.getString("description");
         BigDecimal price = rs.getBigDecimal("price");
-        Long categoryId = rs.getLong("category_id");
+        Category category = rs.getObject("category_id", Category.class);
         product.setId(rs.getLong("id"));
         product.setName(name);
         product.setDescription(description);
         product.setPrice(price);
-        product.setCategoryId(categoryId);
+        product.setCategory(category);
         return product;
     }
 }
