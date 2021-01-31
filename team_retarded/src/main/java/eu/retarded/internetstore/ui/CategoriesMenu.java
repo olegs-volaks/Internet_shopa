@@ -63,6 +63,7 @@ public class CategoriesMenu implements MenuUIAction {
         System.out.println("[5] - Delete all categories");
         System.out.println("[6] - Show category by ID");
         System.out.println("[7] - Show all categories");
+
         System.out.println("[0] - Main menu");
         System.out.println("==========================");
     }

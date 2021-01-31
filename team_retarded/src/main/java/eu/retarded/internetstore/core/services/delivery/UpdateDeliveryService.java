@@ -6,7 +6,6 @@ import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.delivery.UpdateDeliveryResponse;
 import eu.retarded.internetstore.core.services.validators.delivery.UpdateDeliveryValidator;
 import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +27,6 @@ public class UpdateDeliveryService {
             return new UpdateDeliveryResponse(errors);
         }
         long id = request.getId();
-        Delivery oldDelivery = deliveryDatabase.getById(id).get();
         Delivery resultDelivery =  new Delivery();
         resultDelivery.setId(id);
         resultDelivery.setTitle(request.getTitle());
