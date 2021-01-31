@@ -1,6 +1,7 @@
 package eu.retarded.internetstore.database.category;
 
 import eu.retarded.internetstore.core.domain.Category;
+import eu.retarded.internetstore.core.domain.Product;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -64,5 +65,13 @@ class OrmCategoriesDatabase implements CategoriesDatabase {
     @Override
     public void updateCategory(Category category) {
         sessionFactory.getCurrentSession().update(category);
+    }
+
+    @Override
+    public List<Product> getProducts(Category category) {
+        return sessionFactory
+                .getCurrentSession()
+                .createQuery("SELECT p FROM Product p WHERE Category =: category ", Product.class)
+                .getResultList();
     }
 }

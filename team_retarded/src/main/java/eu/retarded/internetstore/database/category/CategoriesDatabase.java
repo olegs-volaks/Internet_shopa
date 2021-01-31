@@ -1,6 +1,7 @@
 package eu.retarded.internetstore.database.category;
 
 import eu.retarded.internetstore.core.domain.Category;
+import eu.retarded.internetstore.core.domain.Product;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,6 @@ public interface CategoriesDatabase {
 
     void updateCategory(Category category);
 
-//    List<Product> getProducts(Category category);
+     List<Product> getProducts(Category category);
 }
 

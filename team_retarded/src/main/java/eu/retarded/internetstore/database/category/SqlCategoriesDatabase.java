@@ -1,6 +1,7 @@
 package eu.retarded.internetstore.database.category;
 
 import eu.retarded.internetstore.core.domain.Category;
+import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.domain.row_mapper.ProductCategoryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
@@ -55,5 +56,15 @@ class SqlCategoriesDatabase implements CategoriesDatabase {
     @Override
     public boolean isExist(Long id) {
         return getCategory(id).isPresent();
+    }
+
+    @Override
+    public void updateCategory(Category category) {
+
+    }
+
+    @Override
+    public List<Product> getProducts(Category category) {
+        return null;
     }
 }

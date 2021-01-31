@@ -64,7 +64,7 @@ class OrmProductDatabase implements ProductDatabase {
     @Override
     public boolean addProductToCategory(Long productId, Long categoryId) {
         Query query =sessionFactory.getCurrentSession().
-                createQuery("UPDATE Product SET categoryId =: categoryId WHERE id =: id ");
+                createQuery("UPDATE Product SET category.id =: categoryId WHERE id =: id ");
         query.setParameter("categoryId", categoryId);
         query.setParameter("id", productId);
         return query.executeUpdate() == 1;
@@ -73,7 +73,7 @@ class OrmProductDatabase implements ProductDatabase {
     @Override
     public boolean removeProductFromCategory(Long productId) {
         Query query=sessionFactory.getCurrentSession().
-                createQuery("UPDATE Product SET categoryId=null WHERE id =: id ");
+                createQuery("UPDATE Product SET category.id=null WHERE id =: id ");
         query.setParameter("id", productId);
         return query.executeUpdate() == 1;
     }

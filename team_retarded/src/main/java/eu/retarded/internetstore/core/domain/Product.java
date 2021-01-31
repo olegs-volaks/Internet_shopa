@@ -29,6 +29,8 @@ public class Product {
     @JoinColumn (name = "category_id")
     private Category category;
 
+    //private Long categoryId=category.getId();
+
     public Product(String name, String description, double price) {
         this.name = name;
         this.description = description;
