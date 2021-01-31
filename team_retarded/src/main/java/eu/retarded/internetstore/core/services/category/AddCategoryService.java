@@ -8,6 +8,7 @@ import eu.retarded.internetstore.core.services.validators.category.AddCategoryVa
 import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class AddCategoryService {
     @Autowired
     private AddCategoryValidator validator;
 
+    @Transactional
     public AddCategoryResponse execute(AddCategoryRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {

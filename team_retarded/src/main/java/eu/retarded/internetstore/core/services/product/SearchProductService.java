@@ -11,6 +11,7 @@ import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
@@ -30,6 +31,7 @@ public class SearchProductService {
     @Value("${search.paging.enabled}")
     private boolean pagingEnabled;
 
+    @Transactional
     public SearchProductResponse execute(SearchProductRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {

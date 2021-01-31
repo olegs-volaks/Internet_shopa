@@ -7,6 +7,7 @@ import eu.retarded.internetstore.core.responses.user.AddUserResponse;
 import eu.retarded.internetstore.core.services.validators.user.AddUserValidator;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +18,12 @@ public class AddUserService {
 
     @Autowired
     private UsersDatabase db;
+
     @Autowired
     private AddUserValidator validator;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Transactional
     public AddUserResponse execute(AddUserRequest request) {
@@ -28,7 +33,7 @@ public class AddUserService {
         }
         User user = new User();
         user.setLogin(request.getLogin());
-        user.setPassword(request.getPassword());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(request.getRole());
         user.setName(request.getName());
         user.setSurname(request.getSurname());
