@@ -24,9 +24,10 @@ public interface ProductDatabase {
 
     boolean isExist(Long id);
 
-
     boolean addProductToCategory(Long productId, Long categoryId);
 
-
     boolean removeProductFromCategory(Long productId);
+
+    void updateProduct(Product product);
+
 }

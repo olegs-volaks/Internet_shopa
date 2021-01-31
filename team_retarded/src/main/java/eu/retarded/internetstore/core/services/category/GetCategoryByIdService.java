@@ -7,6 +7,7 @@ import eu.retarded.internetstore.core.services.validators.category.GetCategoryBy
 import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class GetCategoryByIdService {
     @Autowired
     private GetCategoryByIdValidator validator;
 
+    @Transactional
     public GetCategoryByIdResponse execute(GetCategoryByIdRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {

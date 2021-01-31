@@ -1,6 +1,7 @@
 package eu.retarded.internetstore.database.category;
 
 import eu.retarded.internetstore.core.domain.Category;
+import eu.retarded.internetstore.core.domain.Product;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,5 +49,15 @@ class ListCategoriesDatabase implements CategoriesDatabase {
     @Override
     public boolean isExist(Long id) {
         return getCategory(id).isPresent();
+    }
+
+    @Override
+    public void updateCategory(Category category) {
+
+    }
+
+    @Override
+    public List<Product> getProducts(Category category) {
+        return null;
     }
 }
