@@ -4,6 +4,7 @@ import eu.retarded.internetstore.core.domain.Delivery;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
@@ -63,6 +64,7 @@ class OrmDeliveryDatabase implements DeliveryDatabase {
         return getById(id).isPresent();
     }
 
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public void updateDelivery(Delivery delivery) {
         sessionFactory.getCurrentSession().update(delivery);
