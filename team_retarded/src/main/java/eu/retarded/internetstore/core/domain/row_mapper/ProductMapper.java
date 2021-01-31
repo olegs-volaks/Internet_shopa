@@ -19,7 +19,7 @@ public class ProductMapper implements RowMapper<Product> {
         product.setName(name);
         product.setDescription(description);
         product.setPrice(price);
-        product.setCategoryId(categoryId);
+        //product.setCategoryId(categoryId);
         return product;
     }
 }

@@ -13,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,8 @@ public class AddUserServiceTest {
     private UsersDatabase userDatabase;
     @Mock
     private AddUserValidator validator;
+    @Mock
+    private PasswordEncoder passwordEncoder;
     @InjectMocks
     private AddUserService subject;
 
@@ -50,6 +53,7 @@ public class AddUserServiceTest {
     @Test
     public void add_user_to_database() {
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
+        Mockito.when(passwordEncoder.encode("Region1234567")).thenReturn("Region1234567");
         AddUserRequest request = new AddUserRequest("Title", "Region1234567", 1, "Jon",
                 "Dou", "jond@mail.com");
         AddUserResponse response = subject.execute(request);

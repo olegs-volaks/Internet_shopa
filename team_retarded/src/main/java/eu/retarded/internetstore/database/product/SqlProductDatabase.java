@@ -87,4 +87,9 @@ class SqlProductDatabase implements ProductDatabase {
         return jdbcTemplate.update("UPDATE products SET category_id=null WHERE id = ? ", productId) == 1;
     }
 
+    @Override
+    public void updateProduct(Product product) {
+
+    }
+
 }

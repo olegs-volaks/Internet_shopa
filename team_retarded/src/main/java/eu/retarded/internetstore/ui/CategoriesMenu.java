@@ -26,7 +26,8 @@ public class CategoriesMenu implements MenuUIAction {
         categoriesMenuNumberToUIActionMap.put(4, findUIAction(categoriesUIActions, DeleteProductFromCategoryUIAction.class));
         categoriesMenuNumberToUIActionMap.put(5, findUIAction(categoriesUIActions, DeleteAllCategoryUIAction.class));
         categoriesMenuNumberToUIActionMap.put(6, findUIAction(categoriesUIActions, GetCategoryByIdUIAction.class));
-        categoriesMenuNumberToUIActionMap.put(7, findUIAction(categoriesUIActions, ShowAllCategoryUIAction.class));
+        categoriesMenuNumberToUIActionMap.put(7, findUIAction(categoriesUIActions, ShowAllProductsInCategoryUIAction.class));
+        categoriesMenuNumberToUIActionMap.put(8, findUIAction(categoriesUIActions, ShowAllCategoryUIAction.class));
     }
 
     @Override
@@ -62,8 +63,8 @@ public class CategoriesMenu implements MenuUIAction {
         System.out.println("[4] - Delete product from category");
         System.out.println("[5] - Delete all categories");
         System.out.println("[6] - Show category by ID");
-        System.out.println("[7] - Show all categories");
-
+        System.out.println("[7] - Show all products in category");
+        System.out.println("[8] - Show all categories");
         System.out.println("[0] - Main menu");
         System.out.println("==========================");
     }
@@ -72,7 +73,7 @@ public class CategoriesMenu implements MenuUIAction {
         System.out.println("Enter menu item number to execute:");
         Scanner scanner = new Scanner(System.in);
         String menuNumber = scanner.nextLine();
-        menuNumber = menuNumber.replaceAll("[^0-7]", "");
+        menuNumber = menuNumber.replaceAll("[^0-8]", "");
         try {
             return Integer.parseInt(menuNumber);
         } catch (NumberFormatException ex) {

@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS users
 (
     id       BIGINT       NOT NULL AUTO_INCREMENT,
     login    VARCHAR(100) NOT NULL,
-    password VARCHAR(100) NOT NULL,
+    password VARCHAR(60)  NOT NULL,
     role     INT DEFAULT 1,
     name     VARCHAR(100),
     surname  VARCHAR(100),
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS users
 (
     id       BIGINT       NOT NULL AUTO_INCREMENT,
     login    VARCHAR(100) NOT NULL,
-    password VARCHAR(100) NOT NULL,
+    password VARCHAR(60)  NOT NULL,
     role     INT DEFAULT 1,
     name     VARCHAR(100),
     surname  VARCHAR(100),

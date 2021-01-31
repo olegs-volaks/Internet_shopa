@@ -4,6 +4,7 @@ import eu.retarded.internetstore.core.domain.Product;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
@@ -63,7 +64,7 @@ class OrmProductDatabase implements ProductDatabase {
     @Override
     public boolean addProductToCategory(Long productId, Long categoryId) {
         Query query =sessionFactory.getCurrentSession().
-                createQuery("UPDATE Product SET categoryId =: categoryId WHERE id =: id ");
+                createQuery("UPDATE Product SET category.id =: categoryId WHERE id =: id ");
         query.setParameter("categoryId", categoryId);
         query.setParameter("id", productId);
         return query.executeUpdate() == 1;
@@ -72,8 +73,15 @@ class OrmProductDatabase implements ProductDatabase {
     @Override
     public boolean removeProductFromCategory(Long productId) {
         Query query=sessionFactory.getCurrentSession().
-                createQuery("UPDATE Product SET categoryId=null WHERE id =: id ");
+                createQuery("UPDATE Product SET category.id=null WHERE id =: id ");
         query.setParameter("id", productId);
         return query.executeUpdate() == 1;
     }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Override
+    public void updateProduct(Product product) {
+        sessionFactory.getCurrentSession().update(product);
+    }
+
 }
