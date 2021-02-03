@@ -31,7 +31,7 @@ public class AddDeliveryUIAction implements UIAction {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
                     + coreError.getField() + ": " + coreError.getMessage()));
         } else {
-            System.out.println("Product number " + response.getDeliveryId() + " was added successfully"); // тут product number илм delivery писать?
+            System.out.println("Product number " + response.getDeliveryId() + " was added successfully");
         }
     }
 
