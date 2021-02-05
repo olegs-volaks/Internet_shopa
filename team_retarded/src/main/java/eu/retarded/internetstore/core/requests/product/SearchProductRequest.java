@@ -2,42 +2,35 @@ package eu.retarded.internetstore.core.requests.product;
 
 public class SearchProductRequest {
 
-    private final String name;
-    private final String description;
+    private final String keyWord;
     private Ordering ordering;
     private Paging paging;
 
-    public SearchProductRequest(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public SearchProductRequest(String keyWord) {
+        this.keyWord =keyWord;
+
     }
 
-    public SearchProductRequest(String name, String description, Ordering ordering, Paging paging) {
-        this.name = name;
-        this.description = description;
+    public SearchProductRequest(String keyWord, Ordering ordering, Paging paging) {
+        this.keyWord = keyWord;
         this.ordering = ordering;
         this.paging = paging;
     }
 
-    public SearchProductRequest(String name, String description, Paging paging) {
-        this.name = name;
-        this.description = description;
+    public SearchProductRequest(String keyWord, Paging paging) {
+        this.keyWord = keyWord;
         this.paging = paging;
     }
 
-    public SearchProductRequest(String name, String description, Ordering ordering) {
-        this.name = name;
-        this.description = description;
+    public SearchProductRequest(String keyWord, Ordering ordering) {
+        this.keyWord = keyWord;
         this.ordering = ordering;
     }
 
-    public String getName() {
-        return name;
+    public String getKeyWord() {
+        return keyWord;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
     public Ordering getOrdering() {
         return ordering;
@@ -48,10 +41,6 @@ public class SearchProductRequest {
     }
 
     public boolean isNameProvided() {
-        return this.name != null && !this.name.isEmpty();
-    }
-
-    public boolean isDescriptionProvided() {
-        return this.description != null && !this.description.isEmpty();
+        return this.keyWord != null && !this.keyWord.isEmpty();
     }
 }

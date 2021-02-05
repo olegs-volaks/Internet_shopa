@@ -84,4 +84,12 @@ class OrmProductDatabase implements ProductDatabase {
         sessionFactory.getCurrentSession().update(product);
     }
 
+    @Override
+    public List<Product> search(String keyWord) {
+         return sessionFactory.getCurrentSession()
+                .createQuery("SELECT c FROM Product c WHERE LOWER(c.name) LIKE '%"+keyWord.toLowerCase()+"%'" +
+                        " or LOWER(c.description) LIKE '%"+keyWord.toLowerCase()+"%'", Product.class)
+                 .getResultList();
+    }
+
 }

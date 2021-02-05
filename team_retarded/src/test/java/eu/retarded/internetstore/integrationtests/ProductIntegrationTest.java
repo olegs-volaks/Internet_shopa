@@ -113,18 +113,20 @@ public class ProductIntegrationTest {
         AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax", 899.99);
         AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 5", 500.0);
         AddProductRequest request3 = new AddProductRequest("Samsung", "Dishwasher", 345.0);
-        AddProductRequest request4 = new AddProductRequest("Samsung", "Oven", 325.99);
-        AddProductRequest request5 = new AddProductRequest("Sony", "Fridge", 238.00);
+        AddProductRequest request4 = new AddProductRequest("Samsung", "Oven123467890", 325.99);
+        AddProductRequest request5 = new AddProductRequest("Sony", "Fridge12346789", 238.00);
         addProductService.execute(request);
         addProductService.execute(request1);
         addProductService.execute(request2);
         addProductService.execute(request3);
         addProductService.execute(request4);
         addProductService.execute(request5);
-        searchProductService.execute(new SearchProductRequest("Apple", "Iphone XRMax"));
-        searchProductService.execute(new SearchProductRequest("Sony", "Fridge"));
-        searchProductService.execute(new SearchProductRequest("Samsung", "Dishwasher"));
-        assertThat(productDatabase.getList().size()).isEqualTo(4);
+        assertThat(searchProductService.execute(new SearchProductRequest("5")).getProducts().size()).isEqualTo(1);
+        assertThat(searchProductService.execute(new SearchProductRequest("i")).getProducts().size()).isEqualTo(4);
+        assertThat(searchProductService.execute(new SearchProductRequest("g")).getProducts().size()).isEqualTo(3);
+        searchProductService.execute(new SearchProductRequest("Sony"));
+        searchProductService.execute(new SearchProductRequest("Samsung"));
+        assertThat(productDatabase.search("5").size()).isEqualTo(1);
     }
 
     @Test

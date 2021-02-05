@@ -30,4 +30,6 @@ public interface ProductDatabase {
 
     void updateProduct(Product product);
 
+    List<Product> search (String keyWord);
+
 }

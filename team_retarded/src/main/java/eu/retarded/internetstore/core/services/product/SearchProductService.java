@@ -38,11 +38,7 @@ public class SearchProductService {
             return new SearchProductResponse(errors, null);
         }
 
-        List<Product> products = productDatabase.filter(product ->
-                (product.getName().toLowerCase().contains(request.getName().toLowerCase())
-                        && !request.getName().isBlank()) ||
-                        (product.getDescription().toLowerCase().contains(request.getDescription().toLowerCase())
-                                && !request.getDescription().isBlank()));
+        List<Product> products = productDatabase.search(request.getKeyWord());
         products = order(products, request.getOrdering());
         products = paging(products, request.getPaging());
 

@@ -18,14 +18,14 @@ class SearchProductValidatorTest {
 
     @Test
     void validateNoErrorAllDataIn() {
-        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi", "Red1234567890",
+        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi",
                 new Ordering("name", "ASCENDING"), new Paging(2, 2)));
         assertThat(actual).isEmpty();
     }
 
     @Test
     void validateErrorEmptyBothNameAndDescription() {
-        List<CoreError> actual = subject.validate(new SearchProductRequest(null, null,
+        List<CoreError> actual = subject.validate(new SearchProductRequest(null,
                 new Ordering("description", "ASCENDING"), new Paging(2, 2)));
         List<CoreError> expected = new ArrayList<>();
         expected.add(new CoreError("name", "Must not be empty!"));
@@ -36,7 +36,7 @@ class SearchProductValidatorTest {
 
     @Test
     void validateErrorEmptyOrderDirection() {
-        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi", null,
+        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi",
                 new Ordering("name", null), new Paging(2, 2)));
         assertThat(actual).isNotEmpty();
         assertThat(actual).allMatch(coreError -> coreError.getField().equals("orderDirection") &&
@@ -45,7 +45,7 @@ class SearchProductValidatorTest {
 
     @Test
     void validateErrorEmptyOrderBy() {
-        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi", "Red1234567890",
+        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi",
                 new Ordering(null, "ASCENDING"), new Paging(2, 2)));
         assertThat(actual).isNotEmpty();
         assertThat(actual).allMatch(coreError -> coreError.getField().equals("orderBy") &&
@@ -54,14 +54,14 @@ class SearchProductValidatorTest {
 
     @Test
     void validateEmptyOrderByAndOrderDirection() {
-        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi", "Red1234567890",
+        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi",
                 new Ordering(null, null), new Paging(2, 2)));
         assertThat(actual).isEmpty();
     }
 
     @Test
     void validateErrorPageNumberNegative() {
-        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi", "Red1234567890",
+        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi",
                 new Ordering("name", "ASCENDING"), new Paging(-2, 2)));
         List<CoreError> expected = new ArrayList<>();
         expected.add(new CoreError("pageNumber", "Must be greater then 0!"));
@@ -71,7 +71,7 @@ class SearchProductValidatorTest {
 
     @Test
     void validateErrorPageSizeNegative() {
-        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi", "Red1234567890",
+        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi",
                 new Ordering(null, null), new Paging(2, -2)));
         List<CoreError> expected = new ArrayList<>();
         expected.add(new CoreError("pageSize", "Must be greater then 0!"));
@@ -81,7 +81,7 @@ class SearchProductValidatorTest {
 
     @Test
     void validateErrorPageNumberNull() {
-        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi", "Red1234567890",
+        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi",
                 new Ordering("name", "ASCENDING"), new Paging(null, 2)));
         List<CoreError> expected = new ArrayList<>();
         expected.add(new CoreError("pageNumber", "Must not be empty!"));
@@ -91,14 +91,14 @@ class SearchProductValidatorTest {
 
     @Test
     void validateErrorPageNumberAndSizeNull() {
-        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi", "Red1234567890",
+        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi",
                 new Ordering("name", "ASCENDING"), new Paging(null, null)));
         assertThat(actual).isEmpty();
     }
 
     @Test
     void validateErrorPageSizeNull() {
-        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi", "Red1234567890",
+        List<CoreError> actual = subject.validate(new SearchProductRequest("Audi",
                 new Ordering(null, null), new Paging(2, null)));
         List<CoreError> expected = new ArrayList<>();
         expected.add(new CoreError("pageSize", "Must not be empty!"));
