@@ -1,5 +1,7 @@
 plugins {
     id "io.freefair.lombok" version "5.3.0"
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
 dependencies {
@@ -11,6 +13,15 @@ dependencies {
     compile('org.springframework:spring-orm:5.3.3')
     compile('org.springframework:spring-tx:5.3.3')
     compile('org.springframework.security:spring-security-crypto:5.3.3.RELEASE')
+//    compile('org.springframework:spring-web:5.3.3');
+//    compile('org.thymeleaf:thymeleaf-spring4:3.0.12.RELEASE')
+//    compile('org.springframework:spring-webmvc:5.3.3')
+
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 
     compile('org.hibernate:hibernate-core:5.4.27.Final')
 
