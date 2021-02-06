@@ -1,5 +1,6 @@
 package eu.retarded.internetstore.database.product;
 
+import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.core.domain.Product;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,6 +91,15 @@ class OrmProductDatabase implements ProductDatabase {
                 .createQuery("SELECT c FROM Product c WHERE LOWER(c.name) LIKE '%"+keyWord.toLowerCase()+"%'" +
                         " or LOWER(c.description) LIKE '%"+keyWord.toLowerCase()+"%'", Product.class)
                  .getResultList();
+    }
+
+    @Override
+    public List<Product> search(String keyWord, Category category) {
+        return sessionFactory.getCurrentSession()
+                .createQuery("SELECT c FROM Product c WHERE LOWER(c.name) LIKE '%"+keyWord.toLowerCase()+"%'" +
+                        " or LOWER(c.description) LIKE '%"+keyWord.toLowerCase()+"%'" +
+                        " and c.category LIKE "+category.getName(), Product.class)
+                .getResultList();
     }
 
 }

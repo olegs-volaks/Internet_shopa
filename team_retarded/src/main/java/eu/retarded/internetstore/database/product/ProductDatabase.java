@@ -1,5 +1,6 @@
 package eu.retarded.internetstore.database.product;
 
+import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.core.domain.Product;
 
 import java.util.List;
@@ -32,4 +33,5 @@ public interface ProductDatabase {
 
     List<Product> search (String keyWord);
 
+    List<Product> search(String keyWord, Category category);
 }
