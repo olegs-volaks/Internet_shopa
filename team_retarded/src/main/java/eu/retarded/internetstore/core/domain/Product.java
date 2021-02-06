@@ -25,8 +25,11 @@ public class Product {
     @Column(name = "price")
     private BigDecimal price;
 
-    @Column(name = "category_id")
-    private Long categoryId;
+    @ManyToOne
+    @JoinColumn (name = "category_id")
+    private Category category;
+
+    //private Long categoryId=category.getId();
 
     public Product(String name, String description, double price) {
         this.name = name;

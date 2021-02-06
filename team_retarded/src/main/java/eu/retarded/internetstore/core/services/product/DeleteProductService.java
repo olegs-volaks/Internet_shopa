@@ -7,6 +7,7 @@ import eu.retarded.internetstore.core.services.validators.product.DeleteProductV
 import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class DeleteProductService {
     @Autowired
     private DeleteProductValidator validator;
 
+    @Transactional
     public DeleteProductResponse execute(DeleteProductRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {

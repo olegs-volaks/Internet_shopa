@@ -8,7 +8,6 @@ import eu.retarded.internetstore.core.services.product.GetProductByIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
 import java.util.Scanner;
 
 @Component
@@ -26,11 +25,8 @@ public class GetProductByIdUIAction implements UIAction {
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field - "
                     + coreError.getField() + ": " + coreError.getMessage()));
-        } else if (response.getProduct().equals(Optional.empty())) {
-            System.out.println("The product with the given id does not exist");
-        } else if (response.getProduct().isPresent()) {
+        } else {
             System.out.println("Your product was got by ID");
-            System.out.println(response.getProduct().get());
         }
     }
 }

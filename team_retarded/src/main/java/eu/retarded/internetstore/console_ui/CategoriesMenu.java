@@ -1,11 +1,8 @@
-package eu.retarded.internetstore.console_ui;
+package eu.retarded.internetstore.ui;
 
-import eu.retarded.internetstore.console_ui.category.AddCategoryUIAction;
-import eu.retarded.internetstore.console_ui.category.DeleteAllCategoryUIAction;
-import eu.retarded.internetstore.console_ui.category.DeleteCategoryUIAction;
-import eu.retarded.internetstore.console_ui.category.ShowAllCategoryUIAction;
-import eu.retarded.internetstore.console_ui.product.AddProductToCategoryUIAction;
-import eu.retarded.internetstore.console_ui.product.DeleteProductFromCategoryUIAction;
+import eu.retarded.internetstore.ui.category.*;
+import eu.retarded.internetstore.ui.product.AddProductToCategoryUIAction;
+import eu.retarded.internetstore.ui.product.DeleteProductFromCategoryUIAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,7 +25,9 @@ public class CategoriesMenu implements MenuUIAction {
         categoriesMenuNumberToUIActionMap.put(3, findUIAction(categoriesUIActions, AddProductToCategoryUIAction.class));
         categoriesMenuNumberToUIActionMap.put(4, findUIAction(categoriesUIActions, DeleteProductFromCategoryUIAction.class));
         categoriesMenuNumberToUIActionMap.put(5, findUIAction(categoriesUIActions, DeleteAllCategoryUIAction.class));
-        categoriesMenuNumberToUIActionMap.put(6, findUIAction(categoriesUIActions, ShowAllCategoryUIAction.class));
+        categoriesMenuNumberToUIActionMap.put(6, findUIAction(categoriesUIActions, GetCategoryByIdUIAction.class));
+        categoriesMenuNumberToUIActionMap.put(7, findUIAction(categoriesUIActions, ShowAllProductsInCategoryUIAction.class));
+        categoriesMenuNumberToUIActionMap.put(8, findUIAction(categoriesUIActions, ShowAllCategoryUIAction.class));
     }
 
     @Override
@@ -63,6 +62,9 @@ public class CategoriesMenu implements MenuUIAction {
         System.out.println("[3] - Add product to category");
         System.out.println("[4] - Delete product from category");
         System.out.println("[5] - Delete all categories");
+        System.out.println("[6] - Show category by ID");
+        System.out.println("[7] - Show all products in category");
+        System.out.println("[8] - Show all categories");
         System.out.println("[0] - Main menu");
         System.out.println("==========================");
     }
@@ -71,7 +73,7 @@ public class CategoriesMenu implements MenuUIAction {
         System.out.println("Enter menu item number to execute:");
         Scanner scanner = new Scanner(System.in);
         String menuNumber = scanner.nextLine();
-        menuNumber = menuNumber.replaceAll("[^0-6]", "");
+        menuNumber = menuNumber.replaceAll("[^0-8]", "");
         try {
             return Integer.parseInt(menuNumber);
         } catch (NumberFormatException ex) {

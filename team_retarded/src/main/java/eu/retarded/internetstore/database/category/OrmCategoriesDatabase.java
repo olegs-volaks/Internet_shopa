@@ -1,9 +1,11 @@
 package eu.retarded.internetstore.database.category;
 
 import eu.retarded.internetstore.core.domain.Category;
+import eu.retarded.internetstore.core.domain.Product;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.Query;
@@ -51,12 +53,25 @@ class OrmCategoriesDatabase implements CategoriesDatabase {
 
     @Override
     public Optional<Category> getCategory(Long id) {
-
         return Optional.ofNullable(sessionFactory.getCurrentSession().get(Category.class, id));
     }
 
     @Override
     public boolean isExist(Long id) {
         return getCategory(id).isPresent();
+    }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Override
+    public void updateCategory(Category category) {
+        sessionFactory.getCurrentSession().update(category);
+    }
+
+    @Override
+    public List<Product> getProducts(Category category) {
+        return sessionFactory
+                .getCurrentSession()
+                .createQuery("SELECT p FROM Product p WHERE Category =: category ", Product.class)
+                .getResultList();
     }
 }
