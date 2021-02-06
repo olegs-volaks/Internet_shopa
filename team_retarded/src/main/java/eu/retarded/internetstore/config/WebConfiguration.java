@@ -6,13 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = {"eu.retarded.internetstore.core.controllers"})
+@ComponentScan(basePackages = {"eu.retarded.internetstore.web_ui.controllers"})
 public class WebConfiguration implements WebMvcConfigurer {
 
     @Bean
@@ -29,10 +28,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-                .addResourceHandler("/res/**")
-                .addResourceLocations("classpath:/templates/res/")
-                .setCachePeriod(320000)
-                .resourceChain(true)
-                .addResolver(new PathResourceResolver());
+                .addResourceHandler("/resources/**")
+                .addResourceLocations("classpath:/templates/resources/");
     }
 }
