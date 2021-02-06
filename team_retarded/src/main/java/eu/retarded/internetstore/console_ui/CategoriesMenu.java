@@ -1,8 +1,8 @@
-package eu.retarded.internetstore.ui;
+package eu.retarded.internetstore.console_ui;
 
-import eu.retarded.internetstore.ui.category.*;
-import eu.retarded.internetstore.ui.product.AddProductToCategoryUIAction;
-import eu.retarded.internetstore.ui.product.DeleteProductFromCategoryUIAction;
+import eu.retarded.internetstore.console_ui.category.*;
+import eu.retarded.internetstore.console_ui.product.AddProductToCategoryUIAction;
+import eu.retarded.internetstore.console_ui.product.DeleteProductFromCategoryUIAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

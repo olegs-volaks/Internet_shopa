@@ -95,88 +95,21 @@
 
             <div class="row row-cols-1 row-cols-md-3">
 
-                <div class="col mb-4">
-                    <div class="card product">
-                        <!-- <img src="..." class="card-img-top" alt="..."> -->
-                        <i class="bi bi-cart4 card-icon"></i>
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <div th:text="${atr}">Card title
-                            </h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content. This content is a little bit longer.</p>
-                            <p class="price">12.83€</p>
-                            <a href="product.html" class="btn btn-card-buy stretched-link">Buy</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col mb-4">
-                    <div class="card product">
-                        <!-- <img src="..." class="card-img-top" alt="..."> -->
-                        <i class="bi bi-cart4 card-icon"></i>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content. This content is a little bit longer.</p>
-                            <p class="price">12.83€</p>
-                            <a href="#" class="btn btn-card-buy stretched-link">Buy</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col mb-4">
-                    <div class="card product">
-                        <!-- <img src="..." class="card-img-top" alt="..."> -->
-                        <i class="bi bi-cart4 card-icon"></i>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content.</p>
-                            <p class="price">12.83€</p>
-                            <a href="#" class="btn btn-card-buy stretched-link">Buy</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col mb-4">
-                    <div class="card product">
-                        <!-- <img src="..." class="card-img-top" alt="..."> -->
-                        <i class="bi bi-cart4 card-icon"></i>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content. This content is a little bit longer.</p>
-                            <p class="price">12.83€</p>
-                            <a href="#" class="btn btn-card-buy stretched-link">Buy</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col mb-4">
-                    <div class="card product">
-                        <!-- <img src="..." class="card-img-top" alt="..."> -->
-                        <i class="bi bi-cart4 card-icon"></i>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content. This content is a little bit longer.</p>
-                            <p class="price">12.83€</p>
-                            <a href="#" class="btn btn-card-buy stretched-link">Buy</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col mb-4">
-                    <div class="card product">
-                        <!-- <img src="..." class="card-img-top" alt="..."> -->
-                        <i class="bi bi-cart4 card-icon"></i>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional content. This content is a little bit longer.</p>
-                            <p class="price">12.83€</p>
-                            <a href="#" class="btn btn-card-buy stretched-link">Buy</a>
+                <div th:each="products : ${products}">
+                    <div class="col mb-4">
+                        <div class="card product">
+                            <!-- <img src="..." class="card-img-top" alt="..."> -->
+                            <i class="bi bi-cart4 card-icon"></i>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <div th:text="${products.name}"></div>
+                                </h5>
+                                <p class="card-text">
+                                <div th:text="${products.description}"></div>
+                                </p>
+                                <p class="price" th:text="${products.price} + '€'"></p>
+                                <a href=" product.html" class="btn btn-card-buy stretched-link">Buy</a>
+                            </div>
                         </div>
                     </div>
                 </div>

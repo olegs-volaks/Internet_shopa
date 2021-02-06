@@ -1,9 +1,9 @@
-package eu.retarded.internetstore.ui.category;
+package eu.retarded.internetstore.console_ui.category;
 
+import eu.retarded.internetstore.console_ui.UIAction;
 import eu.retarded.internetstore.core.requests.category.GetCategoryByIdRequest;
 import eu.retarded.internetstore.core.responses.category.GetCategoryByIdResponse;
 import eu.retarded.internetstore.core.services.category.GetCategoryByIdService;
-import eu.retarded.internetstore.ui.UIAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
