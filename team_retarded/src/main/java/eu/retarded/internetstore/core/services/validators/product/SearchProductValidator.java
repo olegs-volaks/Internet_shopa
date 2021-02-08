@@ -1,7 +1,5 @@
 package eu.retarded.internetstore.core.services.validators.product;
 
-import eu.retarded.internetstore.core.requests.product.Ordering;
-import eu.retarded.internetstore.core.requests.product.Paging;
 import eu.retarded.internetstore.core.requests.product.SearchProductRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import org.springframework.stereotype.Component;
@@ -16,15 +14,9 @@ public class SearchProductValidator {
     public List<CoreError> validate(SearchProductRequest request) {
         List<CoreError> errors = new ArrayList<>(validateSearchFields(request));
 
-        if (request.getOrdering() != null) {
-            validateMandatoryOrderBy(request.getOrdering()).ifPresent(errors::add);
-            validateMandatoryOrderDirection(request.getOrdering()).ifPresent(errors::add);
+        if (request.getSorting() != null) {
+            validateMandatoryOrderDirection(request.getSorting()).ifPresent(errors::add);
         }
-        if (request.getPaging() != null) {
-            validateMandatoryPageNumber(request.getPaging()).ifPresent(errors::add);
-            validateMandatoryPageSize(request.getPaging()).ifPresent(errors::add);
-        }
-
         return errors;
     }
 
@@ -42,37 +34,9 @@ public class SearchProductValidator {
         return str == null || str.isEmpty();
     }
 
-    private Optional<CoreError> validateMandatoryOrderBy(Ordering ordering) {
-        return (ordering.getOrderDirection() != null && ordering.getOrderBy() == null)
+    private Optional<CoreError> validateMandatoryOrderDirection(String sorting) {
+        return (!sorting.equals("DESC") && !sorting.equals("ASC"))
                 ? Optional.of(new CoreError("orderBy", "Must not be empty!"))
                 : Optional.empty();
-    }
-
-    private Optional<CoreError> validateMandatoryOrderDirection(Ordering ordering) {
-        return (ordering.getOrderBy() != null && ordering.getOrderDirection() == null)
-                ? Optional.of(new CoreError("orderDirection", "Must not be empty!"))
-                : Optional.empty();
-    }
-
-    private Optional<CoreError> validateMandatoryPageNumber(Paging paging) {
-        if ((paging.getPageNumber() == null && paging.getPageSize() == null)) {
-            return Optional.empty();
-        } else if (paging.getPageNumber() == null && paging.getPageSize() != null) {
-            return Optional.of(new CoreError("pageNumber", "Must not be empty!"));
-        } else if (paging.getPageNumber() <= 0) {
-            return Optional.of(new CoreError("pageNumber", "Must be greater then 0!"));
-        }
-        return Optional.empty();
-    }
-
-    private Optional<CoreError> validateMandatoryPageSize(Paging paging) {
-        if ((paging.getPageNumber() == null && paging.getPageSize() == null)) {
-            return Optional.empty();
-        } else if (paging.getPageSize() == null && paging.getPageNumber() != null) {
-            return Optional.of(new CoreError("pageSize", "Must not be empty!"));
-        } else if (paging.getPageSize() <= 0) {
-            return Optional.of(new CoreError("pageSize", "Must be greater then 0!"));
-        }
-        return Optional.empty();
     }
 }

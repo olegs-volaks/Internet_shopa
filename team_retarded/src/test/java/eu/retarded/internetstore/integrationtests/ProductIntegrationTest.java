@@ -42,9 +42,9 @@ public class ProductIntegrationTest {
     void add_product_request() {
 
         AddProductService service = context.getBean(AddProductService.class);
-        AddProductRequest request = new AddProductRequest("Apple", "MackBook-Pro", 150.0);
-        AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax", 899.99);
-        AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 5", 500.0);
+        AddProductRequest request = new AddProductRequest("Apple", "MackBook-Pro555", 150.0);
+        AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax55", 899.99);
+        AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 555", 500.0);
         service.execute(request);
         service.execute(request1);
         service.execute(request2);
@@ -126,7 +126,7 @@ public class ProductIntegrationTest {
         assertThat(searchProductService.execute(new SearchProductRequest("g")).getProducts().size()).isEqualTo(3);
         searchProductService.execute(new SearchProductRequest("Sony"));
         searchProductService.execute(new SearchProductRequest("Samsung"));
-        assertThat(productDatabase.search("5").size()).isEqualTo(1);
+        assertThat(productDatabase.search("5","ASC").size()).isEqualTo(1);
     }
 
     @Test

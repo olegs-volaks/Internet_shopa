@@ -22,10 +22,10 @@ class OrmProductDatabase implements ProductDatabase {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Value("5")
+    @Value("20")
     private int firstResult;
 
-    @Value("8")
+    @Value("20")
     private int maxResults;
 
     @Override

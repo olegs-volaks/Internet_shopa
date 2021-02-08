@@ -1,7 +1,6 @@
 package eu.retarded.internetstore.core.services.product;
 
 import eu.retarded.internetstore.core.domain.Product;
-import eu.retarded.internetstore.core.requests.product.Ordering;
 import eu.retarded.internetstore.core.requests.product.Paging;
 import eu.retarded.internetstore.core.requests.product.SearchProductRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
@@ -61,7 +60,7 @@ class SearchProductServiceTest {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Title", "Author123456789", 345));
 
-        Mockito.when(db.search(any())).thenReturn(products);
+        Mockito.when(db.search("Title","DESC")).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -77,7 +76,7 @@ class SearchProductServiceTest {
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Title", "Author123456789", 345));
-        Mockito.when(db.search(any())).thenReturn(products);
+        Mockito.when(db.search("Title","DESC")).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -93,7 +92,7 @@ class SearchProductServiceTest {
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Title", "Author123456789", 345));
-        Mockito.when(db.search(any())).thenReturn(products);
+        Mockito.when(db.search("Title","DESC")).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -104,14 +103,14 @@ class SearchProductServiceTest {
 
     @Test
     public void shouldSearchByNameWithOrderingAscending() {
-        Ordering ordering = new Ordering("name", "ASCENDING");
+        String ordering = "ASC";
         SearchProductRequest request = new SearchProductRequest("Title", ordering);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Title1", "Author123456789", 345));
         products.add(new Product("Title2", "Author123456789", 345));
-        Mockito.when(db.search(any())).thenReturn(products);
+        Mockito.when(db.search("Title","DESC")).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -124,14 +123,14 @@ class SearchProductServiceTest {
     public void shouldSearchByNameWithOrderingDescending() {
         ReflectionTestUtils.setField(service, "orderingEnabled", true);
         ReflectionTestUtils.setField(service, "pagingEnabled", true);
-        Ordering ordering = new Ordering("name", "DESCENDING");
+        String ordering = "DESC";
         SearchProductRequest request = new SearchProductRequest("Title", ordering);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Author1", "Author123456789", 345));
         products.add(new Product("Author2", "Author123456789", 345));
-        Mockito.when(db.search(any())).thenReturn(products);
+        Mockito.when(db.search("Title","DESC")).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -145,13 +144,13 @@ class SearchProductServiceTest {
         ReflectionTestUtils.setField(service, "orderingEnabled", true);
         ReflectionTestUtils.setField(service, "pagingEnabled", true);
         Paging paging = new Paging(1, 1);
-        SearchProductRequest request = new SearchProductRequest("Title", null, paging);
+        SearchProductRequest request = new SearchProductRequest("Title", null);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Author1", "Author123456789", 345));
         products.add(new Product("Author2", "Author123456789", 345));
-        Mockito.when(db.search(any())).thenReturn(products);
+        Mockito.when(db.search("Title","DESC")).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -165,13 +164,13 @@ class SearchProductServiceTest {
         ReflectionTestUtils.setField(service, "orderingEnabled", true);
         ReflectionTestUtils.setField(service, "pagingEnabled", true);
         Paging paging = new Paging(2, 1);
-        SearchProductRequest request = new SearchProductRequest("Title", null, paging);
+        SearchProductRequest request = new SearchProductRequest("Title", null);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Author1", "Author123456789", 345));
         products.add(new Product("Author2", "Author123456789", 345));
-        Mockito.when(db.search(any())).thenReturn(products);
+        Mockito.when(db.search("Title","DESC")).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -185,13 +184,13 @@ class SearchProductServiceTest {
         ReflectionTestUtils.setField(service, "orderingEnabled", true);
         ReflectionTestUtils.setField(service, "pagingEnabled", true);
         Paging paging = new Paging(null, null);
-        Ordering ordering = new Ordering(null, null);
-        SearchProductRequest request = new SearchProductRequest("Author2", ordering, paging);
+        String ordering = null;
+        SearchProductRequest request = new SearchProductRequest("Author2", ordering);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Author2", "Author1234567899", 345));
-        Mockito.when(db.search(any())).thenReturn(products);
+        Mockito.when(db.search("Title","DESC")).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
