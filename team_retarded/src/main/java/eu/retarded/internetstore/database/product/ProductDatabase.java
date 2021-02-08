@@ -31,7 +31,7 @@ public interface ProductDatabase {
 
     void updateProduct(Product product);
 
-    List<Product> search (String keyWord);
+    List<Product> search (String keyWord , String sorting);
 
     List<Product> search(String keyWord, Category category);
 }

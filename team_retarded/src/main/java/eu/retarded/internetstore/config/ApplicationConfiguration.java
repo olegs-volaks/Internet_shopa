@@ -38,6 +38,12 @@ public class ApplicationConfiguration {
     @Value("${database.user.password}")
     private String password;
 
+    @Value("5")
+    private int firstResult;
+
+    @Value("8")
+    private int maxResults;
+
     @Bean
     public BasicDataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
