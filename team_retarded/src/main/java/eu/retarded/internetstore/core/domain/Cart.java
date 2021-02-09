@@ -1,0 +1,24 @@
+package eu.retarded.internetstore.core.domain;
+
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Cart")
+@Data
+public class Cart {
+
+    @Id
+    @Column(name= "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(name = "status")
+    private int status;
+
+}
