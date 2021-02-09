@@ -12,8 +12,6 @@ public interface ProductDatabase {
 
     boolean delete(Long id);
 
-    //boolean delete(Predicate<Product> predicate);
-
     void clear();
 
     Optional<Product> getById(Long id);
