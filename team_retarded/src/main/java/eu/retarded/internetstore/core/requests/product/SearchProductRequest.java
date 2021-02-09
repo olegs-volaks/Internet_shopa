@@ -4,8 +4,14 @@ public class SearchProductRequest {
 
     private final String keyWord;
     private  String sorting;
-    //private Ordering ordering;
-    //private Paging paging;
+    private int page;
+
+    public SearchProductRequest(String keyWord, String sorting, int page) {
+        this.keyWord =keyWord;
+        this.sorting =sorting;
+        this.page=page;
+    }
+
 
     public SearchProductRequest(String keyWord, String sorting) {
         this.keyWord =keyWord;
@@ -19,10 +25,16 @@ public class SearchProductRequest {
 
 
 
+
+
     public String getKeyWord() {
         return keyWord;
     }
-    public String getSorting() { return sorting;
+    public String getSorting() {
+        return sorting;
+    }
+    public int getPage(){
+        return page;
     }
 
 

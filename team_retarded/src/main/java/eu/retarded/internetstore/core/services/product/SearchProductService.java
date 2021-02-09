@@ -34,7 +34,7 @@ public class SearchProductService {
             return new SearchProductResponse(errors, null);
         }
 
-        List<Product> products = productDatabase.search(request.getKeyWord(), request.getSorting());
+        List<Product> products = productDatabase.search(request.getKeyWord(), request.getSorting(), request.getPage());
         return new SearchProductResponse(null, products);
     }
 }

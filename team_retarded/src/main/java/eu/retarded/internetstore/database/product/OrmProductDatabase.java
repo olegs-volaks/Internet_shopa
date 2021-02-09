@@ -22,11 +22,10 @@ class OrmProductDatabase implements ProductDatabase {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Value("20")
-    private int firstResult;
+    @Value("${product.paging.pageSize}")
+    private int pageSize;
 
-    @Value("20")
-    private int maxResults;
+
 
     @Override
     public Long add(Product product) {
@@ -63,8 +62,17 @@ class OrmProductDatabase implements ProductDatabase {
     public List<Product> getList() {
         return sessionFactory.getCurrentSession()
                 .createQuery("SELECT b FROM Product b", Product.class)
-                .setFirstResult(firstResult)
-                .setMaxResults (maxResults)
+                //.setFirstResult(firstResult)
+                //.setMaxResults (maxResults)
+                .getResultList();
+    }
+
+    @Override
+    public List<Product> getListPaging(int page) {
+        return sessionFactory.getCurrentSession()
+                .createQuery("SELECT b FROM Product b", Product.class)
+                //.setFirstResult(firstResult)
+                //.setMaxResults (maxResults)
                 .getResultList();
     }
 
@@ -97,25 +105,34 @@ class OrmProductDatabase implements ProductDatabase {
 
 
     @Override
-    public List<Product> search(String keyWord , String sorting) {
+    public List<Product> search(String keyWord , String sorting, int page) {
          return sessionFactory.getCurrentSession()
                 .createQuery("SELECT c FROM Product c WHERE LOWER(c.name) LIKE '%"+keyWord.toLowerCase()+"%'" +
                         " or LOWER(c.description) LIKE '%"+keyWord.toLowerCase()+"%'" +
                         "ORDER BY c.name "+sorting, Product.class)
-                 .setFirstResult(firstResult)
-                 .setMaxResults (maxResults)
+                 .setFirstResult(getFirstResult(page))
+                 .setMaxResults (getMaxResults(page))
                  .getResultList();
     }
 
     @Override
-    public List<Product> search(String keyWord, Category category) {
+    public List<Product> search(String keyWord, Category category, int page) {
         return sessionFactory.getCurrentSession()
                 .createQuery("SELECT c FROM Product c WHERE LOWER(c.name) LIKE '%"+keyWord.toLowerCase()+"%'" +
                         " or LOWER(c.description) LIKE '%"+keyWord.toLowerCase()+"%'" +
                         " and c.category LIKE "+category.getName(), Product.class)
-                .setFirstResult(firstResult)
-                .setMaxResults (maxResults)
+                .setFirstResult(getFirstResult(page))
+                .setMaxResults (getMaxResults(page))
                 .getResultList();
     }
+
+    private int getMaxResults (int page){
+        return page*pageSize;
+    }
+    private int getFirstResult (int page){
+        return page*pageSize-page+1;
+    }
+
+
 
 }

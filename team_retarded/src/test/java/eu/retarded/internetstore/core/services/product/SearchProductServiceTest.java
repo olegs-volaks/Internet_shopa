@@ -60,7 +60,7 @@ class SearchProductServiceTest {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Title", "Author123456789", 345));
 
-        Mockito.when(db.search("Title","DESC")).thenReturn(products);
+        Mockito.when(db.search("Title","DESC",1)).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -76,7 +76,7 @@ class SearchProductServiceTest {
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Title", "Author123456789", 345));
-        Mockito.when(db.search("Title","DESC")).thenReturn(products);
+        Mockito.when(db.search("Title","DESC",1)).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -92,7 +92,7 @@ class SearchProductServiceTest {
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Title", "Author123456789", 345));
-        Mockito.when(db.search("Title","DESC")).thenReturn(products);
+        Mockito.when(db.search("Title","DESC",1)).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -110,7 +110,7 @@ class SearchProductServiceTest {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Title1", "Author123456789", 345));
         products.add(new Product("Title2", "Author123456789", 345));
-        Mockito.when(db.search("Title","DESC")).thenReturn(products);
+        Mockito.when(db.search("Title","DESC",1)).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -130,7 +130,7 @@ class SearchProductServiceTest {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Author1", "Author123456789", 345));
         products.add(new Product("Author2", "Author123456789", 345));
-        Mockito.when(db.search("Title","DESC")).thenReturn(products);
+        Mockito.when(db.search("Title","DESC",1)).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -150,7 +150,7 @@ class SearchProductServiceTest {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Author1", "Author123456789", 345));
         products.add(new Product("Author2", "Author123456789", 345));
-        Mockito.when(db.search("Title","DESC")).thenReturn(products);
+        Mockito.when(db.search("Title","DESC",1)).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -170,7 +170,7 @@ class SearchProductServiceTest {
         List<Product> products = new ArrayList<>();
         products.add(new Product("Author1", "Author123456789", 345));
         products.add(new Product("Author2", "Author123456789", 345));
-        Mockito.when(db.search("Title","DESC")).thenReturn(products);
+        Mockito.when(db.search("Title","DESC",1)).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
@@ -190,7 +190,7 @@ class SearchProductServiceTest {
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Author2", "Author1234567899", 345));
-        Mockito.when(db.search("Title","DESC")).thenReturn(products);
+        Mockito.when(db.search("Title","DESC",1)).thenReturn(products);
 
         SearchProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());

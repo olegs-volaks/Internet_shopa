@@ -122,7 +122,7 @@ public class ProductIntegrationTest {
         assertThat(searchProductService.execute(new SearchProductRequest("g")).getProducts().size()).isEqualTo(3);
         searchProductService.execute(new SearchProductRequest("Sony"));
         searchProductService.execute(new SearchProductRequest("Samsung"));
-        assertThat(productDatabase.search("5","ASC").size()).isEqualTo(1);
+        assertThat(productDatabase.search("5","ASC",1).size()).isEqualTo(1);
     }
 
     @Test

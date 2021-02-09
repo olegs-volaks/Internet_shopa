@@ -23,6 +23,8 @@ public interface ProductDatabase {
 
     List<Product> getList();
 
+    List<Product> getListPaging(int page);
+
     boolean isExist(Long id);
 
     boolean addProductToCategory(Long productId, Long categoryId);
@@ -31,7 +33,7 @@ public interface ProductDatabase {
 
     void updateProduct(Product product);
 
-    List<Product> search (String keyWord , String sorting);
+    List<Product> search (String keyWord , String sorting, int page);
 
-    List<Product> search(String keyWord, Category category);
+    List<Product> search(String keyWord, Category category, int page);
 }
