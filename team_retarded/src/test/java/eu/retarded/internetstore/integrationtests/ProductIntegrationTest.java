@@ -1,6 +1,5 @@
 package eu.retarded.internetstore.integrationtests;
 
-import eu.retarded.internetstore.config.ApplicationConfiguration;
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.AddProductRequest;
 import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
@@ -14,18 +13,15 @@ import eu.retarded.internetstore.core.services.product.SearchProductService;
 import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {ApplicationConfiguration.class})
+@SpringBootTest
 public class ProductIntegrationTest {
 
     @Autowired
