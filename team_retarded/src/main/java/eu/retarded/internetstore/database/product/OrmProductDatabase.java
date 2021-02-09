@@ -32,7 +32,6 @@ class OrmProductDatabase implements ProductDatabase {
         return query.executeUpdate() == 1;
     }
 
-    //public boolean delete(Predicate<Product> predicate) { return false; }
 
     @Override
     public void clear() {

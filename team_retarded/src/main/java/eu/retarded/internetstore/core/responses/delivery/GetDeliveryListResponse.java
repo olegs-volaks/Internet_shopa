@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GetDeliveryListResponse extends CoreResponse {
 
-    private List<Delivery> deliveries;
+    private final List<Delivery> deliveries;
 
     public GetDeliveryListResponse(List<CoreError> errors, List<Delivery> deliveries) {
         super(errors);
