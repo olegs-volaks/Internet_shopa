@@ -18,4 +18,11 @@ public interface CartDatabase {
     void updateCart(Cart cart);
 
     boolean isExist(Long id);
+
+    List<Cart> getListPaging(int page);
+
+    List<Cart> search(String keyWord, String sorting, int page);
+
+    void clear();
+
 }
