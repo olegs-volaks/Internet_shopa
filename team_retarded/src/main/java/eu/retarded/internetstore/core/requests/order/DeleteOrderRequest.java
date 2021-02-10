@@ -1,11 +1,9 @@
 package eu.retarded.internetstore.core.requests.order;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.Data;
 
-@Getter
-@RequiredArgsConstructor
+@Data
 public class DeleteOrderRequest {
 
-    private long deleteOrderId;
+    private final  long deleteOrderId;
 }

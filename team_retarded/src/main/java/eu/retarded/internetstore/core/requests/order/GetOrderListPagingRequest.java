@@ -6,5 +6,5 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class GetOrderListPagingRequest {
-    private int page;
+    private final int  page;
 }

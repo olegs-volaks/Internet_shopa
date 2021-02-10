@@ -7,14 +7,14 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UpdateOrderRequest {
 
-    private Long id;
-    private  String name;
-    private  String surname;
-    private  String address;
-    private long cartId;
-    private long deliveryId;
-    private long userId;
-    private double totalPrice;
-    private int status;
+    private final Long id;
+    private final String name;
+    private final String surname;
+    private final String address;
+    private final long cartId;
+    private final long deliveryId;
+    private final long userId;
+    private final double totalPrice;
+    private final int status;
 
 }

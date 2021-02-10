@@ -70,4 +70,10 @@ class OrmOrderDatabase implements OrderDatabase {
     public int getFirstResult (int page){
         return page*pageSize-pageSize;
     }
+
+    @Override
+    public void clear() {
+        sessionFactory.getCurrentSession().createQuery("DELETE from Cart ").executeUpdate();
+    }
+
 }

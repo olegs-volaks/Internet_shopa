@@ -20,4 +20,6 @@ public interface OrderDatabase {
 
     void updateOrder(Order order);
 
+    void clear();
+
 }
