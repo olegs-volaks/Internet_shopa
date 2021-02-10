@@ -12,31 +12,34 @@ import java.util.Optional;
 public class SearchProductValidator {
 
     public List<CoreError> validate(SearchProductRequest request) {
-        List<CoreError> errors = new ArrayList<>(validateSearchFields(request));
-
-        if (request.getSorting() != null) {
-            validateMandatoryOrderDirection(request.getSorting()).ifPresent(errors::add);
-        }
+        List<CoreError> errors = new ArrayList<>();
+        validateIdKeyWord(request).ifPresent(errors::add);
+        validateMandatoryOrderDirection(request).ifPresent(errors::add);
+        validatePage(request).ifPresent(errors::add);
         return errors;
     }
 
-
-    private List<CoreError> validateSearchFields(SearchProductRequest request) {
-        List<CoreError> errors = new ArrayList<>();
+    private Optional<CoreError> validateIdKeyWord(SearchProductRequest request) {
         if (isEmpty(request.getKeyWord())) {
-            errors.add(new CoreError("name", "Must not be empty!"));
-            errors.add(new CoreError("description", "Must not be empty!"));
+            return Optional.of(new CoreError("KeyWord", "Must not be empty!"));
         }
-        return errors;
+        return Optional.empty();
     }
 
     private boolean isEmpty(String str) {
         return str == null || str.isEmpty();
     }
 
-    private Optional<CoreError> validateMandatoryOrderDirection(String sorting) {
-        return (!sorting.equals("DESC") && !sorting.equals("ASC"))
+    private Optional<CoreError> validateMandatoryOrderDirection(SearchProductRequest request) {
+        return (isEmpty(request.getSorting()))
                 ? Optional.of(new CoreError("orderBy", "Must not be empty!"))
                 : Optional.empty();
+    }
+
+    private Optional<CoreError> validatePage(SearchProductRequest request) {
+        if (request.getPage() <= 0) {
+            return Optional.of(new CoreError("page", "Must be greater then 0!"));
+        }
+        return Optional.empty();
     }
 }

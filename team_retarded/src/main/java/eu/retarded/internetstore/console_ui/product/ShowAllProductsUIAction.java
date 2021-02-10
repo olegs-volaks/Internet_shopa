@@ -1,12 +1,12 @@
-package eu.retarded.internetstore.ui.product;
+package eu.retarded.internetstore.console_ui.product;
 
 
+import eu.retarded.internetstore.console_ui.UIAction;
 import eu.retarded.internetstore.core.requests.product.Ordering;
 import eu.retarded.internetstore.core.requests.product.Paging;
 import eu.retarded.internetstore.core.requests.product.ShowAllProductsRequest;
 import eu.retarded.internetstore.core.responses.product.ShowAllProductsResponse;
 import eu.retarded.internetstore.core.services.product.ShowAllProductsService;
-import eu.retarded.internetstore.ui.UIAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -33,7 +33,7 @@ public class ShowAllProductsUIAction implements UIAction {
         Integer pageSize = getPageSize();
         Paging paging = new Paging(pageNumber, pageSize);
 
-        ShowAllProductsResponse response = service.execute(new ShowAllProductsRequest(ordering, paging));
+        ShowAllProductsResponse response = service.execute(new ShowAllProductsRequest());
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field -  "

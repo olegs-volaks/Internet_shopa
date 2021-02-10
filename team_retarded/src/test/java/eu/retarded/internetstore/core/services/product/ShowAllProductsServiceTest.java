@@ -34,7 +34,7 @@ public class ShowAllProductsServiceTest {
     public void should_get_product_from_dataBase() {
         Paging paging = new Paging(2, 2);
         Ordering ordering = new Ordering("name", "DESCENDING");
-        ShowAllProductsRequest request = new ShowAllProductsRequest(ordering,paging);
+        ShowAllProductsRequest request = new ShowAllProductsRequest();
         ShowAllProductsResponse response = subject.execute(request);
         List<CoreError> errors = new ArrayList<>();
         //errors.add(new CoreError("name", "Must not be empty!"));
@@ -50,7 +50,7 @@ public class ShowAllProductsServiceTest {
     public void should_get_product_from_dataBaseIfAllIsEmpty() {
         Paging paging = new Paging(null, null);
         Ordering ordering = new Ordering(null, null);
-        ShowAllProductsRequest request = new ShowAllProductsRequest(ordering,paging);
+        ShowAllProductsRequest request = new ShowAllProductsRequest();
         ShowAllProductsResponse response = subject.execute(request);
         List<CoreError> errors = new ArrayList<>();
         //errors.add(new CoreError("name", "Must not be empty!"));

@@ -2,6 +2,7 @@ package eu.retarded.internetstore.core.services.validators.order;
 
 import eu.retarded.internetstore.core.requests.order.AddOrderRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.database.cart.CartDatabase;
 import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class AddOrderValidator {
     @Autowired
     UsersDatabase userDatabase;
 
+    @Autowired
+    CartDatabase cartDatabase;
+
     public List<CoreError> validate(AddOrderRequest request) {
         List<CoreError> errors = new ArrayList<>();
         validateName(request).ifPresent(errors::add);
@@ -28,6 +32,7 @@ public class AddOrderValidator {
         validateAddress(request).ifPresent(errors::add);
         validateDeliveryID(request).ifPresent(errors::add);
         validateUserId(request).ifPresent(errors::add);
+        validateCartId(request).ifPresent(errors::add);
         return errors;
     }
 
@@ -76,7 +81,17 @@ public class AddOrderValidator {
             return Optional.of(new CoreError("ID", "Must not be empty or negative"));
         }
         if (!userDatabase.isExist(request.getUserId())) {
-            return Optional.of(new CoreError("ID","The delivery with the given id does not exist"));
+            return Optional.of(new CoreError("ID","The user with the given id does not exist"));
+        }
+        return Optional.empty();
+    }
+
+    private Optional<CoreError> validateCartId(AddOrderRequest request) {
+        if (request.getCartId() <= 0) {
+            return Optional.of(new CoreError("ID", "Must not be empty or negative"));
+        }
+        if (!cartDatabase.isExist(request.getCartId())) {
+            return Optional.of(new CoreError("ID","The cart with the given id does not exist"));
         }
         return Optional.empty();
     }

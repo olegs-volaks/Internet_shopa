@@ -39,8 +39,7 @@ public class ShowAllProductsService {
         }
 
         List<Product> products = productDatabase.getList();
-        products = order(products, request.getOrdering());
-        products = paging(products, request.getPaging());
+
 
         return new ShowAllProductsResponse(null,products);
     }

@@ -61,8 +61,6 @@ class OrmProductDatabase implements ProductDatabase {
     public List<Product> getList() {
         return sessionFactory.getCurrentSession()
                 .createQuery("SELECT b FROM Product b", Product.class)
-                //.setFirstResult(firstResult)
-                //.setMaxResults (maxResults)
                 .getResultList();
     }
 
@@ -70,8 +68,8 @@ class OrmProductDatabase implements ProductDatabase {
     public List<Product> getListPaging(int page) {
         return sessionFactory.getCurrentSession()
                 .createQuery("SELECT b FROM Product b", Product.class)
-                //.setFirstResult(firstResult)
-                //.setMaxResults (maxResults)
+                .setFirstResult(getFirstResult(page))
+                .setMaxResults (getMaxResults(page))
                 .getResultList();
     }
 
@@ -129,7 +127,7 @@ class OrmProductDatabase implements ProductDatabase {
         return page*pageSize;
     }
     private int getFirstResult (int page){
-        return page*pageSize-page+1;
+        return (page*pageSize)-page;
     }
 
 

@@ -14,6 +14,7 @@ public interface OrderDatabase {
     Optional<Order> getById(Long id);
 
     List<Order> getList();
+    List<Order> getListWithPaging(int page);
 
     boolean isExist(Long id);
 

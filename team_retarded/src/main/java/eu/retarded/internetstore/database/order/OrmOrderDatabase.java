@@ -18,7 +18,7 @@ class OrmOrderDatabase implements OrderDatabase {
     @Autowired
     private SessionFactory sessionFactory;
 
-    private final int productsOnPage=16;
+    private int productsOnPage;
 
     @Override
     public Long add(Order order) {
@@ -45,6 +45,15 @@ class OrmOrderDatabase implements OrderDatabase {
     }
 
     @Override
+    public List<Order> getListWithPaging(int page) {
+        return sessionFactory.getCurrentSession()
+                .createQuery("SELECT b FROM Order b", Order.class)
+                .setFirstResult(getFirstResult(page))
+                .setMaxResults(getMaxResults(page))
+                .getResultList();
+    }
+
+    @Override
     public boolean isExist(Long id) { return getById(id).isPresent(); }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -57,6 +66,6 @@ class OrmOrderDatabase implements OrderDatabase {
         return page*productsOnPage;
     }
     public int getFirstResult (int page){
-        return page*productsOnPage-page+1;
+        return page*productsOnPage-page;
     }
 }

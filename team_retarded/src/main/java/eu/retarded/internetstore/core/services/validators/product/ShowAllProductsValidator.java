@@ -14,16 +14,6 @@ import java.util.Optional;
 public class ShowAllProductsValidator {
     public List<CoreError> validate(ShowAllProductsRequest request) {
         List<CoreError> errors = new ArrayList<>();
-
-        if (request.getOrdering() != null) {
-            validateMandatoryOrderBy(request.getOrdering()).ifPresent(errors::add);
-            validateMandatoryOrderDirection(request.getOrdering()).ifPresent(errors::add);
-        }
-        if (request.getPaging() != null) {
-            validateMandatoryPageNumber(request.getPaging()).ifPresent(errors::add);
-            validateMandatoryPageSize(request.getPaging()).ifPresent(errors::add);
-        }
-
         return errors;
     }
 

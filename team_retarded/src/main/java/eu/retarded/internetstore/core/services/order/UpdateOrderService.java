@@ -9,6 +9,7 @@ import eu.retarded.internetstore.database.order.OrderDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Component
@@ -25,13 +26,12 @@ public class UpdateOrderService {
         if (!errors.isEmpty()) {
             return new UpdateOrderResponse(errors);
         }
-        long id = request.getId();
+
         Order resultOrder =  new Order();
-        resultOrder.setId(id);
         resultOrder.setName(request.getName());
         resultOrder.setSurname(request.getSurname());
-        resultOrder.setTotalPrice(request.getTotalPrice());
+        resultOrder.setTotalPrice(BigDecimal.valueOf(request.getTotalPrice()));
         orderDatabase.updateOrder(resultOrder);
-        return new UpdateOrderResponse(id);
+        return new UpdateOrderResponse(request.getId());
     }
 }
