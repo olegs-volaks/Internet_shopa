@@ -119,10 +119,10 @@ public class ProductIntegrationTest {
         addProductService.execute(request4);
         addProductService.execute(request5);
         assertThat(searchProductService.execute(new SearchProductRequest("i","ASC",1)).getProducts().size()).isEqualTo(4);
-        //assertThat(searchProductService.execute(new SearchProductRequest("g","ASC",1)).getProducts().size()).isEqualTo(3);
-       // assertThat(searchProductService.execute(new SearchProductRequest("Sony","ASC",1)).getProducts().size()).isEqualTo(2);
-        //searchProductService.execute(new SearchProductRequest("Samsung","ASC",1));
-        //assertThat(productDatabase.search("5","ASC",1).size()).isEqualTo(1);
+        assertThat(searchProductService.execute(new SearchProductRequest("g","ASC",1)).getProducts().size()).isEqualTo(3);
+       assertThat(searchProductService.execute(new SearchProductRequest("Sony","ASC",1)).getProducts().size()).isEqualTo(2);
+        searchProductService.execute(new SearchProductRequest("Samsung","ASC",1));
+        assertThat(productDatabase.search("5","ASC",1).size()).isEqualTo(1);
     }
 
     @Test

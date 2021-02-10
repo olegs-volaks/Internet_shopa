@@ -3,6 +3,7 @@ package eu.retarded.internetstore.database.order;
 import eu.retarded.internetstore.core.domain.Order;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,8 @@ class OrmOrderDatabase implements OrderDatabase {
     @Autowired
     private SessionFactory sessionFactory;
 
-    private int productsOnPage;
+    @Value("${product.paging.pageSize}")
+    private int pageSize;
 
     @Override
     public Long add(Order order) {
@@ -63,9 +65,9 @@ class OrmOrderDatabase implements OrderDatabase {
     }
 
     public int getMaxResults (int page){
-        return page*productsOnPage;
+        return page*pageSize;
     }
     public int getFirstResult (int page){
-        return page*productsOnPage-page;
+        return page*pageSize-pageSize;
     }
 }

@@ -106,7 +106,7 @@ class OrmProductDatabase implements ProductDatabase {
          return sessionFactory.getCurrentSession()
                 .createQuery("SELECT c FROM Product c WHERE LOWER(c.name) LIKE '%"+keyWord.toLowerCase()+"%'" +
                         " or LOWER(c.description) LIKE '%"+keyWord.toLowerCase()+"%'" +
-                        "ORDER BY c.name "+sorting, Product.class)
+                        "ORDER BY c.name "+sorting+"", Product.class)
                  .setFirstResult(getFirstResult(page))
                  .setMaxResults (getMaxResults(page))
                  .getResultList();
@@ -127,7 +127,7 @@ class OrmProductDatabase implements ProductDatabase {
         return page*pageSize;
     }
     private int getFirstResult (int page){
-        return (page*pageSize)-page;
+        return (page*pageSize)-pageSize;
     }
 
 
