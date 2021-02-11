@@ -5,6 +5,7 @@ import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.user.*;
 import eu.retarded.internetstore.core.responses.user.ChangeUserPasswordResponse;
 import eu.retarded.internetstore.core.services.user.*;
+import eu.retarded.internetstore.database.cart.CartDatabase;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,8 +26,12 @@ public class UserIntegrationTest {
     @Autowired
     private UsersDatabase usersDatabase;
 
+    @Autowired
+    private CartDatabase cartDatabase;
+
     @BeforeEach
     void setUp() {
+        cartDatabase.clear();
         usersDatabase.clear();
     }
 
