@@ -1,10 +1,9 @@
 package eu.retarded.internetstore.integrationtests;
 
-import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
-import eu.retarded.internetstore.core.requests.cart.DeleteCartRequest;
+import eu.retarded.internetstore.core.domain.Cart;
+import eu.retarded.internetstore.core.requests.cart.*;
 import eu.retarded.internetstore.core.requests.user.AddUserRequest;
-import eu.retarded.internetstore.core.services.cart.AddCartService;
-import eu.retarded.internetstore.core.services.cart.DeleteCartService;
+import eu.retarded.internetstore.core.services.cart.*;
 import eu.retarded.internetstore.core.services.user.AddUserService;
 import eu.retarded.internetstore.database.cart.CartDatabase;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,15 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 public class CartIntegrationTest {
 
-    @Autowired ApplicationContext context;
+    @Autowired
+    ApplicationContext context;
 
-    @Autowired CartDatabase cartDatabase;
-
+    @Autowired
+    CartDatabase cartDatabase;
 
     @BeforeEach
     void setUp() {
@@ -32,8 +32,8 @@ public class CartIntegrationTest {
     void add_cart_request() {
         AddCartService service = context.getBean(AddCartService.class);
         AddUserService addUserService = context.getBean(AddUserService.class);
-        long id = addUserService.execute(new AddUserRequest("login","pasword",1,"Admin",
-                "Admin2","admin@inbox.lv")).getUserId();
+        long id = addUserService.execute(new AddUserRequest("login", "password", 1, "Admin",
+                "Admin2", "admin@inbox.lv")).getUserId();
         AddCartRequest request1 = new AddCartRequest(id);
         service.execute(request1);
         assertThat(cartDatabase.getList().size()).isEqualTo(1);
@@ -44,23 +44,68 @@ public class CartIntegrationTest {
     @Test
     void delete_cart_request() {
         AddCartService addCartService = context.getBean(AddCartService.class);
+        AddUserService addUserService = context.getBean(AddUserService.class);
         DeleteCartService deleteCartService = context.getBean(DeleteCartService.class);
-        AddCartRequest request = new AddCartRequest(1L);
-        AddCartRequest request1 = new AddCartRequest(2L);
-        AddCartRequest request2 = new AddCartRequest(3L);
-        deleteCartService.execute(new DeleteCartRequest(2L));
+        long id = addUserService.execute(new AddUserRequest("login", "password", 1, "Admin",
+                "surname", "admin@inbox.lv")).getUserId();
+        long id1 = addUserService.execute(new AddUserRequest("login1", "password1", 2, "Admin1",
+                "surname1", "admin1@inbox.lv")).getUserId();
+        long id2 = addUserService.execute(new AddUserRequest("login2", "password2", 1, "Admin2",
+                "surname2", "admin2@inbox.lv")).getUserId();
+        AddCartRequest request = new AddCartRequest(id);
+        AddCartRequest request1 = new AddCartRequest(id1);
+        AddCartRequest request2 = new AddCartRequest(id2);
+        long cartId = addCartService.execute(request).getId();
+        long cartId1 = addCartService.execute(request1).getId();
+        long cartId2 = addCartService.execute(request2).getId();
+        deleteCartService.execute(new DeleteCartRequest(cartId));
         assertThat(cartDatabase.getList().size()).isEqualTo(2);
-        assertThat(cartDatabase.getById(1L).isEmpty()).isFalse();
-        assertThat(cartDatabase.getById(3L).isEmpty()).isFalse();
+        assertThat(cartDatabase.getById(cartId).isEmpty()).isTrue();
+        assertThat(cartDatabase.getById(cartId2).isEmpty()).isFalse();
     }
 
     @Test
     void get_cart_by_id_request() {
+        AddCartService addCartService = context.getBean(AddCartService.class);
+        AddUserService addUserService = context.getBean(AddUserService.class);
+        GetByIdCartService getByIdCartService = context.getBean(GetByIdCartService.class);
+        long id = addUserService.execute(new AddUserRequest("login", "password", 1, "Admin",
+                "surname", "admin@inbox.lv")).getUserId();
+        long id1 = addUserService.execute(new AddUserRequest("login1", "password1", 2, "Admin1",
+                "surname1", "admin1@inbox.lv")).getUserId();
+        long id2 = addUserService.execute(new AddUserRequest("login2", "password2", 1, "Admin2",
+                "surname2", "admin2@inbox.lv")).getUserId();
+        AddCartRequest request = new AddCartRequest(id);
+        AddCartRequest request1 = new AddCartRequest(id1);
+        AddCartRequest request2 = new AddCartRequest(id2);
+        long cartId = addCartService.execute(request).getId();
+        long cartId1 = addCartService.execute(request1).getId();
+        long cartId2 = addCartService.execute(request2).getId();
+        Cart cart = getByIdCartService.execute(new GetByIdCartRequest(cartId)).getCart();
+        Cart cart1 = getByIdCartService.execute(new GetByIdCartRequest(cartId1)).getCart();
+        assertThat(cart.getId()).isEqualTo(cartId);
+        assertThat(cart1.getId()).isEqualTo(cartId1);
 
     }
 
     @Test
-    void search_cart_request() {
+    void get_cart_list_request() {
+        AddCartService addCartService = context.getBean(AddCartService.class);
+        AddUserService addUserService = context.getBean(AddUserService.class);
+        GetCartListService getCartListService = context.getBean(GetCartListService.class);
+        long id = addUserService.execute(new AddUserRequest("login", "password", 1, "Admin",
+                "surname", "admin@inbox.lv")).getUserId();
+        long id1 = addUserService.execute(new AddUserRequest("login1", "password1", 2, "Admin1",
+                "surname1", "admin1@inbox.lv")).getUserId();
+        long id2 = addUserService.execute(new AddUserRequest("login2", "password2", 1, "Admin2",
+                "surname2", "admin2@inbox.lv")).getUserId();
+        AddCartRequest request = new AddCartRequest(id);
+        AddCartRequest request1 = new AddCartRequest(id1);
+        AddCartRequest request2 = new AddCartRequest(id2);
+        addCartService.execute(request);
+        addCartService.execute(request1);
+        addCartService.execute(request2);
+        assertThat(cartDatabase.getList().size()).isEqualTo(3);
 
     }
 }
