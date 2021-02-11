@@ -1,8 +1,6 @@
 package eu.retarded.internetstore.console_ui.product;
 
 import eu.retarded.internetstore.console_ui.UIAction;
-import eu.retarded.internetstore.core.requests.product.Ordering;
-import eu.retarded.internetstore.core.requests.product.Paging;
 import eu.retarded.internetstore.core.requests.product.SearchProductRequest;
 import eu.retarded.internetstore.core.responses.product.SearchProductResponse;
 import eu.retarded.internetstore.core.services.product.SearchProductService;
@@ -20,22 +18,16 @@ public class SearchProductUIAction implements UIAction {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please, enter a product name : ");
+        System.out.println("Please, enter a search word : ");
         String name = scanner.nextLine();
-        System.out.println("Please, enter a product description: ");
-        String description = scanner.nextLine();
-        System.out.println("Enter order by name (press 1) or description (press 2): ");
-        String orderBy = getChoseNameOrDescription();
+        //System.out.println("Enter order by name (press 1) or description (press 2): ");
+        //String orderBy = getChoseNameOrPrice();
         System.out.println("Enter orderDirection ASCENDING (press 1) or DESCENDING (press 2): ");
-        String orderDirection = getChoseAscendOrDescend();
-        Ordering ordering = new Ordering(orderBy, orderDirection);
-        System.out.println("Enter pageNumber: ");
-        Integer pageNumber = getPageNumber();
-        System.out.println("Enter pageSize: ");
-        Integer pageSize = getPageSize();
-        Paging paging = new Paging(pageNumber, pageSize);
+        String sorting = getChoseAscendOrDescend();
+        System.out.println("Enter page: ");
+        int page = getChoseNameOrPrice();
 
-        SearchProductResponse response = service.execute(new SearchProductRequest(name, description, ordering, paging));
+        SearchProductResponse response = service.execute(new SearchProductRequest(name, sorting, page));
 
         if (response.hasErrors()) {
             response.getErrors().forEach(coreError -> System.out.println("Error in the field -  "
@@ -46,7 +38,7 @@ public class SearchProductUIAction implements UIAction {
         }
     }
 
-    private String getChoseNameOrDescription() {
+    private int getChoseNameOrPrice() {
         Scanner scanner = new Scanner(System.in);
         String getChose = scanner.nextLine();
         getChose = getChose.replaceAll("\\s+", "");
@@ -56,12 +48,7 @@ public class SearchProductUIAction implements UIAction {
         } catch (NumberFormatException ex) {
             System.out.println("Incorrect value");
         }
-        if (getChoseInt == 1) {
-            return "name";
-        } else if (getChoseInt == 2) {
-            return "description";
-        }
-        return null;
+        return getChoseInt;
     }
 
     private String getChoseAscendOrDescend() {
@@ -75,36 +62,13 @@ public class SearchProductUIAction implements UIAction {
             System.out.println("Incorrect value ");
         }
         if (getChoseInt == 1) {
-            return "ASCENDING";
+            return "ASC";
         } else if (getChoseInt == 2) {
-            return "DESCENDING";
+            return "DESC";
         }
         return null;
     }
 
-    private Integer getPageNumber() {
-        Scanner scanner = new Scanner(System.in);
-        String pageNumber = scanner.nextLine();
-        pageNumber = pageNumber.replaceAll("\\s+", "");
-        try {
-            return Integer.parseInt(pageNumber);
-        } catch (NumberFormatException ex) {
-            System.out.println("Incorrect value ");
-        }
-        return null;
-    }
-
-    private Integer getPageSize() {
-        Scanner scanner = new Scanner(System.in);
-        String pageSize = scanner.nextLine();
-        pageSize = pageSize.replaceAll("\\s+", "");
-        try {
-            return Integer.parseInt(pageSize);
-        } catch (NumberFormatException ex) {
-            System.out.println("Incorrect value ");
-        }
-        return null;
-    }
 }
 
 

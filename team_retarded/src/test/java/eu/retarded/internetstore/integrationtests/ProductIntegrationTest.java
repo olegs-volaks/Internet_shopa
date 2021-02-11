@@ -29,6 +29,7 @@ public class ProductIntegrationTest {
     @Autowired
     private ProductDatabase productDatabase;
 
+
     @BeforeEach
     void setUp() {
         productDatabase.clear();
@@ -38,9 +39,9 @@ public class ProductIntegrationTest {
     void add_product_request() {
 
         AddProductService service = context.getBean(AddProductService.class);
-        AddProductRequest request = new AddProductRequest("Apple", "MackBook-Pro", 150.0);
-        AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax", 899.99);
-        AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 5", 500.0);
+        AddProductRequest request = new AddProductRequest("Apple", "MackBook-Pro555", 150.0);
+        AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax55", 899.99);
+        AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 555", 500.0);
         service.execute(request);
         service.execute(request1);
         service.execute(request2);
@@ -109,18 +110,19 @@ public class ProductIntegrationTest {
         AddProductRequest request1 = new AddProductRequest("Apple", "Iphone XRMax", 899.99);
         AddProductRequest request2 = new AddProductRequest("Sony", "Playstation 5", 500.0);
         AddProductRequest request3 = new AddProductRequest("Samsung", "Dishwasher", 345.0);
-        AddProductRequest request4 = new AddProductRequest("Samsung", "Oven", 325.99);
-        AddProductRequest request5 = new AddProductRequest("Sony", "Fridge", 238.00);
+        AddProductRequest request4 = new AddProductRequest("Samsung", "Oven123467890", 325.99);
+        AddProductRequest request5 = new AddProductRequest("Sony", "Fridge12346789", 238.00);
         addProductService.execute(request);
         addProductService.execute(request1);
         addProductService.execute(request2);
         addProductService.execute(request3);
         addProductService.execute(request4);
         addProductService.execute(request5);
-        searchProductService.execute(new SearchProductRequest("Apple", "Iphone XRMax"));
-        searchProductService.execute(new SearchProductRequest("Sony", "Fridge"));
-        searchProductService.execute(new SearchProductRequest("Samsung", "Dishwasher"));
-        assertThat(productDatabase.getList().size()).isEqualTo(4);
+        assertThat(searchProductService.execute(new SearchProductRequest("i","ASC",1)).getProducts().size()).isEqualTo(4);
+        assertThat(searchProductService.execute(new SearchProductRequest("g","ASC",1)).getProducts().size()).isEqualTo(3);
+       assertThat(searchProductService.execute(new SearchProductRequest("Sony","ASC",1)).getProducts().size()).isEqualTo(2);
+        searchProductService.execute(new SearchProductRequest("Samsung","ASC",1));
+        assertThat(productDatabase.search("5","ASC",1).size()).isEqualTo(1);
     }
 
     @Test

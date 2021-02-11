@@ -74,6 +74,7 @@ public class ApplicationConfiguration {
     @Value("${database.user.password}")
     private String password;
 
+
     @Bean
     public BasicDataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();

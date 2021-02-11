@@ -24,7 +24,7 @@ public class OrmCartDatabase implements  CartDatabase {
 
     @Override
     public boolean delete(Long id) {
-        Query query = sessionFactory.getCurrentSession().createQuery("DELETE Cart WHERE id =: id");
+        Query query = sessionFactory.getCurrentSession().createQuery("DELETE Cart  WHERE id =: id");
         query.setParameter("id",id);
         return query.executeUpdate() == 1;
     }
@@ -37,7 +37,7 @@ public class OrmCartDatabase implements  CartDatabase {
     @Override
     public List<Cart> getList() {
         return sessionFactory.getCurrentSession()
-                .createQuery("SELECT c FROM c",Cart.class)
+                .createQuery("SELECT a FROM Cart  a ",Cart.class)
                 .getResultList();
     }
     @Override
