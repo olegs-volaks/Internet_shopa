@@ -1,26 +1,23 @@
 package eu.retarded.internetstore.integrationtests;
 
 
-import eu.retarded.internetstore.config.ApplicationConfiguration;
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.user.*;
 import eu.retarded.internetstore.core.responses.user.ChangeUserPasswordResponse;
 import eu.retarded.internetstore.core.services.user.*;
+import eu.retarded.internetstore.database.cart.CartDatabase;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {ApplicationConfiguration.class})
+@SpringBootTest
 public class UserIntegrationTest {
 
     @Autowired
@@ -29,8 +26,12 @@ public class UserIntegrationTest {
     @Autowired
     private UsersDatabase usersDatabase;
 
+    @Autowired
+    private CartDatabase cartDatabase;
+
     @BeforeEach
     void setUp() {
+        cartDatabase.clear();
         usersDatabase.clear();
     }
 

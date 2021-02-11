@@ -1,7 +1,7 @@
 package eu.retarded.internetstore;
 
 import eu.retarded.internetstore.config.ApplicationConfiguration;
-import eu.retarded.internetstore.ui.ProgramMenu;
+import eu.retarded.internetstore.console_ui.ProgramMenu;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

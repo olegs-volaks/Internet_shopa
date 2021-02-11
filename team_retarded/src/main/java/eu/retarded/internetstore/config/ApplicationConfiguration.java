@@ -1,13 +1,12 @@
 package eu.retarded.internetstore.config;
 
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,11 +20,48 @@ import java.util.Properties;
 
 
 @Configuration
+
 @ComponentScan(basePackages = "eu.retarded.internetstore")
 @PropertySource(value = "classpath:application.properties")
 @EnableTransactionManagement
 public class ApplicationConfiguration {
 
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public Properties hibernateProperties(
+            @Value("${spring.jpa.show-sql}") Boolean showSql,
+            @Value("${spring.jpa.hibernate.ddl-auto}") String hbm2ddl,
+            @Value("${spring.jpa.properties.hibernate.dialect}") String dialect) {
+        Properties properties = new Properties();
+        properties.put("hibernate.show_sql", showSql);
+        properties.put("hibernate.hbm2ddl.auto", hbm2ddl);
+        properties.put("hibernate.dialect", dialect);
+        return properties;
+    }
+
+    @Bean
+    public SessionFactory sessionFactory(@Qualifier("dataSource") DataSource dataSource,
+                                         @Value("${hibernate.packagesToScan}") String packagesToScan,
+                                         Properties hibernateProperties
+    ) throws IOException {
+        LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
+        sessionFactoryBean.setPackagesToScan(packagesToScan);
+        sessionFactoryBean.setDataSource(dataSource);
+        sessionFactoryBean.setHibernateProperties(hibernateProperties);
+        sessionFactoryBean.afterPropertiesSet();
+        return sessionFactoryBean.getObject();
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
+        return new HibernateTransactionManager(sessionFactory);
+    }
+
+    /*
     @Value("${jdbc.url}")
     private String jdbcUrl;
 
@@ -37,6 +73,7 @@ public class ApplicationConfiguration {
 
     @Value("${database.user.password}")
     private String password;
+
 
     @Bean
     public BasicDataSource dataSource() {
@@ -82,9 +119,6 @@ public class ApplicationConfiguration {
     public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
     }
+*/
 
-    @Bean
-    public PasswordEncoder encoder() {
-        return new BCryptPasswordEncoder();
-    }
 }

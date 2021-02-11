@@ -1,5 +1,6 @@
 package eu.retarded.internetstore.database.product;
 
+import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.core.domain.Product;
 
 import java.util.List;
@@ -12,8 +13,6 @@ public interface ProductDatabase {
 
     boolean delete(Long id);
 
-    //boolean delete(Predicate<Product> predicate);
-
     void clear();
 
     Optional<Product> getById(Long id);
@@ -21,6 +20,8 @@ public interface ProductDatabase {
     List<Product> filter(Predicate<Product> predicate);
 
     List<Product> getList();
+
+    List<Product> getListPaging(int page);
 
     boolean isExist(Long id);
 
@@ -30,4 +31,7 @@ public interface ProductDatabase {
 
     void updateProduct(Product product);
 
+    List<Product> search (String keyWord , String sorting, int page);
+
+    List<Product> search(String keyWord, Category category, int page);
 }

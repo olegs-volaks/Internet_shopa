@@ -1,7 +1,5 @@
 package eu.retarded.internetstore.core.services.validators.product;
 
-import eu.retarded.internetstore.core.requests.product.Ordering;
-import eu.retarded.internetstore.core.requests.product.Paging;
 import eu.retarded.internetstore.core.requests.product.SearchProductRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import org.springframework.stereotype.Component;
@@ -14,66 +12,34 @@ import java.util.Optional;
 public class SearchProductValidator {
 
     public List<CoreError> validate(SearchProductRequest request) {
-        List<CoreError> errors = new ArrayList<>(validateSearchFields(request));
-
-        if (request.getOrdering() != null) {
-            validateMandatoryOrderBy(request.getOrdering()).ifPresent(errors::add);
-            validateMandatoryOrderDirection(request.getOrdering()).ifPresent(errors::add);
-        }
-        if (request.getPaging() != null) {
-            validateMandatoryPageNumber(request.getPaging()).ifPresent(errors::add);
-            validateMandatoryPageSize(request.getPaging()).ifPresent(errors::add);
-        }
-
+        List<CoreError> errors = new ArrayList<>();
+        validateIdKeyWord(request).ifPresent(errors::add);
+        validateMandatoryOrderDirection(request).ifPresent(errors::add);
+        validatePage(request).ifPresent(errors::add);
         return errors;
     }
 
-
-    private List<CoreError> validateSearchFields(SearchProductRequest request) {
-        List<CoreError> errors = new ArrayList<>();
-        if (isEmpty(request.getName()) && isEmpty(request.getDescription())) {
-            errors.add(new CoreError("name", "Must not be empty!"));
-            errors.add(new CoreError("description", "Must not be empty!"));
+    private Optional<CoreError> validateIdKeyWord(SearchProductRequest request) {
+        if (isEmpty(request.getKeyWord())) {
+            return Optional.of(new CoreError("KeyWord", "Must not be empty!"));
         }
-        return errors;
+        return Optional.empty();
     }
 
     private boolean isEmpty(String str) {
         return str == null || str.isEmpty();
     }
 
-    private Optional<CoreError> validateMandatoryOrderBy(Ordering ordering) {
-        return (ordering.getOrderDirection() != null && ordering.getOrderBy() == null)
+    private Optional<CoreError> validateMandatoryOrderDirection(SearchProductRequest request) {
+        return (isEmpty(request.getSorting()))
                 ? Optional.of(new CoreError("orderBy", "Must not be empty!"))
                 : Optional.empty();
     }
 
-    private Optional<CoreError> validateMandatoryOrderDirection(Ordering ordering) {
-        return (ordering.getOrderBy() != null && ordering.getOrderDirection() == null)
-                ? Optional.of(new CoreError("orderDirection", "Must not be empty!"))
-                : Optional.empty();
-    }
-
-    private Optional<CoreError> validateMandatoryPageNumber(Paging paging) {
-        if ((paging.getPageNumber() == null && paging.getPageSize() == null)) {
-            return Optional.empty();
-        } else if (paging.getPageNumber() == null && paging.getPageSize() != null) {
-            return Optional.of(new CoreError("pageNumber", "Must not be empty!"));
-        } else if (paging.getPageNumber() <= 0) {
-            return Optional.of(new CoreError("pageNumber", "Must be greater then 0!"));
+    private Optional<CoreError> validatePage(SearchProductRequest request) {
+        if (request.getPage() <= 0) {
+            return Optional.of(new CoreError("page", "Must be greater then 0!"));
         }
         return Optional.empty();
     }
-
-    private Optional<CoreError> validateMandatoryPageSize(Paging paging) {
-        if ((paging.getPageNumber() == null && paging.getPageSize() == null)) {
-            return Optional.empty();
-        } else if (paging.getPageSize() == null && paging.getPageNumber() != null) {
-            return Optional.of(new CoreError("pageSize", "Must not be empty!"));
-        } else if (paging.getPageSize() <= 0) {
-            return Optional.of(new CoreError("pageSize", "Must be greater then 0!"));
-        }
-        return Optional.empty();
-    }
-
 }
