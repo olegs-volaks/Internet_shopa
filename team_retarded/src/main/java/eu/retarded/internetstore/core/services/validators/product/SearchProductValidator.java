@@ -1,5 +1,6 @@
 package eu.retarded.internetstore.core.services.validators.product;
 
+import eu.retarded.internetstore.core.requests.product.SearchProductRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import org.springframework.stereotype.Component;
 

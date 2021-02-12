@@ -7,6 +7,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GetByIdDeliveryRequest {
 
-    private final Long Id;
+    private final Long id;
 
 }
