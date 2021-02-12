@@ -2,8 +2,6 @@ package eu.retarded.internetstore.console_ui.product;
 
 
 import eu.retarded.internetstore.console_ui.UIAction;
-import eu.retarded.internetstore.core.requests.product.Ordering;
-import eu.retarded.internetstore.core.requests.product.Paging;
 import eu.retarded.internetstore.core.requests.product.ShowAllProductsRequest;
 import eu.retarded.internetstore.core.responses.product.ShowAllProductsResponse;
 import eu.retarded.internetstore.core.services.product.ShowAllProductsService;

@@ -1,7 +1,6 @@
 package eu.retarded.internetstore.console_ui.product;
 
 import eu.retarded.internetstore.console_ui.UIAction;
-import eu.retarded.internetstore.core.requests.product.SearchProductRequest;
 import eu.retarded.internetstore.core.responses.product.SearchProductResponse;
 import eu.retarded.internetstore.core.services.product.SearchProductService;
 import org.springframework.beans.factory.annotation.Autowired;
