@@ -5,8 +5,8 @@ import lombok.Getter;
 @Getter
 public class SearchProductRequest {
 
-    private  String keyWord;
-    private  String sorting;
+    private String keyWord;
+    private String sorting;
     private int page;
 
     public SearchProductRequest(String keyWord, String sorting, int page) {

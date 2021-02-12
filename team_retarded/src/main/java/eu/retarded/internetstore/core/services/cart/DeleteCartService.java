@@ -16,11 +16,13 @@ public class DeleteCartService {
     @Autowired CartDatabase cartDatabase;
     @Autowired DeleteCartValidator validator;
 
+
     public DeleteCartResponse execute(DeleteCartRequest request) {
         List<CoreError> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new DeleteCartResponse(errors);
         }
+
         return new DeleteCartResponse(cartDatabase.delete(request.getDeleteCartId()));
     }
 }

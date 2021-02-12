@@ -1,8 +1,6 @@
 package eu.retarded.internetstore.core.services.product;
 
 import eu.retarded.internetstore.core.domain.Product;
-import eu.retarded.internetstore.core.requests.product.Ordering;
-import eu.retarded.internetstore.core.requests.product.Paging;
 import eu.retarded.internetstore.core.requests.product.ShowAllProductsRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.ShowAllProductsResponse;
