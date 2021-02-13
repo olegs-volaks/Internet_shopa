@@ -21,47 +21,47 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
 
-    @ExtendWith(MockitoExtension.class)
-    class GetCategoryByIdServiceTest {
-        @Mock
-        private GetCategoryByIdValidator validator;
-        @Mock
-        private CategoriesDatabase db;
-        @InjectMocks
-        private GetCategoryByIdService service;
+@ExtendWith(MockitoExtension.class)
+class GetCategoryByIdServiceTest {
+    @Mock
+    private GetCategoryByIdValidator validator;
+    @Mock
+    private CategoriesDatabase db;
+    @InjectMocks
+    private GetCategoryByIdService service;
 
-        @Test
-        public void shouldReturnResponseWithErrorsWhenValidatorFails() {
-            GetCategoryByIdRequest request = new GetCategoryByIdRequest(-1L);
+    @Test
+    public void shouldReturnResponseWithErrorsWhenValidatorFails() {
+        GetCategoryByIdRequest request = new GetCategoryByIdRequest(-1L);
 
-            List<CoreError> errors = new ArrayList<>();
-            errors.add(new CoreError("ID", "Must be more than 0"));
+        List<CoreError> errors = new ArrayList<>();
+        errors.add(new CoreError("ID", "Must be more than 0"));
 
 
-            Mockito.when((validator.validate(request))).thenReturn(errors);
+        Mockito.when((validator.validate(request))).thenReturn(errors);
 
-            GetCategoryByIdResponse response = service.execute(request);
-            assertTrue(response.hasErrors());
-            assertEquals(response.getErrors().size(), 1);
-            assertEquals(response.getErrors().get(0).getField(), "ID");
-            assertEquals(response.getErrors().get(0).getMessage(), "Must be more than 0");
+        GetCategoryByIdResponse response = service.execute(request);
+        assertTrue(response.hasErrors());
+        assertEquals(response.getEeerrors().size(), 1);
+        assertEquals(response.getEeerrors().get(0).getField(), "ID");
+        assertEquals(response.getEeerrors().get(0).getMessage(), "Must be more than 0");
 
-            Mockito.verify(validator).validate(request);
-            Mockito.verify(validator).validate(any());
+        Mockito.verify(validator).validate(request);
+        Mockito.verify(validator).validate(any());
 
-        }
-
-        @Test
-        public void GetProductByIdTest() {
-            GetCategoryByIdRequest request = new GetCategoryByIdRequest(1L);
-            Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
-
-            Category category = new Category("Title");
-            Mockito.when(db.getCategory(1L)).thenReturn(Optional.of(category));
-
-            GetCategoryByIdResponse response = service.execute(request);
-            assertFalse(response.hasErrors());
-            assertEquals(response.getCategory().getName(), "Title");
-
-        }
     }
+
+    @Test
+    public void GetProductByIdTest() {
+        GetCategoryByIdRequest request = new GetCategoryByIdRequest(1L);
+        Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
+
+        Category category = new Category("Title");
+        Mockito.when(db.getCategory(1L)).thenReturn(Optional.of(category));
+
+        GetCategoryByIdResponse response = service.execute(request);
+        assertFalse(response.hasErrors());
+        assertEquals(response.getCategory().getName(), "Title");
+
+    }
+}

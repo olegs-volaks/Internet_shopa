@@ -1,16 +1,17 @@
 package eu.retarded.internetstore.core.responses.user;
 
 import eu.retarded.internetstore.core.domain.User;
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.requests.user.GetUserByIdRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public class GetUserByIdResponse extends CoreResponse {
+public class GetUserByIdResponse extends CoreResponse<GetUserByIdRequest> {
 
     private User user;
 
-    public GetUserByIdResponse(List<CoreError> errors) {
+    public GetUserByIdResponse(Set<ConstraintViolation<GetUserByIdRequest>> errors) {
         super(errors);
     }
 

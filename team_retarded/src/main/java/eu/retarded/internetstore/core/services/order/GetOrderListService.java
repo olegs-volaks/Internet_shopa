@@ -12,10 +12,10 @@ import javax.transaction.Transactional;
 public class GetOrderListService {
 
     @Autowired
-    OrderDatabase orderDatabase ;
+    private OrderDatabase orderDatabase;
 
     @Transactional
     public GetOrderListPagingResponse execute(GetOrderListRequest request) {
-        return new GetOrderListPagingResponse(null,orderDatabase.getList());
+        return new GetOrderListPagingResponse(null, orderDatabase.getList());
     }
 }

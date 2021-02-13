@@ -18,9 +18,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(MockitoExtension.class)
 class DeleteDeliveryValidatorTest {
 
-    @Mock private DeliveryDatabase deliveryDatabase;
+    @Mock
+    private DeliveryDatabase deliveryDatabase;
 
-    @InjectMocks private DeleteDeliveryValidator subject;
+    @InjectMocks
+    private DeleteDeliveryValidator subject;
 
     @Test
     void delete_delivery_by_id() {

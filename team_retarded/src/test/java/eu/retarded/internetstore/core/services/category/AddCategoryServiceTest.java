@@ -39,8 +39,8 @@ class AddCategoryServiceTest {
 
         AddCategoryResponse response = subject.execute(request);
         assertThat(response.hasErrors()).isTrue();
-        assertThat(response.getErrors().size()).isEqualTo(1);
-        assertThat(response.getErrors()).allMatch(coreError -> coreError.getField().equals("Name") ||
+        assertThat(response.getEeerrors().size()).isEqualTo(1);
+        assertThat(response.getEeerrors()).allMatch(coreError -> coreError.getField().equals("Name") ||
                 coreError.getMessage().equals("Must not be empty!"));
         Mockito.verifyNoInteractions(database);
     }

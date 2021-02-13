@@ -2,15 +2,15 @@ package eu.retarded.internetstore.core.services.product;
 
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.UpdateProductRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.UpdateProductResponse;
-import eu.retarded.internetstore.core.services.validators.product.UpdateProductValidator;
 import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Component
 public class UpdateProductService {
@@ -18,11 +18,11 @@ public class UpdateProductService {
     private ProductDatabase productDatabase;
 
     @Autowired
-    private UpdateProductValidator validator;
+    private Validator validator;
 
     @Transactional
     public UpdateProductResponse execute(UpdateProductRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<UpdateProductRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new UpdateProductResponse(errors);
         }

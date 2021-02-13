@@ -1,7 +1,5 @@
 package eu.retarded.internetstore.core.services.product;
 
-import eu.retarded.internetstore.core.requests.product.Ordering;
-import eu.retarded.internetstore.core.requests.product.Paging;
 import eu.retarded.internetstore.core.requests.product.ShowAllProductsRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.ShowAllProductsResponse;
@@ -32,8 +30,7 @@ public class ShowAllProductsServiceTest {
 
     @Test
     public void should_get_product_from_dataBase() {
-        Paging paging = new Paging(2, 2);
-        Ordering ordering = new Ordering("name", "DESCENDING");
+
         ShowAllProductsRequest request = new ShowAllProductsRequest();
         ShowAllProductsResponse response = subject.execute(request);
         List<CoreError> errors = new ArrayList<>();
@@ -48,8 +45,7 @@ public class ShowAllProductsServiceTest {
 
     @Test
     public void should_get_product_from_dataBaseIfAllIsEmpty() {
-        Paging paging = new Paging(null, null);
-        Ordering ordering = new Ordering(null, null);
+       
         ShowAllProductsRequest request = new ShowAllProductsRequest();
         ShowAllProductsResponse response = subject.execute(request);
         List<CoreError> errors = new ArrayList<>();

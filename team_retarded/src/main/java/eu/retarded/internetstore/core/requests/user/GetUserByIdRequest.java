@@ -1,5 +1,6 @@
 package eu.retarded.internetstore.core.requests.user;
 
+import eu.retarded.internetstore.core.services.validators.UserExist;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -7,5 +8,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GetUserByIdRequest {
 
+    @UserExist
     private final long userId;
 }

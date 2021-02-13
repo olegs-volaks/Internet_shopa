@@ -1,17 +1,23 @@
 package eu.retarded.internetstore.core.requests.product;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.PositiveOrZero;
 
 @Getter
+@RequiredArgsConstructor
 public class SearchProductRequest {
 
-    private  String keyWord;
-    private  String sorting;
-    private int page;
+    @NotBlank(message = "The keyWord must not be empty!")
+    private String keyWord;
 
-    public SearchProductRequest(String keyWord, String sorting, int page) {
-        this.keyWord = keyWord;
-        this.sorting = sorting;
-        this.page = page;
-    }
+    @NotBlank(message = "Sorting must not be empty!")
+    @Pattern(regexp ="<ASC>|<DESC>",message = "The sorting must be ASC or DESC")
+    private String sorting;
+
+    @PositiveOrZero(message = "The page must be positive or zero")
+    private int page;
 }
