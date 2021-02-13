@@ -27,7 +27,7 @@ public class DeleteDeliveryValidator {
             return Optional.of(new CoreError("ID", "Must not be empty,negative or fractional"));
         }
         if (!deliveryDatabase.isExist(request.getDeleteDeliveryId())) {
-            return Optional.of(new CoreError("ID","The delivery with the given id does not exist"));
+            return Optional.of(new CoreError("ID", "The delivery with the given id does not exist"));
         }
         return Optional.empty();
     }

@@ -1,11 +1,12 @@
 package eu.retarded.internetstore.core.responses.category;
 
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.requests.category.DeleteCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public class DeleteCategoryResponse extends CoreResponse {
+public class DeleteCategoryResponse extends CoreResponse<DeleteCategoryRequest> {
 
     private boolean isDeleted;
 
@@ -13,7 +14,7 @@ public class DeleteCategoryResponse extends CoreResponse {
         this.isDeleted = isDeleted;
     }
 
-    public DeleteCategoryResponse(List<CoreError> errors) {
+    public DeleteCategoryResponse(Set<ConstraintViolation<DeleteCategoryRequest>> errors) {
         super(errors);
     }
 

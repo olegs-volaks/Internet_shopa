@@ -15,18 +15,18 @@ import java.util.Optional;
 
 @Component
 public class UpdateOrderValidator {
+
     @Autowired
     private OrderDatabase orderDatabase;
 
+    @Autowired
+    private DeliveryDatabase deliveryDatabase;
 
     @Autowired
-    DeliveryDatabase deliveryDatabase;
+    private UsersDatabase userDatabase;
 
     @Autowired
-    UsersDatabase userDatabase;
-
-    @Autowired
-    CartDatabase cartDatabase;
+    private CartDatabase cartDatabase;
 
     public List<CoreError> validate(UpdateOrderRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -40,12 +40,13 @@ public class UpdateOrderValidator {
         validateCartId(request).ifPresent(errors::add);
         return errors;
     }
+
     private Optional<CoreError> validateOrderID(UpdateOrderRequest request) {
         if (request.getId() <= 0) {
             return Optional.of(new CoreError("ID", "Must not be empty or negative"));
         }
         if (!orderDatabase.isExist(request.getId())) {
-            return Optional.of(new CoreError("ID","The order with the given id does not exist"));
+            return Optional.of(new CoreError("ID", "The order with the given id does not exist"));
         }
         return Optional.empty();
     }
@@ -85,7 +86,7 @@ public class UpdateOrderValidator {
             return Optional.of(new CoreError("ID", "Must not be empty or negative"));
         }
         if (!deliveryDatabase.isExist(request.getDeliveryId())) {
-            return Optional.of(new CoreError("ID","The delivery with the given id does not exist"));
+            return Optional.of(new CoreError("ID", "The delivery with the given id does not exist"));
         }
         return Optional.empty();
     }
@@ -95,7 +96,7 @@ public class UpdateOrderValidator {
             return Optional.of(new CoreError("ID", "Must not be empty or negative"));
         }
         if (!userDatabase.isExist(request.getUserId())) {
-            return Optional.of(new CoreError("ID","The user with the given id does not exist"));
+            return Optional.of(new CoreError("ID", "The user with the given id does not exist"));
         }
         return Optional.empty();
     }
@@ -105,7 +106,7 @@ public class UpdateOrderValidator {
             return Optional.of(new CoreError("ID", "Must not be empty or negative"));
         }
         if (!cartDatabase.isExist(request.getCartId())) {
-            return Optional.of(new CoreError("ID","The cart with the given id does not exist"));
+            return Optional.of(new CoreError("ID", "The cart with the given id does not exist"));
         }
         return Optional.empty();
     }

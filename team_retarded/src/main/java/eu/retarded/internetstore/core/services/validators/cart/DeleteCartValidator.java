@@ -14,7 +14,8 @@ import java.util.Optional;
 @Component
 public class DeleteCartValidator {
 
-    @Autowired CartDatabase cartDatabase;
+    @Autowired
+    private CartDatabase cartDatabase;
 
     public List<CoreError> validate(DeleteCartRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -24,10 +25,10 @@ public class DeleteCartValidator {
 
     private Optional<CoreError> validateId(DeleteCartRequest request) {
         if (request.getDeleteCartId() <= 0) {
-            return Optional.of(new CoreError("ID","Must not be empty,negative or fractional"));
+            return Optional.of(new CoreError("ID", "Must not be empty,negative or fractional"));
         }
         if (!cartDatabase.isExist(request.getDeleteCartId())) {
-            return Optional.of(new CoreError("ID","ID with the given id does not exist"));
+            return Optional.of(new CoreError("ID", "ID with the given id does not exist"));
         }
         return Optional.empty();
     }

@@ -2,27 +2,30 @@ package eu.retarded.internetstore.core.services.cart;
 
 import eu.retarded.internetstore.core.domain.Cart;
 import eu.retarded.internetstore.core.requests.cart.UpdateCartRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.cart.UpdateCartResponse;
-import eu.retarded.internetstore.core.services.validators.cart.UpdateCartValidator;
 import eu.retarded.internetstore.database.cart.CartDatabase;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Component
 public class UpdateCartService {
 
-    @Autowired CartDatabase cartDatabase;
+    @Autowired
+    private CartDatabase cartDatabase;
 
-    @Autowired UpdateCartValidator validator;
+    @Autowired
+    private Validator validator;
 
-    @Autowired UsersDatabase usersDatabase;
+    @Autowired
+    private UsersDatabase usersDatabase;
 
     public UpdateCartResponse execute(UpdateCartRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<UpdateCartRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new UpdateCartResponse(errors);
         }

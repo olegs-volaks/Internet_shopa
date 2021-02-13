@@ -1,15 +1,15 @@
 package eu.retarded.internetstore.core.services.product;
 
 import eu.retarded.internetstore.core.requests.product.GetProductByIdRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.GetProductByIdResponse;
-import eu.retarded.internetstore.core.services.validators.product.GetProductByIdValidator;
 import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Component
 public class GetProductByIdService {
@@ -17,11 +17,11 @@ public class GetProductByIdService {
     @Autowired
     private ProductDatabase db;
     @Autowired
-    private GetProductByIdValidator validator;
+    private Validator validator;
 
     @Transactional
     public GetProductByIdResponse execute(GetProductByIdRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<GetProductByIdRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new GetProductByIdResponse(errors);
         }

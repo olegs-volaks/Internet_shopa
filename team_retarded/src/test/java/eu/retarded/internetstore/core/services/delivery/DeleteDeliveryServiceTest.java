@@ -15,38 +15,43 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class DeleteDeliveryServiceTest {
 
-    @Mock private DeleteDeliveryValidator validator;
-    @Mock private DeliveryDatabase deliveryDatabase;
-    @InjectMocks private DeleteDeliveryService service;
+    @Mock
+    private DeleteDeliveryValidator validator;
+    @Mock
+    private DeliveryDatabase deliveryDatabase;
+    @InjectMocks
+    private DeleteDeliveryService service;
 
     @Test
-    public  void should_return_response_with_errors_when_validator_fails() {
+    public void should_return_response_with_errors_when_validator_fails() {
         DeleteDeliveryRequest request = new DeleteDeliveryRequest(0);
         List<CoreError> errors = new ArrayList<>();
-        errors.add(new CoreError("ID","Must not be empty,negative or fractional"));
+        errors.add(new CoreError("ID", "Must not be empty,negative or fractional"));
         Mockito.when((validator.validate(request))).thenReturn(errors);
         DeleteDeliveryResponse response = service.execute(request);
         assertTrue(response.hasErrors());
-        assertEquals(response.getErrors().size(),1);
-        assertEquals(response.getErrors().get(0).getField(),"ID");
+        assertEquals(response.getEeerrors().size(), 1);
+        assertEquals(response.getEeerrors().get(0).getField(), "ID");
         Mockito.verify(validator).validate(request);
         Mockito.verify(validator).validate(any());
         Mockito.verifyNoInteractions(deliveryDatabase);
     }
+
     @Test
-    public void should_delete_delivery_with_id_from_database () {
+    public void should_delete_delivery_with_id_from_database() {
         DeleteDeliveryRequest request = new DeleteDeliveryRequest(5L);
         Mockito.when(validator.validate(any())).thenReturn(new ArrayList<>());
         Mockito.when(deliveryDatabase.delete(5L)).thenReturn(false);
         DeleteDeliveryResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        assertFalse(response.isDeliveryDeleted());
+        assertFalse(response.isDeleted());
 
     }
 }

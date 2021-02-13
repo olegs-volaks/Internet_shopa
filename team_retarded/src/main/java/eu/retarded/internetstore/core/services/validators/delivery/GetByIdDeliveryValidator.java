@@ -1,7 +1,6 @@
 package eu.retarded.internetstore.core.services.validators.delivery;
 
 import eu.retarded.internetstore.core.requests.delivery.GetByIdDeliveryRequest;
-
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
 import org.springframework.beans.factory.annotation.Autowired;

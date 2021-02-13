@@ -61,8 +61,8 @@ public class scenario1 {
         AddProductRequest addRequest1 = new AddProductRequest("name1", "description123123", 123.1);
         AddProductRequest addRequest2 = new AddProductRequest("name2", "description456456", 123.1);
         AddProductRequest addRequest3 = new AddProductRequest("name3", "description456456", 123.1);
-        long id1 =  addService.execute(addRequest1).getProductId();
-        long id2 =  addService.execute(addRequest2).getProductId();
+        long id1 = addService.execute(addRequest1).getProductId();
+        long id2 = addService.execute(addRequest2).getProductId();
         long id3 = addService.execute(addRequest3).getProductId();
         DeleteProductService deleteService = context.getBean(DeleteProductService.class);
         deleteService.execute(new DeleteProductRequest(id2));

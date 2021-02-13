@@ -24,6 +24,6 @@ public interface CategoriesDatabase {
 
     void updateCategory(Category category);
 
-     List<Product> getProducts(Category category);
+    List<Product> getProducts(Category category);
 }
 

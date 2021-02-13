@@ -2,15 +2,15 @@ package eu.retarded.internetstore.core.services.user;
 
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.user.UpdateUserRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.user.UpdateUserResponse;
-import eu.retarded.internetstore.core.services.validators.user.UpdateUserValidator;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Component
 public class UpdateUserService {
@@ -19,11 +19,11 @@ public class UpdateUserService {
     private UsersDatabase usersDatabase;
 
     @Autowired
-    private UpdateUserValidator validator;
+    private Validator validator;
 
     @Transactional
     public UpdateUserResponse execute(UpdateUserRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<UpdateUserRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new UpdateUserResponse(errors);
         }

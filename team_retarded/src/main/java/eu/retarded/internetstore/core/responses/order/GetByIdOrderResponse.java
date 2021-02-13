@@ -1,13 +1,14 @@
 package eu.retarded.internetstore.core.responses.order;
 
 import eu.retarded.internetstore.core.domain.Order;
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.requests.order.GetByIdOrderRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
 
-public class GetByIdOrderResponse extends CoreResponse {
+public class GetByIdOrderResponse extends CoreResponse<GetByIdOrderRequest> {
 
     private Order order;
 
@@ -15,7 +16,7 @@ public class GetByIdOrderResponse extends CoreResponse {
         this.order = order;
     }
 
-    public GetByIdOrderResponse(List<CoreError> errors) {
+    public GetByIdOrderResponse(Set<ConstraintViolation<GetByIdOrderRequest>> errors) {
         super(errors);
     }
 

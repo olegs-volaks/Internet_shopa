@@ -14,8 +14,10 @@ import java.util.Optional;
 @Component
 public class UpdateCartValidator {
 
-    @Autowired CartDatabase cartDatabase;
-    @Autowired UsersDatabase usersDatabase;
+    @Autowired
+    private CartDatabase cartDatabase;
+    @Autowired
+    private UsersDatabase usersDatabase;
 
     public List<CoreError> validate(UpdateCartRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -25,21 +27,21 @@ public class UpdateCartValidator {
     }
 
     private Optional<CoreError> validateId(UpdateCartRequest request) {
-        if (request.getId() <= 0 ) {
-            return Optional.of(new CoreError("ID","Must not be empty or negative"));
+        if (request.getId() <= 0) {
+            return Optional.of(new CoreError("ID", "Must not be empty or negative"));
         }
         if (!cartDatabase.isExist(request.getId())) {
-            return Optional.of(new CoreError("ID","ID with the given id does not exist"));
+            return Optional.of(new CoreError("ID", "ID with the given id does not exist"));
         }
         return Optional.empty();
     }
 
     private Optional<CoreError> validateUserId(UpdateCartRequest request) {
         if (request.getUser_id() <= 0) {
-            return Optional.of(new CoreError("UserId","Must not be empty or negative"));
+            return Optional.of(new CoreError("UserId", "Must not be empty or negative"));
         }
         if (!usersDatabase.isExist(request.getUser_id())) {
-            return Optional.of(new CoreError("UserId","UserId with the given id does not exist"));
+            return Optional.of(new CoreError("UserId", "UserId with the given id does not exist"));
         }
         return Optional.empty();
     }

@@ -56,7 +56,9 @@ class OrmOrderDatabase implements OrderDatabase {
     }
 
     @Override
-    public boolean isExist(Long id) { return getById(id).isPresent(); }
+    public boolean isExist(Long id) {
+        return getById(id).isPresent();
+    }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
@@ -64,11 +66,12 @@ class OrmOrderDatabase implements OrderDatabase {
         sessionFactory.getCurrentSession().update(order);
     }
 
-    public int getMaxResults (int page){
-        return page*pageSize;
+    public int getMaxResults(int page) {
+        return page * pageSize;
     }
-    public int getFirstResult (int page){
-        return page*pageSize-pageSize;
+
+    public int getFirstResult(int page) {
+        return page * pageSize - pageSize;
     }
 
     @Override

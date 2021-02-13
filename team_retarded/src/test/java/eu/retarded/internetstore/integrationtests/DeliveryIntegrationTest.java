@@ -127,9 +127,9 @@ public class DeliveryIntegrationTest {
     void update_delivery() {
         AddDeliveryService deliveryService = context.getBean(AddDeliveryService.class);
         UpdateDeliveryService updateDeliveryService = context.getBean(UpdateDeliveryService.class);
-        long id = deliveryService.execute(new AddDeliveryRequest("APPLE","region",1890.00)).getDeliveryId();
-        long id2 = deliveryService.execute(new AddDeliveryRequest("APPLE23","region23",450.00)).getDeliveryId();
-        updateDeliveryService.execute(new UpdateDeliveryRequest(id2,"APPLE45","region45",20.00));
+        long id = deliveryService.execute(new AddDeliveryRequest("APPLE", "region", 1890.00)).getDeliveryId();
+        long id2 = deliveryService.execute(new AddDeliveryRequest("APPLE23", "region23", 450.00)).getDeliveryId();
+        updateDeliveryService.execute(new UpdateDeliveryRequest(id2, "APPLE45", "region45", 20.00));
         Delivery result = deliveryDatabase.getById(id2).get();
         Delivery expecting = new Delivery();
         expecting.setId(id2);

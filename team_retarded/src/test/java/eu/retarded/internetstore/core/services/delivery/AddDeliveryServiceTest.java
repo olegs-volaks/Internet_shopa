@@ -2,14 +2,11 @@ package eu.retarded.internetstore.core.services.delivery;
 
 import eu.retarded.internetstore.core.requests.delivery.AddDeliveryRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
-
 import eu.retarded.internetstore.core.responses.delivery.AddDeliveryResponse;
 import eu.retarded.internetstore.core.services.validators.delivery.AddDeliveryValidator;
 import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
 import eu.retarded.internetstore.matchers.DeliveryMatcher;
-
 import org.junit.jupiter.api.Assertions;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,9 +24,12 @@ import static org.mockito.ArgumentMatchers.argThat;
 @ExtendWith(MockitoExtension.class)
 public class AddDeliveryServiceTest {
 
-    @Mock private DeliveryDatabase deliveryDatabase;
-    @Mock private AddDeliveryValidator validator;
-    @InjectMocks private AddDeliveryService subject;
+    @Mock
+    private DeliveryDatabase deliveryDatabase;
+    @Mock
+    private AddDeliveryValidator validator;
+    @InjectMocks
+    private AddDeliveryService subject;
 
     @Test
     public void should_return_response_with_errors_when_validation_fails() {
@@ -40,9 +40,9 @@ public class AddDeliveryServiceTest {
 
         AddDeliveryResponse response = subject.execute(request);
         Assertions.assertTrue(response.hasErrors());
-        Assertions.assertEquals(response.getErrors().size(), 1);
-        Assertions.assertEquals(response.getErrors().get(0).getField(), "Title");
-        Assertions.assertEquals(response.getErrors().get(0).getMessage(), "Must be between 4 and 10 characters");
+        Assertions.assertEquals(response.getEeerrors().size(), 1);
+        Assertions.assertEquals(response.getEeerrors().get(0).getField(), "Title");
+        Assertions.assertEquals(response.getEeerrors().get(0).getMessage(), "Must be between 4 and 10 characters");
         Mockito.verifyNoInteractions(deliveryDatabase);
         Mockito.verify(validator).validate(request);
     }

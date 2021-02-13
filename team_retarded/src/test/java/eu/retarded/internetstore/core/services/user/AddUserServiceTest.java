@@ -43,9 +43,9 @@ public class AddUserServiceTest {
 
         AddUserResponse response = subject.execute(request);
         Assertions.assertTrue(response.hasErrors());
-        Assertions.assertEquals(response.getErrors().size(), 1);
-        Assertions.assertEquals(response.getErrors().get(0).getField(), "Login");
-        Assertions.assertEquals(response.getErrors().get(0).getMessage(), "Must be between 3 and 32 characters");
+        Assertions.assertEquals(response.getEeerrors().size(), 1);
+        Assertions.assertEquals(response.getEeerrors().get(0).getField(), "Login");
+        Assertions.assertEquals(response.getEeerrors().get(0).getMessage(), "Must be between 3 and 32 characters");
         Mockito.verifyNoInteractions(userDatabase);
         Mockito.verify(validator).validate(request);
     }

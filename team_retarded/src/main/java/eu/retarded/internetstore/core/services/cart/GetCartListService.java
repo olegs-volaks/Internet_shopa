@@ -10,10 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Component
 public class GetCartListService {
 
-    @Autowired CartDatabase cartDatabase;
+    @Autowired
+    private CartDatabase cartDatabase;
 
     @Transactional
     public GetCartListResponse execute(GetCartListRequest request) {
-        return new GetCartListResponse(null,cartDatabase.getList());
+        return new GetCartListResponse(null, cartDatabase.getList());
     }
 }
