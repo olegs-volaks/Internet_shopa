@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Component
@@ -42,32 +40,4 @@ public class ShowAllProductsService {
         return new ShowAllProductsResponse(null,products);
     }
 
-    private List<Product> order(List<Product> products, Ordering ordering) {
-        if (orderingEnabled && ordering != null) {
-            if (ordering.getOrderBy() != null) {
-                Comparator<Product> comparator = ordering.getOrderBy().equals("name")
-                        ? Comparator.comparing(Product::getName)
-                        : Comparator.comparing(Product::getDescription);
-                if (ordering.getOrderDirection().equals("DESCENDING")) {
-                    comparator = comparator.reversed();
-                }
-                return products.stream().sorted(comparator).collect(Collectors.toList());
-            }
-        }
-        return products;
-
-    }
-
-    private List<Product> paging(List<Product> products, Paging paging) {
-        if (pagingEnabled && paging != null) {
-            if (paging.getPageNumber() != null && paging.getPageSize() != null) {
-                int skip = (paging.getPageNumber() - 1) * paging.getPageSize();
-                return products.stream()
-                        .skip(skip)
-                        .limit(paging.getPageSize())
-                        .collect(Collectors.toList());
-            }
-        }
-        return products;
-    }
 }

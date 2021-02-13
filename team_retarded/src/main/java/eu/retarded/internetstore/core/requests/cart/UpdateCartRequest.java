@@ -1,32 +1,19 @@
 package eu.retarded.internetstore.core.requests.cart;
 
 
+import eu.retarded.internetstore.core.services.validators.CartExist;
+import eu.retarded.internetstore.core.services.validators.UserExist;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-//@Getter
-//@RequiredArgsConstructor
+@Getter
+@RequiredArgsConstructor
 public class UpdateCartRequest {
 
+    @CartExist
     private final long id;
+    @UserExist
     private final long user_id;
-    private final int status;
 
-    public UpdateCartRequest(long id, long user_id, int status) {
-        this.id = id;
-        this.user_id = user_id;
-        this.status = status;
-    }
 
-    public long getId() {
-        return id;
-    }
-
-    public long getUser_id() {
-        return user_id;
-    }
-
-    public int getStatus() {
-        return status;
-    }
 }

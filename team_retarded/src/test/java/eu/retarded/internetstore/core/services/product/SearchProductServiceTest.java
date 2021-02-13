@@ -1,6 +1,7 @@
 package eu.retarded.internetstore.core.services.product;
 
 import eu.retarded.internetstore.core.domain.Product;
+import eu.retarded.internetstore.core.requests.product.SearchProductRequest;
 import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.SearchProductResponse;
 import eu.retarded.internetstore.core.services.validators.product.SearchProductValidator;
@@ -52,7 +53,6 @@ class SearchProductServiceTest {
     @Test
     public void shouldSearchByName() {
         SearchProductRequest request = new SearchProductRequest("Title","ASC",1);
-        //Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
         List<Product> products = new ArrayList<>();
         products.add(new Product("Title", "Author123456789", 345));
@@ -138,7 +138,6 @@ class SearchProductServiceTest {
     public void shouldSearchByNameWithPagingFirstPage() {
         ReflectionTestUtils.setField(service, "orderingEnabled", true);
         ReflectionTestUtils.setField(service, "pagingEnabled", true);
-        Paging paging = new Paging(1, 1);
         SearchProductRequest request = new SearchProductRequest("aut", "DESC",1);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
@@ -158,7 +157,6 @@ class SearchProductServiceTest {
     public void shouldSearchByNameWithPagingSecondPage() {
         ReflectionTestUtils.setField(service, "orderingEnabled", true);
         ReflectionTestUtils.setField(service, "pagingEnabled", true);
-        Paging paging = new Paging(2, 1);
         SearchProductRequest request = new SearchProductRequest("1234", "DESC",1);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 
@@ -178,8 +176,6 @@ class SearchProductServiceTest {
     public void onlyNameFiled() {
         ReflectionTestUtils.setField(service, "orderingEnabled", true);
         ReflectionTestUtils.setField(service, "pagingEnabled", true);
-        Paging paging = new Paging(null, null);
-        String ordering = null;
         SearchProductRequest request = new SearchProductRequest("Author2", "DESC",1);
         Mockito.when(validator.validate(request)).thenReturn(new ArrayList<>());
 

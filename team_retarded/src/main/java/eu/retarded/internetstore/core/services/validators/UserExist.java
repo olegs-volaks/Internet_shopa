@@ -11,10 +11,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({FIELD})
 @Retention(RUNTIME)
-@Constraint(validatedBy = ProductExistValidator.class)
+@Constraint(validatedBy = UserExistValidator.class)
 @Documented
-public @interface ProductExist {
-    String message() default "Product does not exist";
+public @interface UserExist {
+    String message() default "The user does not exist";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
