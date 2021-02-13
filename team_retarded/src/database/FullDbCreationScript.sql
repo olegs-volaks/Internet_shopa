@@ -40,13 +40,34 @@ CREATE TABLE IF NOT EXISTS users
     id           BIGINT       NOT NULL AUTO_INCREMENT,
     login        VARCHAR(100) NOT NULL,
     password     VARCHAR(60)  NOT NULL,
-    role         INT DEFAULT 1,
     name         VARCHAR(100),
     surname      VARCHAR(100),
     email        VARCHAR(100),
     active_chart INT,
     status       INT DEFAULT 1,
     PRIMARY KEY (id)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS role
+(
+    id     BIGINT       NOT NULL AUTO_INCREMENT,
+    name   VARCHAR(100) NOT NULL,
+    status INT DEFAULT 1,
+    PRIMARY KEY (id)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 1;
+
+CREATE TABLE IF NOT EXISTS roles
+(
+    id      BIGINT NOT NULL AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    role_id BIGINT NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+    FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 1;
