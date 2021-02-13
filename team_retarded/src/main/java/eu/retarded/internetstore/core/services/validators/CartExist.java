@@ -1,5 +1,6 @@
 package eu.retarded.internetstore.core.services.validators;
 
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Documented;
@@ -11,10 +12,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({FIELD})
 @Retention(RUNTIME)
-@Constraint(validatedBy = ProductExistValidator.class)
+@Constraint(validatedBy = CartExistValidator.class)
 @Documented
-public @interface ProductExist {
-    String message() default "Product does not exist";
+public @interface CartExist {
+    String message() default "The cart does not exist";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
