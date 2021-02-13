@@ -1,9 +1,14 @@
 package eu.retarded.internetstore.integrationtests;
 
 import eu.retarded.internetstore.core.domain.Cart;
-import eu.retarded.internetstore.core.requests.cart.*;
+import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
+import eu.retarded.internetstore.core.requests.cart.DeleteCartRequest;
+import eu.retarded.internetstore.core.requests.cart.GetByIdCartRequest;
 import eu.retarded.internetstore.core.requests.user.AddUserRequest;
-import eu.retarded.internetstore.core.services.cart.*;
+import eu.retarded.internetstore.core.services.cart.AddCartService;
+import eu.retarded.internetstore.core.services.cart.DeleteCartService;
+import eu.retarded.internetstore.core.services.cart.GetByIdCartService;
+import eu.retarded.internetstore.core.services.cart.GetCartListService;
 import eu.retarded.internetstore.core.services.user.AddUserService;
 import eu.retarded.internetstore.database.cart.CartDatabase;
 import org.junit.jupiter.api.BeforeEach;

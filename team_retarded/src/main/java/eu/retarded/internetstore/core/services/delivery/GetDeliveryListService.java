@@ -12,10 +12,10 @@ import javax.transaction.Transactional;
 public class GetDeliveryListService {
 
     @Autowired
-    DeliveryDatabase deliveryDatabase ;
+    private DeliveryDatabase deliveryDatabase;
 
     @Transactional
     public GetDeliveryListResponse execute(GetDeliveryListRequest request) {
-        return new GetDeliveryListResponse(null,deliveryDatabase.getList());
+        return new GetDeliveryListResponse(null, deliveryDatabase.getList());
     }
 }

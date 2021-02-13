@@ -1,11 +1,12 @@
 package eu.retarded.internetstore.core.responses.user;
 
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.requests.user.UpdateUserRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public class UpdateUserResponse extends CoreResponse {
+public class UpdateUserResponse extends CoreResponse<UpdateUserRequest> {
 
     private Long userId;
 
@@ -13,7 +14,7 @@ public class UpdateUserResponse extends CoreResponse {
         return userId;
     }
 
-    public UpdateUserResponse(List<CoreError> errors) {
+    public UpdateUserResponse(Set<ConstraintViolation<UpdateUserRequest>> errors) {
         super(errors);
     }
 

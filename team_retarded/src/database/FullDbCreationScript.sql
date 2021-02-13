@@ -37,15 +37,15 @@ CREATE TABLE IF NOT EXISTS products
 
 CREATE TABLE IF NOT EXISTS users
 (
-    id       BIGINT       NOT NULL AUTO_INCREMENT,
-    login    VARCHAR(100) NOT NULL,
-    password VARCHAR(60)  NOT NULL,
-    role     INT DEFAULT 1,
-    name     VARCHAR(100),
-    surname  VARCHAR(100),
-    email    VARCHAR(100),
+    id           BIGINT       NOT NULL AUTO_INCREMENT,
+    login        VARCHAR(100) NOT NULL,
+    password     VARCHAR(60)  NOT NULL,
+    role         INT DEFAULT 1,
+    name         VARCHAR(100),
+    surname      VARCHAR(100),
+    email        VARCHAR(100),
     active_chart INT,
-    status   INT DEFAULT 1,
+    status       INT DEFAULT 1,
     PRIMARY KEY (id)
 )
     ENGINE = InnoDB
@@ -65,9 +65,9 @@ CREATE TABLE IF NOT EXISTS deliveries
 
 CREATE TABLE IF NOT EXISTS cart
 (
-    id     BIGINT         NOT NULL AUTO_INCREMENT,
+    id      BIGINT NOT NULL AUTO_INCREMENT,
     user_id BIGINT,
-    status INT DEFAULT 1,
+    status  INT DEFAULT 1,
     PRIMARY KEY (id),
     FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 )
@@ -76,15 +76,15 @@ CREATE TABLE IF NOT EXISTS cart
 
 CREATE TABLE IF NOT EXISTS orders
 (
-    id     BIGINT         NOT NULL AUTO_INCREMENT,
-    cart_id BIGINT,
-    client_name     VARCHAR(100) NOT NULL,
-    client_surname  VARCHAR(100) NOT NULL,
-    client_address  VARCHAR(100) NOT NULL,
-    delivery_id     BIGINT,
-    total_price  DECIMAL(18,2) NOT NULL,
-    user_id BIGINT,
-    status INT DEFAULT 1,
+    id             BIGINT         NOT NULL AUTO_INCREMENT,
+    cart_id        BIGINT,
+    client_name    VARCHAR(100)   NOT NULL,
+    client_surname VARCHAR(100)   NOT NULL,
+    client_address VARCHAR(100)   NOT NULL,
+    delivery_id    BIGINT,
+    total_price    DECIMAL(18, 2) NOT NULL,
+    user_id        BIGINT,
+    status         INT DEFAULT 1,
     PRIMARY KEY (id),
     FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`),
     FOREIGN KEY (`delivery_id`) REFERENCES `deliveries` (`id`),
@@ -95,9 +95,9 @@ CREATE TABLE IF NOT EXISTS orders
 
 CREATE TABLE IF NOT EXISTS products_in_cart
 (
-    id     BIGINT         NOT NULL AUTO_INCREMENT,
+    id         BIGINT NOT NULL AUTO_INCREMENT,
     product_id BIGINT,
-    cart_id BIGINT,
+    cart_id    BIGINT,
     PRIMARY KEY (id),
     FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
     FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`)
@@ -113,9 +113,9 @@ USE Testdb;
 
 CREATE TABLE IF NOT EXISTS product_categories
 (
-    id   BIGINT       NOT NULL AUTO_INCREMENT,
-    name VARCHAR(100) NOT NULL,
-    status      INT DEFAULT 1,
+    id     BIGINT       NOT NULL AUTO_INCREMENT,
+    name   VARCHAR(100) NOT NULL,
+    status INT DEFAULT 1,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -138,15 +138,15 @@ CREATE TABLE IF NOT EXISTS products
 
 CREATE TABLE IF NOT EXISTS users
 (
-    id       BIGINT       NOT NULL AUTO_INCREMENT,
-    login    VARCHAR(100) NOT NULL,
-    password VARCHAR(60)  NOT NULL,
-    role     INT DEFAULT 1,
-    name     VARCHAR(100),
-    surname  VARCHAR(100),
-    email    VARCHAR(100),
+    id           BIGINT       NOT NULL AUTO_INCREMENT,
+    login        VARCHAR(100) NOT NULL,
+    password     VARCHAR(60)  NOT NULL,
+    role         INT DEFAULT 1,
+    name         VARCHAR(100),
+    surname      VARCHAR(100),
+    email        VARCHAR(100),
     active_chart INT,
-    status      INT DEFAULT 1,
+    status       INT DEFAULT 1,
     PRIMARY KEY (id)
 )
     ENGINE = InnoDB
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS deliveries
     title  VARCHAR(100)   NOT NULL,
     region VARCHAR(100)   NOT NULL,
     price  DECIMAL(18, 2) NOT NULL,
-    status      INT DEFAULT 1,
+    status INT DEFAULT 1,
     PRIMARY KEY (id)
 )
     ENGINE = InnoDB
@@ -166,9 +166,9 @@ CREATE TABLE IF NOT EXISTS deliveries
 
 CREATE TABLE IF NOT EXISTS cart
 (
-    id     BIGINT         NOT NULL AUTO_INCREMENT,
+    id      BIGINT NOT NULL AUTO_INCREMENT,
     user_id BIGINT,
-    status INT DEFAULT 1,
+    status  INT DEFAULT 1,
     PRIMARY KEY (id),
     FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 )
@@ -177,15 +177,15 @@ CREATE TABLE IF NOT EXISTS cart
 
 CREATE TABLE IF NOT EXISTS orders
 (
-    id     BIGINT         NOT NULL AUTO_INCREMENT,
-    cart_id BIGINT,
-    client_name     VARCHAR(100) NOT NULL,
-    client_surname  VARCHAR(100) NOT NULL,
-    client_address  VARCHAR(100) NOT NULL,
-    delivery_id     BIGINT,
-    total_price  DECIMAL(18,2) NOT NULL,
-    user_id BIGINT,
-    status INT DEFAULT 1,
+    id             BIGINT         NOT NULL AUTO_INCREMENT,
+    cart_id        BIGINT,
+    client_name    VARCHAR(100)   NOT NULL,
+    client_surname VARCHAR(100)   NOT NULL,
+    client_address VARCHAR(100)   NOT NULL,
+    delivery_id    BIGINT,
+    total_price    DECIMAL(18, 2) NOT NULL,
+    user_id        BIGINT,
+    status         INT DEFAULT 1,
     PRIMARY KEY (id),
     FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`),
     FOREIGN KEY (`delivery_id`) REFERENCES `deliveries` (`id`),
@@ -196,9 +196,9 @@ CREATE TABLE IF NOT EXISTS orders
 
 CREATE TABLE IF NOT EXISTS products_in_cart
 (
-    id     BIGINT         NOT NULL AUTO_INCREMENT,
+    id         BIGINT NOT NULL AUTO_INCREMENT,
     product_id BIGINT,
-    cart_id BIGINT,
+    cart_id    BIGINT,
     PRIMARY KEY (id),
     FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
     FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`)

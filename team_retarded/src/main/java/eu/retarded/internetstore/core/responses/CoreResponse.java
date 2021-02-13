@@ -1,20 +1,21 @@
 package eu.retarded.internetstore.core.responses;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public abstract class CoreResponse {
+public abstract class CoreResponse<T> {
 
-    private List<CoreError> errors;
+    private Set<ConstraintViolation<T>> errors;
 
     public CoreResponse() {
     }
 
-    public CoreResponse(List<CoreError> errors) {
-        this.errors = errors;
+    public Set<ConstraintViolation<T>> getErrors() {
+        return errors;
     }
 
-    public List<CoreError> getErrors() {
-        return errors;
+    public CoreResponse(Set<ConstraintViolation<T>> errors) {
+        this.errors = errors;
     }
 
     public boolean hasErrors() {

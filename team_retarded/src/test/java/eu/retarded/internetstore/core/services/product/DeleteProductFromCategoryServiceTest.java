@@ -41,8 +41,8 @@ class DeleteProductFromCategoryServiceTest {
 
         DeleteProductFromCategoryResponse response = subject.execute(request);
         Assertions.assertThat(response.hasErrors()).isTrue();
-        Assertions.assertThat(response.getErrors().size()).isEqualTo(2);
-        Assertions.assertThat(response.getErrors()).allMatch(coreError -> coreError.getField().equals("ProductID") ||
+        Assertions.assertThat(response.getEeerrors().size()).isEqualTo(2);
+        Assertions.assertThat(response.getEeerrors()).allMatch(coreError -> coreError.getField().equals("ProductID") ||
                 coreError.getMessage().equals("Must not be empty or negative"));
         Mockito.verifyNoInteractions(categoriesDatabase);
         Mockito.verifyNoInteractions(productDatabase);
@@ -58,8 +58,8 @@ class DeleteProductFromCategoryServiceTest {
 
         DeleteProductFromCategoryResponse response = subject.execute(request);
         Assertions.assertThat(response.hasErrors()).isTrue();
-        Assertions.assertThat(response.getErrors().size()).isEqualTo(2);
-        Assertions.assertThat(response.getErrors()).allMatch(coreError -> coreError.getField().equals("ProductID") ||
+        Assertions.assertThat(response.getEeerrors().size()).isEqualTo(2);
+        Assertions.assertThat(response.getEeerrors()).allMatch(coreError -> coreError.getField().equals("ProductID") ||
                 coreError.getMessage().equals("Product with this ID does not exist"));
         Mockito.verifyNoInteractions(categoriesDatabase);
         Mockito.verifyNoInteractions(productDatabase);

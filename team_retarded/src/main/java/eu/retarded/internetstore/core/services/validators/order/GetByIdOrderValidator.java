@@ -12,8 +12,9 @@ import java.util.Optional;
 
 @Component
 public class GetByIdOrderValidator {
+
     @Autowired
-    OrderDatabase orderDatabase;
+    private OrderDatabase orderDatabase;
 
     public List<CoreError> validate(GetByIdOrderRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -26,7 +27,7 @@ public class GetByIdOrderValidator {
             return Optional.of(new CoreError("ID", "Must not be empty or negative"));
         }
         if (!orderDatabase.isExist(request.getId())) {
-            return Optional.of(new CoreError("ID","The delivery with the given id does not exist"));
+            return Optional.of(new CoreError("ID", "The delivery with the given id does not exist"));
         }
         return Optional.empty();
     }

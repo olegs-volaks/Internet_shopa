@@ -16,13 +16,13 @@ import java.util.Optional;
 public class AddOrderValidator {
 
     @Autowired
-    DeliveryDatabase deliveryDatabase;
+    private DeliveryDatabase deliveryDatabase;
 
     @Autowired
-    UsersDatabase userDatabase;
+    private UsersDatabase userDatabase;
 
     @Autowired
-    CartDatabase cartDatabase;
+    private CartDatabase cartDatabase;
 
     public List<CoreError> validate(AddOrderRequest request) {
         List<CoreError> errors = new ArrayList<>();
@@ -71,7 +71,7 @@ public class AddOrderValidator {
             return Optional.of(new CoreError("ID", "Must not be empty or negative"));
         }
         if (!deliveryDatabase.isExist(request.getDeliveryId())) {
-            return Optional.of(new CoreError("ID","The delivery with the given id does not exist"));
+            return Optional.of(new CoreError("ID", "The delivery with the given id does not exist"));
         }
         return Optional.empty();
     }
@@ -81,7 +81,7 @@ public class AddOrderValidator {
             return Optional.of(new CoreError("ID", "Must not be empty or negative"));
         }
         if (!userDatabase.isExist(request.getUserId())) {
-            return Optional.of(new CoreError("ID","The user with the given id does not exist"));
+            return Optional.of(new CoreError("ID", "The user with the given id does not exist"));
         }
         return Optional.empty();
     }
@@ -91,7 +91,7 @@ public class AddOrderValidator {
             return Optional.of(new CoreError("ID", "Must not be empty or negative"));
         }
         if (!cartDatabase.isExist(request.getCartId())) {
-            return Optional.of(new CoreError("ID","The cart with the given id does not exist"));
+            return Optional.of(new CoreError("ID", "The cart with the given id does not exist"));
         }
         return Optional.empty();
     }

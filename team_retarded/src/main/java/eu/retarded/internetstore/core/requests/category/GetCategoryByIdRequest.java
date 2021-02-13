@@ -1,13 +1,14 @@
 package eu.retarded.internetstore.core.requests.category;
 
+import eu.retarded.internetstore.core.services.validators.CategoryExist;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@RequiredArgsConstructor
 public class GetCategoryByIdRequest {
-    private Long categoryId;
 
-    public GetCategoryByIdRequest(Long categoryId) {
-        this.categoryId = categoryId;
-    }
+    @CategoryExist
+    private final long categoryId;
 
-    public Long getCategoryId() {
-        return categoryId;
-    }
 }

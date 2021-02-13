@@ -1,23 +1,24 @@
 package eu.retarded.internetstore.core.responses.delivery;
 
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.requests.delivery.DeleteDeliveryRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public class DeleteDeliveryResponse extends CoreResponse {
+public class DeleteDeliveryResponse extends CoreResponse<DeleteDeliveryRequest> {
 
-    private boolean isDeliveryDeleted;
+    private boolean isDeleted;
 
-    public DeleteDeliveryResponse(boolean isDeliveryDeleted) {
-        this.isDeliveryDeleted = isDeliveryDeleted;
+    public DeleteDeliveryResponse(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
-    public DeleteDeliveryResponse(List<CoreError> errors) {
+    public DeleteDeliveryResponse(Set<ConstraintViolation<DeleteDeliveryRequest>> errors) {
         super(errors);
     }
 
-    public boolean isDeliveryDeleted() {
-        return isDeliveryDeleted;
+    public boolean isDeleted() {
+        return isDeleted;
     }
 }

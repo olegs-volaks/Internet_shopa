@@ -1,23 +1,24 @@
 package eu.retarded.internetstore.core.responses.product;
 
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public class DeleteProductResponse extends CoreResponse {
+public class DeleteProductResponse extends CoreResponse<DeleteProductRequest> {
 
-    private boolean isProductDeleted;
+    private boolean isDeleted;
 
-    public DeleteProductResponse(List<CoreError> errors) {
+    public DeleteProductResponse(Set<ConstraintViolation<DeleteProductRequest>> errors) {
         super(errors);
     }
 
-    public DeleteProductResponse(boolean isProductDeleted) {
-        this.isProductDeleted = isProductDeleted;
+    public DeleteProductResponse(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
-    public boolean isProductDeleted() {
-        return isProductDeleted;
+    public boolean isDeleted() {
+        return isDeleted;
     }
 }

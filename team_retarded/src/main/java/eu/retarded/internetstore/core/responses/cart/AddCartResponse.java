@@ -1,11 +1,12 @@
 package eu.retarded.internetstore.core.responses.cart;
 
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public class AddCartResponse  extends CoreResponse {
+public class AddCartResponse extends CoreResponse<AddCartRequest> {
 
     private Long id;
 
@@ -13,7 +14,7 @@ public class AddCartResponse  extends CoreResponse {
         this.id = id;
     }
 
-    public AddCartResponse(List<CoreError> errors) {
+    public AddCartResponse(Set<ConstraintViolation<AddCartRequest>> errors) {
         super(errors);
     }
 

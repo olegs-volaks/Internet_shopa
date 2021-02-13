@@ -2,15 +2,15 @@ package eu.retarded.internetstore.core.services.category;
 
 import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.core.requests.category.UpdateCategoryRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.category.UpdateCategoryResponse;
-import eu.retarded.internetstore.core.services.validators.category.UpdateCategoryValidator;
 import eu.retarded.internetstore.database.category.CategoriesDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Component
 public class UpdateCategoryService {
@@ -19,11 +19,11 @@ public class UpdateCategoryService {
     private CategoriesDatabase categoriesDatabase;
 
     @Autowired
-    private UpdateCategoryValidator validator;
+    private Validator validator;
 
     @Transactional
     public UpdateCategoryResponse execute(UpdateCategoryRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<UpdateCategoryRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new UpdateCategoryResponse(errors);
         }

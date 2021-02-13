@@ -14,7 +14,7 @@ import java.util.Optional;
 public class GetByIdCartValidator {
 
     @Autowired
-    CartDatabase cartDatabase;
+    private CartDatabase cartDatabase;
 
     public List<CoreError> validate(GetByIdCartRequest request) {
         List<CoreError> errors = new ArrayList<>();

@@ -40,8 +40,8 @@ class AddProductToCategoryServiceTest {
 
         AddProductToCategoryResponse response = subject.execute(request);
         assertThat(response.hasErrors()).isTrue();
-        assertThat(response.getErrors().size()).isEqualTo(2);
-        assertThat(response.getErrors()).allMatch(coreError -> coreError.getField().equals("ProductID") ||
+        assertThat(response.getEeerrors().size()).isEqualTo(2);
+        assertThat(response.getEeerrors()).allMatch(coreError -> coreError.getField().equals("ProductID") ||
                 coreError.getMessage().equals("Must not be empty or negative"));
         Mockito.verifyNoInteractions(categoriesDatabase);
         Mockito.verifyNoInteractions(productDatabase);
@@ -57,8 +57,8 @@ class AddProductToCategoryServiceTest {
 
         AddProductToCategoryResponse response = subject.execute(request);
         assertThat(response.hasErrors()).isTrue();
-        assertThat(response.getErrors().size()).isEqualTo(2);
-        assertThat(response.getErrors()).allMatch(coreError -> coreError.getField().equals("ProductID") ||
+        assertThat(response.getEeerrors().size()).isEqualTo(2);
+        assertThat(response.getEeerrors()).allMatch(coreError -> coreError.getField().equals("ProductID") ||
                 coreError.getMessage().equals("Product with this ID does not exist"));
         Mockito.verifyNoInteractions(categoriesDatabase);
         Mockito.verifyNoInteractions(productDatabase);

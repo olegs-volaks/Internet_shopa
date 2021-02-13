@@ -1,4 +1,5 @@
 package eu.retarded.internetstore.core.requests.order;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 

@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class DeleteOrderRequest {
 
-    private final  long deleteOrderId;
+    private final long deleteOrderId;
 }

@@ -15,7 +15,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
@@ -38,8 +39,8 @@ class DeleteProductServiceTest {
 
         DeleteProductResponse response = service.execute(request);
         assertTrue(response.hasErrors());
-        assertEquals(response.getErrors().size(), 1);
-        assertEquals(response.getErrors().get(0).getField(), "ID");
+        assertEquals(response.getEeerrors().size(), 1);
+        assertEquals(response.getEeerrors().get(0).getField(), "ID");
 
         Mockito.verify(validator).validate(request);
         Mockito.verify(validator).validate(any());
@@ -53,6 +54,6 @@ class DeleteProductServiceTest {
         Mockito.when(db.delete(1L)).thenReturn(true);
         DeleteProductResponse response = service.execute(request);
         assertFalse(response.hasErrors());
-        assertTrue(response.isProductDeleted());
+        assertTrue(response.isDeleted());
     }
 }
