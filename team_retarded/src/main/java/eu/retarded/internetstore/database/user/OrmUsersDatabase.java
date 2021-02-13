@@ -28,7 +28,7 @@ class OrmUsersDatabase implements UsersDatabase {
                 .getCurrentSession()
                 .createQuery("DELETE User WHERE id =: id")
                 .setParameter("id", id)
-                .executeUpdate()==1;
+                .executeUpdate() == 1;
     }
 
     @Override

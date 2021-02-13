@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component
 public class ClearAllProductsService {
+
     @Autowired
     private ProductDatabase db;
 

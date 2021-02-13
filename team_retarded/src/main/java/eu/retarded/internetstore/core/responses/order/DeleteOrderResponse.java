@@ -1,11 +1,12 @@
 package eu.retarded.internetstore.core.responses.order;
 
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.requests.order.DeleteOrderRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public class DeleteOrderResponse extends CoreResponse {
+public class DeleteOrderResponse extends CoreResponse<DeleteOrderRequest> {
 
     private boolean isOrderDeleted;
 
@@ -13,7 +14,7 @@ public class DeleteOrderResponse extends CoreResponse {
         this.isOrderDeleted = isDeliveryDeleted;
     }
 
-    public DeleteOrderResponse(List<CoreError> errors) {
+    public DeleteOrderResponse(Set<ConstraintViolation<DeleteOrderRequest>> errors) {
         super(errors);
     }
 

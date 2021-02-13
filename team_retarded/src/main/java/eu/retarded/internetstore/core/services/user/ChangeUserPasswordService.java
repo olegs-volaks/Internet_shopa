@@ -2,16 +2,16 @@ package eu.retarded.internetstore.core.services.user;
 
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.user.ChangeUserPasswordRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.user.ChangeUserPasswordResponse;
-import eu.retarded.internetstore.core.services.validators.user.ChangeUserPasswordValidator;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Component
 public class ChangeUserPasswordService {
@@ -20,14 +20,14 @@ public class ChangeUserPasswordService {
     private UsersDatabase usersDatabase;
 
     @Autowired
-    private ChangeUserPasswordValidator validator;
+    private Validator validator;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Transactional
     public ChangeUserPasswordResponse execute(ChangeUserPasswordRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<ChangeUserPasswordRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new ChangeUserPasswordResponse(errors);
         }
@@ -45,7 +45,8 @@ public class ChangeUserPasswordService {
             usersDatabase.updateUser(resultUser);
             return new ChangeUserPasswordResponse(id);
         } else {
-            errors.add(new CoreError("Old password", "Incorrect password"));
+            // todo: добавить проверку пользователя
+//            errors.add(new CoreError("Old password", "Incorrect password"));
             return new ChangeUserPasswordResponse(errors);
         }
     }

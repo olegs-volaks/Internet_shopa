@@ -3,7 +3,7 @@ package eu.retarded.internetstore.matchers;
 import eu.retarded.internetstore.core.domain.Delivery;
 import org.mockito.ArgumentMatcher;
 
-public class DeliveryMatcher  implements ArgumentMatcher<Delivery> {
+public class DeliveryMatcher implements ArgumentMatcher<Delivery> {
 
     private final String title;
     private final String region;

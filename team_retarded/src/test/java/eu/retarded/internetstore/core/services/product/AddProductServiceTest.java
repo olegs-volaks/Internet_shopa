@@ -40,9 +40,9 @@ public class AddProductServiceTest {
 
         AddProductResponse response = subject.execute(request);
         Assertions.assertTrue(response.hasErrors());
-        Assertions.assertEquals(response.getErrors().size(), 1);
-        Assertions.assertEquals(response.getErrors().get(0).getField(), "Name");
-        Assertions.assertEquals(response.getErrors().get(0).getMessage(), "Must be between 4 and 10 characters");
+        Assertions.assertEquals(response.getEeerrors().size(), 1);
+        Assertions.assertEquals(response.getEeerrors().get(0).getField(), "Name");
+        Assertions.assertEquals(response.getEeerrors().get(0).getMessage(), "Must be between 4 and 10 characters");
         Mockito.verifyNoInteractions(database);
         Mockito.verify(validator).validate(request);
     }

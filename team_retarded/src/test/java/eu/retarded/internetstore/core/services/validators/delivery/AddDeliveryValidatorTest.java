@@ -72,7 +72,7 @@ class AddDeliveryValidatorTest {
 
     @Test
     void validate_price_is_null() {
-        AddDeliveryRequest request = new AddDeliveryRequest("Nike","football ball",0);
+        AddDeliveryRequest request = new AddDeliveryRequest("Nike", "football ball", 0);
         List<CoreError> result = subject.validate(request);
         assertThat(result).isNotEmpty();
         assertThat(result).allMatch(coreError -> coreError.getField().equals("Price") &&
@@ -81,7 +81,7 @@ class AddDeliveryValidatorTest {
 
     @Test
     void validate_price_is_fine() {
-        AddDeliveryRequest request = new AddDeliveryRequest("Nike","football ball",100.00 );
+        AddDeliveryRequest request = new AddDeliveryRequest("Nike", "football ball", 100.00);
         List<CoreError> result = subject.validate(request);
         assertThat(result).isEmpty();
     }

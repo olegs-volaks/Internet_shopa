@@ -1,15 +1,16 @@
 package eu.retarded.internetstore.core.responses.category;
 
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.requests.category.AddCategoryRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public class AddCategoryResponse extends CoreResponse {
+public class AddCategoryResponse extends CoreResponse<AddCategoryRequest> {
 
     private long categoryId;
 
-    public AddCategoryResponse(List<CoreError> errors) {
+    public AddCategoryResponse(Set<ConstraintViolation<AddCategoryRequest>> errors) {
         super(errors);
     }
 

@@ -46,9 +46,9 @@ class OrmDeliveryDatabase implements DeliveryDatabase {
 
     @Override
     public List<Delivery> filter(Predicate<Delivery> predicate) {
-       List<Delivery> deliveries = sessionFactory.getCurrentSession()
-               .createQuery("SELECT c FROM Delivery c", Delivery.class)
-               .getResultList();
+        List<Delivery> deliveries = sessionFactory.getCurrentSession()
+                .createQuery("SELECT c FROM Delivery c", Delivery.class)
+                .getResultList();
         return deliveries.stream().filter(predicate).collect(toList());
     }
 

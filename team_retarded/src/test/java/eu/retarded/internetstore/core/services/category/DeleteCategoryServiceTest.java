@@ -38,8 +38,8 @@ public class DeleteCategoryServiceTest {
 
         DeleteCategoryResponse response = subject.execute(request);
         Assertions.assertThat(response.hasErrors()).isTrue();
-        Assertions.assertThat(response.getErrors().size()).isEqualTo(1);
-        Assertions.assertThat(response.getErrors()).allMatch(coreError -> coreError.getField().equals("ID") ||
+        Assertions.assertThat(response.getEeerrors().size()).isEqualTo(1);
+        Assertions.assertThat(response.getEeerrors()).allMatch(coreError -> coreError.getField().equals("ID") ||
                 coreError.getMessage().equals("Must not be empty"));
         Mockito.verifyNoInteractions(database);
 

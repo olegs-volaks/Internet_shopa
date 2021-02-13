@@ -41,9 +41,9 @@ class GetProductByIdServiceTest {
 
         GetProductByIdResponse response = service.execute(request);
         assertTrue(response.hasErrors());
-        assertEquals(response.getErrors().size(), 1);
-        assertEquals(response.getErrors().get(0).getField(), "ID");
-        assertEquals(response.getErrors().get(0).getMessage(), "Must be more than 0");
+        assertEquals(response.getEeerrors().size(), 1);
+        assertEquals(response.getEeerrors().get(0).getField(), "ID");
+        assertEquals(response.getEeerrors().get(0).getMessage(), "Must be more than 0");
 
         Mockito.verify(validator).validate(request);
         Mockito.verify(validator).validate(any());
