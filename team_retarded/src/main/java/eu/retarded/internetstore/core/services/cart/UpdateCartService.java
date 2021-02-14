@@ -30,10 +30,11 @@ public class UpdateCartService {
             return new UpdateCartResponse(errors);
         }
         long id = request.getId();
+        Cart oldCart = cartDatabase.getById(id).get();
         Cart result = new Cart();
         result.setId(id);
         result.setUser(usersDatabase.getUserById(request.getUser_id()).get());
-        result.setStatus(request.getStatus());
+        result.setStatus(oldCart.getStatus());
         cartDatabase.updateCart(result);
         return new UpdateCartResponse(id);
     }
