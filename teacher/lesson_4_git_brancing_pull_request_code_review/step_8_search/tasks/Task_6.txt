@@ -1,2 +1,0 @@
-Создайте класс SearchBooksService и добавьте в него
-вызов SearchBooksRequestValidator для проверки валидности запроса.

@@ -1,1 +1,0 @@
-Сделайте так, чтобы AddBookResponse класс наследовал CoreResponse.

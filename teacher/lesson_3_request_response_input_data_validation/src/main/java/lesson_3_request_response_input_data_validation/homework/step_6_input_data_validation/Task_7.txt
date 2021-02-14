@@ -1,1 +1,0 @@
-Сделайте так, чтобы DeleteBookResponse класс наследовал CoreResponse.
