@@ -38,7 +38,7 @@ public class ShowAllProductsService {
         List<Product> products = productDatabase.getList();
 
 
-        return new ShowAllProductsResponse(null,products);
+        return new ShowAllProductsResponse(null, products);
     }
 
 }
