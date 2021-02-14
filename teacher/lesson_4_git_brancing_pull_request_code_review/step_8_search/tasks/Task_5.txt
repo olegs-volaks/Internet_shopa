@@ -1,1 +1,0 @@
-Напишите юнит тесты на класс SearchBooksRequestValidator.
