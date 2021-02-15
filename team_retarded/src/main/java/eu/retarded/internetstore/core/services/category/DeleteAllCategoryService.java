@@ -2,7 +2,7 @@ package eu.retarded.internetstore.core.services.category;
 
 import eu.retarded.internetstore.core.requests.category.DeleteAllCategoryRequest;
 import eu.retarded.internetstore.core.responses.category.DeleteAllCategoryResponse;
-import eu.retarded.internetstore.database.category.CategoriesDatabase;
+import eu.retarded.internetstore.database.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,11 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class DeleteAllCategoryService {
 
     @Autowired
-    private CategoriesDatabase database;
+    private CategoryRepository categoryRepository;
 
     @Transactional
     public DeleteAllCategoryResponse execute(DeleteAllCategoryRequest request) {
-        database.clear();
+        categoryRepository.deleteAll();
         return new DeleteAllCategoryResponse();
     }
 }

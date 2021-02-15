@@ -3,7 +3,7 @@ package eu.retarded.internetstore.core.services.category;
 import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.core.requests.category.UpdateCategoryRequest;
 import eu.retarded.internetstore.core.responses.category.UpdateCategoryResponse;
-import eu.retarded.internetstore.database.category.CategoriesDatabase;
+import eu.retarded.internetstore.database.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,7 @@ import java.util.Set;
 public class UpdateCategoryService {
 
     @Autowired
-    private CategoriesDatabase categoriesDatabase;
+    private CategoryRepository categoryRepository;
 
     @Autowired
     private Validator validator;
@@ -27,14 +27,10 @@ public class UpdateCategoryService {
         if (!errors.isEmpty()) {
             return new UpdateCategoryResponse(errors);
         }
-        long id = request.getId();
 
         Category resultCategory = new Category();
-
-        resultCategory.setId(id);
+        resultCategory.setId(request.getId());
         resultCategory.setName(request.getName());
-
-        categoriesDatabase.updateCategory(resultCategory);
-        return new UpdateCategoryResponse(id);
+        return new UpdateCategoryResponse(categoryRepository.save(resultCategory));
     }
 }

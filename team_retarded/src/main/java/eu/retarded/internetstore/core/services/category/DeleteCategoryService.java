@@ -2,7 +2,7 @@ package eu.retarded.internetstore.core.services.category;
 
 import eu.retarded.internetstore.core.requests.category.DeleteCategoryRequest;
 import eu.retarded.internetstore.core.responses.category.DeleteCategoryResponse;
-import eu.retarded.internetstore.database.category.CategoriesDatabase;
+import eu.retarded.internetstore.database.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +15,7 @@ import java.util.Set;
 public class DeleteCategoryService {
 
     @Autowired
-    private CategoriesDatabase database;
+    private CategoryRepository categoryRepository;
     @Autowired
     private Validator validator;
 
@@ -25,6 +25,7 @@ public class DeleteCategoryService {
         if (!errors.isEmpty()) {
             return new DeleteCategoryResponse(errors);
         }
-        return new DeleteCategoryResponse(database.removeCategory(request.getCategoryId()));
+        categoryRepository.deleteById(request.getCategoryId());
+        return new DeleteCategoryResponse(!categoryRepository.existsById(request.getCategoryId()));
     }
 }

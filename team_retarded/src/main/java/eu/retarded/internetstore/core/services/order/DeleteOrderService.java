@@ -2,7 +2,7 @@ package eu.retarded.internetstore.core.services.order;
 
 import eu.retarded.internetstore.core.requests.order.DeleteOrderRequest;
 import eu.retarded.internetstore.core.responses.order.DeleteOrderResponse;
-import eu.retarded.internetstore.database.order.OrderDatabase;
+import eu.retarded.internetstore.database.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ import java.util.Set;
 public class DeleteOrderService {
 
     @Autowired
-    private OrderDatabase orderDatabase;
+    private OrderRepository orderRepository;
 
     @Autowired
     private Validator validator;
@@ -24,6 +24,7 @@ public class DeleteOrderService {
         if (!errors.isEmpty()) {
             return new DeleteOrderResponse(errors);
         }
-        return new DeleteOrderResponse(orderDatabase.delete(request.getDeleteOrderId()));
+        orderRepository.deleteById(request.getDeleteOrderId());
+        return new DeleteOrderResponse(!orderRepository.existsById(request.getDeleteOrderId()));
     }
 }

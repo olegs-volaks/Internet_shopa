@@ -1,8 +1,10 @@
 package eu.retarded.internetstore.core.services.product;
 
+import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.AddProductToCategoryRequest;
 import eu.retarded.internetstore.core.responses.product.AddProductToCategoryResponse;
-import eu.retarded.internetstore.database.product.ProductDatabase;
+import eu.retarded.internetstore.database.CategoryRepository;
+import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +16,9 @@ import java.util.Set;
 @Component
 public class AddProductToCategoryService {
     @Autowired
-    private ProductDatabase productDatabase;
+    private ProductRepository productRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
     @Autowired
     private Validator validator;
 
@@ -24,10 +28,9 @@ public class AddProductToCategoryService {
         if (!errors.isEmpty()) {
             return new AddProductToCategoryResponse(errors);
         }
-
-        return new AddProductToCategoryResponse
-                (productDatabase.addProductToCategory(request.getProductId(), request.getCategoryId()));
-
-
+        Product resultProduct =  productRepository.getOne(request.getProductId());
+        resultProduct.setCategory(categoryRepository.getOne(request.getCategoryId()));
+        productRepository.save(resultProduct);
+        return new AddProductToCategoryResponse (productRepository.getOne(request.getProductId()).equals(resultProduct));
     }
 }
