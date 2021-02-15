@@ -3,7 +3,7 @@ package eu.retarded.internetstore.core.services.product;
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.UpdateProductRequest;
 import eu.retarded.internetstore.core.responses.product.UpdateProductResponse;
-import eu.retarded.internetstore.database.product.ProductDatabase;
+import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +15,7 @@ import java.util.Set;
 @Component
 public class UpdateProductService {
     @Autowired
-    private ProductDatabase productDatabase;
+    private ProductRepository productRepository;
 
     @Autowired
     private Validator validator;
@@ -26,16 +26,13 @@ public class UpdateProductService {
         if (!errors.isEmpty()) {
             return new UpdateProductResponse(errors);
         }
-        long id = request.getId();
 
-        Product resultProduct = new Product();
-
-        resultProduct.setId(id);
+        Product resultProduct = productRepository.getOne(request.getId());
+        resultProduct.setId(request.getId());
         resultProduct.setName(request.getName());
         resultProduct.setDescription(request.getDescription());
         resultProduct.setPrice(request.getPrice());
 
-        productDatabase.updateProduct(resultProduct);
-        return new UpdateProductResponse(id);
+        return new UpdateProductResponse(productRepository.save(resultProduct));
     }
 }

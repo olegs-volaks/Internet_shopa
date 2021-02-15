@@ -1,5 +1,0 @@
-Добавьте в класс SearchBooksRequest возможность задавать
-номер страницы, данные которой хочет получить пользователь
-и количество книг на одной странице:
-    private Integer pageNumber;
-    private Integer pageSize;

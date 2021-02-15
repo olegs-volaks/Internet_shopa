@@ -3,7 +3,7 @@ package eu.retarded.internetstore.core.services.delivery;
 import eu.retarded.internetstore.core.domain.Delivery;
 import eu.retarded.internetstore.core.requests.delivery.UpdateDeliveryRequest;
 import eu.retarded.internetstore.core.responses.delivery.UpdateDeliveryResponse;
-import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
+import eu.retarded.internetstore.database.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ import java.util.Set;
 public class UpdateDeliveryService {
 
     @Autowired
-    private DeliveryDatabase deliveryDatabase;
+    private DeliveryRepository deliveryRepository;
 
     @Autowired
     private Validator validator;
@@ -27,13 +27,13 @@ public class UpdateDeliveryService {
         if (!errors.isEmpty()) {
             return new UpdateDeliveryResponse(errors);
         }
+
         long id = request.getId();
         Delivery resultDelivery = new Delivery();
         resultDelivery.setId(id);
         resultDelivery.setTitle(request.getTitle());
         resultDelivery.setRegion(request.getRegion());
         resultDelivery.setPrice(BigDecimal.valueOf(request.getPrice()));
-        deliveryDatabase.updateDelivery(resultDelivery);
-        return new UpdateDeliveryResponse(id);
+        return new UpdateDeliveryResponse(deliveryRepository.save(resultDelivery));
     }
 }

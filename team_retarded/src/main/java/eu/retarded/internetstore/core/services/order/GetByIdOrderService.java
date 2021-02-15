@@ -2,7 +2,7 @@ package eu.retarded.internetstore.core.services.order;
 
 import eu.retarded.internetstore.core.requests.order.GetByIdOrderRequest;
 import eu.retarded.internetstore.core.responses.order.GetByIdOrderResponse;
-import eu.retarded.internetstore.database.order.OrderDatabase;
+import eu.retarded.internetstore.database.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ import java.util.Set;
 public class GetByIdOrderService {
 
     @Autowired
-    private OrderDatabase orderDatabase;
+    private OrderRepository orderRepository;
 
     @Autowired
     private Validator validator;
@@ -24,6 +24,6 @@ public class GetByIdOrderService {
         if (!errors.isEmpty()) {
             return new GetByIdOrderResponse(errors);
         }
-        return new GetByIdOrderResponse(orderDatabase.getById(request.getId()).get());
+        return new GetByIdOrderResponse(orderRepository.findById(request.getId()).get());
     }
 }

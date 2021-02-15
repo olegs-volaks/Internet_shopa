@@ -1,9 +1,8 @@
 package eu.retarded.internetstore.core.services.cart;
 
-
 import eu.retarded.internetstore.core.requests.cart.GetByIdCartRequest;
 import eu.retarded.internetstore.core.responses.cart.GetByIdCartResponse;
-import eu.retarded.internetstore.database.cart.CartDatabase;
+import eu.retarded.internetstore.database.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +14,7 @@ import java.util.Set;
 public class GetByIdCartService {
 
     @Autowired
-    private CartDatabase cartDatabase;
+    private CartRepository cartRepository;
 
     @Autowired
     private Validator validator;
@@ -27,6 +26,6 @@ public class GetByIdCartService {
             return new GetByIdCartResponse(errors);
         }
 
-        return new GetByIdCartResponse(cartDatabase.getById(request.getId()).get());
+        return new GetByIdCartResponse(cartRepository.getOne(request.getId()));
     }
 }

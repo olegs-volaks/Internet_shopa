@@ -1,3 +1,0 @@
-В классе SearchBooksUIAction реализуйте заполнение:
-
-    private Ordering ordering;

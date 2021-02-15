@@ -3,7 +3,7 @@ package eu.retarded.internetstore.core.services.product;
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.ShowAllProductsRequest;
 import eu.retarded.internetstore.core.responses.product.ShowAllProductsResponse;
-import eu.retarded.internetstore.database.product.ProductDatabase;
+import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ import java.util.Set;
 @Component
 public class ShowAllProductsService {
     @Autowired
-    private ProductDatabase productDatabase;
+    private ProductRepository productRepository;
     @Autowired
     private Validator validator;
 
@@ -35,7 +35,7 @@ public class ShowAllProductsService {
             return new ShowAllProductsResponse(errors, null);
         }
 
-        List<Product> products = productDatabase.getList();
+        List<Product> products = productRepository.findAll();
 
 
         return new ShowAllProductsResponse(null, products);

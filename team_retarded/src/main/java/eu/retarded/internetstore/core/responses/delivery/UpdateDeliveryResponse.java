@@ -1,5 +1,6 @@
 package eu.retarded.internetstore.core.responses.delivery;
 
+import eu.retarded.internetstore.core.domain.Delivery;
 import eu.retarded.internetstore.core.requests.delivery.UpdateDeliveryRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
@@ -8,13 +9,13 @@ import java.util.Set;
 
 public class UpdateDeliveryResponse extends CoreResponse<UpdateDeliveryRequest> {
 
-    private Long deliveryId;
+    private Delivery deliveryId;
 
-    public Long getDeliveryId() {
+    public Delivery getDeliveryId() {
         return deliveryId;
     }
 
-    public UpdateDeliveryResponse(Long deliveryId) {
+    public UpdateDeliveryResponse(Delivery deliveryId) {
         this.deliveryId = deliveryId;
     }
 

@@ -3,7 +3,7 @@ package eu.retarded.internetstore.core.services.product;
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.SearchProductRequest;
 import eu.retarded.internetstore.core.responses.product.SearchProductResponse;
-import eu.retarded.internetstore.database.product.ProductDatabase;
+import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ import java.util.Set;
 public class SearchProductService {
 
     @Autowired
-    private ProductDatabase productDatabase;
+    private ProductRepository productRepository ;
     @Autowired
     private Validator validator;
 
@@ -28,6 +28,8 @@ public class SearchProductService {
     @Value("${search.paging.enabled}")
     private boolean pagingEnabled;
 
+
+
     @Transactional
     public SearchProductResponse execute(SearchProductRequest request) {
         Set<ConstraintViolation<SearchProductRequest>> errors = validator.validate(request);
@@ -35,7 +37,7 @@ public class SearchProductService {
             return new SearchProductResponse(errors, null);
         }
 
-        List<Product> products = productDatabase.search(request.getKeyWord(), request.getSorting(), request.getPage());
+        List<Product> products = productRepository.findByNameContaining(request.getKeyWord());
         return new SearchProductResponse(null, products);
     }
 }

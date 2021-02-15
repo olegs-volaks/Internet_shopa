@@ -1,1 +1,0 @@
-Сделайте так, чтобы GetAllBooksResponse класс наследовал CoreResponse.
