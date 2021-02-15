@@ -8,17 +8,18 @@ import java.util.Set;
 
 public class DeleteCartResponse extends CoreResponse<DeleteCartRequest> {
 
-    private boolean isCartDeleted;
+    private boolean isDelete;
 
-    public DeleteCartResponse(boolean isCartDeleted) {
-        this.isCartDeleted = isCartDeleted;
+    public DeleteCartResponse(boolean isDelete) {
+        this.isDelete = isDelete;
     }
 
     public DeleteCartResponse(Set<ConstraintViolation<DeleteCartRequest>> errors) {
         super(errors);
     }
 
-    public boolean isCartDeleted() {
-        return isCartDeleted;
+
+    public boolean isDelete() {
+        return isDelete;
     }
 }

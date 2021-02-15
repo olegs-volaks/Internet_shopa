@@ -2,7 +2,7 @@ package eu.retarded.internetstore.core.services.cart;
 
 import eu.retarded.internetstore.core.requests.cart.DeleteCartRequest;
 import eu.retarded.internetstore.core.responses.cart.DeleteCartResponse;
-import eu.retarded.internetstore.database.cart.CartDatabase;
+import eu.retarded.internetstore.database.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ import java.util.Set;
 public class DeleteCartService {
 
     @Autowired
-    private CartDatabase cartDatabase;
+    private CartRepository cartRepository;
 
     @Autowired
     private Validator validator;
@@ -26,6 +26,7 @@ public class DeleteCartService {
             return new DeleteCartResponse(errors);
         }
 
-        return new DeleteCartResponse(cartDatabase.delete(request.getDeleteCartId()));
+        cartRepository.deleteById(request.getDeleteCartId());
+        return new DeleteCartResponse(!cartRepository.existsById(request.getDeleteCartId()));
     }
 }

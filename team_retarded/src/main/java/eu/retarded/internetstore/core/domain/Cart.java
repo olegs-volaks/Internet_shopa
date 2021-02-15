@@ -20,5 +20,4 @@ public class Cart {
 
     @Column(name = "status")
     private int status;
-
 }

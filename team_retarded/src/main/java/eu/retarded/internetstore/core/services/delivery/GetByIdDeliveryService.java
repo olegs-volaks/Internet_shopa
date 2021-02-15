@@ -2,7 +2,7 @@ package eu.retarded.internetstore.core.services.delivery;
 
 import eu.retarded.internetstore.core.requests.delivery.GetByIdDeliveryRequest;
 import eu.retarded.internetstore.core.responses.delivery.GetByIdDeliveryResponse;
-import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
+import eu.retarded.internetstore.database.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,7 +14,7 @@ import java.util.Set;
 public class GetByIdDeliveryService {
 
     @Autowired
-    private DeliveryDatabase deliveryDatabase;
+    private DeliveryRepository deliveryRepository;
 
     @Autowired
     private Validator validator;
@@ -24,6 +24,6 @@ public class GetByIdDeliveryService {
         if (!errors.isEmpty()) {
             return new GetByIdDeliveryResponse(errors);
         }
-        return new GetByIdDeliveryResponse(deliveryDatabase.getById(request.getId()).get());
+        return new GetByIdDeliveryResponse(deliveryRepository.findById(request.getId()).get());
     }
 }
