@@ -2,6 +2,7 @@ package eu.retarded.internetstore.core.services.delivery;
 
 import eu.retarded.internetstore.core.requests.delivery.DeleteDeliveryRequest;
 import eu.retarded.internetstore.core.responses.delivery.DeleteDeliveryResponse;
+import eu.retarded.internetstore.database.DeliveryRepository;
 import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,7 +15,7 @@ import java.util.Set;
 public class DeleteDeliveryService {
 
     @Autowired
-    private DeliveryDatabase deliveryDatabase;
+    private DeliveryRepository deliveryRepository;
 
     @Autowired
     private Validator validator;
@@ -24,6 +25,7 @@ public class DeleteDeliveryService {
         if (!errors.isEmpty()) {
             return new DeleteDeliveryResponse(errors);
         }
-        return new DeleteDeliveryResponse(deliveryDatabase.delete(request.getDeleteDeliveryId()));
+        deliveryRepository.deleteById(request.getDeleteDeliveryId());
+        return new DeleteDeliveryResponse(!deliveryRepository.existsById(request.getDeleteDeliveryId()));
     }
 }

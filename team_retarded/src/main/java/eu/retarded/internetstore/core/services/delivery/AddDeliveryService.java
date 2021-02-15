@@ -3,7 +3,7 @@ package eu.retarded.internetstore.core.services.delivery;
 import eu.retarded.internetstore.core.domain.Delivery;
 import eu.retarded.internetstore.core.requests.delivery.AddDeliveryRequest;
 import eu.retarded.internetstore.core.responses.delivery.AddDeliveryResponse;
-import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
+import eu.retarded.internetstore.database.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import java.util.Set;
 public class AddDeliveryService {
 
     @Autowired
-    private DeliveryDatabase deliveryDatabase;
+    private DeliveryRepository deliveryRepository;
 
     @Autowired
     private Validator validator;
@@ -25,6 +25,6 @@ public class AddDeliveryService {
         if (!errors.isEmpty()) {
             return new AddDeliveryResponse(errors);
         }
-        return new AddDeliveryResponse(deliveryDatabase.add(new Delivery(request.getTitle(), request.getRegion(), request.getPrice())));
+        return new AddDeliveryResponse(deliveryRepository.save(new Delivery(request.getTitle(), request.getRegion(), request.getPrice())));
     }
 }
