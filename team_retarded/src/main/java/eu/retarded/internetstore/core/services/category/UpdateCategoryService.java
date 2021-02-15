@@ -29,6 +29,7 @@ public class UpdateCategoryService {
         }
 
         Category resultCategory = new Category();
+        resultCategory.setId(request.getId());
         resultCategory.setName(request.getName());
         return new UpdateCategoryResponse(categoryRepository.save(resultCategory));
     }

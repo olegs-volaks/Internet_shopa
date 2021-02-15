@@ -2,7 +2,7 @@ package eu.retarded.internetstore.core.services.order;
 
 import eu.retarded.internetstore.core.requests.order.GetOrderListPagingRequest;
 import eu.retarded.internetstore.core.responses.order.GetOrderListPagingResponse;
-import eu.retarded.internetstore.database.order.OrderDatabase;
+import eu.retarded.internetstore.database.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import java.util.Set;
 public class GetOrderListPagingService {
 
     @Autowired
-    private OrderDatabase orderDatabase;
+    private OrderRepository orderRepository;
 
     @Autowired
     private Validator validator;
@@ -26,6 +26,7 @@ public class GetOrderListPagingService {
         if (!errors.isEmpty()) {
             return new GetOrderListPagingResponse(errors, null);
         }
-        return new GetOrderListPagingResponse(null, orderDatabase.getListWithPaging(request.getPage()));
+
+        return new GetOrderListPagingResponse(null, orderRepository.findAll());
     }
 }

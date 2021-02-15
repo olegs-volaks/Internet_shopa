@@ -28,6 +28,7 @@ public class UpdateProductService {
         }
 
         Product resultProduct = productRepository.getOne(request.getId());
+        resultProduct.setId(request.getId());
         resultProduct.setName(request.getName());
         resultProduct.setDescription(request.getDescription());
         resultProduct.setPrice(request.getPrice());

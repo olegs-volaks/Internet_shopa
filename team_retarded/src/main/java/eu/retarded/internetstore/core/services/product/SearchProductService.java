@@ -37,7 +37,7 @@ public class SearchProductService {
             return new SearchProductResponse(errors, null);
         }
 
-        List<Product> products = productRepository.findAll();
+        List<Product> products = productRepository.findByNameContaining(request.getKeyWord());
         return new SearchProductResponse(null, products);
     }
 }
