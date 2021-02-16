@@ -4,7 +4,7 @@ import eu.retarded.internetstore.core.domain.Cart;
 import eu.retarded.internetstore.core.requests.cart.UpdateCartRequest;
 import eu.retarded.internetstore.core.responses.cart.UpdateCartResponse;
 import eu.retarded.internetstore.database.CartRepository;
-import eu.retarded.internetstore.database.user.UsersDatabase;
+import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ public class UpdateCartService {
     private Validator validator;
 
     @Autowired
-    private UsersDatabase usersDatabase; // userRepository
+    private UserRepository userRepository;
 
     public UpdateCartResponse execute(UpdateCartRequest request) {
         Set<ConstraintViolation<UpdateCartRequest>> errors = validator.validate(request);
@@ -34,8 +34,8 @@ public class UpdateCartService {
         Cart oldCart = cartRepository.findById(id).get();
         Cart result = new Cart();
         result.setId(id);
-        result.setUser(usersDatabase.getUserById(request.getUser_id()).get());
+        result.setUser(userRepository.getOne(request.getUser_id()));
         result.setStatus(oldCart.getStatus());
-        return new UpdateCartResponse(cartRepository.save(result)); // update
+        return new UpdateCartResponse(cartRepository.save(result));
     }
 }
