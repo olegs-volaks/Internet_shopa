@@ -15,7 +15,8 @@ public class UserMatcher implements ArgumentMatcher<User> {
 
     @Override
     public boolean matches(User argument) {
-        return argument.getLogin().equals(login) &&
-                argument.getPassword().equals(password);
+/*        return argument.getLogin().equals(login) &&
+                argument.getPassword().equals(password);*/
+        return false;
     }
 }

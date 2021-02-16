@@ -1,25 +1,10 @@
 package eu.retarded.internetstore.integrationtests;
 
-import eu.retarded.internetstore.core.domain.Product;
-import eu.retarded.internetstore.core.requests.product.AddProductRequest;
-import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
-import eu.retarded.internetstore.core.requests.product.GetProductByIdRequest;
-import eu.retarded.internetstore.core.requests.product.SearchProductRequest;
-import eu.retarded.internetstore.core.responses.product.AddProductResponse;
-import eu.retarded.internetstore.core.services.product.AddProductService;
-import eu.retarded.internetstore.core.services.product.DeleteProductService;
-import eu.retarded.internetstore.core.services.product.GetProductByIdService;
-import eu.retarded.internetstore.core.services.product.SearchProductService;
 import eu.retarded.internetstore.database.product.ProductDatabase;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 public class ProductIntegrationTest {
@@ -35,7 +20,7 @@ public class ProductIntegrationTest {
         productDatabase.clear();
     }
 
-    @Test
+/*    @Test
     void add_product_request() {
 
         AddProductService service = context.getBean(AddProductService.class);
@@ -147,5 +132,5 @@ public class ProductIntegrationTest {
         assertThat(response3.hasErrors()).isFalse();
         assertThat(response4.hasErrors()).isFalse();
         assertThat(response5.hasErrors()).isTrue();
-    }
+    }*/
 }

@@ -1,19 +1,10 @@
 package eu.retarded.internetstore.acceptancetests;
 
-import eu.retarded.internetstore.core.requests.product.AddProductRequest;
-import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
-import eu.retarded.internetstore.core.responses.product.AddProductResponse;
-import eu.retarded.internetstore.core.services.product.AddProductService;
-import eu.retarded.internetstore.core.services.product.DeleteProductService;
 import eu.retarded.internetstore.database.product.ProductDatabase;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 public class scenario1 {
@@ -28,7 +19,7 @@ public class scenario1 {
         productDatabase.clear();
     }
 
-    @Test
+/*    @Test
     void test1() {
 
         AddProductService service = context.getBean(AddProductService.class);
@@ -78,5 +69,5 @@ public class scenario1 {
         AddProductRequest addRequest1 = new AddProductRequest("nm", "description123123", 123.1);
         AddProductResponse response = addService.execute(addRequest1);
         Assertions.assertThat(response.hasErrors()).isTrue();
-    }
+    }*/
 }

@@ -1,21 +1,12 @@
 package eu.retarded.internetstore.integrationtests;
 
 
-import eu.retarded.internetstore.core.domain.User;
-import eu.retarded.internetstore.core.requests.user.*;
-import eu.retarded.internetstore.core.responses.user.ChangeUserPasswordResponse;
-import eu.retarded.internetstore.core.services.user.*;
 import eu.retarded.internetstore.database.cart.CartDatabase;
 import eu.retarded.internetstore.database.user.UsersDatabase;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 public class UserIntegrationTest {
@@ -35,7 +26,7 @@ public class UserIntegrationTest {
         usersDatabase.clear();
     }
 
-    @Test
+/*    @Test
     void add_user_test() {
         AddUserService addUserService = context.getBean(AddUserService.class);
         GetUsersListService getUsersListService = context.getBean(GetUsersListService.class);
@@ -110,5 +101,5 @@ public class UserIntegrationTest {
         assertThat(secondPassword.length()).isEqualTo(60);
         assertThat(result.hasErrors()).isFalse();
         assertThat(result.getUserId()).isEqualTo(id1);
-    }
+    }*/
 }

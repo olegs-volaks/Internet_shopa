@@ -1,23 +1,10 @@
 package eu.retarded.internetstore.integrationtests;
 
-import eu.retarded.internetstore.core.domain.Cart;
-import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
-import eu.retarded.internetstore.core.requests.cart.DeleteCartRequest;
-import eu.retarded.internetstore.core.requests.cart.GetByIdCartRequest;
-import eu.retarded.internetstore.core.requests.user.AddUserRequest;
-import eu.retarded.internetstore.core.services.cart.AddCartService;
-import eu.retarded.internetstore.core.services.cart.DeleteCartService;
-import eu.retarded.internetstore.core.services.cart.GetByIdCartService;
-import eu.retarded.internetstore.core.services.cart.GetCartListService;
-import eu.retarded.internetstore.core.services.user.AddUserService;
 import eu.retarded.internetstore.database.cart.CartDatabase;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 public class CartIntegrationTest {
@@ -33,7 +20,7 @@ public class CartIntegrationTest {
         cartDatabase.clear();
     }
 
-    @Test
+/*    @Test
     void add_cart_request() {
         AddCartService service = context.getBean(AddCartService.class);
         AddUserService addUserService = context.getBean(AddUserService.class);
@@ -112,5 +99,5 @@ public class CartIntegrationTest {
         addCartService.execute(request2);
         assertThat(cartDatabase.getList().size()).isEqualTo(3);
 
-    }
+    }*/
 }
