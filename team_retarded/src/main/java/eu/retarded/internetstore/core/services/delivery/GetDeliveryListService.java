@@ -16,6 +16,6 @@ public class GetDeliveryListService {
 
     @Transactional
     public GetDeliveryListResponse execute(GetDeliveryListRequest request) {
-        return new GetDeliveryListResponse(null, deliveryRepository.findAll());
+        return new GetDeliveryListResponse(null, deliveryRepository.findAll(request.getPageable()));
     }
 }

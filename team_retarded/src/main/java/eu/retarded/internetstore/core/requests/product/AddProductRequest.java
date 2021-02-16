@@ -21,4 +21,7 @@ public class AddProductRequest {
 
     @PositiveOrZero(message = "The page must be positive or zero")
     private final double price;
+
+    @PositiveOrZero(message = "The quantity must be positive or zero")
+    private final int count;
 }

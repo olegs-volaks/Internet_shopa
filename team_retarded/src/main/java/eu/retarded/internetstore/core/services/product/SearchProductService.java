@@ -6,12 +6,12 @@ import eu.retarded.internetstore.core.responses.product.SearchProductResponse;
 import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-import java.util.List;
 import java.util.Set;
 
 @Component
@@ -37,7 +37,7 @@ public class SearchProductService {
             return new SearchProductResponse(errors, null);
         }
 
-        List<Product> products = productRepository.findByNameContaining(request.getKeyWord());
+        Page <Product> products = productRepository.findByNameContaining(request.getKeyWord(), request.getPageable());
         return new SearchProductResponse(null, products);
     }
 }
