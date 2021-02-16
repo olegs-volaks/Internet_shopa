@@ -262,7 +262,10 @@ VALUES (1, 'Admin123', '$2a$10$hQpGy3rV2kdlq5MVUERUCeNbNyz6EHRBzLFaYkjX43RF7M84y
         'admin@mail.com', 1, 1);
 
 INSERT INTO shop.roles (id, user_id, role_id)
-VALUES (1, 1, 2);
+VALUES (1, 1, 1);
+
+INSERT INTO shop.roles (id, user_id, role_id)
+VALUES (2, 1, 2);
 
 SET SQL_MODE = @OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
