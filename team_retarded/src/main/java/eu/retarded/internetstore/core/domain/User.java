@@ -24,6 +24,7 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+    @Transient
     @ManyToMany
     @JoinTable(name = "roles",
             joinColumns = @JoinColumn(name = "user_id"),
