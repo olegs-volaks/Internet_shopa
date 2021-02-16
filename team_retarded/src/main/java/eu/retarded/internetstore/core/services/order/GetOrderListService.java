@@ -1,5 +1,6 @@
 package eu.retarded.internetstore.core.services.order;
 
+import eu.retarded.internetstore.core.requests.order.GetOrderListRequest;
 import eu.retarded.internetstore.core.responses.order.GetOrderListResponse;
 import eu.retarded.internetstore.database.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class GetOrderListService {
     private Validator validator;
 
     @Transactional
-    public GetOrderListResponse execute(GetOrderListPagingRequest request) {
-        Set<ConstraintViolation<GetOrderListPagingRequest>> errors = validator.validate(request);
+    public GetOrderListResponse execute(GetOrderListRequest request) {
+        Set<ConstraintViolation<GetOrderListRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new GetOrderListResponse(errors, null);
         }

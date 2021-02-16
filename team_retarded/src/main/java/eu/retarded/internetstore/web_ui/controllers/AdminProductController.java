@@ -25,7 +25,7 @@ public class AdminProductController {
                              @RequestParam(value = "description") String description,
                              @RequestParam(value = "price") double price,
                              @RequestParam(value = "count", required = false) int count) {
-        AddProductRequest addProductRequest = new AddProductRequest(name, description, price);
+        AddProductRequest addProductRequest = new AddProductRequest(name, description, price, count);
         addProductService.execute(addProductRequest);
         return "redirect:/admin/product";
     }
