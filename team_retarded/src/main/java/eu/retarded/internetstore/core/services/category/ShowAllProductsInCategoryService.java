@@ -24,6 +24,7 @@ public class ShowAllProductsInCategoryService {
         if (!errors.isEmpty()) {
             return new ShowAllProductsInCategoryResponse(errors, null);
         }
-        return new ShowAllProductsInCategoryResponse(null, productRepository.findAll());
+        return new ShowAllProductsInCategoryResponse(null,
+                productRepository.findAllByCategory_Id(request.getCategoryId(), request.getPageable()));
     }
 }
