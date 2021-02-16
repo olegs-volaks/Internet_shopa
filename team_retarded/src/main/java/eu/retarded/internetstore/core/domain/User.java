@@ -28,8 +28,8 @@ public class User implements UserDetails {
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    @Transient
-    @ManyToMany
+
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

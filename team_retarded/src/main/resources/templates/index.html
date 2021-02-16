@@ -59,7 +59,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i
+                                            <span class="input-group-text" id="basic-addon3"><i
                                                     class="bi bi-person-fill"></i></span>
                                         </div>
                                         <input type="text" class="form-control" id="username" name="username"
@@ -70,7 +70,7 @@
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"><i
+                                            <span class="input-group-text" id="basic-addon4"><i
                                                     class="bi bi-key-fill"></i></span>
                                         </div>
                                         <input type="password" class="form-control" id="password" name="password"
@@ -95,6 +95,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="profile_navbar">
                         <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="/admin" th:if="${is_admin}">Admin panel</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
@@ -185,7 +186,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><i
+                                    <span class="input-group-text" id="basic-addon8"><i
                                             class="bi bi-person-fill"></i></span>
                                 </div>
                                 <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name"
@@ -195,7 +196,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-person"></i></span>
+                                    <span class="input-group-text" id="basic-addon7"><i class="bi bi-person"></i></span>
                                 </div>
                                 <input type="text" class="form-control" name="surname" placeholder="Surname"
                                        aria-label="Surname" aria-describedby="basic-addon1">
@@ -204,7 +205,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1">@</span>
+                                    <span class="input-group-text" id="basic-addon6">@</span>
                                 </div>
                                 <input type="text" class="form-control" name="email" placeholder="Email"
                                        aria-label="Email" aria-describedby="basic-addon1">
@@ -223,7 +224,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-key"></i></span>
+                                    <span class="input-group-text" id="basic-addon9"><i class="bi bi-key"></i></span>
                                 </div>
                                 <input type="password" class="form-control" name="password2"
                                        placeholder="Password repeat" aria-label="Password repeat"

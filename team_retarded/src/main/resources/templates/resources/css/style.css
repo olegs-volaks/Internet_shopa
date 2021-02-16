@@ -248,3 +248,32 @@ body {
     color: #eae2b7;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
+
+.admin-category-name {
+    margin-top: auto;
+    margin-bottom: auto;
+    color: #003049;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.btn-add {
+    border-color: #d62828;
+    color: #d62828;
+    border-radius: 0;
+    border-width: 3px;
+}
+
+.btn-add:hover {
+    border-color: #d62828;
+    background-color: #d62828;
+    color: #eae2b7;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn-add:active {
+    border-color: #d62828 !important;
+    background-color: #d62828 !important;
+    color: #eae2b7;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}

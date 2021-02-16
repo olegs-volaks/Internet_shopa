@@ -24,12 +24,18 @@ public class MainController {
                        @RequestParam(value = "logout", required = false) String logout,
                        @AuthenticationPrincipal User activeUser,
                        ModelMap modelMap) {
+        boolean isLogged = activeUser != null;
+        boolean isActiveUserAdmin = false;
+        if (isLogged) {
+            isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
+        }
         List<Product> products = showAllProductsService.execute(new ShowAllProductsRequest()).getProducts();
         modelMap.addAttribute("products", products);
         modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("logout", logout != null);
         modelMap.addAttribute("active_user", activeUser);
-        modelMap.addAttribute("is_logged", activeUser != null);
+        modelMap.addAttribute("is_logged", isLogged);
+        modelMap.addAttribute("is_admin", isActiveUserAdmin);
         return "index";
     }
 }
