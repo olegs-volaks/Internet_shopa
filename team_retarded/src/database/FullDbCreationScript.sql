@@ -51,9 +51,9 @@ CREATE TABLE IF NOT EXISTS users
 
 CREATE TABLE IF NOT EXISTS role
 (
-    id     BIGINT       NOT NULL AUTO_INCREMENT,
-    name   VARCHAR(100) NOT NULL,
-    status INT DEFAULT 1,
+    id     BIGINT        NOT NULL AUTO_INCREMENT,
+    name   VARCHAR(100)  NOT NULL,
+    status INT DEFAULT 1 NOT NULL,
     PRIMARY KEY (id)
 )
     ENGINE = InnoDB
@@ -172,9 +172,9 @@ CREATE TABLE IF NOT EXISTS users
 
 CREATE TABLE IF NOT EXISTS role
 (
-    id     BIGINT       NOT NULL AUTO_INCREMENT,
-    name   VARCHAR(100) NOT NULL,
-    status INT DEFAULT 1,
+    id     BIGINT        NOT NULL AUTO_INCREMENT,
+    name   VARCHAR(100)  NOT NULL,
+    status INT DEFAULT 1 NOT NULL,
     PRIMARY KEY (id)
 )
     ENGINE = InnoDB
@@ -248,6 +248,16 @@ CREATE TABLE IF NOT EXISTS products_in_cart
 
 
 USE Shop;
+
+INSERT INTO shop.users (id, login, password, name, surname, email, status)
+VALUES (1, 'admin123', '$2a$10$9.EgvxIILHVI75lKWekWC.1D9AJoCmkkvm160ViuCztWA7YKRuODK', 'Admin name', 'Admin surname',
+        'admin@mail.com', 1);
+INSERT INTO shop.role (id, name, status)
+VALUES (1, 'ROLE_USER', 1);
+INSERT INTO shop.role (id, name, status)
+VALUES (2, 'ROLE_ADMIN', 1);
+INSERT INTO shop.roles (id, user_id, role_id)
+VALUES (1, 1, 2);
 
 SET SQL_MODE = @OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
