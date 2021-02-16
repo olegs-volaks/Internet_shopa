@@ -3,7 +3,6 @@ package eu.retarded.internetstore.core.services.delivery;
 import eu.retarded.internetstore.core.requests.delivery.DeleteDeliveryRequest;
 import eu.retarded.internetstore.core.responses.delivery.DeleteDeliveryResponse;
 import eu.retarded.internetstore.database.DeliveryRepository;
-import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

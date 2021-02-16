@@ -24,6 +24,10 @@ public class User implements UserDetails {
     @Column(name = "password")
     private String password;
 
+    @OneToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
     @Transient
     @ManyToMany
     @JoinTable(name = "roles",

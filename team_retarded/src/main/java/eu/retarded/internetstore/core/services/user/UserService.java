@@ -1,6 +1,8 @@
 package eu.retarded.internetstore.core.services.user;
 
+import eu.retarded.internetstore.core.domain.Cart;
 import eu.retarded.internetstore.core.domain.User;
+import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
 import eu.retarded.internetstore.core.requests.user.AddUserRequest;
 import eu.retarded.internetstore.core.requests.user.DeleteUserRequest;
 import eu.retarded.internetstore.core.requests.user.GetUserByIdRequest;
@@ -8,6 +10,7 @@ import eu.retarded.internetstore.core.responses.user.AddUserResponse;
 import eu.retarded.internetstore.core.responses.user.DeleteUserResponse;
 import eu.retarded.internetstore.core.responses.user.GetUserByIdResponse;
 import eu.retarded.internetstore.core.responses.user.GetUsersListResponse;
+import eu.retarded.internetstore.core.services.cart.AddCartService;
 import eu.retarded.internetstore.database.RoleRepository;
 import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +41,9 @@ public class UserService implements UserDetailsService {
     @Autowired
     private Validator validator;
 
+    @Autowired
+    private AddCartService addCartService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findUserByUserName(username);
@@ -55,6 +61,7 @@ public class UserService implements UserDetailsService {
         if (userRepository.existsByUserName(request.getUserName())) {
             return new AddUserResponse(errors);
         }
+        Cart cart = addCartService.execute(new AddCartRequest()).getCart();
         User user = new User();
         user.setUserName(request.getUserName());
         user.setPassword(encoder.encode(request.getPassword()));
@@ -62,6 +69,7 @@ public class UserService implements UserDetailsService {
         user.setSurname(request.getSurname());
         user.setEmail(request.getEmail());
         user.setRoles(Collections.singleton(roleRepository.getOne(1L)));
+        user.setCart(cart);
         return new AddUserResponse(userRepository.save(user));
     }
 

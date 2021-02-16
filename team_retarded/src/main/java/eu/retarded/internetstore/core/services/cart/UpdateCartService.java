@@ -34,7 +34,6 @@ public class UpdateCartService {
         Cart oldCart = cartRepository.findById(id).get();
         Cart result = new Cart();
         result.setId(id);
-        result.setUser(userRepository.getOne(request.getUser_id()));
         result.setStatus(oldCart.getStatus());
         return new UpdateCartResponse(cartRepository.save(result));
     }

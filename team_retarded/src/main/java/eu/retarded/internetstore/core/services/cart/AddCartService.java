@@ -4,7 +4,6 @@ import eu.retarded.internetstore.core.domain.Cart;
 import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
 import eu.retarded.internetstore.core.responses.cart.AddCartResponse;
 import eu.retarded.internetstore.database.CartRepository;
-import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,9 +21,6 @@ public class AddCartService {
     @Autowired
     private Validator validator;
 
-    @Autowired
-    private UserRepository userRepository;
-
     @Transactional
     public AddCartResponse execute(AddCartRequest request) {
         Set<ConstraintViolation<AddCartRequest>> errors = validator.validate(request);
@@ -32,7 +28,7 @@ public class AddCartService {
             return new AddCartResponse(errors);
         }
         Cart cart = new Cart();
-        cart.setUser(userRepository.getOne(request.getUserId()));
+        cart.setStatus(1);
         return new AddCartResponse(cartRepository.save(cart));
     }
 }
