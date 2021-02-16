@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <!-- Required meta tags -->
@@ -107,6 +107,65 @@
         </div>
 
     </div>
+
+    <!-- Add form -->
+    <div class="modal fade" id="add" data-backdrop="static" data-keyboard="false" tabindex="-1"
+         aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Registration:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="/admin/product/add">
+                    <input
+                            type="hidden"
+                            th:name="${_csrf.parameterName}"
+                            th:value="${_csrf.token}"/>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="name" placeholder="Name"
+                                       aria-label="Name" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="description" placeholder="Description"
+                                       aria-label="Description"
+                                       aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon6">€</span>
+                                </div>
+                                <input type="text" class="form-control" name="price" placeholder="Price"
+                                       aria-label="Price" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="count" placeholder="count"
+                                       aria-label="Count" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-registration-modal">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 <!-- Optional JavaScript; choose one of the two! -->
