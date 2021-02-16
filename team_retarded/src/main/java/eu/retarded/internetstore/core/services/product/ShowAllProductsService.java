@@ -6,12 +6,12 @@ import eu.retarded.internetstore.core.responses.product.ShowAllProductsResponse;
 import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-import java.util.List;
 import java.util.Set;
 
 
@@ -35,7 +35,7 @@ public class ShowAllProductsService {
             return new ShowAllProductsResponse(errors, null);
         }
 
-        List<Product> products = productRepository.findAll();
+        Page <Product> products = productRepository.findAll(request.getPageable());
 
 
         return new ShowAllProductsResponse(null, products);

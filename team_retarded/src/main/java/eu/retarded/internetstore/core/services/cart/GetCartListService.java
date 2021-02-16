@@ -15,6 +15,6 @@ public class GetCartListService {
 
     @Transactional
     public GetCartListResponse execute(GetCartListRequest request) {
-        return new GetCartListResponse(null, cartRepository.findAll());
+        return new GetCartListResponse(null, cartRepository.findAll(request.getPageable()));
     }
 }

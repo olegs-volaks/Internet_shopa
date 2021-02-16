@@ -12,7 +12,8 @@ public class ShowAllProductsInCategoryResponse extends CoreResponse<ShowAllProdu
 
     private List<Product> productList;
 
-    public ShowAllProductsInCategoryResponse(Set<ConstraintViolation<ShowAllProductsInCategoryRequest>> errors, List<Product> productList) {
+    public ShowAllProductsInCategoryResponse(Set<ConstraintViolation<ShowAllProductsInCategoryRequest>> errors,
+                                             List<Product> productList) {
         super(errors);
         this.productList = productList;
     }

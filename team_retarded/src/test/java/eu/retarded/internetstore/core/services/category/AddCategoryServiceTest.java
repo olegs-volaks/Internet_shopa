@@ -25,8 +25,7 @@ class AddCategoryServiceTest {
 
     @Mock
     private CategoriesDatabase database;
-    @Mock
-    private AddCategoryValidator validator;
+
     @InjectMocks
     private AddCategoryService subject;
 
