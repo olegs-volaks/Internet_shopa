@@ -35,6 +35,15 @@ CREATE TABLE IF NOT EXISTS products
     ENGINE = InnoDB
     AUTO_INCREMENT = 1;
 
+CREATE TABLE IF NOT EXISTS cart
+(
+    id     BIGINT NOT NULL AUTO_INCREMENT,
+    status INT DEFAULT 1,
+    PRIMARY KEY (id)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 1;
+
 CREATE TABLE IF NOT EXISTS users
 (
     id       BIGINT       NOT NULL AUTO_INCREMENT,
@@ -43,8 +52,10 @@ CREATE TABLE IF NOT EXISTS users
     name     VARCHAR(100),
     surname  VARCHAR(100),
     email    VARCHAR(100),
+    cart_id  BIGINT       NOT NULL,
     status   INT DEFAULT 1,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`)
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 1;
@@ -79,17 +90,6 @@ CREATE TABLE IF NOT EXISTS deliveries
     price  DECIMAL(18, 2) NOT NULL,
     status INT DEFAULT 1,
     PRIMARY KEY (id)
-)
-    ENGINE = InnoDB
-    AUTO_INCREMENT = 1;
-
-CREATE TABLE IF NOT EXISTS cart
-(
-    id      BIGINT NOT NULL AUTO_INCREMENT,
-    user_id BIGINT,
-    status  INT DEFAULT 1,
-    PRIMARY KEY (id),
-    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 1;
@@ -133,9 +133,8 @@ USE Testdb;
 
 CREATE TABLE IF NOT EXISTS product_categories
 (
-    id     BIGINT       NOT NULL AUTO_INCREMENT,
-    name   VARCHAR(100) NOT NULL,
-    status INT DEFAULT 1,
+    id   BIGINT       NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
     PRIMARY KEY (`id`)
 )
     ENGINE = InnoDB
@@ -156,6 +155,15 @@ CREATE TABLE IF NOT EXISTS products
     ENGINE = InnoDB
     AUTO_INCREMENT = 1;
 
+CREATE TABLE IF NOT EXISTS cart
+(
+    id     BIGINT NOT NULL AUTO_INCREMENT,
+    status INT DEFAULT 1,
+    PRIMARY KEY (id)
+)
+    ENGINE = InnoDB
+    AUTO_INCREMENT = 1;
+
 CREATE TABLE IF NOT EXISTS users
 (
     id       BIGINT       NOT NULL AUTO_INCREMENT,
@@ -164,8 +172,10 @@ CREATE TABLE IF NOT EXISTS users
     name     VARCHAR(100),
     surname  VARCHAR(100),
     email    VARCHAR(100),
+    cart_id  BIGINT       NOT NULL,
     status   INT DEFAULT 1,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`)
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 1;
@@ -204,17 +214,6 @@ CREATE TABLE IF NOT EXISTS deliveries
     ENGINE = InnoDB
     AUTO_INCREMENT = 1;
 
-CREATE TABLE IF NOT EXISTS cart
-(
-    id      BIGINT NOT NULL AUTO_INCREMENT,
-    user_id BIGINT,
-    status  INT DEFAULT 1,
-    PRIMARY KEY (id),
-    FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-)
-    ENGINE = InnoDB
-    AUTO_INCREMENT = 1;
-
 CREATE TABLE IF NOT EXISTS orders
 (
     id             BIGINT         NOT NULL AUTO_INCREMENT,
@@ -249,13 +248,19 @@ CREATE TABLE IF NOT EXISTS products_in_cart
 
 USE Shop;
 
-INSERT INTO shop.users (id, login, password, name, surname, email, status)
-VALUES (1, 'admin123', '$2a$10$9.EgvxIILHVI75lKWekWC.1D9AJoCmkkvm160ViuCztWA7YKRuODK', 'Admin name', 'Admin surname',
-        'admin@mail.com', 1);
 INSERT INTO shop.role (id, name, status)
 VALUES (1, 'ROLE_USER', 1);
+
 INSERT INTO shop.role (id, name, status)
 VALUES (2, 'ROLE_ADMIN', 1);
+
+INSERT INTO shop.cart (id, status)
+VALUES (1, 1);
+
+INSERT INTO shop.users (id, login, password, name, surname, email, cart_id, status)
+VALUES (1, 'Admin123', '$2a$10$hQpGy3rV2kdlq5MVUERUCeNbNyz6EHRBzLFaYkjX43RF7M84y4grW', 'Admin123', 'Admin123',
+        'admin@mail.com', 1, 1);
+
 INSERT INTO shop.roles (id, user_id, role_id)
 VALUES (1, 1, 2);
 
