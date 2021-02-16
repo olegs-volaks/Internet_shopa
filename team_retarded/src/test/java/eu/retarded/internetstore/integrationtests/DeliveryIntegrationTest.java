@@ -1,24 +1,20 @@
 package eu.retarded.internetstore.integrationtests;
 
-import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
-import org.junit.jupiter.api.BeforeEach;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
 
 @SpringBootTest
 public class DeliveryIntegrationTest {
 
-    @Autowired
-    private ApplicationContext context;
-    @Autowired
-    private DeliveryDatabase deliveryDatabase;
-
-
-    @BeforeEach
-    void setUp() {
-        deliveryDatabase.clear();
-    }
+//    @Autowired
+//    private ApplicationContext context;
+//    @Autowired
+//    private DeliveryDatabase deliveryDatabase;
+//
+//
+//    @BeforeEach
+//    void setUp() {
+//        deliveryDatabase.clear();
+//    }
 
 /*    @Test
     void add_delivery_request() {

@@ -1,20 +1,15 @@
 package eu.retarded.internetstore.integrationtests;
 
-import eu.retarded.internetstore.database.order.OrderDatabase;
-import org.junit.jupiter.api.BeforeEach;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-
 public class OrderIntegrationTest {
-    @Autowired
-    private ApplicationContext context;
-    @Autowired
-    private OrderDatabase orderDatabase;
-
-    @BeforeEach
-    void setUp() {
-        orderDatabase.clear();
-    }
+//    @Autowired
+//    private ApplicationContext context;
+//    @Autowired
+//    private OrderDatabase orderDatabase;
+//
+//    @BeforeEach
+//    void setUp() {
+//        orderDatabase.clear();
+//    }
 
    /* @Test
     void add_category_test() {

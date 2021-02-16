@@ -1,9 +1,6 @@
 package eu.retarded.internetstore.integrationtests;
 
 
-import eu.retarded.internetstore.database.cart.CartDatabase;
-import eu.retarded.internetstore.database.user.UsersDatabase;
-import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -14,17 +11,17 @@ public class UserIntegrationTest {
     @Autowired
     private ApplicationContext context;
 
-    @Autowired
-    private UsersDatabase usersDatabase;
-
-    @Autowired
-    private CartDatabase cartDatabase;
-
-    @BeforeEach
-    void setUp() {
-        cartDatabase.clear();
-        usersDatabase.clear();
-    }
+//    @Autowired
+//    private UsersDatabase usersDatabase;
+//
+//    @Autowired
+//    private CartDatabase cartDatabase;
+//
+//    @BeforeEach
+//    void setUp() {
+//        cartDatabase.clear();
+//        usersDatabase.clear();
+//    }
 
 /*    @Test
     void add_user_test() {

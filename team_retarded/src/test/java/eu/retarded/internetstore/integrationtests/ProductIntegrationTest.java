@@ -1,24 +1,20 @@
 package eu.retarded.internetstore.integrationtests;
 
-import eu.retarded.internetstore.database.product.ProductDatabase;
-import org.junit.jupiter.api.BeforeEach;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.ApplicationContext;
 
 @SpringBootTest
 public class ProductIntegrationTest {
 
-    @Autowired
-    private ApplicationContext context;
-    @Autowired
-    private ProductDatabase productDatabase;
-
-
-    @BeforeEach
-    void setUp() {
-        productDatabase.clear();
-    }
+//    @Autowired
+//    private ApplicationContext context;
+//    @Autowired
+//    private ProductDatabase productDatabase;
+//
+//
+//    @BeforeEach
+//    void setUp() {
+//        productDatabase.clear();
+//    }
 
 /*    @Test
     void add_product_request() {
