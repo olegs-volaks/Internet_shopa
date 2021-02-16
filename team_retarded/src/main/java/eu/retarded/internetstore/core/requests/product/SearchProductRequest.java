@@ -13,7 +13,6 @@ public class SearchProductRequest {
     @NotBlank(message = "The keyWord must not be empty!")
     private String keyWord;
 
-    @NotBlank(message = "Pageable must not be empty!")
     private Pageable pageable;
 
 }

@@ -1,6 +1,5 @@
 package eu.retarded.internetstore.core.services.order;
 
-import eu.retarded.internetstore.core.requests.order.GetOrderListPagingRequest;
 import eu.retarded.internetstore.core.responses.order.GetOrderListResponse;
 import eu.retarded.internetstore.database.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;

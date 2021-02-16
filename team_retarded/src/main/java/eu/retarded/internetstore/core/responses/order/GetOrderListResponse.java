@@ -1,7 +1,6 @@
 package eu.retarded.internetstore.core.responses.order;
 
 import eu.retarded.internetstore.core.domain.Order;
-import eu.retarded.internetstore.core.requests.order.GetOrderListPagingRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 import org.springframework.data.domain.Page;
 

@@ -31,7 +31,6 @@ public class GetUsersListService {
 
         Page <User> users = userRepository.findAll(request.getPageable());
 
-
         return new GetUsersListResponse(null, users);
     }
 }
