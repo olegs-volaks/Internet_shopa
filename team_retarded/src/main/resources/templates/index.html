@@ -52,7 +52,10 @@
                     <div class="dropdown-menu" aria-labelledby="login_navbar">
                         <div class="container-authorization">
                             <form method="post">
-                                <input name="${_csrf.parameterName}" value="${_csrf.token}" type="hidden">
+                                <input
+                                        type="hidden"
+                                        th:name="${_csrf.parameterName}"
+                                        th:value="${_csrf.token}"/>
                                 <div class="form-group">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -168,12 +171,16 @@
                     </button>
                 </div>
                 <form method="post" action="/register">
+                    <input
+                            type="hidden"
+                            th:name="${_csrf.parameterName}"
+                            th:value="${_csrf.token}"/>
                     <div class="modal-body">
 
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><i
+                                    <span class="input-group-text" id="basic-addon2"><i
                                             class="bi bi-person-check-fill"></i></span>
                                 </div>
                                 <input type="text" class="form-control" name="username" placeholder="username"
@@ -257,6 +264,7 @@
             </div>
         </div>
     </div>
+
     <!--Error message-->
     <div class="modal fade" id="error" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true"
          th:if="${error}">
