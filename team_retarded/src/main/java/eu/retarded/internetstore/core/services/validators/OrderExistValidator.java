@@ -1,18 +1,18 @@
 package eu.retarded.internetstore.core.services.validators;
 
-import eu.retarded.internetstore.database.order.OrderDatabase;
+import eu.retarded.internetstore.database.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class OrderExistValidator implements ConstraintValidator <CartExist, Long> {
+public class OrderExistValidator implements ConstraintValidator<CartExist, Long> {
 
-@Autowired
-private OrderDatabase orderDatabase;
+        @Autowired
+        private OrderRepository orderRepository;
 
-@Override
-public boolean isValid(Long value, ConstraintValidatorContext context) {
-        return value != null && orderDatabase.isExist(value);
+        @Override
+        public boolean isValid(Long value, ConstraintValidatorContext context) {
+                return value != null && orderRepository.existsById(value);
         }
 }
