@@ -2,8 +2,9 @@ package eu.retarded.internetstore.web_ui.controllers.admin.user;
 
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.user.AddUserRequest;
-import eu.retarded.internetstore.core.requests.user.GetUsersListRequest;
-import eu.retarded.internetstore.core.services.user.UserService;
+import eu.retarded.internetstore.core.requests.user.GetUserListRequest;
+import eu.retarded.internetstore.core.services.user.AddUserService;
+import eu.retarded.internetstore.core.services.user.GetUserListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -19,7 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AdminUserController {
 
     @Autowired
-    private UserService userService;
+    private AddUserService addUserService;
+
+    @Autowired
+    private GetUserListService getUserListService;
 
     @Value("${admin.page-size}")
     private int pageSize;
@@ -27,7 +31,7 @@ public class AdminUserController {
     @GetMapping("/admin/user/{page}")
     public String productPage(@PathVariable String page, ModelMap modelMap) {
         int pageInt = Integer.parseInt(page);
-        Page<User> userPage = userService.getUsersList(new GetUsersListRequest(PageRequest.of(pageInt - 1, pageSize))).getUsers();
+        Page<User> userPage = getUserListService.execute(new GetUserListRequest(PageRequest.of(pageInt - 1, pageSize))).getPage();
         modelMap.addAttribute("users", userPage);
         modelMap.addAttribute("total_pages", userPage.getTotalPages());
         modelMap.addAttribute("current_page", pageInt);
@@ -46,8 +50,8 @@ public class AdminUserController {
                              @RequestParam(value = "email", required = false) String email,
                              @RequestParam(value = "password1", required = false) String password1,
                              @RequestParam(value = "password2", required = false) String password2) {
-        AddUserRequest addUserRequest = new AddUserRequest(username, password1, name, surname, email);
-        userService.addUser(addUserRequest);
+        AddUserRequest addUserRequest = new AddUserRequest(username, password1, name, surname, email, new Long[]{1L});
+        addUserService.execute(addUserRequest);
         return "redirect:/admin/user/1";
     }
 }
