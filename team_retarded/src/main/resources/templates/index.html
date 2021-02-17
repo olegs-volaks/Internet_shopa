@@ -174,59 +174,67 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon2"><i
+                                    <span class="input-group-text" id="register-username"><i
                                             class="bi bi-person-check-fill"></i></span>
                                 </div>
                                 <input type="text" class="form-control" name="username" placeholder="username"
-                                       aria-label="Username" aria-describedby="basic-addon1">
+                                       aria-label="Username" aria-describedby="register-username-help">
                             </div>
+                            <small id="register-username-help" class="form-text text-muted">
+                                Your username must be 6-32 characters long
+                            </small>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon8"><i
+                                    <span class="input-group-text" id="register-name"><i
                                             class="bi bi-person-fill"></i></span>
                                 </div>
                                 <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name"
-                                       aria-describedby="basic-addon1">
+                                       aria-describedby="register-name">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon7"><i class="bi bi-person"></i></span>
+                                    <span class="input-group-text" id="register-surname"><i
+                                            class="bi bi-person"></i></span>
                                 </div>
                                 <input type="text" class="form-control" name="surname" placeholder="Surname"
-                                       aria-label="Surname" aria-describedby="basic-addon1">
+                                       aria-label="Surname" aria-describedby="register-surname">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon6">@</span>
+                                    <span class="input-group-text" id="register-email">@</span>
                                 </div>
                                 <input type="text" class="form-control" name="email" placeholder="Email"
-                                       aria-label="Email" aria-describedby="basic-addon1">
+                                       aria-label="Email" aria-describedby="register-email">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><i
+                                    <span class="input-group-text" id="register-password"><i
                                             class="bi bi-key-fill"></i></span>
                                 </div>
                                 <input type="password" class="form-control" name="password1" placeholder="Password"
-                                       aria-label="Password" aria-describedby="basic-addon1">
+                                       aria-label="Password" aria-describedby="register-password-help">
                             </div>
+                            <small id="register-password-help" class="form-text text-muted">
+                                Your password must be 6-32 characters long
+                            </small>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon9"><i class="bi bi-key"></i></span>
+                                    <span class="input-group-text" id="register-password2"><i
+                                            class="bi bi-key"></i></span>
                                 </div>
                                 <input type="password" class="form-control" name="password2"
                                        placeholder="Password repeat" aria-label="Password repeat"
-                                       aria-describedby="basic-addon1">
+                                       aria-describedby="register-password2">
                             </div>
                         </div>
 
@@ -252,6 +260,10 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <div class="modal-body">
+                    <p style="margin-left:auto; margin-right: auto; font-size: 100px; text-align: center; color: forestgreen;">
+                        <i class="bi bi-check-circle"></i></p>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
@@ -269,6 +281,10 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-left:auto; margin-right: auto; font-size: 100px; text-align: center; color: firebrick;">
+                        <i class="bi bi-x-circle"></i></i></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -1,4 +1,4 @@
-package eu.retarded.internetstore.web_ui.controllers;
+package eu.retarded.internetstore.web_ui.controllers.admin;
 
 import eu.retarded.internetstore.core.domain.User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

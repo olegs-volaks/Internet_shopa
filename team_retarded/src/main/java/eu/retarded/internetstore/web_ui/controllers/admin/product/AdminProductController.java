@@ -1,4 +1,4 @@
-package eu.retarded.internetstore.web_ui.controllers;
+package eu.retarded.internetstore.web_ui.controllers.admin.product;
 
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.AddProductRequest;
@@ -32,7 +32,7 @@ public class AdminProductController {
         modelMap.addAttribute("products", productPage);
         modelMap.addAttribute("total_pages", productPage.getTotalPages());
         modelMap.addAttribute("current_page", pageInt);
-        return "/admin/product";
+        return "/admin/product/index";
     }
 
     @GetMapping("/admin/product")

@@ -272,3 +272,32 @@ body {
     color: #eae2b7 !important;
     background-color: #003049 !important;
 }
+
+.admin-panel-box {
+    padding-top: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-edit {
+    border-color: #003049;
+    color: #003049;
+    border-radius: 0;
+    border-width: 3px;
+}
+
+.btn-edit:hover {
+    border-color: #003049;
+    background-color: #003049;
+    color: #eae2b7;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn-edit:active {
+    border-color: #003049 !important;
+    background-color: #003049 !important;
+    color: #eae2b7;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
