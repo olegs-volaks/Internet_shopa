@@ -32,6 +32,7 @@ public class UpdateProductService {
         resultProduct.setName(request.getName());
         resultProduct.setDescription(request.getDescription());
         resultProduct.setPrice(request.getPrice());
+        resultProduct.setStatus(1);
 
         return new UpdateProductResponse(productRepository.save(resultProduct));
     }

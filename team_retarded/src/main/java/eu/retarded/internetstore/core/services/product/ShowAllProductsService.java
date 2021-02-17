@@ -7,7 +7,6 @@ import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,7 +35,7 @@ public class ShowAllProductsService {
             return new ShowAllProductsResponse(errors, null);
         }
 
-        Page<Product> products = productRepository.findAll(PageRequest.of(0, 17));
+        Page<Product> products = productRepository.findAll(request.getPageable());
 
 
         return new ShowAllProductsResponse(null, products);

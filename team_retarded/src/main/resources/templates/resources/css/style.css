@@ -204,20 +204,6 @@ body {
     margin-right: 15px;
 }
 
-.button-toolbar {
-    border-color: #003049;
-    background-color: #003049;
-    border-radius: 0;
-    color: #eae2b7;
-}
-
-.button-toolbar:hover {
-    border-color: #003049;
-    background-color: #003049;
-    color: #f77f00;
-    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-
 .badge-light {
     color: #003049;
     background-color: #eae2b7;
@@ -276,4 +262,13 @@ body {
     background-color: #d62828 !important;
     color: #eae2b7;
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.page-item .page-link {
+    color: #003049 !important;
+}
+
+.page-item.active .page-link {
+    color: #eae2b7 !important;
+    background-color: #003049 !important;
 }

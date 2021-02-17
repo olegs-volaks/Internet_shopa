@@ -6,6 +6,7 @@ import eu.retarded.internetstore.core.requests.product.ShowAllProductsRequest;
 import eu.retarded.internetstore.core.services.product.ShowAllProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,7 +29,7 @@ public class MainController {
         if (isLogged) {
             isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
         }
-        Page<Product> products = showAllProductsService.execute(new ShowAllProductsRequest()).getProducts();
+        Page<Product> products = showAllProductsService.execute(new ShowAllProductsRequest(PageRequest.of(0, 20))).getProducts();
         modelMap.addAttribute("products", products);
         modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("logout", logout != null);
