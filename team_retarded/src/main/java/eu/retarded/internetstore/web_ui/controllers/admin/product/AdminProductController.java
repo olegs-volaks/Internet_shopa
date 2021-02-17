@@ -28,7 +28,7 @@ public class AdminProductController {
     public String productPage(@PathVariable String page, ModelMap modelMap) {
         int pageInt = Integer.parseInt(page);
         Page<Product> productPage = showAllProductsService.execute(new ShowAllProductsRequest(
-                PageRequest.of(pageInt - 1, 30))).getProducts();
+                PageRequest.of(pageInt - 1, 30))).getProductsPage();
         modelMap.addAttribute("products", productPage);
         modelMap.addAttribute("total_pages", productPage.getTotalPages());
         modelMap.addAttribute("current_page", pageInt);

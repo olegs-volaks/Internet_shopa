@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.util.List;
 import java.util.Set;
 
 
@@ -32,13 +33,17 @@ public class ShowAllProductsService {
     public ShowAllProductsResponse execute(ShowAllProductsRequest request) {
         Set<ConstraintViolation<ShowAllProductsRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            return new ShowAllProductsResponse(errors, null);
+            return new ShowAllProductsResponse(errors, (List<Product>) null);
         }
 
-        Page<Product> products = productRepository.findAll(request.getPageable());
 
-
-        return new ShowAllProductsResponse(null, products);
+        List<Product> products;
+        if (request.getPageable()==null){
+            products = productRepository.findAll();
+            return new ShowAllProductsResponse(null, products);
+        }
+        Page<Product> productsPage = productRepository.findAll(request.getPageable());
+        return new ShowAllProductsResponse(null, productsPage);
     }
 
 }
