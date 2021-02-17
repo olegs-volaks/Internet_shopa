@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Component
@@ -31,7 +32,8 @@ public class UpdateProductService {
         resultProduct.setId(request.getId());
         resultProduct.setName(request.getName());
         resultProduct.setDescription(request.getDescription());
-        resultProduct.setPrice(request.getPrice());
+        resultProduct.setPrice(BigDecimal.valueOf(request.getPrice()));
+        resultProduct.setCount(request.getCount());
         resultProduct.setStatus(1);
 
         return new UpdateProductResponse(productRepository.save(resultProduct));

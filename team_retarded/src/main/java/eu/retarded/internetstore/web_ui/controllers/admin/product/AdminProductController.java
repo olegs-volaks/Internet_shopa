@@ -1,4 +1,4 @@
-package eu.retarded.internetstore.web_ui.controllers;
+package eu.retarded.internetstore.web_ui.controllers.admin.product;
 
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.AddProductRequest;

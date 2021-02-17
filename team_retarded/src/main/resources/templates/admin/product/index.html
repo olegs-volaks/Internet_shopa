@@ -76,14 +76,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="products : ${products}">
-                    <th scope="row" th:text="${products.id}"></th>
-                    <td th:text="${products.name}"></td>
-                    <td th:text="${products.getShortDescription(30)}"></td>
-                    <td th:text="${products.price}"></td>
-                    <td th:text="${products.count}"></td>
-                    <td th:text="${products.status}"></td>
-                    <td>edit</td>
+                <tr th:each="product : ${products}">
+                    <th scope="row" th:text="${product.id}"></th>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.getShortDescription(30)}"></td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.count}"></td>
+                    <td th:text="${product.status}"></td>
+                    <td><a class="btn btn-edit" th:href="'edit/' + ${product.id}">Edit</a></td>
                 </tr>
                 </tbody>
             </table>
