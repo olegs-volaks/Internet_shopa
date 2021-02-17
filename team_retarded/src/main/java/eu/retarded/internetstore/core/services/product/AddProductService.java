@@ -27,6 +27,7 @@ public class AddProductService {
             return new AddProductResponse(errors);
         }
         Product product =new Product(request.getName(), request.getDescription(), request.getPrice(), request.getCount());
+        product.setStatus(1);
         return new AddProductResponse(productRepository.save(product));
     }
 }
