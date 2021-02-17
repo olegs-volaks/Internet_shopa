@@ -37,7 +37,7 @@ public class AdminProductController {
 
     @GetMapping("/admin/product")
     public String main(ModelMap modelMap) {
-        return "/admin/product/1";
+        return "redirect:/admin/product/1";
     }
 
     @PostMapping("/admin/product/add")
