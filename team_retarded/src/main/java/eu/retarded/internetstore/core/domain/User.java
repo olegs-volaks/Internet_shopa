@@ -44,6 +44,9 @@ public class User implements UserDetails {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "status")
+    private int status;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();

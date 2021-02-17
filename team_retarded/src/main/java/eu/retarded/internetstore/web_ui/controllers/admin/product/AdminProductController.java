@@ -6,6 +6,7 @@ import eu.retarded.internetstore.core.requests.product.ShowAllProductsRequest;
 import eu.retarded.internetstore.core.services.product.AddProductService;
 import eu.retarded.internetstore.core.services.product.ShowAllProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -24,11 +25,14 @@ public class AdminProductController {
     @Autowired
     private ShowAllProductsService showAllProductsService;
 
+    @Value("${admin.page-size}")
+    private int pageSize;
+
     @GetMapping("/admin/product/{page}")
     public String productPage(@PathVariable String page, ModelMap modelMap) {
         int pageInt = Integer.parseInt(page);
         Page<Product> productPage = showAllProductsService.execute(new ShowAllProductsRequest(
-                PageRequest.of(pageInt - 1, 30))).getProducts();
+                PageRequest.of(pageInt - 1, pageSize))).getProducts();
         modelMap.addAttribute("products", productPage);
         modelMap.addAttribute("total_pages", productPage.getTotalPages());
         modelMap.addAttribute("current_page", pageInt);

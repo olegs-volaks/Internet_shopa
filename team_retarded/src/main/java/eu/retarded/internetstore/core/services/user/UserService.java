@@ -6,6 +6,7 @@ import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
 import eu.retarded.internetstore.core.requests.user.AddUserRequest;
 import eu.retarded.internetstore.core.requests.user.DeleteUserRequest;
 import eu.retarded.internetstore.core.requests.user.GetUserByIdRequest;
+import eu.retarded.internetstore.core.requests.user.GetUsersListRequest;
 import eu.retarded.internetstore.core.responses.user.AddUserResponse;
 import eu.retarded.internetstore.core.responses.user.DeleteUserResponse;
 import eu.retarded.internetstore.core.responses.user.GetUserByIdResponse;
@@ -70,6 +71,7 @@ public class UserService implements UserDetailsService {
         user.setEmail(request.getEmail());
         user.setRoles(Collections.singleton(roleRepository.getOne(1L)));
         user.setCart(cart);
+        user.setStatus(1);
         return new AddUserResponse(userRepository.save(user));
     }
 
@@ -81,8 +83,8 @@ public class UserService implements UserDetailsService {
         return new GetUserByIdResponse(userRepository.findById(request.getUserId()).get());
     }
 
-    public GetUsersListResponse getUsersList() {
-        return new GetUsersListResponse(null, userRepository.findAll());
+    public GetUsersListResponse getUsersList(GetUsersListRequest request) {
+        return new GetUsersListResponse(null, userRepository.findAll(request.getPageable()));
     }
 
     public DeleteUserResponse deleteUser(DeleteUserRequest request) {
