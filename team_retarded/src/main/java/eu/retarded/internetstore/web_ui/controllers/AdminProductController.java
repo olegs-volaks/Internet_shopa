@@ -32,7 +32,7 @@ public class AdminProductController {
         modelMap.addAttribute("products", productPage);
         modelMap.addAttribute("total_pages", productPage.getTotalPages());
         modelMap.addAttribute("current_page", pageInt);
-        return "/admin/product";
+        return "/admin/product/index";
     }
 
     @GetMapping("/admin/product")
