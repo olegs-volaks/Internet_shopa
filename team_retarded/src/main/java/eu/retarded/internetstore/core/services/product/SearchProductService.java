@@ -35,14 +35,14 @@ public class SearchProductService {
     public SearchProductResponse execute(SearchProductRequest request) {
         Set<ConstraintViolation<SearchProductRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            return new SearchProductResponse(errors, (Page<Product>) null);
+            return new SearchProductResponse(errors, null,null);
         }
         List<Product> products;
         if (request.getPageable()==null){
              products = productRepository.findByNameContaining(request.getKeyWord());
-            return new SearchProductResponse(null, products);
+            return new SearchProductResponse(null,null, products);
         }
         Page <Product> productsPage = productRepository.findByNameContaining(request.getKeyWord(), request.getPageable());
-        return new SearchProductResponse(null, productsPage);
+        return new SearchProductResponse(null, productsPage, null);
     }
 }

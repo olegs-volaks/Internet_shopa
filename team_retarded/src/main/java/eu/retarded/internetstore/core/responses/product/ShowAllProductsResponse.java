@@ -14,15 +14,13 @@ public class ShowAllProductsResponse extends CoreResponse<ShowAllProductsRequest
     private Page<Product> productsPage;
     private List<Product> productsList;
 
-    public ShowAllProductsResponse(Set<ConstraintViolation<ShowAllProductsRequest>> errors, Page <Product> products) {
+    public ShowAllProductsResponse(Set<ConstraintViolation<ShowAllProductsRequest>> errors, Page <Product> productsPage,
+                                   List<Product> productsList) {
         super(errors);
-        this.productsPage = products;
+        this.productsPage = productsPage;
+        this.productsList = productsList;
     }
 
-    public ShowAllProductsResponse(Set<ConstraintViolation<ShowAllProductsRequest>> errors, List <Product> products) {
-        super(errors);
-        this.productsList = products;
-    }
 
     public Page<Product> getProductsPage() {
         return productsPage;

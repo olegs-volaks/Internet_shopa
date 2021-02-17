@@ -14,9 +14,11 @@ public class SearchProductResponse extends CoreResponse<SearchProductRequest> {
     private Page<Product> productsPage;
     private List<Product> productsList;
 
-    public SearchProductResponse(Set<ConstraintViolation<SearchProductRequest>> errors, Page<Product> products) {
+    public SearchProductResponse(Set<ConstraintViolation<SearchProductRequest>> errors, Page<Product> productsPage,
+                                 List<Product> productsList) {
         super(errors);
-        this.productsPage = products;
+        this.productsPage = productsPage;
+        this.productsList = productsList;
     }
 
     public Page<Product> getPageOfProducts() {
