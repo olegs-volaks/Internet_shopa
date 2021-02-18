@@ -6,18 +6,28 @@ import eu.retarded.internetstore.core.responses.CoreResponse;
 import org.springframework.data.domain.Page;
 
 import javax.validation.ConstraintViolation;
+import java.util.List;
 import java.util.Set;
 
 public class SearchProductResponse extends CoreResponse<SearchProductRequest> {
 
-    private Page<Product> products;
+    private Page<Product> productsPage;
+    private List<Product> productsList;
 
-    public SearchProductResponse(Set<ConstraintViolation<SearchProductRequest>> errors, Page<Product> products) {
+    public SearchProductResponse(Set<ConstraintViolation<SearchProductRequest>> errors) {
         super(errors);
-        this.products = products;
     }
 
-    public Page<Product> getPageOfProducts() {
-        return products;
+    public SearchProductResponse(Page<Product> productsPage, List<Product> productsList) {
+
+        this.productsPage = productsPage;
+        this.productsList = productsList;
+    }
+
+    public Page<Product> getProductsPage() {
+        return productsPage;
+    }
+    public List<Product> getProductsList() {
+        return productsList;
     }
 }

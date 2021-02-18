@@ -6,18 +6,27 @@ import eu.retarded.internetstore.core.responses.CoreResponse;
 import org.springframework.data.domain.Page;
 
 import javax.validation.ConstraintViolation;
+import java.util.List;
 import java.util.Set;
 
 public class GetDeliveryListResponse extends CoreResponse<GetDeliveryListRequest> {
 
-    private final Page <Delivery> deliveries;
+    private Page <Delivery> deliveriesPage;
+    private List<Delivery> deliveriesList;
 
-    public GetDeliveryListResponse(Set<ConstraintViolation<GetDeliveryListRequest>> errors, Page <Delivery> deliveries) {
+    public GetDeliveryListResponse(Set<ConstraintViolation<GetDeliveryListRequest>> errors) {
         super(errors);
-        this.deliveries = deliveries;
     }
 
-    public Page <Delivery> getDeliveries() {
-        return deliveries;
+    public GetDeliveryListResponse(Page <Delivery> deliveriesPage, List<Delivery> deliveriesList) {
+        this.deliveriesPage = deliveriesPage;
+        this.deliveriesList = deliveriesList;
+    }
+
+    public Page <Delivery> getDeliveriesPage() {
+        return deliveriesPage;
+    }
+    public List <Delivery> getDeliveriesList() {
+        return deliveriesList;
     }
 }
