@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 @Getter
 @RequiredArgsConstructor
-public class GetUsersListRequest {
+public class GetUserListRequest {
 
-    private Pageable pageable;
+    private final Pageable pageable;
 }

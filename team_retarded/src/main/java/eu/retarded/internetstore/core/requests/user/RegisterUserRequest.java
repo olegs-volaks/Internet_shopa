@@ -6,12 +6,10 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Getter
 @RequiredArgsConstructor
-public class AddUserRequest {
+public class RegisterUserRequest {
 
     @NotBlank(message = "Login must not be empty!")
     @Length(min = 6, max = 32, message = "Username must be between 6 and 32 characters")
@@ -32,8 +30,4 @@ public class AddUserRequest {
     @NotBlank(message = "Email must not be empty!")
     @Email(message = "Incorrect email format!")
     private final String email;
-
-    @NotNull(message = "User must have at least one role")
-    @Size(min = 1, message = "User must have at least one role")
-    private final Long[] rolesId;
 }
