@@ -7,8 +7,4 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class AddCartRequest {
-    private final Long userId;
-
-
-
 }
