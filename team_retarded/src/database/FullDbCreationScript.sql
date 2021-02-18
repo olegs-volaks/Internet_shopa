@@ -118,6 +118,7 @@ CREATE TABLE IF NOT EXISTS products_in_cart
     id         BIGINT NOT NULL AUTO_INCREMENT,
     product_id BIGINT,
     cart_id    BIGINT,
+    count      INT DEFAULT 0,
     PRIMARY KEY (id),
     FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
     FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`)
@@ -238,6 +239,7 @@ CREATE TABLE IF NOT EXISTS products_in_cart
     id         BIGINT NOT NULL AUTO_INCREMENT,
     product_id BIGINT,
     cart_id    BIGINT,
+    count      INT DEFAULT 0,
     PRIMARY KEY (id),
     FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
     FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`)
