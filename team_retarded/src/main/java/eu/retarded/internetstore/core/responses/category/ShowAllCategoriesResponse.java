@@ -11,12 +11,14 @@ import java.util.Set;
 
 public class ShowAllCategoriesResponse extends CoreResponse<ShowAllCategoriesRequest> {
 
-    private final Page <Category> categoriesPage;
-    private final List <Category> categoriesList;
+    private  Page <Category> categoriesPage;
+    private  List <Category> categoriesList;
 
-    public ShowAllCategoriesResponse(Set<ConstraintViolation<ShowAllCategoriesRequest>> errors,
-                                             Page<Category> categoriesPage, List<Category> categoriesList) {
+    public ShowAllCategoriesResponse(Set<ConstraintViolation<ShowAllCategoriesRequest>> errors) {
         super(errors);
+    }
+
+    public ShowAllCategoriesResponse(Page<Category> categoriesPage, List<Category> categoriesList) {
         this.categoriesPage = categoriesPage;
         this.categoriesList = categoriesList;
     }

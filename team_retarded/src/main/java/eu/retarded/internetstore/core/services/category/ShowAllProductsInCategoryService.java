@@ -5,6 +5,7 @@ import eu.retarded.internetstore.core.requests.category.ShowAllProductsInCategor
 import eu.retarded.internetstore.core.responses.category.ShowAllProductsInCategoryResponse;
 import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,15 +25,15 @@ public class ShowAllProductsInCategoryService {
     public ShowAllProductsInCategoryResponse execute(ShowAllProductsInCategoryRequest request) {
         Set<ConstraintViolation<ShowAllProductsInCategoryRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            return new ShowAllProductsInCategoryResponse(errors, null, null);
+            return new ShowAllProductsInCategoryResponse(errors);
         }
         List<Product> products;
         if (request.getPageable()==null){
             products = productRepository.findAll();
-            return new ShowAllProductsInCategoryResponse(null, null, products);
+            return new ShowAllProductsInCategoryResponse(null, products);
         }
-
-        return new ShowAllProductsInCategoryResponse(null,
-                productRepository.findAllByCategory_Id(request.getCategoryId(), request.getPageable()), null);
+        Page<Product> productPage=productRepository.findAllByCategory_Id(request.getCategoryId(),
+                request.getPageable());
+        return new ShowAllProductsInCategoryResponse(productPage,productPage.toList() );
     }
 }

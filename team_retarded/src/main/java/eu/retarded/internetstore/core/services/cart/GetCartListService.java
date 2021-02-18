@@ -27,16 +27,16 @@ public class GetCartListService {
     public GetCartListResponse execute(GetCartListRequest request) {
         Set<ConstraintViolation<GetCartListRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            return new GetCartListResponse(errors, null, null);
+            return new GetCartListResponse(errors);
         }
 
 
         List<Cart> carts;
         if (request.getPageable()==null){
             carts = cartRepository.findAll();
-            return new GetCartListResponse(null, null, carts);
+            return new GetCartListResponse(null,carts);
         }
         Page<Cart> cartsPage = cartRepository.findAll(request.getPageable());
-        return new GetCartListResponse(null, cartsPage, null);
+        return new GetCartListResponse(cartsPage, cartsPage.toList());
     }
 }

@@ -15,9 +15,11 @@ public class GetCartListResponse extends CoreResponse<GetCartListRequest> {
     private List<Cart> cartList;
 
 
-    public GetCartListResponse(Set<ConstraintViolation<GetCartListRequest>> errors, Page<Cart> cartPage,
-                               List<Cart> cartList) {
+    public GetCartListResponse(Set<ConstraintViolation<GetCartListRequest>> errors) {
         super(errors);
+    }
+
+    public GetCartListResponse( Page<Cart> cartPage, List<Cart> cartList) {
         this.cartPage = cartPage;
         this.cartList = cartList;
     }

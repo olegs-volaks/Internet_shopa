@@ -24,14 +24,15 @@ public class ShowAllCategoriesService {
     public ShowAllCategoriesResponse execute(ShowAllCategoriesRequest request) {
         Set<ConstraintViolation<ShowAllCategoriesRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            return new ShowAllCategoriesResponse(errors, null, null);
+            return new ShowAllCategoriesResponse(errors);
         }
         List <Category> categories ;
         if (request.getPageable()==null){
             categories = categoryRepository.findAll();
-            return new ShowAllCategoriesResponse(null, null, categories);
+            return new ShowAllCategoriesResponse(null, categories);
         }
-        return new ShowAllCategoriesResponse(null, categoryRepository.findAll(request.getPageable()),null);
+        return new ShowAllCategoriesResponse(categoryRepository.findAll(request.getPageable()),
+                categoryRepository.findAll(request.getPageable()).toList());
     }
 }
 

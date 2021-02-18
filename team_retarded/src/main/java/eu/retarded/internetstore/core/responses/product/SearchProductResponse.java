@@ -14,22 +14,20 @@ public class SearchProductResponse extends CoreResponse<SearchProductRequest> {
     private Page<Product> productsPage;
     private List<Product> productsList;
 
-    public SearchProductResponse(Set<ConstraintViolation<SearchProductRequest>> errors, Page<Product> productsPage,
-                                 List<Product> productsList) {
+    public SearchProductResponse(Set<ConstraintViolation<SearchProductRequest>> errors) {
         super(errors);
+    }
+
+    public SearchProductResponse(Page<Product> productsPage, List<Product> productsList) {
+
         this.productsPage = productsPage;
         this.productsList = productsList;
     }
 
-    public Page<Product> getPageOfProducts() {
+    public Page<Product> getProductsPage() {
         return productsPage;
     }
-    public SearchProductResponse(Set<ConstraintViolation<SearchProductRequest>> errors, List<Product> products) {
-        super(errors);
-        this.productsList = products;
-    }
-
-    public List<Product> getListOfProducts() {
+    public List<Product> getProductsList() {
         return productsList;
     }
 }

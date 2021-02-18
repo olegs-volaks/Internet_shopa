@@ -33,17 +33,17 @@ public class ShowAllProductsService {
     public ShowAllProductsResponse execute(ShowAllProductsRequest request) {
         Set<ConstraintViolation<ShowAllProductsRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            return new ShowAllProductsResponse(errors, null, null);
+            return new ShowAllProductsResponse(errors);
         }
 
 
         List<Product> products;
         if (request.getPageable()==null){
             products = productRepository.findAll();
-            return new ShowAllProductsResponse(null, null, products);
+            return new ShowAllProductsResponse( null, products);
         }
         Page<Product> productsPage = productRepository.findAll(request.getPageable());
-        return new ShowAllProductsResponse(null, productsPage, null);
+        return new ShowAllProductsResponse( productsPage, productsPage.toList());
     }
 
 }
