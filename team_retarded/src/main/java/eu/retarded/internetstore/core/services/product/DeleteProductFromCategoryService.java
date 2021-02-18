@@ -1,29 +1,38 @@
 package eu.retarded.internetstore.core.services.product;
 
+import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.DeleteProductFromCategoryRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.DeleteProductFromCategoryResponse;
-import eu.retarded.internetstore.core.services.validators.product.DeleteProductFromCategoryValidator;
-import eu.retarded.internetstore.database.product.ProductDatabase;
+import eu.retarded.internetstore.database.CategoryRepository;
+import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Component
 public class DeleteProductFromCategoryService {
     @Autowired
-    private ProductDatabase productDatabase;
+    private ProductRepository productRepository;
     @Autowired
-    private DeleteProductFromCategoryValidator validator;
+    private CategoryRepository categoryRepository;
+    @Autowired
+    private Validator validator;
 
     @Transactional
     public DeleteProductFromCategoryResponse execute(DeleteProductFromCategoryRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<DeleteProductFromCategoryRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new DeleteProductFromCategoryResponse(errors);
         }
-        return new DeleteProductFromCategoryResponse(productDatabase.removeProductFromCategory(request.getProductId()));
+
+        Product resultProduct =  productRepository.getOne(request.getProductId());
+        resultProduct.setCategory(null);
+        productRepository.save(resultProduct);
+
+        return new DeleteProductFromCategoryResponse(productRepository.getOne(request.getProductId()).equals(resultProduct));
     }
 }

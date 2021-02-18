@@ -8,13 +8,15 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.23'
     implementation 'org.apache.commons:commons-dbcp2:2.8.0'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.4.2'
-    implementation 'org.springframework.security:spring-security-crypto:5.4.2'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.4.2'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:2.4.2'
     implementation 'org.springframework.boot:spring-boot-starter-web:2.4.2'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:2.4.2'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.4.2'
+    implementation 'org.springframework.boot:spring-boot-starter-security:2.4.2'
+    implementation 'org.springframework.security:spring-security-test:5.4.4'
 
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter', version: '5.7.0'
     testCompile("org.assertj:assertj-core:3.18.1")

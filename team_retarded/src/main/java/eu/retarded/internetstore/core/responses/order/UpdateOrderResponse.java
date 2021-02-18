@@ -1,24 +1,26 @@
 package eu.retarded.internetstore.core.responses.order;
 
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.domain.Order;
+import eu.retarded.internetstore.core.requests.order.UpdateOrderRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public class UpdateOrderResponse extends CoreResponse {
+public class UpdateOrderResponse extends CoreResponse<UpdateOrderRequest> {
 
-   private Long orderId;
+    private Order order;
 
-   public Long getOrderId() {
-      return orderId;
-   }
+    public Order getOrder() {
+        return order;
+    }
 
-   public UpdateOrderResponse(Long orderId) {
-      this.orderId = orderId;
-   }
+    public UpdateOrderResponse(Order order) {
+        this.order = order;
+    }
 
-   public UpdateOrderResponse(List<CoreError> errors) {
-      super(errors);
-   }
+    public UpdateOrderResponse(Set<ConstraintViolation<UpdateOrderRequest>> errors) {
+        super(errors);
+    }
 }
 

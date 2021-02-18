@@ -1,23 +1,25 @@
 package eu.retarded.internetstore.core.responses.cart;
 
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.requests.cart.DeleteCartRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public class DeleteCartResponse extends CoreResponse {
+public class DeleteCartResponse extends CoreResponse<DeleteCartRequest> {
 
-    private boolean isCartDeleted;
+    private boolean isDelete;
 
-    public DeleteCartResponse(boolean isCartDeleted) {
-        this.isCartDeleted = isCartDeleted;
+    public DeleteCartResponse(boolean isDelete) {
+        this.isDelete = isDelete;
     }
 
-    public DeleteCartResponse(List<CoreError> errors) {
+    public DeleteCartResponse(Set<ConstraintViolation<DeleteCartRequest>> errors) {
         super(errors);
     }
 
-    public boolean isCartDeleted() {
-        return isCartDeleted;
+
+    public boolean isDelete() {
+        return isDelete;
     }
 }

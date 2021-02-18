@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 public class Order {
 
 
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,26 +27,32 @@ public class Order {
     private String address;
 
     @OneToOne
-    @JoinColumn (name = "cart_id")
+    @JoinColumn(name = "cart_id")
     private Cart cart;
 
     @ManyToOne
-    @JoinColumn (name = "delivery_id")
+    @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
     @ManyToOne
-    @JoinColumn (name = "user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "total_price")
     private BigDecimal totalPrice;
 
-    @Column(name = "status")
-    private int status;
+    public Order(String name, String surname, String address, Cart cart, Delivery delivery, User user,
+                 BigDecimal totalPrice) {
+        this.name = name;
+        this.surname = surname;
+        this.address = address;
+        this.cart = cart;
+        this.delivery = delivery;
+        this.user = user;
+        this.totalPrice = totalPrice;
+    }
 
-
-
-
-
+    public Order() {
+    }
 
 }

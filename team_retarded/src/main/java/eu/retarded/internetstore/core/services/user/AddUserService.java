@@ -1,43 +1,62 @@
 package eu.retarded.internetstore.core.services.user;
 
+import eu.retarded.internetstore.core.domain.Cart;
+import eu.retarded.internetstore.core.domain.Role;
 import eu.retarded.internetstore.core.domain.User;
+import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
 import eu.retarded.internetstore.core.requests.user.AddUserRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.user.AddUserResponse;
-import eu.retarded.internetstore.core.services.validators.user.AddUserValidator;
-import eu.retarded.internetstore.database.user.UsersDatabase;
+import eu.retarded.internetstore.core.services.cart.AddCartService;
+import eu.retarded.internetstore.database.RoleRepository;
+import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-@Component
+@Service
 public class AddUserService {
 
     @Autowired
-    private UsersDatabase db;
+    private UserRepository userRepository;
 
     @Autowired
-    private AddUserValidator validator;
+    private RoleRepository roleRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private PasswordEncoder encoder;
 
-    @Transactional
+    @Autowired
+    private Validator validator;
+
+    @Autowired
+    private AddCartService addCartService;
+
     public AddUserResponse execute(AddUserRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<AddUserRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new AddUserResponse(errors);
         }
+        if (userRepository.existsByUserName(request.getUserName())) {
+            return new AddUserResponse(errors);
+        }
+        Cart cart = addCartService.execute(new AddCartRequest()).getCart();
         User user = new User();
-        user.setLogin(request.getLogin());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRole(request.getRole());
+        user.setUserName(request.getUserName());
+        user.setPassword(encoder.encode(request.getPassword()));
         user.setName(request.getName());
         user.setSurname(request.getSurname());
         user.setEmail(request.getEmail());
-        return new AddUserResponse(db.add(user));
+        List<Role> roleList = roleRepository.findAllById(Arrays.asList(request.getRolesId()));
+        user.setRoles(new HashSet<>(roleList));
+        user.setCart(cart);
+        user.setStatus(1);
+        return new AddUserResponse(userRepository.save(user));
     }
 }

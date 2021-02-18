@@ -1,30 +1,31 @@
 package eu.retarded.internetstore.core.services.category;
 
 import eu.retarded.internetstore.core.requests.category.DeleteCategoryRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.category.DeleteCategoryResponse;
-import eu.retarded.internetstore.core.services.validators.category.DeleteCategoryValidator;
-import eu.retarded.internetstore.database.category.CategoriesDatabase;
+import eu.retarded.internetstore.database.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Component
 public class DeleteCategoryService {
 
     @Autowired
-    private CategoriesDatabase database;
+    private CategoryRepository categoryRepository;
     @Autowired
-    private DeleteCategoryValidator validator;
+    private Validator validator;
 
     @Transactional
     public DeleteCategoryResponse execute(DeleteCategoryRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<DeleteCategoryRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new DeleteCategoryResponse(errors);
         }
-        return new DeleteCategoryResponse(database.removeCategory(request.getCategoryId()));
+        categoryRepository.deleteById(request.getCategoryId());
+        return new DeleteCategoryResponse(!categoryRepository.existsById(request.getCategoryId()));
     }
 }

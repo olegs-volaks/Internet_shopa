@@ -1,29 +1,30 @@
 package eu.retarded.internetstore.core.services.delivery;
 
 import eu.retarded.internetstore.core.requests.delivery.DeleteDeliveryRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.delivery.DeleteDeliveryResponse;
-import eu.retarded.internetstore.core.services.validators.delivery.DeleteDeliveryValidator;
-import eu.retarded.internetstore.database.delivery.DeliveryDatabase;
+import eu.retarded.internetstore.database.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Component
 public class DeleteDeliveryService {
 
+    @Autowired
+    private DeliveryRepository deliveryRepository;
 
     @Autowired
-    DeliveryDatabase deliveryDatabase;
-    @Autowired
-    DeleteDeliveryValidator validator;
+    private Validator validator;
 
     public DeleteDeliveryResponse execute(DeleteDeliveryRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<DeleteDeliveryRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new DeleteDeliveryResponse(errors);
         }
-        return new DeleteDeliveryResponse(deliveryDatabase.delete(request.getDeleteDeliveryId()));
+        deliveryRepository.deleteById(request.getDeleteDeliveryId());
+        return new DeleteDeliveryResponse(!deliveryRepository.existsById(request.getDeleteDeliveryId()));
     }
 }

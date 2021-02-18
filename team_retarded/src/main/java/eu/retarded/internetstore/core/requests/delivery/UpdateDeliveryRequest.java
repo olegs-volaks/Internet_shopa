@@ -3,8 +3,6 @@ package eu.retarded.internetstore.core.requests.delivery;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Getter
 @RequiredArgsConstructor
 public class UpdateDeliveryRequest {

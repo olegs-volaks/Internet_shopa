@@ -1,23 +1,26 @@
 package eu.retarded.internetstore.core.responses.cart;
 
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.domain.Cart;
+import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public class AddCartResponse  extends CoreResponse {
+public class AddCartResponse extends CoreResponse<AddCartRequest> {
 
-    private Long id;
+    private Cart cart;
 
-    public AddCartResponse(Long id) {
-        this.id = id;
+    public AddCartResponse(Cart cart) {
+        this.cart = cart;
     }
 
-    public AddCartResponse(List<CoreError> errors) {
+    public AddCartResponse(Set<ConstraintViolation<AddCartRequest>> errors) {
         super(errors);
     }
 
-    public Long getId() {
-        return id;
+
+    public Cart getCart() {
+        return cart;
     }
 }

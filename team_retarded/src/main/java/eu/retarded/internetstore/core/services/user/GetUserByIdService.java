@@ -1,31 +1,29 @@
 package eu.retarded.internetstore.core.services.user;
 
 import eu.retarded.internetstore.core.requests.user.GetUserByIdRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.user.GetUserByIdResponse;
-import eu.retarded.internetstore.core.services.validators.user.GetUserByIdValidator;
-import eu.retarded.internetstore.database.user.UsersDatabase;
+import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
 
-@Component
+@Service
 public class GetUserByIdService {
 
     @Autowired
-    private UsersDatabase usersDatabase;
+    private UserRepository userRepository;
 
     @Autowired
-    private GetUserByIdValidator validator;
+    private Validator validator;
 
-    @Transactional
     public GetUserByIdResponse execute(GetUserByIdRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<GetUserByIdRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new GetUserByIdResponse(errors);
         }
-        return new GetUserByIdResponse(usersDatabase.getUserById(request.getUserId()).get());
+        return new GetUserByIdResponse(userRepository.getOne(request.getUserId()));
     }
 }

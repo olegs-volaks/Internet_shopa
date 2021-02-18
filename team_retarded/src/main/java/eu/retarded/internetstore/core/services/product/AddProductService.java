@@ -2,30 +2,32 @@ package eu.retarded.internetstore.core.services.product;
 
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.AddProductRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.AddProductResponse;
-import eu.retarded.internetstore.core.services.validators.product.AddProductValidator;
-import eu.retarded.internetstore.database.product.ProductDatabase;
+import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Component
 public class AddProductService {
 
     @Autowired
-    private ProductDatabase db;
+    private ProductRepository productRepository;
     @Autowired
-    private AddProductValidator validator;
+    private Validator validator;
 
     @Transactional
     public AddProductResponse execute(AddProductRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<AddProductRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new AddProductResponse(errors);
         }
-        return new AddProductResponse(db.add(new Product(request.getName(), request.getDescription(), request.getPrice())));
+        Product product =new Product(request.getName(), request.getDescription(), request.getPrice(), request.getCount());
+        product.setStatus(1);
+        return new AddProductResponse(productRepository.save(product));
     }
 }

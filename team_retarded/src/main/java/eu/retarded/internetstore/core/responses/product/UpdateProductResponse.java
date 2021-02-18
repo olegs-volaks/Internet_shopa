@@ -1,22 +1,25 @@
 package eu.retarded.internetstore.core.responses.product;
 
-import eu.retarded.internetstore.core.responses.CoreError;
+import eu.retarded.internetstore.core.domain.Product;
+import eu.retarded.internetstore.core.requests.product.UpdateProductRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import java.util.Set;
 
-public class UpdateProductResponse extends CoreResponse {
-    private Long productId;
+public class UpdateProductResponse extends CoreResponse<UpdateProductRequest> {
 
-    public Long getProductId() {
-        return productId;
+    private Product product;
+
+    public Product getProduct() {
+        return product;
     }
 
-    public UpdateProductResponse(List<CoreError> errors) {
+    public UpdateProductResponse(Set<ConstraintViolation<UpdateProductRequest>> errors) {
         super(errors);
     }
 
-    public UpdateProductResponse(Long productId) {
-        this.productId = productId;
+    public UpdateProductResponse(Product product) {
+        this.product = product;
     }
 }

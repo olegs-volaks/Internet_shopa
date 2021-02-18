@@ -2,30 +2,31 @@ package eu.retarded.internetstore.core.services.category;
 
 import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.core.requests.category.AddCategoryRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.category.AddCategoryResponse;
-import eu.retarded.internetstore.core.services.validators.category.AddCategoryValidator;
-import eu.retarded.internetstore.database.category.CategoriesDatabase;
+import eu.retarded.internetstore.database.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.util.Set;
 
 @Component
 public class AddCategoryService {
 
     @Autowired
-    private CategoriesDatabase database;
+    private CategoryRepository categoryRepository;
     @Autowired
-    private AddCategoryValidator validator;
+    private Validator validator;
 
     @Transactional
     public AddCategoryResponse execute(AddCategoryRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<AddCategoryRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new AddCategoryResponse(errors);
         }
-        return new AddCategoryResponse(database.addCategory(new Category(request.getName())));
+        Category category= new Category(request.getName());
+        return new AddCategoryResponse(categoryRepository.save(category));
     }
 }

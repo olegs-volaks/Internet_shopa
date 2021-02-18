@@ -2,36 +2,50 @@ package eu.retarded.internetstore.core.services.order;
 
 import eu.retarded.internetstore.core.domain.Order;
 import eu.retarded.internetstore.core.requests.order.UpdateOrderRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.order.UpdateOrderResponse;
-import eu.retarded.internetstore.core.services.validators.order.UpdateOrderValidator;
-import eu.retarded.internetstore.database.order.OrderDatabase;
+import eu.retarded.internetstore.database.CartRepository;
+import eu.retarded.internetstore.database.DeliveryRepository;
+import eu.retarded.internetstore.database.OrderRepository;
+import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Set;
 
 @Component
 public class UpdateOrderService {
 
     @Autowired
-    private OrderDatabase orderDatabase;
+    private OrderRepository orderRepository;
     @Autowired
-    private UpdateOrderValidator validator;
+    private CartRepository cartRepository;
+    @Autowired
+    private DeliveryRepository deliveryRepository;
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private Validator validator;
 
 
     public UpdateOrderResponse execute(UpdateOrderRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<UpdateOrderRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new UpdateOrderResponse(errors);
         }
 
-        Order resultOrder =  new Order();
+        Order resultOrder = new Order();
+        resultOrder.setId(request.getId());
         resultOrder.setName(request.getName());
         resultOrder.setSurname(request.getSurname());
         resultOrder.setTotalPrice(BigDecimal.valueOf(request.getTotalPrice()));
-        orderDatabase.updateOrder(resultOrder);
-        return new UpdateOrderResponse(request.getId());
+        resultOrder.setCart(cartRepository.getOne(request.getCartId()));
+        resultOrder.setDelivery(deliveryRepository.getOne(request.getDeliveryId()));
+        resultOrder.setUser(userRepository.getOne(request.getUserId()));
+        orderRepository.save(resultOrder);
+        return new UpdateOrderResponse(resultOrder);
     }
 }

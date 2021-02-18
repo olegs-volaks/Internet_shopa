@@ -2,40 +2,40 @@ package eu.retarded.internetstore.core.services.product;
 
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.UpdateProductRequest;
-import eu.retarded.internetstore.core.responses.CoreError;
 import eu.retarded.internetstore.core.responses.product.UpdateProductResponse;
-import eu.retarded.internetstore.core.services.validators.product.UpdateProductValidator;
-import eu.retarded.internetstore.database.product.ProductDatabase;
+import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validator;
+import java.math.BigDecimal;
+import java.util.Set;
 
 @Component
 public class UpdateProductService {
     @Autowired
-    private ProductDatabase productDatabase;
+    private ProductRepository productRepository;
 
     @Autowired
-    private UpdateProductValidator validator;
+    private Validator validator;
 
     @Transactional
     public UpdateProductResponse execute(UpdateProductRequest request) {
-        List<CoreError> errors = validator.validate(request);
+        Set<ConstraintViolation<UpdateProductRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new UpdateProductResponse(errors);
         }
-        long id = request.getId();
 
-        Product resultProduct = new Product();
-
-        resultProduct.setId(id);
+        Product resultProduct = productRepository.getOne(request.getId());
+        resultProduct.setId(request.getId());
         resultProduct.setName(request.getName());
         resultProduct.setDescription(request.getDescription());
-        resultProduct.setPrice(request.getPrice());
+        resultProduct.setPrice(BigDecimal.valueOf(request.getPrice()));
+        resultProduct.setCount(request.getCount());
+        resultProduct.setStatus(1);
 
-        productDatabase.updateProduct(resultProduct);
-        return new UpdateProductResponse(id);
+        return new UpdateProductResponse(productRepository.save(resultProduct));
     }
 }
