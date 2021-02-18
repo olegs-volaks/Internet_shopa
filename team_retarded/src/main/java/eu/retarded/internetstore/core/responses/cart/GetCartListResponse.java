@@ -6,19 +6,26 @@ import eu.retarded.internetstore.core.responses.CoreResponse;
 import org.springframework.data.domain.Page;
 
 import javax.validation.ConstraintViolation;
+import java.util.List;
 import java.util.Set;
 
 public class GetCartListResponse extends CoreResponse<GetCartListRequest> {
 
-    private Page<Cart> cartList;
+    private Page<Cart> cartPage;
+    private List<Cart> cartList;
 
 
-    public GetCartListResponse(Set<ConstraintViolation<GetCartListRequest>> errors, Page<Cart> cartList) {
+    public GetCartListResponse(Set<ConstraintViolation<GetCartListRequest>> errors, Page<Cart> cartPage,
+                               List<Cart> cartList) {
         super(errors);
+        this.cartPage = cartPage;
         this.cartList = cartList;
     }
 
-    public Page<Cart> getCartList() {
+    public Page<Cart> getCartPage() {
+        return cartPage;
+    }
+    public List<Cart> getCartList() {
         return cartList;
     }
 }
