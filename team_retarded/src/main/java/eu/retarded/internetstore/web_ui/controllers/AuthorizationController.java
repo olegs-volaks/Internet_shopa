@@ -37,13 +37,17 @@ public class AuthorizationController {
         }
         Page<Product> productPage = showAllProductsService.execute(new ShowAllProductsRequest(
                 PageRequest.of(0, pageSize))).getProductsPage();
+        int totalPages = productPage.getTotalPages();
+        if (totalPages < 1) {
+            totalPages = 1;
+        }
         modelMap.addAttribute("products", productPage);
         modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("logout", logout != null);
         modelMap.addAttribute("active_user", activeUser);
         modelMap.addAttribute("is_logged", isLogged);
         modelMap.addAttribute("is_admin", isActiveUserAdmin);
-        modelMap.addAttribute("total_pages", productPage.getTotalPages());
+        modelMap.addAttribute("total_pages", totalPages);
         modelMap.addAttribute("current_page", 1);
         modelMap.addAttribute("product_in_cart", productInCart);
         return "index";

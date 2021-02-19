@@ -29,7 +29,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().loginPage("/authorization").permitAll().defaultSuccessUrl("/")
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll().logoutSuccessUrl("/authorization");
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
     }
 
     @Override

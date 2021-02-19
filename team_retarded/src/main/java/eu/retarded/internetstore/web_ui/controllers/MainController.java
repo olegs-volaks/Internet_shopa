@@ -24,7 +24,7 @@ public class MainController {
     @Value("${product.page-size}")
     private int pageSize;
 
-    @GetMapping(value = "/{page}")
+    @GetMapping(value = "/page/{page}")
     public String main(@PathVariable String page,
                        @RequestParam(value = "error", required = false) String error,
                        @RequestParam(value = "logout", required = false) String logout,
@@ -40,13 +40,17 @@ public class MainController {
         int pageInt = Integer.parseInt(page);
         Page<Product> productPage = showAllProductsService.execute(new ShowAllProductsRequest(
                 PageRequest.of(pageInt - 1, pageSize))).getProductsPage();
+        int totalPages = productPage.getTotalPages();
+        if (totalPages < 1) {
+            totalPages = 1;
+        }
         modelMap.addAttribute("products", productPage);
         modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("logout", logout != null);
         modelMap.addAttribute("active_user", activeUser);
         modelMap.addAttribute("is_logged", isLogged);
         modelMap.addAttribute("is_admin", isActiveUserAdmin);
-        modelMap.addAttribute("total_pages", productPage.getTotalPages());
+        modelMap.addAttribute("total_pages", totalPages);
         modelMap.addAttribute("current_page", pageInt);
         modelMap.addAttribute("product_in_cart", productInCart);
         return "index";
@@ -54,6 +58,6 @@ public class MainController {
 
     @GetMapping("/")
     public String main(ModelMap modelMap) {
-        return "redirect:/1";
+        return "redirect:/page/1";
     }
 }
