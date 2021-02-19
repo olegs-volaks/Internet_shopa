@@ -34,7 +34,7 @@ public class UpdateCartService {
         }
         Product product = productRepository.getOne(request.getProductId());
         Cart cart = cartRepository.getOne(request.getId());
-        cart.getProducts().put(product, request.getCount());
+        cart.getProducts().replace(productRepository.getOne(request.getProductId()), request.getCount());
         return new UpdateCartResponse(cart);
     }
 }
