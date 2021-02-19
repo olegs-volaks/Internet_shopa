@@ -16,7 +16,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "products_in_cart",
             joinColumns = {@JoinColumn(name = "cart_id")})
     @Column(name = "product_count")

@@ -12,11 +12,10 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class MainController {
+public class AuthorizationController {
 
     @Autowired
     private ShowAllProductsService showAllProductsService;
@@ -24,9 +23,8 @@ public class MainController {
     @Value("${product.page-size}")
     private int pageSize;
 
-    @GetMapping(value = "/{page}")
-    public String main(@PathVariable String page,
-                       @RequestParam(value = "error", required = false) String error,
+    @GetMapping("/authorization")
+    public String main(@RequestParam(value = "error", required = false) String error,
                        @RequestParam(value = "logout", required = false) String logout,
                        @AuthenticationPrincipal User activeUser,
                        ModelMap modelMap) {
@@ -37,9 +35,8 @@ public class MainController {
             isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
             productInCart = activeUser.getCart().getProducts().size();
         }
-        int pageInt = Integer.parseInt(page);
         Page<Product> productPage = showAllProductsService.execute(new ShowAllProductsRequest(
-                PageRequest.of(pageInt - 1, pageSize))).getProductsPage();
+                PageRequest.of(0, pageSize))).getProductsPage();
         modelMap.addAttribute("products", productPage);
         modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("logout", logout != null);
@@ -47,13 +44,8 @@ public class MainController {
         modelMap.addAttribute("is_logged", isLogged);
         modelMap.addAttribute("is_admin", isActiveUserAdmin);
         modelMap.addAttribute("total_pages", productPage.getTotalPages());
-        modelMap.addAttribute("current_page", pageInt);
+        modelMap.addAttribute("current_page", 1);
         modelMap.addAttribute("product_in_cart", productInCart);
         return "index";
-    }
-
-    @GetMapping("/")
-    public String main(ModelMap modelMap) {
-        return "redirect:/1";
     }
 }
