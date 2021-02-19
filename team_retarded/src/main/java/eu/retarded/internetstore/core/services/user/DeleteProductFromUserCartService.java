@@ -38,6 +38,6 @@ public class DeleteProductFromUserCartService {
         User activeUser = userRepository.getOne(request.getUserId());
         Cart cart = cartRepository.getOne(activeUser.getCart().getId());
         cart.getProducts().remove(productRepository.getOne(request.getProductId()));
-        return new DeleteProductFromUserCartResponse(cartRepository.save(cart));
+        return new DeleteProductFromUserCartResponse(cart);
     }
 }
