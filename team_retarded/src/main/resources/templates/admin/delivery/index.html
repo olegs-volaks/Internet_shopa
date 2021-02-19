@@ -12,7 +12,7 @@
 </head>
 
 <body>
-nav class="navbar navbar-expand-lg fixed-top navbar-dark">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark">
 <div class="container navbar-nav-scroll">
     <a class="navbar-brand" href="../index.html"><i class="bi bi-gear"></i> Admin panel</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -48,7 +48,7 @@ nav class="navbar navbar-expand-lg fixed-top navbar-dark">
                 <a href="/admin/product" class="list-group-item list-group-item-action">Products</a>
                 <a href="#" class="list-group-item list-group-item-action">Categories</a>
                 <a href="/admin/delivery" class="list-group-item list-group-item-action active"  aria-current="true">Deliveries</a>
-                <a href="/admin/user" class="list-group-item list-group-item-action">Users</a>
+                <a href="#" class="list-group-item list-group-item-action">Users</a>
                 <a href="#" class="list-group-item list-group-item-action">Orders</a>
 
             </div>
@@ -122,21 +122,22 @@ nav class="navbar navbar-expand-lg fixed-top navbar-dark">
                 <form method="post" action="/admin/delivery/add">
                     <input
                             type="hidden"
-                            th:name="${_csrf.parameterTitle}"
+                            th:name="${_csrf.parameterName}"
                             th:value="${_csrf.token}"/>
                     <div class="modal-body">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="title" placeholder="Title"
-                                       aria-label="Title" aria-describedby="basic-addon1" required>
-
+                                <input type="text" class="form-control" name="name" placeholder="Name"
+                                       aria-label="Name" aria-describedby="register-name-help" required>
                             </div>
+                            <small id="register-name-help" class="form-text text-muted">
+                                Your name must be 3-32 characters long
+                            </small>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <textarea class="form-control" name="region" placeholder="Region"
-                                          aria-label="Region"
-                                          aria-describedby="basic-addon1" rows="3" required></textarea>
+                                <textarea class="form-control" name="region" placeholder="Region" aria-label="Region"
+                                          aria-describedby="basic-addon1" rows="3"  required></textarea>
                             </div>
                         </div>
                         <div class="form-group">

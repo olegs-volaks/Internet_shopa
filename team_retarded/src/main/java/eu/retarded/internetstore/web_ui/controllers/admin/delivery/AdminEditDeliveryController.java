@@ -36,10 +36,10 @@ public class AdminEditDeliveryController {
 
     @PostMapping("/admin/delivery/save")
     public String editDelivery(@RequestParam(value = "id") long id,
-                               @RequestParam(value = "title") String title,
+                               @RequestParam(value = "name") String name,
                                @RequestParam(value = "price") double price,
                                @RequestParam(value = "region") String region) {
-        UpdateDeliveryRequest updateDeliveryRequest = new UpdateDeliveryRequest(id, title,region,price);
+        UpdateDeliveryRequest updateDeliveryRequest = new UpdateDeliveryRequest(id, name,region,price);
         updateDeliveryService.execute(updateDeliveryRequest);
         return "redirect:/admin/delivery/edit/" + id;
     }

@@ -45,10 +45,10 @@ public class AdminDeliveryController {
     }
 
     @PostMapping("/admin/delivery/add")
-    public String addDelivery(@RequestParam(value = "title") String title,
+    public String addDelivery(@RequestParam(value = "name") String name,
                               @RequestParam(value = "region") String region,
                               @RequestParam(value = "price") double price ) {
-        AddDeliveryRequest addDeliveryRequest = new AddDeliveryRequest(title,region,price);
+        AddDeliveryRequest addDeliveryRequest = new AddDeliveryRequest(name,region,price);
         addDeliveryService.execute(addDeliveryRequest);
         return "redirect:/admin/delivery/1";
     }
