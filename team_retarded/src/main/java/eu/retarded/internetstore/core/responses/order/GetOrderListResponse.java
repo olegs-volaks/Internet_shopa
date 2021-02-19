@@ -6,18 +6,27 @@ import eu.retarded.internetstore.core.responses.CoreResponse;
 import org.springframework.data.domain.Page;
 
 import javax.validation.ConstraintViolation;
+import java.util.List;
 import java.util.Set;
 
 public class GetOrderListResponse extends CoreResponse<GetOrderListRequest> {
 
-    private Page<Order> orders;
+    private Page<Order> ordersPage;
+    private List<Order> ordersList;
 
-    public GetOrderListResponse(Set<ConstraintViolation<GetOrderListRequest>> errors, Page<Order> orders) {
+    public GetOrderListResponse(Set<ConstraintViolation<GetOrderListRequest>> errors) {
         super(errors);
-        this.orders = orders;
     }
 
-    public Page<Order> getOrders() {
-        return orders;
+    public GetOrderListResponse(Page<Order> ordersPage, List<Order> ordersList) {
+        this.ordersPage = ordersPage;
+        this.ordersList = ordersList;
+    }
+
+    public Page<Order> getOrdersPage() {
+        return ordersPage;
+    }
+    public List<Order> getOrdersList() {
+        return ordersList;
     }
 }

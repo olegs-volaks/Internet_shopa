@@ -9,6 +9,6 @@ import org.springframework.data.domain.Pageable;
 public class GetCartListRequest {
 
 
-    private Pageable pageable;
+    private final Pageable pageable;
 
 }

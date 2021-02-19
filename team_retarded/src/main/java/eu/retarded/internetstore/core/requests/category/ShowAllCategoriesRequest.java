@@ -10,5 +10,5 @@ import org.springframework.data.domain.Pageable;
 public class ShowAllCategoriesRequest {
 
 
-    private Pageable pageable;
+    private final Pageable pageable;
 }

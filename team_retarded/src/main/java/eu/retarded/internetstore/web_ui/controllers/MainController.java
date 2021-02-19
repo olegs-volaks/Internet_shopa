@@ -29,7 +29,7 @@ public class MainController {
         if (isLogged) {
             isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
         }
-        Page<Product> products = showAllProductsService.execute(new ShowAllProductsRequest(PageRequest.of(0, 20))).getProducts();
+        Page<Product> products = showAllProductsService.execute(new ShowAllProductsRequest(PageRequest.of(0, 20))).getProductsPage();
         modelMap.addAttribute("products", products);
         modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("logout", logout != null);

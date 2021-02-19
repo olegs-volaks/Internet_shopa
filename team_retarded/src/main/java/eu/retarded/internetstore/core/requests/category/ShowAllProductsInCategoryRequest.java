@@ -13,6 +13,6 @@ public class ShowAllProductsInCategoryRequest {
     private final long categoryId;
 
 
-    private Pageable pageable;
+    private final Pageable pageable;
 
 }

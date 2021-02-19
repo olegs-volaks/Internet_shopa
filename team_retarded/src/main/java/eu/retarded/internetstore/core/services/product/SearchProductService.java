@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.util.List;
 import java.util.Set;
 
 @Component
@@ -34,10 +35,14 @@ public class SearchProductService {
     public SearchProductResponse execute(SearchProductRequest request) {
         Set<ConstraintViolation<SearchProductRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
-            return new SearchProductResponse(errors, null);
+            return new SearchProductResponse(errors);
         }
-
-        Page <Product> products = productRepository.findByNameContaining(request.getKeyWord(), request.getPageable());
-        return new SearchProductResponse(null, products);
+        List<Product> products;
+        if (request.getPageable()==null){
+             products = productRepository.findByNameContaining(request.getKeyWord());
+            return new SearchProductResponse(null, products);
+        }
+        Page <Product> productsPage = productRepository.findByNameContaining(request.getKeyWord(), request.getPageable());
+        return new SearchProductResponse( productsPage, productsPage.toList());
     }
 }

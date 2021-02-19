@@ -9,5 +9,5 @@ import org.springframework.data.domain.Pageable;
 @RequiredArgsConstructor
 public class GetDeliveryListRequest {
 
-    private Pageable pageable;
+    private final Pageable pageable;
 }
