@@ -39,6 +39,6 @@ public class AddProductToUserCartService {
         User activeUser = userRepository.getOne(request.getUserId());
         Cart cart = cartRepository.getOne(activeUser.getCart().getId());
         cart.getProducts().put(productRepository.getOne(request.getProductId()), request.getCount());
-        return new AddProductToUserCartResponse(cartRepository.save(cart));
+        return new AddProductToUserCartResponse(cart);
     }
 }
