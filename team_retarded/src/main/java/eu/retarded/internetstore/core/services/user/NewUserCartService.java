@@ -9,6 +9,7 @@ import eu.retarded.internetstore.core.services.cart.AddCartService;
 import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class NewUserCartService {
@@ -19,6 +20,7 @@ public class NewUserCartService {
     @Autowired
     private AddCartService addCartService;
 
+    @Transactional
     public NewUserCartResponse execute(NewUserCartRequest request) {
         User user = userRepository.getOne(request.getUserId());
         Cart oldCart = user.getCart();

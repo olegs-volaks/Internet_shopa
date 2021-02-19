@@ -28,9 +28,9 @@ public class AddProductToCategoryService {
         if (!errors.isEmpty()) {
             return new AddProductToCategoryResponse(errors);
         }
-        Product resultProduct =  productRepository.getOne(request.getProductId());
+        Product resultProduct = productRepository.getOne(request.getProductId());
         resultProduct.setCategory(categoryRepository.getOne(request.getCategoryId()));
         productRepository.save(resultProduct);
-        return new AddProductToCategoryResponse (productRepository.getOne(request.getProductId()).equals(resultProduct));
+        return new AddProductToCategoryResponse(productRepository.getOne(request.getProductId()).equals(resultProduct));
     }
 }

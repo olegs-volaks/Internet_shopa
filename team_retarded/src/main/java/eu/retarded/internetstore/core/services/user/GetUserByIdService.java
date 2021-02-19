@@ -5,6 +5,7 @@ import eu.retarded.internetstore.core.responses.user.GetUserByIdResponse;
 import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -19,6 +20,7 @@ public class GetUserByIdService {
     @Autowired
     private Validator validator;
 
+    @Transactional
     public GetUserByIdResponse execute(GetUserByIdRequest request) {
         Set<ConstraintViolation<GetUserByIdRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {

@@ -26,8 +26,8 @@ public class ShowAllCategoriesService {
         if (!errors.isEmpty()) {
             return new ShowAllCategoriesResponse(errors);
         }
-        List <Category> categories ;
-        if (request.getPageable()==null){
+        List<Category> categories;
+        if (request.getPageable() == null) {
             categories = categoryRepository.findAll();
             return new ShowAllCategoriesResponse(null, categories);
         }

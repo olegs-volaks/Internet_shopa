@@ -26,6 +26,7 @@ public class GetOrderListResponse extends CoreResponse<GetOrderListRequest> {
     public Page<Order> getOrdersPage() {
         return ordersPage;
     }
+
     public List<Order> getOrdersList() {
         return ordersList;
     }

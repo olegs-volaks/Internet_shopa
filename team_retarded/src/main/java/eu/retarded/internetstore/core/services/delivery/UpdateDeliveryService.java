@@ -6,6 +6,7 @@ import eu.retarded.internetstore.core.responses.delivery.UpdateDeliveryResponse;
 import eu.retarded.internetstore.database.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -21,7 +22,7 @@ public class UpdateDeliveryService {
     @Autowired
     private Validator validator;
 
-
+    @Transactional
     public UpdateDeliveryResponse execute(UpdateDeliveryRequest request) {
         Set<ConstraintViolation<UpdateDeliveryRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {

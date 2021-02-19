@@ -25,7 +25,7 @@ public class UpdateUserRequest {
     private final String password;
 
     @NotBlank(message = "Role must not be empty!")
-    @Pattern(regexp ="<1>|<2>|<3>",message = "Must be between 1 and 3 characters")
+    @Pattern(regexp = "<1>|<2>|<3>", message = "Must be between 1 and 3 characters")
     private final int role;
 
     @NotBlank(message = "Name must not be empty!")

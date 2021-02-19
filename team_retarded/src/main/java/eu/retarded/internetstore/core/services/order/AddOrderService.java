@@ -1,6 +1,7 @@
 package eu.retarded.internetstore.core.services.order;
 
 import eu.retarded.internetstore.core.domain.Cart;
+import eu.retarded.internetstore.core.domain.Delivery;
 import eu.retarded.internetstore.core.domain.Order;
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.order.AddOrderRequest;
@@ -12,6 +13,7 @@ import eu.retarded.internetstore.database.OrderRepository;
 import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -35,6 +37,7 @@ public class AddOrderService {
     @Autowired
     private Validator validator;
 
+    @Transactional
     public AddOrderResponse execute(AddOrderRequest request) {
         Set<ConstraintViolation<AddOrderRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
@@ -47,8 +50,9 @@ public class AddOrderService {
         order.setClientAddress(request.getClientAddress());
         Cart orderCart = newUserCartService.execute(new NewUserCartRequest(activeUser.getId())).getOldCart();
         order.setCart(orderCart);
-        order.setDelivery(deliveryRepository.getOne(request.getUserId()));
-        order.setTotalPrice(orderCart.getTotalPrice());
+        Delivery delivery = deliveryRepository.getOne(request.getDeliveryId());
+        order.setDelivery(delivery);
+        order.setTotalPrice(orderCart.getTotalPrice().add(delivery.getPrice()));
         order.setStatus(1);
         return new AddOrderResponse(orderRepository.save(order));
     }

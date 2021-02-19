@@ -29,7 +29,7 @@ public class DeleteProductFromCategoryService {
             return new DeleteProductFromCategoryResponse(errors);
         }
 
-        Product resultProduct =  productRepository.getOne(request.getProductId());
+        Product resultProduct = productRepository.getOne(request.getProductId());
         resultProduct.setCategory(null);
         productRepository.save(resultProduct);
 

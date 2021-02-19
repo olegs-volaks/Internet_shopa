@@ -2,13 +2,11 @@ package eu.retarded.internetstore.core.requests.order;
 
 
 import eu.retarded.internetstore.core.services.validators.DeliveryExist;
-import eu.retarded.internetstore.core.services.validators.UserExist;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
 
 @Getter
 @RequiredArgsConstructor
@@ -29,9 +27,5 @@ public class AddOrderRequest {
     @DeliveryExist
     private final long deliveryId;
 
-    @UserExist
     private final long userId;
-
-    @PositiveOrZero(message = "The total price must be positive or zero")
-    private final double totalPrice;
 }

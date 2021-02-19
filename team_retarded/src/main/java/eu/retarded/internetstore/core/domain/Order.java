@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 public class Order {
 
 
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

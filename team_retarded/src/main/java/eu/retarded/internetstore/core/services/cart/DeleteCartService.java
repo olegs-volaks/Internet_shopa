@@ -4,13 +4,14 @@ import eu.retarded.internetstore.core.requests.cart.DeleteCartRequest;
 import eu.retarded.internetstore.core.responses.cart.DeleteCartResponse;
 import eu.retarded.internetstore.database.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.Set;
 
-@Component
+@Service
 public class DeleteCartService {
 
     @Autowired
@@ -19,7 +20,7 @@ public class DeleteCartService {
     @Autowired
     private Validator validator;
 
-
+    @Transactional
     public DeleteCartResponse execute(DeleteCartRequest request) {
         Set<ConstraintViolation<DeleteCartRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
