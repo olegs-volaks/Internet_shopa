@@ -17,9 +17,9 @@ public class Cart {
     private Long id;
 
     @ElementCollection
-    @JoinTable(name = "products_in_cart",
-            joinColumns = {@JoinColumn(name = "cart_id")},
-            inverseJoinColumns = {@JoinColumn(name = "product_count")})
+    @CollectionTable(name = "products_in_cart",
+            joinColumns = {@JoinColumn(name = "cart_id")})
+    @Column(name = "product_count")
     @MapKeyJoinColumn(name = "product_id")
     private Map<Product, Integer> products;
 
