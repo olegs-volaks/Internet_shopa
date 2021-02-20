@@ -45,7 +45,7 @@ public class AdminUserController {
     }
 
     @PostMapping("/admin/user/add")
-    public String addProduct(@RequestParam(value = "username") String username,
+    public String addUser(@RequestParam(value = "username") String username,
                              @RequestParam(value = "name") String name,
                              @RequestParam(value = "surname") String surname,
                              @RequestParam(value = "email") String email,

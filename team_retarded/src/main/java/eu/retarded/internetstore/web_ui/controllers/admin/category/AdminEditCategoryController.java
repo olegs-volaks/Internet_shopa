@@ -31,7 +31,7 @@ public class AdminEditCategoryController {
     }
 
     @PostMapping("/admin/category/save")
-    public String editDelivery(@RequestParam(value = "id") long id,
+    public String editCategory(@RequestParam(value = "id") long id,
                                @RequestParam(value = "name") String name) {
         UpdateCategoryRequest updateCategoryRequest = new UpdateCategoryRequest(id, name);
         updateCategoryService.execute(updateCategoryRequest);
