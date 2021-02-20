@@ -1,16 +1,12 @@
 package eu.retarded.internetstore.core.requests.user;
 
-import eu.retarded.internetstore.core.domain.Role;
 import eu.retarded.internetstore.core.services.validators.CartExist;
 import eu.retarded.internetstore.core.services.validators.UserExist;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
-import java.util.Set;
+import javax.validation.constraints.*;
 
 @Getter
 @RequiredArgsConstructor
@@ -50,6 +46,7 @@ public class UpdateUserWithRoleRequest {
     @CartExist
     private final long cartId;
 
-    @NotBlank(message = "Roles must not be empty!")
-    private final Set<Role> roles;
+    @NotNull(message = "User must have at least one role")
+    @Size(min = 1, message = "User must have at least one role")
+    private final Long[] rolesId;
 }
