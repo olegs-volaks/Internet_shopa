@@ -5,7 +5,7 @@ import eu.retarded.internetstore.core.requests.category.ShowAllCategoriesRequest
 import eu.retarded.internetstore.core.responses.category.ShowAllCategoriesResponse;
 import eu.retarded.internetstore.database.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
@@ -13,7 +13,7 @@ import javax.validation.Validator;
 import java.util.List;
 import java.util.Set;
 
-@Component
+@Service
 public class ShowAllCategoriesService {
     @Autowired
     private CategoryRepository categoryRepository;

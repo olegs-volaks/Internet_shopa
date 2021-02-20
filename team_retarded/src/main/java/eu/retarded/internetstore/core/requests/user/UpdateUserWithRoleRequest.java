@@ -6,13 +6,11 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 @Getter
 @RequiredArgsConstructor
-public class UpdateUserRequest {
+public class UpdateUserWithRoleRequest {
 
     @UserExist
     private final long id;
@@ -41,7 +39,14 @@ public class UpdateUserRequest {
     @Email(message = "Incorrect email format!")
     private final String email;
 
+    @NotBlank(message = "Status must not be empty!")
+    @Pattern(regexp = "<0>|<1>|<2>", message = "Must be between 0 and 2 characters")
+    private int status;
+
     @CartExist
     private final long cartId;
 
+    @NotNull(message = "User must have at least one role")
+    @Size(min = 1, message = "User must have at least one role")
+    private final Long[] rolesId;
 }
