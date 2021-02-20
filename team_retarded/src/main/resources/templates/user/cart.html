@@ -120,9 +120,26 @@
                 <tbody>
                 <tr th:each="product : ${product_map}">
                     <th th:text="${product.key.name}"></th>
-                    <td th:text="${product.value}"></td>
-                    <td th:text="${product.key.price} * ${product.value}"></td>
+                    <td>
+                        <form method="post" action="/user/cart/change">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <input type="hidden" name="product_id" th:value="${product.key.id}"/>
+                            <input type="hidden" name="user_id" th:value="${active_user.id}"/>
+                            <input type="number" name="count" th:type="number" min="1"
+                                   th:max="${product.key.count}"
+                                   class="form-control" style="padding-right: 0" th:id="'count-' + ${product.key.id}"
+                                   th:value="${product.value}">
+                        </form>
+                    </td>
+                    <td><p th:id="'price-' + ${product.key.id}"></p></td>
                     <td><a class="btn btn-edit">Remove</a></td>
+
+                    <script>
+                        [['count-' +${product.key.id}]].onchange = function () {
+                            const price = [[${product.key.price}]] * [['count-' +${product.key.id}]].value;
+                            [['price-' +${product.key.id}]].innerHTML = price;
+                        }
+                    </script>
                 </tr>
                 </tbody>
             </table>
@@ -236,6 +253,10 @@
     </div>
 
 </div>
+
+<script th:each="product : ${product_map}">
+
+</script>
 <!-- Optional JavaScript; choose one of the two! -->
 
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
