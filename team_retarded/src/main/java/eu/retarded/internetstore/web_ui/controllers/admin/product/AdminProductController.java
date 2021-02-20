@@ -33,8 +33,12 @@ public class AdminProductController {
         int pageInt = Integer.parseInt(page);
         Page<Product> productPage = showAllProductsService.execute(new ShowAllProductsRequest(
                 PageRequest.of(pageInt - 1, pageSize))).getProductsPage();
+        int totalPages = productPage.getTotalPages();
+        if (totalPages < 1) {
+            totalPages = 1;
+        }
         modelMap.addAttribute("products", productPage);
-        modelMap.addAttribute("total_pages", productPage.getTotalPages());
+        modelMap.addAttribute("total_pages", totalPages);
         modelMap.addAttribute("current_page", pageInt);
         return "/admin/product/index";
     }

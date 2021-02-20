@@ -2,7 +2,9 @@ package eu.retarded.internetstore.web_ui.controllers.product;
 
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.domain.User;
+import eu.retarded.internetstore.core.requests.cart.GetProductInCartRequest;
 import eu.retarded.internetstore.core.requests.product.GetProductByIdRequest;
+import eu.retarded.internetstore.core.services.cart.GetProductInCartService;
 import eu.retarded.internetstore.core.services.product.GetProductByIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,6 +19,9 @@ public class ProductController {
     @Autowired
     private GetProductByIdService getProductByIdService;
 
+    @Autowired
+    private GetProductInCartService getProductInCartService;
+
     @GetMapping("/product/{id}")
     public String main(@PathVariable(name = "id") String id,
                        @AuthenticationPrincipal User activeUser,
@@ -27,13 +32,14 @@ public class ProductController {
         int productInCart = 0;
         if (isLogged) {
             isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
-            productInCart = activeUser.getCart().getProducts().size();
+            productInCart = getProductInCartService.execute(new GetProductInCartRequest(activeUser.getCart().getId())).getProducts().size();
         }
         Product product = getProductByIdService.execute(new GetProductByIdRequest(idLong)).getProduct();
         modelMap.addAttribute("product", product);
         modelMap.addAttribute("active_user", activeUser);
         modelMap.addAttribute("is_logged", isLogged);
         modelMap.addAttribute("is_admin", isActiveUserAdmin);
+        modelMap.addAttribute("product_in_cart", productInCart);
         return "product/index";
     }
 }

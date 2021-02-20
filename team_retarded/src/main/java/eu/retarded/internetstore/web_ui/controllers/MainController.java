@@ -2,7 +2,9 @@ package eu.retarded.internetstore.web_ui.controllers;
 
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.domain.User;
+import eu.retarded.internetstore.core.requests.cart.GetProductInCartRequest;
 import eu.retarded.internetstore.core.requests.product.ShowAllProductsRequest;
+import eu.retarded.internetstore.core.services.cart.GetProductInCartService;
 import eu.retarded.internetstore.core.services.product.ShowAllProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +23,9 @@ public class MainController {
     @Autowired
     private ShowAllProductsService showAllProductsService;
 
+    @Autowired
+    private GetProductInCartService getProductInCartService;
+
     @Value("${product.page-size}")
     private int pageSize;
 
@@ -35,7 +40,7 @@ public class MainController {
         int productInCart = 0;
         if (isLogged) {
             isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
-            productInCart = activeUser.getCart().getProducts().size();
+            productInCart = getProductInCartService.execute(new GetProductInCartRequest(activeUser.getCart().getId())).getProducts().size();
         }
         int pageInt = Integer.parseInt(page);
         Page<Product> productPage = showAllProductsService.execute(new ShowAllProductsRequest(
