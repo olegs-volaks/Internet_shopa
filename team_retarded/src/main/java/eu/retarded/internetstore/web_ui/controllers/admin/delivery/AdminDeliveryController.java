@@ -29,11 +29,11 @@ public class AdminDeliveryController {
     private int pageSize;
 
     @GetMapping("/admin/delivery/{page}")
-    public String deliveryPage(@PathVariable String page, ModelMap modelMap) {  // productPage
+    public String deliveryPage(@PathVariable String page, ModelMap modelMap) {
         int pageInt = Integer.parseInt(page);
         Page<Delivery> deliveryPage = getDeliveryListService.execute(new GetDeliveryListRequest(
                 PageRequest.of(pageInt - 1, pageSize))).getDeliveriesPage();
-        modelMap.addAttribute("deliveries", deliveryPage); // products
+        modelMap.addAttribute("deliveries", deliveryPage);
         modelMap.addAttribute("total_pages", deliveryPage.getTotalPages());
         modelMap.addAttribute("current_page", pageInt);
         return "/admin/delivery/index";
@@ -45,10 +45,10 @@ public class AdminDeliveryController {
     }
 
     @PostMapping("/admin/delivery/add")
-    public String addDelivery(@RequestParam(value = "name") String name,
+    public String addDelivery(@RequestParam(value = "title") String title,
                               @RequestParam(value = "region") String region,
                               @RequestParam(value = "price") double price ) {
-        AddDeliveryRequest addDeliveryRequest = new AddDeliveryRequest(name,region,price);
+        AddDeliveryRequest addDeliveryRequest = new AddDeliveryRequest(title,region,price);
         addDeliveryService.execute(addDeliveryRequest);
         return "redirect:/admin/delivery/1";
     }

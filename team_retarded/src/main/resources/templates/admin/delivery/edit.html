@@ -32,7 +32,7 @@
                         <i class="bi bi-person"></i> Profile
                     </a>
                     <div class="dropdown-menu" aria-labelledby="profile_navbar">
-                        <a class="dropdown-item" href="/">Back to site</a>
+                        <a class="dropdown-item" href=".">Back to site</a>   <!--tut-->
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/logout">Logout</a>
                     </div>
@@ -59,7 +59,7 @@
             <form method="post" action="/admin/delivery/save">
                 <input
                         type="hidden"
-                        th:name="${_csrf.parameterTitle}"
+                        th:name="${_csrf.parameterName}"
                         th:value="${_csrf.token}"/>
 
                 <nav class="navbar navbar-light bg-light" style="margin-bottom: 12px;">
@@ -79,10 +79,10 @@
 
 
                     <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                        <label for="inputTitle" class="col-sm-2 col-form-label">Title</label>
                         <div class="col-sm-10">
-                            <input type="text" name="name" class="form-control" id="inputName"
-                                   th:value="${delivery.name}">
+                            <input type="text" name="title" class="form-control" id="inputTitle"
+                                   th:value="${delivery.title}">
                         </div>
                     </div>
 
