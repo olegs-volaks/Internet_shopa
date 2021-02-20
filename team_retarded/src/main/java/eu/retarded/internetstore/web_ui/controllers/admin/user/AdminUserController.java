@@ -45,11 +45,11 @@ public class AdminUserController {
     }
 
     @PostMapping("/admin/user/add")
-    public String addProduct(@RequestParam(value = "username", required = false) String username,
-                             @RequestParam(value = "name", required = false) String name,
-                             @RequestParam(value = "surname", required = false) String surname,
-                             @RequestParam(value = "email", required = false) String email,
-                             @RequestParam(value = "password1", required = false) String password1,
+    public String addProduct(@RequestParam(value = "username") String username,
+                             @RequestParam(value = "name") String name,
+                             @RequestParam(value = "surname") String surname,
+                             @RequestParam(value = "email") String email,
+                             @RequestParam(value = "password1") String password1,
                              @RequestParam(value = "password2", required = false) String password2) {
         AddUserRequest addUserRequest = new AddUserRequest(username, password1, name, surname, email, new Long[]{1L});
         addUserService.execute(addUserRequest);
