@@ -34,7 +34,7 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item" th:if="${is_logged}">
-                    <a class="nav-link" href="#"><i class="bi bi-cart2"></i> Cart <span
+                    <a class="nav-link" href="/user/cart"><i class="bi bi-cart2"></i> Cart <span
                             class="badge badge-light" th:text="${product_in_cart_count}"></span></a>
                 </li>
                 <!--User is not logged-->
@@ -126,6 +126,16 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Total price</h5>
+                    <p class="card-text price" th:text="'121.85' + '€'"></p>
+                    <a href="#" class="btn btn-add">To order</a>
+                </div>
+            </div>
         </div>
     </div>
 
