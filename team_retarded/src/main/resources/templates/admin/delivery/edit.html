@@ -89,8 +89,8 @@
                     <div class="form-group row">
                         <label for="inputRegion" class="col-sm-2 col-form-label">Region</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" name="region" id="inputRegion" rows="9"
-                                      th:inline="text">[[${delivery.region}]]></textarea>
+                            <input type="text" name="region" class="form-control" id="inputRegion"
+                                   th:value="${delivery.region}">
                         </div>
                     </div>
 
