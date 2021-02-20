@@ -160,7 +160,7 @@
                                     <label for="count" class="col-lg-7 col-form-label"
                                            style="padding-left: 0">Count:</label>
                                     <div class="col-lg-5" style="padding-right: 0">
-                                        <input type="number" th:type="number" th:max="${product.count}"
+                                        <input type="number" th:type="number" min="1" th:max="${product.count}"
                                                class="form-control" style="padding-right: 0" id="count" value="1">
                                     </div>
                                 </div>
