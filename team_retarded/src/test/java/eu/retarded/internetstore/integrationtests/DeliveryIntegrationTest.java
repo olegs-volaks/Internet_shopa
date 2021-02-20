@@ -9,6 +9,7 @@ import eu.retarded.internetstore.core.services.delivery.AddDeliveryService;
 import eu.retarded.internetstore.core.services.delivery.DeleteDeliveryService;
 import eu.retarded.internetstore.core.services.delivery.UpdateDeliveryService;
 import eu.retarded.internetstore.database.DeliveryRepository;
+import eu.retarded.internetstore.database.OrderRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +25,19 @@ public class DeliveryIntegrationTest {
 
     @Autowired
     private ApplicationContext context;
+
+    @Autowired
+    private OrderRepository orderRepository;
+
     @Autowired
     private DeliveryRepository deliveryRepository;
 
 
     @BeforeEach
     void setUp() {
+        orderRepository.deleteAll();
         deliveryRepository.deleteAll();
-    } // clear
+    }
 
     @Test
     void add_delivery_request() {

@@ -5,6 +5,7 @@ import eu.retarded.internetstore.core.responses.order.GetByIdOrderResponse;
 import eu.retarded.internetstore.database.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -19,6 +20,7 @@ public class GetByIdOrderService {
     @Autowired
     private Validator validator;
 
+    @Transactional
     public GetByIdOrderResponse execute(GetByIdOrderRequest request) {
         Set<ConstraintViolation<GetByIdOrderRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {

@@ -5,14 +5,14 @@ import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
 import eu.retarded.internetstore.core.responses.cart.AddCartResponse;
 import eu.retarded.internetstore.database.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.Set;
 
-@Component
+@Service
 public class AddCartService {
 
     @Autowired

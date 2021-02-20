@@ -38,12 +38,12 @@ public class ShowAllProductsService {
 
 
         List<Product> products;
-        if (request.getPageable()==null){
+        if (request.getPageable() == null) {
             products = productRepository.findAll();
-            return new ShowAllProductsResponse( null, products);
+            return new ShowAllProductsResponse(null, products);
         }
         Page<Product> productsPage = productRepository.findAll(request.getPageable());
-        return new ShowAllProductsResponse( productsPage, productsPage.toList());
+        return new ShowAllProductsResponse(productsPage, productsPage.toList());
     }
 
 }

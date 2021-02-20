@@ -18,7 +18,7 @@ public class ShowAllProductsResponse extends CoreResponse<ShowAllProductsRequest
         super(errors);
     }
 
-    public ShowAllProductsResponse(Page <Product> productsPage, List<Product> productsList) {
+    public ShowAllProductsResponse(Page<Product> productsPage, List<Product> productsList) {
         this.productsPage = productsPage;
         this.productsList = productsList;
     }
@@ -27,6 +27,7 @@ public class ShowAllProductsResponse extends CoreResponse<ShowAllProductsRequest
     public Page<Product> getProductsPage() {
         return productsPage;
     }
+
     public List<Product> getProductsList() {
         return productsList;
     }

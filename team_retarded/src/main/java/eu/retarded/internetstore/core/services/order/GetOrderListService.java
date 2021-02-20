@@ -30,9 +30,9 @@ public class GetOrderListService {
             return new GetOrderListResponse(errors);
         }
         List<Order> orders;
-        if (request.getPageable()==null){
-            orders =orderRepository.findAll();
-            return new GetOrderListResponse(null,orders);
+        if (request.getPageable() == null) {
+            orders = orderRepository.findAll();
+            return new GetOrderListResponse(null, orders);
         }
         Page<Order> ordersPage = orderRepository.findAll(request.getPageable());
         return new GetOrderListResponse(ordersPage, ordersPage.toList());

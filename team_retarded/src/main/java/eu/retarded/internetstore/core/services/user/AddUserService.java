@@ -12,6 +12,7 @@ import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -38,6 +39,7 @@ public class AddUserService {
     @Autowired
     private AddCartService addCartService;
 
+    @Transactional
     public AddUserResponse execute(AddUserRequest request) {
         Set<ConstraintViolation<AddUserRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {

@@ -11,22 +11,23 @@ import java.util.Set;
 
 public class ShowAllProductsInCategoryResponse extends CoreResponse<ShowAllProductsInCategoryRequest> {
 
-    private Page <Product> productPage;
-    private List <Product> productList;
+    private Page<Product> productPage;
+    private List<Product> productList;
 
     public ShowAllProductsInCategoryResponse(Set<ConstraintViolation<ShowAllProductsInCategoryRequest>> errors) {
         super(errors);
     }
 
-    public ShowAllProductsInCategoryResponse(Page<Product> productPage, List <Product> productList) {
+    public ShowAllProductsInCategoryResponse(Page<Product> productPage, List<Product> productList) {
         this.productPage = productPage;
         this.productList = productList;
     }
 
-    public Page <Product> getProductPage() {
+    public Page<Product> getProductPage() {
         return productPage;
     }
-    public List <Product> getProductList() {
+
+    public List<Product> getProductList() {
         return productList;
     }
 }

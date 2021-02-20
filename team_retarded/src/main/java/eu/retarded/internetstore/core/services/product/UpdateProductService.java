@@ -34,8 +34,6 @@ public class UpdateProductService {
         resultProduct.setDescription(request.getDescription());
         resultProduct.setPrice(BigDecimal.valueOf(request.getPrice()));
         resultProduct.setCount(request.getCount());
-        resultProduct.setStatus(1);
-
-        return new UpdateProductResponse(productRepository.save(resultProduct));
+        return new UpdateProductResponse(resultProduct);
     }
 }

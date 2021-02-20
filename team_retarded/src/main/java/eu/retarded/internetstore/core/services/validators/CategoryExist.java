@@ -15,6 +15,8 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface CategoryExist {
     String message() default "Category does not exist";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }

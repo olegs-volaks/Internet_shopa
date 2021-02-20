@@ -1,18 +1,22 @@
 package eu.retarded.internetstore.core.services.order;
 
+import eu.retarded.internetstore.core.domain.Cart;
+import eu.retarded.internetstore.core.domain.Delivery;
 import eu.retarded.internetstore.core.domain.Order;
+import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.order.AddOrderRequest;
+import eu.retarded.internetstore.core.requests.user.NewUserCartRequest;
 import eu.retarded.internetstore.core.responses.order.AddOrderResponse;
-import eu.retarded.internetstore.database.CartRepository;
+import eu.retarded.internetstore.core.services.user.NewUserCartService;
 import eu.retarded.internetstore.database.DeliveryRepository;
 import eu.retarded.internetstore.database.OrderRepository;
 import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-import java.math.BigDecimal;
 import java.util.Set;
 
 @Component
@@ -22,25 +26,34 @@ public class AddOrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private CartRepository cartRepository;
-    @Autowired
     private DeliveryRepository deliveryRepository;
+
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
+    private NewUserCartService newUserCartService;
+
+    @Autowired
     private Validator validator;
 
+    @Transactional
     public AddOrderResponse execute(AddOrderRequest request) {
         Set<ConstraintViolation<AddOrderRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new AddOrderResponse(errors);
         }
-        Order order = new Order(request.getName(),request.getSurname(),request.getAddress(),
-                cartRepository.getOne(request.getCartId()),
-                deliveryRepository.getOne(request.getDeliveryId()),
-                userRepository.getOne(request.getUserId()),
-                BigDecimal.valueOf(request.getTotalPrice()));
+        User activeUser = userRepository.getOne(request.getUserId());
+        Order order = new Order();
+        order.setClientName(request.getClientName());
+        order.setClientSurname(request.getClientSurname());
+        order.setClientAddress(request.getClientAddress());
+        Cart orderCart = newUserCartService.execute(new NewUserCartRequest(activeUser.getId())).getOldCart();
+        order.setCart(orderCart);
+        Delivery delivery = deliveryRepository.getOne(request.getDeliveryId());
+        order.setDelivery(delivery);
+        order.setTotalPrice(orderCart.getTotalPrice().add(delivery.getPrice()));
+        order.setStatus(1);
         return new AddOrderResponse(orderRepository.save(order));
     }
 }

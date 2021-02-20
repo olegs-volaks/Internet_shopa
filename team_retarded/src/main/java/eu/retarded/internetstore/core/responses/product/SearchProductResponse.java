@@ -27,6 +27,7 @@ public class SearchProductResponse extends CoreResponse<SearchProductRequest> {
     public Page<Product> getProductsPage() {
         return productsPage;
     }
+
     public List<Product> getProductsList() {
         return productsList;
     }

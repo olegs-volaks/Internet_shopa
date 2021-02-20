@@ -11,8 +11,8 @@ import java.util.Set;
 
 public class ShowAllCategoriesResponse extends CoreResponse<ShowAllCategoriesRequest> {
 
-    private  Page <Category> categoriesPage;
-    private  List <Category> categoriesList;
+    private Page<Category> categoriesPage;
+    private List<Category> categoriesList;
 
     public ShowAllCategoriesResponse(Set<ConstraintViolation<ShowAllCategoriesRequest>> errors) {
         super(errors);
@@ -23,10 +23,11 @@ public class ShowAllCategoriesResponse extends CoreResponse<ShowAllCategoriesReq
         this.categoriesList = categoriesList;
     }
 
-    public Page <Category> getCategoriesPage() {
+    public Page<Category> getCategoriesPage() {
         return categoriesPage;
     }
-    public List <Category> getCategoriesList() {
+
+    public List<Category> getCategoriesList() {
         return categoriesList;
     }
 }

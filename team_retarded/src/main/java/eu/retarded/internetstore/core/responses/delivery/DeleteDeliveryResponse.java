@@ -2,6 +2,7 @@ package eu.retarded.internetstore.core.responses.delivery;
 
 import eu.retarded.internetstore.core.requests.delivery.DeleteDeliveryRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
+
 import javax.validation.ConstraintViolation;
 import java.util.Set;
 
