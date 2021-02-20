@@ -68,7 +68,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="Category : ${categories}">
+                <tr th:each="category : ${categories}">
                     <th scope="row" th:text="${category.id}"></th>
                     <td th:text="${category.name}"></td>
                     <td><a class="btn btn-edit" th:href="'edit/' + ${category.id}">Edit</a></td>
