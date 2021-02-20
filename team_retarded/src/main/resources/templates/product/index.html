@@ -155,7 +155,17 @@
                         <div class="buy-block">
                             <p class="price" style="margin-bottom: 8px;" th:text="${product.price} + '€'"></p>
                             <p th:text="'Quantity in stock - ' + ${product.count}"></p>
-                            <a href="#" class="btn btn-card-buy">Add to cart</a>
+                            <form>
+                                <div class="form-group row">
+                                    <label for="count" class="col-lg-7 col-form-label"
+                                           style="padding-left: 0">Count:</label>
+                                    <div class="col-lg-5" style="padding-right: 0">
+                                        <input type="number" th:type="number" th:max="${product.count}"
+                                               class="form-control" style="padding-right: 0" id="count" value="1">
+                                    </div>
+                                </div>
+                                <a href="#" class="btn btn-card-buy">Add to cart</a>
+                            </form>
                         </div>
 
                     </div>
