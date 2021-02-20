@@ -31,12 +31,9 @@ public class UpdateUserService {
             return new UpdateUserResponse(errors);
         }
         User activeUser = userRepository.getOne(request.getId());
-        activeUser.setUserName(request.getLogin());
-        activeUser.setPassword(request.getPassword());
         activeUser.setName(request.getName());
         activeUser.setSurname(request.getSurname());
         activeUser.setEmail(request.getEmail());
-        activeUser.setCart(cartRepository.getOne(request.getCartId()));
         return new UpdateUserResponse(activeUser);
     }
 }
