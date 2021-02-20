@@ -49,7 +49,7 @@ public class AuthorizationController {
         modelMap.addAttribute("is_admin", isActiveUserAdmin);
         modelMap.addAttribute("total_pages", totalPages);
         modelMap.addAttribute("current_page", 1);
-        modelMap.addAttribute("product_in_cart", productInCart);
+        modelMap.addAttribute("product_in_cart_count", productInCart);
         return "index";
     }
 }

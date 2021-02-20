@@ -57,7 +57,7 @@ public class MainController {
         modelMap.addAttribute("is_admin", isActiveUserAdmin);
         modelMap.addAttribute("total_pages", totalPages);
         modelMap.addAttribute("current_page", pageInt);
-        modelMap.addAttribute("product_in_cart", productInCart);
+        modelMap.addAttribute("product_in_cart_count", productInCart);
         return "index";
     }
 
