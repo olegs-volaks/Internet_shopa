@@ -33,8 +33,12 @@ public class AdminDeliveryController {
         int pageInt = Integer.parseInt(page);
         Page<Delivery> deliveryPage = getDeliveryListService.execute(new GetDeliveryListRequest(
                 PageRequest.of(pageInt - 1, pageSize))).getDeliveriesPage();
+        int totalPages = deliveryPage.getTotalPages();
+        if (totalPages < 1) {
+            totalPages = 1;
+        }
         modelMap.addAttribute("deliveries", deliveryPage); // products
-        modelMap.addAttribute("total_pages", deliveryPage.getTotalPages());
+        modelMap.addAttribute("total_pages", totalPages);
         modelMap.addAttribute("current_page", pageInt);
         return "/admin/delivery/index";
     }
