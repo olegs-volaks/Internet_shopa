@@ -4,7 +4,6 @@ import eu.retarded.internetstore.core.domain.Role;
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.user.UpdateUserWithRoleRequest;
 import eu.retarded.internetstore.core.responses.user.UpdateUserWithRoleResponse;
-import eu.retarded.internetstore.database.CartRepository;
 import eu.retarded.internetstore.database.RoleRepository;
 import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +21,6 @@ import java.util.Set;
 public class UpdateUserWithRoleService {
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private CartRepository cartRepository;
 
     @Autowired
     private RoleRepository roleRepository;

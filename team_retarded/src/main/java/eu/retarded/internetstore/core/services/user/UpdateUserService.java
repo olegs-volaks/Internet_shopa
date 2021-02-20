@@ -3,7 +3,6 @@ package eu.retarded.internetstore.core.services.user;
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.user.UpdateUserRequest;
 import eu.retarded.internetstore.core.responses.user.UpdateUserResponse;
-import eu.retarded.internetstore.database.CartRepository;
 import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,9 +16,6 @@ import java.util.Set;
 public class UpdateUserService {
     @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private CartRepository cartRepository;
 
     @Autowired
     private Validator validator;

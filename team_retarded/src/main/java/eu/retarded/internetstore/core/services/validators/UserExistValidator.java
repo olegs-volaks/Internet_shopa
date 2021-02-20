@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class UserExistValidator implements ConstraintValidator<CartExist, Long> {
+public class UserExistValidator implements ConstraintValidator<UserExist, Long> {
 
     @Autowired
     private UserRepository userRepository;
