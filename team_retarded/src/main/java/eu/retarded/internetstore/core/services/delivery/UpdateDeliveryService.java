@@ -29,12 +29,10 @@ public class UpdateDeliveryService {
             return new UpdateDeliveryResponse(errors);
         }
 
-        long id = request.getId();
-        Delivery resultDelivery = new Delivery();
-        resultDelivery.setId(id);
+        Delivery resultDelivery=deliveryRepository.getOne(request.getId());
         resultDelivery.setTitle(request.getTitle());
         resultDelivery.setRegion(request.getRegion());
         resultDelivery.setPrice(BigDecimal.valueOf(request.getPrice()));
-        return new UpdateDeliveryResponse(deliveryRepository.save(resultDelivery));
+        return new UpdateDeliveryResponse(resultDelivery);
     }
 }

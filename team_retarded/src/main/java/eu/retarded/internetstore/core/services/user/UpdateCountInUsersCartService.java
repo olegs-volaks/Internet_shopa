@@ -38,6 +38,6 @@ public class UpdateCountInUsersCartService {
         User activeUser = userRepository.getOne(request.getUserId());
         Cart cart = cartRepository.getOne(activeUser.getCart().getId());
         cart.getProducts().replace(productRepository.getOne(request.getProductId()), request.getCount());
-        return new UpdateCountInUsersCartResponse(cartRepository.save(cart));
+        return new UpdateCountInUsersCartResponse(cart);
     }
 }
