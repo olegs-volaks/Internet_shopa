@@ -31,7 +31,8 @@ public class AdminUserController {
     @GetMapping("/admin/user/{page}")
     public String productPage(@PathVariable String page, ModelMap modelMap) {
         int pageInt = Integer.parseInt(page);
-        Page<User> userPage = getUserListService.execute(new GetUserListRequest(PageRequest.of(pageInt - 1, pageSize))).getPage();
+        Page<User> userPage = getUserListService.execute(new GetUserListRequest
+                (PageRequest.of(pageInt - 1, pageSize))).getPage();
         modelMap.addAttribute("users", userPage);
         modelMap.addAttribute("total_pages", userPage.getTotalPages());
         modelMap.addAttribute("current_page", pageInt);

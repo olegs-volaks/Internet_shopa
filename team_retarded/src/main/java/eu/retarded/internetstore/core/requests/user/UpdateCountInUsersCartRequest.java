@@ -1,6 +1,7 @@
 package eu.retarded.internetstore.core.requests.user;
 
 import eu.retarded.internetstore.core.services.validators.ProductExist;
+import eu.retarded.internetstore.core.services.validators.UserExist;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -8,9 +9,8 @@ import javax.validation.constraints.PositiveOrZero;
 
 @Getter
 @RequiredArgsConstructor
-public class AddProductToUserCartRequest {
-
-    //@UserExist
+public class UpdateCountInUsersCartRequest {
+    @UserExist
     private final long userId;
 
     @ProductExist

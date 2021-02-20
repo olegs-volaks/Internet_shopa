@@ -28,9 +28,8 @@ public class UpdateCategoryService {
             return new UpdateCategoryResponse(errors);
         }
 
-        Category resultCategory = new Category();
-        resultCategory.setId(request.getId());
+        Category resultCategory = categoryRepository.getOne(request.getId());
         resultCategory.setName(request.getName());
-        return new UpdateCategoryResponse(categoryRepository.save(resultCategory));
+        return new UpdateCategoryResponse(resultCategory);
     }
 }

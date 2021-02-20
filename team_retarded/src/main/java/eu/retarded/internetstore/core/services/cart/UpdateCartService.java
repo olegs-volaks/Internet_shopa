@@ -33,8 +33,8 @@ public class UpdateCartService {
             return new UpdateCartResponse(errors);
         }
         Product product = productRepository.getOne(request.getProductId());
-        Cart cart = cartRepository.findById(request.getId()).get();
-        cart.getProducts().put(product, request.getCount());
-        return new UpdateCartResponse(cartRepository.save(cart));
+        Cart cart = cartRepository.getOne(request.getId());
+        cart.getProducts().replace(productRepository.getOne(request.getProductId()), request.getCount());
+        return new UpdateCartResponse(cart);
     }
 }

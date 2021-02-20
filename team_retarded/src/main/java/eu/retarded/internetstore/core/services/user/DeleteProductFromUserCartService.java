@@ -2,8 +2,8 @@ package eu.retarded.internetstore.core.services.user;
 
 import eu.retarded.internetstore.core.domain.Cart;
 import eu.retarded.internetstore.core.domain.User;
-import eu.retarded.internetstore.core.requests.user.AddProductToUserCartRequest;
-import eu.retarded.internetstore.core.responses.user.AddProductToUserCartResponse;
+import eu.retarded.internetstore.core.requests.user.DeleteProductFromUserCartRequest;
+import eu.retarded.internetstore.core.responses.user.DeleteProductFromUserCartResponse;
 import eu.retarded.internetstore.database.CartRepository;
 import eu.retarded.internetstore.database.ProductRepository;
 import eu.retarded.internetstore.database.UserRepository;
@@ -16,8 +16,7 @@ import javax.validation.Validator;
 import java.util.Set;
 
 @Service
-public class AddProductToUserCartService {
-
+public class DeleteProductFromUserCartService {
     @Autowired
     private UserRepository userRepository;
 
@@ -31,14 +30,14 @@ public class AddProductToUserCartService {
     private Validator validator;
 
     @Transactional
-    public AddProductToUserCartResponse execute(AddProductToUserCartRequest request) {
-            Set<ConstraintViolation<AddProductToUserCartRequest>> errors = validator.validate(request);
-            if (!errors.isEmpty()) {
-                return new AddProductToUserCartResponse(errors);
-            }
+    public DeleteProductFromUserCartResponse execute(DeleteProductFromUserCartRequest request) {
+        Set<ConstraintViolation<DeleteProductFromUserCartRequest>> errors = validator.validate(request);
+        if (!errors.isEmpty()) {
+            return new DeleteProductFromUserCartResponse(errors);
+        }
         User activeUser = userRepository.getOne(request.getUserId());
         Cart cart = cartRepository.getOne(activeUser.getCart().getId());
-        cart.getProducts().put(productRepository.getOne(request.getProductId()), request.getCount());
-        return new AddProductToUserCartResponse(cart);
+        cart.getProducts().remove(productRepository.getOne(request.getProductId()));
+        return new DeleteProductFromUserCartResponse(cart);
     }
 }
