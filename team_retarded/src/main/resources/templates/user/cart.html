@@ -131,15 +131,15 @@
                                    th:value="${product.value}">
                         </form>
                     </td>
-                    <td><p th:id="'price-' + ${product.key.id}"></p></td>
-                    <td><a class="btn btn-edit">Remove</a></td>
-
-                    <script>
-                        [['count-' +${product.key.id}]].onchange = function () {
-                            const price = [[${product.key.price}]] * [['count-' +${product.key.id}]].value;
-                            [['price-' +${product.key.id}]].innerHTML = price;
-                        }
-                    </script>
+                    <td th:text="${product.key.price} * ${product.value}"></td>
+                    <td>
+                        <form method="post" action="/user/cart/remove">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <input type="hidden" name="product_id" th:value="${product.key.id}"/>
+                            <input type="hidden" name="user_id" th:value="${active_user.id}"/>
+                            <button type="submit" class="btn btn-edit">Remove</button>
+                        </form>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -149,7 +149,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Total price</h5>
-                    <p class="card-text price" th:text="'121.85' + '€'"></p>
+                    <p class="card-text price" th:text="${total_price} + '€'"></p>
                     <a href="#" class="btn btn-add">To order</a>
                 </div>
             </div>
