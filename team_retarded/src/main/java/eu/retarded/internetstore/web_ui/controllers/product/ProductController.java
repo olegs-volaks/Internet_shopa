@@ -1,11 +1,14 @@
 package eu.retarded.internetstore.web_ui.controllers.product;
 
+import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.cart.GetProductInCartRequest;
+import eu.retarded.internetstore.core.requests.category.ShowAllCategoriesRequest;
 import eu.retarded.internetstore.core.requests.product.GetProductByIdRequest;
 import eu.retarded.internetstore.core.requests.user.AddProductToUserCartRequest;
 import eu.retarded.internetstore.core.services.cart.GetProductInCartService;
+import eu.retarded.internetstore.core.services.category.ShowAllCategoriesService;
 import eu.retarded.internetstore.core.services.product.GetProductByIdService;
 import eu.retarded.internetstore.core.services.user.AddProductToUserCartService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class ProductController {
@@ -29,6 +34,9 @@ public class ProductController {
     @Autowired
     private AddProductToUserCartService addProductToUserCartService;
 
+    @Autowired
+    private ShowAllCategoriesService showAllCategoriesService;
+
     @GetMapping("/product/{id}")
     public String main(@PathVariable(name = "id") String id,
                        @AuthenticationPrincipal User activeUser,
@@ -41,8 +49,10 @@ public class ProductController {
             isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
             productInCart = getProductInCartService.execute(new GetProductInCartRequest(activeUser.getCart().getId())).getProducts().size();
         }
+        List<Category> categoryList = showAllCategoriesService.execute(new ShowAllCategoriesRequest()).getCategoriesList();
         Product product = getProductByIdService.execute(new GetProductByIdRequest(idLong)).getProduct();
         modelMap.addAttribute("product", product);
+        modelMap.addAttribute("categories", categoryList);
         modelMap.addAttribute("active_user", activeUser);
         modelMap.addAttribute("is_logged", isLogged);
         modelMap.addAttribute("is_admin", isActiveUserAdmin);

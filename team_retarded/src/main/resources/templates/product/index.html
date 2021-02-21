@@ -105,10 +105,8 @@
     <div class="row">
         <div class="col-3">
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">The current link item</a>
-                <a href="#" class="list-group-item list-group-item-action">A second link item</a>
-                <a href="#" class="list-group-item list-group-item-action">A third link item</a>
-                <a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
+                <a th:each="category : ${categories}" th:href="'/category/' + ${category.id}" th:text="${category.name}"
+                   class="list-group-item list-group-item-action"></a>
 
             </div>
         </div>
