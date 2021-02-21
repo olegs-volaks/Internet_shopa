@@ -36,4 +36,15 @@ public class Cart {
         }
         return totalPrice;
     }
+
+    public static BigDecimal getPrice(Map<Product, Integer> productMap) {
+        BigDecimal totalPrice = new BigDecimal(0);
+        for (Map.Entry<Product, Integer> entry : productMap.entrySet()) {
+            BigDecimal price = entry.getKey().getPrice();
+            int count = entry.getValue();
+            price = price.multiply(BigDecimal.valueOf(count));
+            totalPrice = totalPrice.add(price);
+        }
+        return totalPrice;
+    }
 }

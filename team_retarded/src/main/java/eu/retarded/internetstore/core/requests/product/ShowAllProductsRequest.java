@@ -1,13 +1,15 @@
 package eu.retarded.internetstore.core.requests.product;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
 
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class ShowAllProductsRequest {
 
-    private final Pageable pageable;
+    private Pageable pageable;
 }
