@@ -182,12 +182,8 @@ body {
 }
 
 .product-name {
-    font-size: 20px;
-    font-weight: bold;
     margin-left: 15px;
     margin-right: 15px;
-    padding-left: 4px;
-    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .buy-block {
@@ -197,8 +193,6 @@ body {
 }
 
 .product-description-block {
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 12px;
     margin-top: 18px;
     margin-left: 15px;
     margin-right: 15px;

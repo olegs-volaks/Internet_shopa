@@ -63,9 +63,8 @@
                 <thead>
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Client</th>
-                    <th scope="col">Price</th>
                     <th scope="col">Customer</th>
+                    <th scope="col">Delivery</th>
                     <th scope="col">Status</th>
 
                 </tr>
@@ -73,11 +72,10 @@
                 <tbody>
                 <tr th:each="order : ${orders}">
                     <th scope="row" th:text="${order.id}"></th>
-                    <td th:text="${order.clientName} + '' + ${order.clientSurname}"></td>
-                    <td th:text="${order.price}"></td>
-                    <td th:text="${order.customer}"></td>
+                    <td th:text="${order.clientName} + ' ' + ${order.clientSurname}"></td>
+                    <td th:text="${order.delivery.title}"></td>
                     <td th:text="${order.status}"></td>
-                    <td><a class="btn btn-edit" th:href="'edit/' + ${order.id}">Open</a></td>
+                    <td><a class="btn btn-edit" th:href="'info/' + ${order.id}">Open</a></td>
                 </tr>
                 </tbody>
             </table>

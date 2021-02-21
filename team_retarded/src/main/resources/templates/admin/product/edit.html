@@ -115,9 +115,9 @@
                         <label for="selectCategory" class="col-sm-2 col-form-label">Category</label>
                         <div class="col-sm-10">
                             <select name="category-id" class="form-control" id="selectCategory">
-                                <option value="-1">None</option>
+                                <option value="0">None</option>
                                 <option th:each="category : ${categories}"
-                                        th:selected="${category.id == ${product.category.id}}"
+                                        th:selected="${category.id} == ${product_category_id}"
                                         th:value="${category.id}"
                                         th:text="${category.name}"
                                         value="1">

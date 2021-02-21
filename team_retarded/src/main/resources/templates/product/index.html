@@ -114,7 +114,9 @@
         </div>
         <div class="col-9">
 
-            <p class="product-name" th:text="${product.name}"></p>
+            <nav class="navbar navbar-light bg-light product-name" style="margin-bottom: 12px;">
+                <p class="admin-category-name" th:text="${product.name}"></p>
+            </nav>
 
             <div class="container">
                 <div class="row">
@@ -152,42 +154,48 @@
                     </div>
 
                     <div class="col-4">
-                        <div class="buy-block">
-                            <p class="price" style="margin-bottom: 8px;" th:text="${product.price} + '€'"></p>
-                            <p th:text="'Quantity in stock - ' + ${product.count}"></p>
-                            <form method="post" action="/product/add" th:if="${is_logged}">
-                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                                <input type="hidden" name="product_id" th:value="${product.id}"/>
-                                <input type="hidden" name="user_id" th:value="${active_user.id}"/>
-                                <div class="form-group row">
-                                    <label for="count" class="col-lg-7 col-form-label"
-                                           style="padding-left: 0">Count:</label>
-                                    <div class="col-lg-5" style="padding-right: 0">
-                                        <input type="number" name="count" th:type="number" min="1"
-                                               th:max="${product.count}"
-                                               class="form-control" style="padding-right: 0" id="count" value="1">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="price" style="margin-bottom: 8px;" th:text="${product.price} + '€'"></p>
+                                <p th:text="'Quantity in stock - ' + ${product.count}"></p>
+                                <form method="post" action="/product/add" th:if="${is_logged}">
+                                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                                    <input type="hidden" name="product_id" th:value="${product.id}"/>
+                                    <input type="hidden" name="user_id" th:value="${active_user.id}"/>
+                                    <div class="form-group row">
+                                        <label for="count" class="col-lg-6 col-form-label"
+                                               style="padding-left: 0">Count:</label>
+                                        <div class="col-lg-6" style="padding-right: 0">
+                                            <input type="number" name="count" th:type="number" min="1"
+                                                   th:max="${product.count}"
+                                                   class="form-control" style="padding-right: 0" id="count" value="1">
+                                        </div>
                                     </div>
-                                </div>
-                                <button type="submit" class="btn btn-card-buy" th:if="${product.count} > 0">Add to
-                                    cart
-                                </button>
-                                <button type="button" class="btn btn-card-buy" th:unless="${product.count} > 0"
-                                        disabled>Not available
-                                </button>
-                            </form>
-                            <th:block th:unless="${is_logged}">
-                                <button type="button" class="btn btn-card-buy" disabled>Add to cart</button>
-                                <small style="color: #d62828">To add an item to the cart you need authorization</small>
-                            </th:block>
+                                    <button type="submit" class="btn btn-card-buy" th:if="${product.count} > 0">Add to
+                                        cart
+                                    </button>
+                                    <button type="button" class="btn btn-card-buy" th:unless="${product.count} > 0"
+                                            disabled>Not available
+                                    </button>
+                                </form>
+                                <th:block th:unless="${is_logged}">
+                                    <button type="button" class="btn btn-card-buy" disabled>Add to cart</button>
+                                    <small style="color: #d62828">To add an item to the cart you need
+                                        authorization</small>
+                                </th:block>
+                            </div>
                         </div>
                     </div>
 
                 </div>
             </div>
 
-            <div class="product-description-block">
-                <p style="font-size: 20px; font-weight: bold;">Product description:</p>
-                <p th:text="${product.description}"></p>
+            <div class="card product-description-block">
+                <div class="card-body">
+                    <h5 class="card-title">Product description:</h5>
+                    <p th:text="${product.description}"></p>
+
+                </div>
             </div>
 
         </div>
