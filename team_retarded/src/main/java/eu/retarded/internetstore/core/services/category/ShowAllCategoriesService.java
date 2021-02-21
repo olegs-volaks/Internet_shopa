@@ -32,9 +32,8 @@ public class ShowAllCategoriesService {
             categories = categoryRepository.findAll();
             return new ShowAllCategoriesResponse(null, categories);
         }
-        Page<Category> categoryPage = categoryRepository.findAll(request.getPageable());
-        return new ShowAllCategoriesResponse(categoryPage,
-                categoryPage.toList());
+        Page<Category> categoryPage=categoryRepository.findAll(request.getPageable());
+        return new ShowAllCategoriesResponse(categoryPage, categoryPage.toList());
     }
 }
 

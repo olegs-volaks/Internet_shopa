@@ -1,18 +1,16 @@
 package eu.retarded.internetstore.core.requests.category;
 
-import eu.retarded.internetstore.core.services.validators.CategoryExist;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
 
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class ShowAllProductsInCategoryRequest {
 
-    @CategoryExist
-    private final long categoryId;
 
-
-    private final Pageable pageable;
-
+    private long categoryId;
+    private Pageable pageable;
 }

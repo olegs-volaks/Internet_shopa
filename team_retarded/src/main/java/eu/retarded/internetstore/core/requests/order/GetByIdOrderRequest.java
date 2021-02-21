@@ -1,6 +1,5 @@
 package eu.retarded.internetstore.core.requests.order;
 
-import eu.retarded.internetstore.core.services.validators.OrderExist;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -9,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GetByIdOrderRequest {
 
-    @OrderExist
     private final Long Id;
 
 }

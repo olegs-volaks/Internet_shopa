@@ -35,8 +35,6 @@ public class ShowAllProductsService {
         if (!errors.isEmpty()) {
             return new ShowAllProductsResponse(errors);
         }
-
-
         List<Product> products;
         if (request.getPageable() == null) {
             products = productRepository.findAll();

@@ -1,6 +1,5 @@
 package eu.retarded.internetstore.core.requests.user;
 
-import eu.retarded.internetstore.core.services.validators.UserExist;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
@@ -11,7 +10,6 @@ import javax.validation.constraints.NotBlank;
 @RequiredArgsConstructor
 public class ChangeUserPasswordRequest {
 
-    @UserExist
     private final long userId;
 
     @NotBlank(message = "Old password must not be empty!")
