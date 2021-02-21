@@ -2,7 +2,6 @@ package eu.retarded.internetstore.web_ui.controllers.admin.order;
 
 import eu.retarded.internetstore.core.domain.Order;
 import eu.retarded.internetstore.core.requests.order.GetOrderListRequest;
-import eu.retarded.internetstore.core.services.order.AddOrderService;
 import eu.retarded.internetstore.core.services.order.GetOrderListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,9 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class AdminOrderController {
-
-    @Autowired
-    private AddOrderService addOrderService;
 
     @Autowired
     private GetOrderListService getOrderListService;
