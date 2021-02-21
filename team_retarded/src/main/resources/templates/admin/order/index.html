@@ -73,8 +73,7 @@
                 <tr th:each="order : ${orders}">
                     <th scope="row" th:text="${order.id}"></th>
                     <td th:text="${order.clientName} + '' + ${order.clientSurname}"></td>
-                    <td th:text="${order.price}"></td>
-                    <td th:text="${order.customer}"></td>
+                    <td th:text="${order.totalPrice}"></td>
                     <td th:text="${order.status}"></td>
                     <td><a class="btn btn-edit" th:href="'edit/' + ${order.id}">Open</a></td>
                 </tr>

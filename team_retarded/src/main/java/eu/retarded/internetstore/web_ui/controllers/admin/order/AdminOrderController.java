@@ -1,7 +1,6 @@
 package eu.retarded.internetstore.web_ui.controllers.admin.order;
 
 import eu.retarded.internetstore.core.domain.Order;
-import eu.retarded.internetstore.core.requests.order.AddOrderRequest;
 import eu.retarded.internetstore.core.requests.order.GetOrderListRequest;
 import eu.retarded.internetstore.core.services.order.AddOrderService;
 import eu.retarded.internetstore.core.services.order.GetOrderListService;
@@ -13,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminOrderController {
@@ -29,7 +26,7 @@ public class AdminOrderController {
     private int pageSize;
 
     @GetMapping("/admin/order/{page}")
-    public String orderPage(@PathVariable String page, ModelMap modelMap) {  // productPage
+    public String orderPage(@PathVariable String page, ModelMap modelMap) {
         int pageInt = Integer.parseInt(page);
         Page<Order> orderPage = getOrderListService.execute(new GetOrderListRequest(
                 PageRequest.of(pageInt - 1, pageSize))).getOrdersPage();
@@ -37,7 +34,7 @@ public class AdminOrderController {
         if (totalPages < 1) {
             totalPages = 1;
         }
-        modelMap.addAttribute("orders", orderPage); // products
+        modelMap.addAttribute("orders", orderPage);
         modelMap.addAttribute("total_pages", totalPages);
         modelMap.addAttribute("current_page", pageInt);
         return "/admin/order/index";
