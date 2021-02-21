@@ -29,7 +29,7 @@ public class ShowAllProductsInCategoryService {
         }
         List<Product> products;
         if (request.getPageable() == null) {
-            products = productRepository.findAll();
+            products = productRepository.findAllByCategory_Id(request.getCategoryId());
             return new ShowAllProductsInCategoryResponse(null, products);
         }
         Page<Product> productPage = productRepository.findAllByCategory_Id(request.getCategoryId(),

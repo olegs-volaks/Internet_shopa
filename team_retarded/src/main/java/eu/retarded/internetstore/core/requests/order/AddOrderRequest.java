@@ -1,16 +1,18 @@
 package eu.retarded.internetstore.core.requests.order;
 
 
-import eu.retarded.internetstore.core.services.validators.DeliveryExist;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 
+
 @Getter
 @RequiredArgsConstructor
 public class AddOrderRequest {
+
+
 
     @NotBlank(message = "Name must not be empty!")
     @Length(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
@@ -24,7 +26,6 @@ public class AddOrderRequest {
     @Length(min = 10, max = 1000, message = "Address must be between 10 and 1000 characters")
     private final String clientAddress;
 
-    @DeliveryExist
     private final long deliveryId;
 
     private final long userId;

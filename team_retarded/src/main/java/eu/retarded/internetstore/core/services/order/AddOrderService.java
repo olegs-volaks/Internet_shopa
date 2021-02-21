@@ -8,9 +8,7 @@ import eu.retarded.internetstore.core.requests.order.AddOrderRequest;
 import eu.retarded.internetstore.core.requests.user.NewUserCartRequest;
 import eu.retarded.internetstore.core.responses.order.AddOrderResponse;
 import eu.retarded.internetstore.core.services.user.NewUserCartService;
-import eu.retarded.internetstore.database.DeliveryRepository;
-import eu.retarded.internetstore.database.OrderRepository;
-import eu.retarded.internetstore.database.UserRepository;
+import eu.retarded.internetstore.database.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +31,12 @@ public class AddOrderService {
 
     @Autowired
     private NewUserCartService newUserCartService;
+
+    @Autowired
+    private CartRepository cartRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Autowired
     private Validator validator;
