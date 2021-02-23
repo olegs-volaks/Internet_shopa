@@ -44,9 +44,9 @@ public class AdminUserEditController {
         updateUserWithRoleService.execute(updateUserWithRoleRequest);
         UpdateUserWithRoleResponse updateUserWithRoleResponse = updateUserWithRoleService.execute(updateUserWithRoleRequest);
         if (updateUserWithRoleResponse.hasErrors()) {
-            return "redirect:/admin/user/1?error";
+            return "redirect:/admin/user/edit/[[${user.id}]]";
         }
-        return "redirect:/admin/user/[[${"+id+"}]]";
+        return "redirect:/admin/user/edit" + id;
     }
 }
 

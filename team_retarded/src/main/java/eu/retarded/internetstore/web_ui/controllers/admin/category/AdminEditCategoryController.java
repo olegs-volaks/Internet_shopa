@@ -40,8 +40,8 @@ public class AdminEditCategoryController {
         updateCategoryService.execute(updateCategoryRequest);
         UpdateCategoryResponse updateCategoryResponse = updateCategoryService.execute(updateCategoryRequest);
         if (updateCategoryResponse.hasErrors()) {
-            return "redirect:/admin/category/edit/[[${category.id}]]/1?error";
+            return "redirect:/admin/category/edit/[[${category.id}]]";
         }
-        return "redirect:/admin/category/edit/[[${category.id}]]";
+        return "redirect:/admin/category/edit/"+id;
     }
 }
