@@ -46,7 +46,7 @@ public class AdminUserEditController {
         if (updateUserWithRoleResponse.hasErrors()) {
             return "redirect:/admin/user/1?error";
         }
-        return "redirect:/admin/user/edit/[[${product.id}]]";
+        return "redirect:/admin/user/[[${"+id+"}]]";
     }
 }
 
