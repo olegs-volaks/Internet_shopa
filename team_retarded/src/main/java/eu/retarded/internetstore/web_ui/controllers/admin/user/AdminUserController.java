@@ -55,7 +55,6 @@ public class AdminUserController {
                              @RequestParam(value = "password1") String password1,
                              @RequestParam(value = "password2", required = false) String password2) {
         AddUserRequest addUserRequest = new AddUserRequest(username, password1, name, surname, email, new Long[]{1L});
-        addUserService.execute(addUserRequest);
         AddUserResponse addUserResponse = addUserService.execute(addUserRequest);
         if (addUserResponse.hasErrors()) {
             return "redirect:/admin/user/1?error";

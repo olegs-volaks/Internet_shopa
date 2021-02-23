@@ -41,7 +41,6 @@ public class AdminUserEditController {
                                @RequestParam(value = "email") String email) {
         UpdateUserWithRoleRequest updateUserWithRoleRequest = new UpdateUserWithRoleRequest
                 (id, username, name, surname, email, new Long[]{1L});
-        updateUserWithRoleService.execute(updateUserWithRoleRequest);
         UpdateUserWithRoleResponse updateUserWithRoleResponse = updateUserWithRoleService.execute(updateUserWithRoleRequest);
         if (updateUserWithRoleResponse.hasErrors()) {
             return "redirect:/admin/user/edit/1?error";

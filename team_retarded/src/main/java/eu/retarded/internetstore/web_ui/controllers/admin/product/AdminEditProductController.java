@@ -66,7 +66,6 @@ public class AdminEditProductController {
                               @RequestParam(value = "count") int count,
                               @RequestParam(value = "category-id") long categoryId) {
         UpdateProductRequest updateProductRequest = new UpdateProductRequest(id, name, description, price, count);
-        updateProductService.execute(updateProductRequest);
         if (categoryId > 0) {
             addProductToCategoryService.execute(new AddProductToCategoryRequest(categoryId, id));
         } else {

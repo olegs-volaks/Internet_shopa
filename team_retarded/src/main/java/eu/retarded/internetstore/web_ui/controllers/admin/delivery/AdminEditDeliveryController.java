@@ -42,7 +42,6 @@ public class AdminEditDeliveryController {
                                @RequestParam(value = "price") double price,
                                @RequestParam(value = "region") String region) {
         UpdateDeliveryRequest updateDeliveryRequest = new UpdateDeliveryRequest(id, title,region,price);
-        updateDeliveryService.execute(updateDeliveryRequest);
         UpdateDeliveryResponse updateDeliveryResponse = updateDeliveryService.execute(updateDeliveryRequest);
         if (updateDeliveryResponse.hasErrors()) {
             return "redirect:/admin/delivery/edit/1?error";

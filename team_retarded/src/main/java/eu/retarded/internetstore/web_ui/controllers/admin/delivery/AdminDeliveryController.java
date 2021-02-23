@@ -56,7 +56,6 @@ public class AdminDeliveryController {
                               @RequestParam(value = "region") String region,
                               @RequestParam(value = "price") double price ) {
         AddDeliveryRequest addDeliveryRequest = new AddDeliveryRequest(title,region,price);
-        addDeliveryService.execute(addDeliveryRequest);
         AddDeliveryResponse addDeliveryResponse = addDeliveryService.execute(addDeliveryRequest);
         if (addDeliveryResponse.hasErrors()) {
             return "redirect:/admin/delivery/1?error";
