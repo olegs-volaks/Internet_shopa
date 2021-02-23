@@ -61,7 +61,7 @@ public class AdminDeliveryController {
         if (addDeliveryResponse.hasErrors()) {
             return "redirect:/admin/delivery/1?error";
         }
-        return "redirect:/admin/delivery/1";
+        return "redirect:/admin/delivery";
     }
 }
 

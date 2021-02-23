@@ -58,7 +58,7 @@ public class AdminCategoryController {
         if (addCategoryResponse.hasErrors()) {
             return "redirect:/admin/category/1?error";
         }
-        return "redirect:/admin/category/1";
+        return "redirect:/admin/category";
     }
 }
 

@@ -45,9 +45,9 @@ public class AdminEditDeliveryController {
         updateDeliveryService.execute(updateDeliveryRequest);
         UpdateDeliveryResponse updateDeliveryResponse = updateDeliveryService.execute(updateDeliveryRequest);
         if (updateDeliveryResponse.hasErrors()) {
-            return "redirect:/admin/delivery/1?error";
+            return "redirect:/admin/delivery/edit/1?error";
         }
-        return "redirect:/admin/delivery/edit/[[${delivery.id}]]" ;
+        return "redirect:/admin/delivery" ;
     }
 }
 

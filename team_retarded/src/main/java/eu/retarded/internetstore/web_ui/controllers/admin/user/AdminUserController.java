@@ -60,6 +60,6 @@ public class AdminUserController {
         if (addUserResponse.hasErrors()) {
             return "redirect:/admin/user/1?error";
         }
-        return "redirect:/admin/user/1";
+        return "redirect:/admin/user";
     }
 }
