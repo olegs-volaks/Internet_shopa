@@ -5,6 +5,7 @@ import eu.retarded.internetstore.core.requests.category.ShowAllCategoriesRequest
 import eu.retarded.internetstore.core.responses.category.ShowAllCategoriesResponse;
 import eu.retarded.internetstore.database.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,8 +32,8 @@ public class ShowAllCategoriesService {
             categories = categoryRepository.findAll();
             return new ShowAllCategoriesResponse(null, categories);
         }
-        return new ShowAllCategoriesResponse(categoryRepository.findAll(request.getPageable()),
-                categoryRepository.findAll(request.getPageable()).toList());
+        Page<Category> categoryPage=categoryRepository.findAll(request.getPageable());
+        return new ShowAllCategoriesResponse(categoryPage, categoryPage.toList());
     }
 }
 

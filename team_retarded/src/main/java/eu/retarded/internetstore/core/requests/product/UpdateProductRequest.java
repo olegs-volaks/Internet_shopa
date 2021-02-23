@@ -1,6 +1,5 @@
 package eu.retarded.internetstore.core.requests.product;
 
-import eu.retarded.internetstore.core.services.validators.ProductExist;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
@@ -12,7 +11,6 @@ import javax.validation.constraints.PositiveOrZero;
 @RequiredArgsConstructor
 public class UpdateProductRequest {
 
-    @ProductExist
     private final long id;
 
     @NotBlank(message = "Name must not be empty!")

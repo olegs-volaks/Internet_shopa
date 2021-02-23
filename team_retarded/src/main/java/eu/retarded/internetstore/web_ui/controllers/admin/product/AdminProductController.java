@@ -3,6 +3,7 @@ package eu.retarded.internetstore.web_ui.controllers.admin.product;
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.AddProductRequest;
 import eu.retarded.internetstore.core.requests.product.ShowAllProductsRequest;
+import eu.retarded.internetstore.core.responses.product.AddProductResponse;
 import eu.retarded.internetstore.core.services.product.AddProductService;
 import eu.retarded.internetstore.core.services.product.ShowAllProductsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class AdminProductController {
     private int pageSize;
 
     @GetMapping("/admin/product/{page}")
-    public String productPage(@PathVariable String page, ModelMap modelMap) {
+    public String productPage(@PathVariable String page, @RequestParam(name = "error", required = false) String error,
+                              ModelMap modelMap) {
         int pageInt = Integer.parseInt(page);
         Page<Product> productPage = showAllProductsService.execute(new ShowAllProductsRequest(
                 PageRequest.of(pageInt - 1, pageSize))).getProductsPage();
@@ -37,6 +39,7 @@ public class AdminProductController {
         if (totalPages < 1) {
             totalPages = 1;
         }
+        modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("products", productPage);
         modelMap.addAttribute("total_pages", totalPages);
         modelMap.addAttribute("current_page", pageInt);
@@ -54,7 +57,10 @@ public class AdminProductController {
                              @RequestParam(value = "price") double price,
                              @RequestParam(value = "count", required = false) int count) {
         AddProductRequest addProductRequest = new AddProductRequest(name, description, price, count);
-        addProductService.execute(addProductRequest);
+        AddProductResponse addProductResponse = addProductService.execute(addProductRequest);
+        if (addProductResponse.hasErrors()) {
+            return "redirect:/admin/product/1?error";
+        }
         return "redirect:/admin/product/1";
     }
 }
