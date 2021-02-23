@@ -3,6 +3,7 @@ package eu.retarded.internetstore.web_ui.controllers.admin.user;
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.user.GetUserByIdRequest;
 import eu.retarded.internetstore.core.requests.user.UpdateUserWithRoleRequest;
+import eu.retarded.internetstore.core.responses.user.UpdateUserWithRoleResponse;
 import eu.retarded.internetstore.core.services.user.GetUserByIdService;
 import eu.retarded.internetstore.core.services.user.UpdateUserWithRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,11 @@ public class AdminUserEditController {
 
 
     @GetMapping("/admin/user/edit/{id}")
-    public String main(@PathVariable String id, ModelMap modelMap) {
+    public String main(@PathVariable String id,@RequestParam(name = "error", required = false) String error,
+                       ModelMap modelMap) {
         long idLong = Integer.parseInt(id);
         User user = getUserByIdService.execute(new GetUserByIdRequest(idLong)).getUser();
+        modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("user", user);
         return "/admin/user/edit";
     }
@@ -39,7 +42,11 @@ public class AdminUserEditController {
         UpdateUserWithRoleRequest updateUserWithRoleRequest = new UpdateUserWithRoleRequest
                 (id, username, name, surname, email, new Long[]{1L});
         updateUserWithRoleService.execute(updateUserWithRoleRequest);
-        return "redirect:/admin/user/edit/" + id;
+        UpdateUserWithRoleResponse updateUserWithRoleResponse = updateUserWithRoleService.execute(updateUserWithRoleRequest);
+        if (updateUserWithRoleResponse.hasErrors()) {
+            return "redirect:/admin/user/1?error";
+        }
+        return "redirect:/admin/user/edit/[[${product.id}]]";
     }
 }
 
