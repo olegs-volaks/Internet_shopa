@@ -14,7 +14,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -32,14 +31,9 @@ public class CartController {
     @Autowired
     private DeleteProductFromUserCartService deleteProductFromUserCartService;
 
-    @GetMapping("/user/cart/{userId}")
-    public String main(@PathVariable(name = "userId") String userId,
-                       @AuthenticationPrincipal User activeUser,
+    @GetMapping("/user/cart")
+    public String main(@AuthenticationPrincipal User activeUser,
                        ModelMap modelMap) {
-        long userIdLong = Long.parseLong(userId);
-        if (userIdLong != activeUser.getId()) {
-            return "redirect:/user/cart/" + activeUser.getId();
-        }
         boolean isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
         Map<Product, Integer> productMap = getProductInCartService.execute(new GetProductInCartRequest(activeUser.getCart().getId())).getProducts();
         int productInCartCount = productMap.size();
@@ -52,11 +46,6 @@ public class CartController {
         modelMap.addAttribute("total_price", Cart.getPrice(productMap));
 
         return "/user/cart";
-    }
-
-    @GetMapping("/user/cart")
-    public String redirect(@AuthenticationPrincipal User activeUser, ModelMap modelMap) {
-        return "redirect:/user/cart/" + activeUser.getId();
     }
 
     @PostMapping("/user/cart/change")
