@@ -37,11 +37,11 @@ public class AdminEditCategoryController {
     public String editCategory(@RequestParam(value = "id") long id,
                                @RequestParam(value = "name") String name) {
         UpdateCategoryRequest updateCategoryRequest = new UpdateCategoryRequest(id, name);
-        updateCategoryService.execute(updateCategoryRequest);
+        //updateCategoryService.execute(updateCategoryRequest);
         UpdateCategoryResponse updateCategoryResponse = updateCategoryService.execute(updateCategoryRequest);
         if (updateCategoryResponse.hasErrors()) {
-            return "redirect:/admin/category/edit/[[${category.id}]]";
+            return "redirect:/admin/category/edit/1?error";
         }
-        return "redirect:/admin/category/edit/"+id;
+        return "redirect:/admin/category";
     }
 }

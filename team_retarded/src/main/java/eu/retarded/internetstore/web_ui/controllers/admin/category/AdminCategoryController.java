@@ -53,7 +53,7 @@ public class AdminCategoryController {
     @PostMapping("/admin/category/add")
     public String addDelivery(@RequestParam(value = "name") String name) {
         AddCategoryRequest addCategoryRequest = new AddCategoryRequest(name);
-        addCategoryService.execute(addCategoryRequest);
+        //addCategoryService.execute(addCategoryRequest);
         AddCategoryResponse addCategoryResponse = addCategoryService.execute(addCategoryRequest);
         if (addCategoryResponse.hasErrors()) {
             return "redirect:/admin/category/1?error";
