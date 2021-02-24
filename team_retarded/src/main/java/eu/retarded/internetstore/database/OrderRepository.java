@@ -9,13 +9,11 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    Page<Order> findOrderByUser_IdAndStatusIsBetween(Long user_id, int status, int status2, Pageable pageable);
 
-    List<Order> findOrderByUser_IdAndStatusIsBetween(Long user_id, int status, int status2);
-
-    Page<Order> findOrderByUser_IdAndStatusOrStatus(Long user_id, int status, int status2, Pageable pageable);
-
-    List<Order> findOrderByUser_IdAndStatusOrStatus(Long user_id, int status, int status2);
+    Page<Order> findOrderByUserIdAndStatusEqualsOrStatusEquals(long id, int status1, int status2, Pageable pageable);
+    List<Order> findOrderByUserIdAndStatusEqualsOrStatusEquals(long id, int status1, int status2);
+    Page<Order> findOrderByUserIdAndStatusBetween(long id, int status1, int status2, Pageable pageable);
+    List<Order> findOrderByUserIdAndStatusBetween(long id, int status1, int status2);
 
 
 }
