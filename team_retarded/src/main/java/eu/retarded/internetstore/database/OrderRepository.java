@@ -14,4 +14,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> findOrderByUserIdAndStatusEqualsOrStatusEquals(long id, int status1, int status2);
     Page<Order> findOrderByUserIdAndStatusBetween(long id, int status1, int status2, Pageable pageable);
     List<Order> findOrderByUserIdAndStatusBetween(long id, int status1, int status2);
+
+
 }
