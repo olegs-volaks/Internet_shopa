@@ -45,12 +45,12 @@ public class AddUserService {
         if (!errors.isEmpty()) {
             return new AddUserResponse(errors);
         }
-        if (userRepository.existsByUserName(request.getUserName())) {
+        if (userRepository.existsByUsername(request.getUserName())) {
             return new AddUserResponse(errors);
         }
         Cart cart = addCartService.execute(new AddCartRequest()).getCart();
         User user = new User();
-        user.setUserName(request.getUserName());
+        user.setUsername(request.getUserName());
         user.setPassword(encoder.encode(request.getPassword()));
         user.setName(request.getName());
         user.setSurname(request.getSurname());

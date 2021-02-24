@@ -19,7 +19,7 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "login")
-    private String userName;
+    private String username;
 
     @Column(name = "password")
     private String password;
@@ -59,7 +59,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     @Override
