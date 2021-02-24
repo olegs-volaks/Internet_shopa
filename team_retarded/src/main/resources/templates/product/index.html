@@ -107,10 +107,10 @@
         <div class="col-3">
             <div class="list-group">
                 <div th:each="category : ${categories}">
-                    <a th:if="${category.id} == ${product.category.id}" th:href="'/category/' + ${category.id}"
+                    <a th:if="${category.id} == ${product_category}" th:href="'/category/' + ${category.id}"
                        th:text="${category.name}"
                        class="list-group-item list-group-item-action active" aria-current="true"></a>
-                    <a th:unless="${category.id} == ${product.category.id}" th:href="'/category/' + ${category.id}"
+                    <a th:unless="${category.id} == ${product_category}" th:href="'/category/' + ${category.id}"
                        th:text="${category.name}" class="list-group-item list-group-item-action"></a>
                 </div>
 

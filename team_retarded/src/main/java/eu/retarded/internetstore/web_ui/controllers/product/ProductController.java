@@ -47,9 +47,12 @@ public class ProductController {
         boolean isActiveUserAdmin = false;
         boolean isInCart = false;
         int productInCartCount = 0;
+        long productCategoryId = 0;
         List<Category> categoryList = showAllCategoriesService.execute(new ShowAllCategoriesRequest()).getCategoriesList();
         Product product = getProductByIdService.execute(new GetProductByIdRequest(idLong)).getProduct();
-
+        if (product.getCategory() != null) {
+            productCategoryId = product.getCategory().getId();
+        }
         if (isLogged) {
             isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
             Map<Product, Integer> productInCart = getProductInCartService.execute(new GetProductInCartRequest(activeUser.getCart().getId())).getProducts();
@@ -63,6 +66,7 @@ public class ProductController {
         modelMap.addAttribute("is_admin", isActiveUserAdmin);
         modelMap.addAttribute("product_in_cart_count", productInCartCount);
         modelMap.addAttribute("product_is_in_cart", isInCart);
+        modelMap.addAttribute("product_category", productCategoryId);
         return "product/index";
     }
 
