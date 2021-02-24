@@ -72,7 +72,6 @@
                     <th scope="col">Name</th>
                     <th scope="col">Surname</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Edit</th>
                 </tr>
                 </thead>
@@ -83,7 +82,6 @@
                     <td th:text="${user.name}"></td>
                     <td th:text="${user.surname}"></td>
                     <td th:text="${user.email}"></td>
-                    <td th:text="${user.status}"></td>
                     <td><a class="btn btn-edit" th:href="'edit/' + ${user.id}">Edit</a></td>
                 </tr>
                 </tbody>

@@ -170,11 +170,17 @@
                                                    class="form-control" style="padding-right: 0" id="count" value="1">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-card-buy" th:if="${product.count} > 0">Add to
+                                    <button type="submit" class="btn btn-card-buy"
+                                            th:if="${product.count} > 0 and !${product_is_in_cart}">Add to
                                         cart
                                     </button>
-                                    <button type="button" class="btn btn-card-buy" th:unless="${product.count} > 0"
+                                    <button type="button" class="btn btn-card-buy"
+                                            th:if="${product.count} <= 0 and !${product_is_in_cart}"
                                             disabled>Not available
+                                    </button>
+                                    <button type="button" class="btn btn-card-buy"
+                                            th:if="${product.count} > 0 and ${product_is_in_cart}"
+                                            disabled>Added
                                     </button>
                                 </form>
                                 <th:block th:unless="${is_logged}">
@@ -238,7 +244,7 @@
                                             class="bi bi-person-fill"></i></span>
                                 </div>
                                 <input type="text" class="form-control" name="name" placeholder="Name" aria-label="Name"
-                                       aria-describedby="register-name">
+                                       aria-describedby="register-name" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -248,7 +254,7 @@
                                             class="bi bi-person"></i></span>
                                 </div>
                                 <input type="text" class="form-control" name="surname" placeholder="Surname"
-                                       aria-label="Surname" aria-describedby="register-surname">
+                                       aria-label="Surname" aria-describedby="register-surname" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -280,8 +286,8 @@
                                             class="bi bi-key"></i></span>
                                 </div>
                                 <input type="password" class="form-control" name="password2"
-                                       placeholder="Password repeat" aria-label="Password repeat"
-                                       aria-describedby="register-password2">
+                                       placeholder="Password repeat" aria-label="Password confirm"
+                                       aria-describedby="register-password2" required>
                             </div>
                         </div>
 

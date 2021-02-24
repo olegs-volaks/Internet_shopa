@@ -1,9 +1,12 @@
 package eu.retarded.internetstore.web_ui.controllers.admin.user;
 
 import eu.retarded.internetstore.core.domain.User;
+import eu.retarded.internetstore.core.requests.user.ChangeUserPasswordRequest;
 import eu.retarded.internetstore.core.requests.user.GetUserByIdRequest;
 import eu.retarded.internetstore.core.requests.user.UpdateUserWithRoleRequest;
+import eu.retarded.internetstore.core.responses.user.ChangeUserPasswordResponse;
 import eu.retarded.internetstore.core.responses.user.UpdateUserWithRoleResponse;
+import eu.retarded.internetstore.core.services.user.ChangeUserPasswordService;
 import eu.retarded.internetstore.core.services.user.GetUserByIdService;
 import eu.retarded.internetstore.core.services.user.UpdateUserWithRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +19,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class AdminUserEditController {
+
     @Autowired
     private GetUserByIdService getUserByIdService;
 
     @Autowired
     private UpdateUserWithRoleService updateUserWithRoleService;
+
+    @Autowired
+    private ChangeUserPasswordService changeUserPasswordService;
 
 
     @GetMapping("/admin/user/edit/{id}")
@@ -44,7 +51,18 @@ public class AdminUserEditController {
         if (updateUserWithRoleResponse.hasErrors()) {
             return "redirect:/admin/user/edit/" + id + "?error";
         }
-        return "redirect:/admin/user";
+        return "redirect:/admin/user/edit/" + id;
+    }
+
+    @PostMapping("/admin/user/changePassword")
+    public String changePassword(@RequestParam(value = "user_id") long id,
+                                 @RequestParam(value = "password1") String password1,
+                                 @RequestParam(value = "password2") String password2) {
+        ChangeUserPasswordResponse response = changeUserPasswordService.execute(new ChangeUserPasswordRequest(id, password1, password2));
+        if (response.hasErrors() || response.getUser() == null) {
+            return "redirect:/admin/user/edit/" + id + "?error";
+        }
+        return "redirect:/admin/user/edit/" + id;
     }
 }
 

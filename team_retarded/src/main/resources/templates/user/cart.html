@@ -108,7 +108,8 @@
                 <div class="card-body">
                     <h5 class="card-title">Total price</h5>
                     <p class="card-text price" th:text="${total_price} + '€'"></p>
-                    <a href="/user/order/toOrder" class="btn btn-add">To order</a>
+                    <a href="/user/order/toOrder" class="btn btn-add" th:if="${product_in_cart_count} > 0">To order</a>
+                    <button disabled class="btn btn-add" th:unless="${product_in_cart_count} > 0">To order</button>
                 </div>
             </div>
         </div>

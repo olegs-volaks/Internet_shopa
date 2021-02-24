@@ -46,7 +46,7 @@ public class AdminEditDeliveryController {
         if (updateDeliveryResponse.hasErrors()) {
             return "redirect:/admin/delivery/edit/"+id+"?error";
         }
-        return "redirect:/admin/delivery" ;
+        return "redirect:/admin/delivery/edit/" + id;
     }
 }
 

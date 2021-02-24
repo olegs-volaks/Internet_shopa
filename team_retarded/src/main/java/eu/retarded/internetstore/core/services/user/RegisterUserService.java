@@ -31,7 +31,7 @@ public class RegisterUserService {
         if (!errors.isEmpty()) {
             return new RegisterUserResponse(errors);
         }
-        AddUserRequest addUserRequest = new AddUserRequest(request.getUserName(), request.getPassword(), request.getName(),
+        AddUserRequest addUserRequest = new AddUserRequest(request.getUserName(), request.getPassword(), request.getPasswordConfirm(), request.getName(),
                 request.getSurname(), request.getEmail(), new Long[]{1L});
         User user = addUserService.execute(addUserRequest).getUser();
         return new RegisterUserResponse(userRepository.save(user));

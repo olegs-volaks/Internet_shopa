@@ -1,5 +1,6 @@
 package eu.retarded.internetstore.core.requests.user;
 
+import eu.retarded.internetstore.core.services.validators.PasswordsMatch;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Length;
@@ -11,6 +12,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @RequiredArgsConstructor
+@PasswordsMatch(baseField = "password", matchField = "passwordConfirm")
 public class AddUserRequest {
 
     @NotBlank(message = "Login must not be empty!")
@@ -20,6 +22,10 @@ public class AddUserRequest {
     @NotBlank(message = "Password must not be empty!")
     @Length(min = 6, max = 32, message = "Password must be between 6 and 32 characters")
     private final String password;
+
+    @NotBlank(message = "Password must not be empty!")
+    @Length(min = 6, max = 32, message = "Password must be between 6 and 32 characters")
+    private final String passwordConfirm;
 
     @NotBlank(message = "Name must not be empty!")
     @Length(min = 2, max = 100, message = "Name must be between 2 and 100 characters")

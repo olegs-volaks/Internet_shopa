@@ -75,6 +75,6 @@ public class AdminEditProductController {
         if (updateProductResponse.hasErrors()) {
             return "redirect:/admin/product/edit/"+id+"?error";
         }
-        return "redirect:/admin/product";
+        return "redirect:/admin/product/edit/" + id;
     }
 }

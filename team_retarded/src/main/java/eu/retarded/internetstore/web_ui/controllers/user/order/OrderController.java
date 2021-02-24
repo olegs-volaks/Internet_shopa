@@ -10,6 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
@@ -20,7 +21,8 @@ public class OrderController {
     private GetProductInCartService getProductInCartService;
 
     @GetMapping("/user/order")
-    public String main(@AuthenticationPrincipal User activeUser,
+    public String main(@RequestParam(name = "success", required = false) String success,
+                       @AuthenticationPrincipal User activeUser,
                        ModelMap modelMap) {
         boolean isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
         Map<Product, Integer> productMap = getProductInCartService.execute(new GetProductInCartRequest(activeUser.getCart().getId())).getProducts();
@@ -34,6 +36,7 @@ public class OrderController {
         modelMap.addAttribute("total_price", Cart.getPrice(productMap));
         modelMap.addAttribute("active_orders", null);
         modelMap.addAttribute("closed_orders", null);
+        modelMap.addAttribute("success", success);
 
         return "/user/order/index";
     }

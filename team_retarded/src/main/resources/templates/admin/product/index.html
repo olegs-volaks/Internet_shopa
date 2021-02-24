@@ -72,7 +72,6 @@
                     <th scope="col">Description</th>
                     <th scope="col">Price</th>
                     <th scope="col">Count</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Edit</th>
                 </tr>
                 </thead>
@@ -83,7 +82,6 @@
                     <td th:text="${product.getShortDescription(30)}"></td>
                     <td th:text="${product.price}"></td>
                     <td th:text="${product.count}"></td>
-                    <td th:text="${product.status}"></td>
                     <td><a class="btn btn-edit" th:href="'edit/' + ${product.id}">Edit</a></td>
                 </tr>
                 </tbody>

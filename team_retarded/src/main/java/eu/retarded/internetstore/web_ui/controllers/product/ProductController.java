@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ProductController {
@@ -44,19 +45,24 @@ public class ProductController {
         long idLong = Long.parseLong(id);
         boolean isLogged = activeUser != null;
         boolean isActiveUserAdmin = false;
-        int productInCart = 0;
-        if (isLogged) {
-            isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
-            productInCart = getProductInCartService.execute(new GetProductInCartRequest(activeUser.getCart().getId())).getProducts().size();
-        }
+        boolean isInCart = false;
+        int productInCartCount = 0;
         List<Category> categoryList = showAllCategoriesService.execute(new ShowAllCategoriesRequest()).getCategoriesList();
         Product product = getProductByIdService.execute(new GetProductByIdRequest(idLong)).getProduct();
+
+        if (isLogged) {
+            isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
+            Map<Product, Integer> productInCart = getProductInCartService.execute(new GetProductInCartRequest(activeUser.getCart().getId())).getProducts();
+            productInCartCount = productInCart.size();
+            isInCart = productInCart.containsKey(product);
+        }
         modelMap.addAttribute("product", product);
         modelMap.addAttribute("categories", categoryList);
         modelMap.addAttribute("active_user", activeUser);
         modelMap.addAttribute("is_logged", isLogged);
         modelMap.addAttribute("is_admin", isActiveUserAdmin);
-        modelMap.addAttribute("product_in_cart_count", productInCart);
+        modelMap.addAttribute("product_in_cart_count", productInCartCount);
+        modelMap.addAttribute("product_is_in_cart", isInCart);
         return "product/index";
     }
 

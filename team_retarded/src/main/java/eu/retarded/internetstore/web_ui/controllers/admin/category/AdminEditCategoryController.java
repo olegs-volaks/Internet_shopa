@@ -41,6 +41,6 @@ public class AdminEditCategoryController {
         if (updateCategoryResponse.hasErrors()) {
             return "redirect:/admin/category/edit/"+id+"?error";
         }
-        return "redirect:/admin/category";
+        return "redirect:/admin/category/edit/" + id;
     }
 }
