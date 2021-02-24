@@ -43,7 +43,7 @@ public class AdminUserEditController {
                 (id, username, name, surname, email, new Long[]{1L});
         UpdateUserWithRoleResponse updateUserWithRoleResponse = updateUserWithRoleService.execute(updateUserWithRoleRequest);
         if (updateUserWithRoleResponse.hasErrors()) {
-            return "redirect:/admin/user/edit/1?error";
+            return "redirect:/admin/user/edit/"+id+"?error";
         }
         return "redirect:/admin/user";
     }

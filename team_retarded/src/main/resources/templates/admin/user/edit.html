@@ -148,7 +148,7 @@
         $('#error').modal('show')
         setTimeout(function () {
             $("#error").modal('hide');
-            window.location.replace('/admin/user/edit/1')
+            window.location.replace('/admin/user/edit/[[${user.id}]]')
         }, 1500);
     });
 </script>

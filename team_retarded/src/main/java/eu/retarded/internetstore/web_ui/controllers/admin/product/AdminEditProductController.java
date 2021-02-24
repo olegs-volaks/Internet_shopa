@@ -73,7 +73,7 @@ public class AdminEditProductController {
         }
         UpdateProductResponse updateProductResponse = updateProductService.execute(updateProductRequest);
         if (updateProductResponse.hasErrors()) {
-            return "redirect:/admin/product/edit/1?error";
+            return "redirect:/admin/product/edit/"+id+"?error";
         }
         return "redirect:/admin/product";
     }
