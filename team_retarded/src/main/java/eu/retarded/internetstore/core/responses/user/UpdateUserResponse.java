@@ -11,7 +11,7 @@ public class UpdateUserResponse extends CoreResponse<UpdateUserRequest> {
 
     private User user;
 
-    public User getUserId() {
+    public User getUser() {
         return user;
     }
 

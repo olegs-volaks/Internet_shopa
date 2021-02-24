@@ -5,6 +5,9 @@ import eu.retarded.internetstore.core.requests.user.UpdateUserRequest;
 import eu.retarded.internetstore.core.responses.user.UpdateUserResponse;
 import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,6 +33,8 @@ public class UpdateUserService {
         activeUser.setName(request.getName());
         activeUser.setSurname(request.getSurname());
         activeUser.setEmail(request.getEmail());
+        Authentication authentication = new PreAuthenticatedAuthenticationToken(activeUser, activeUser.getPassword(), activeUser.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return new UpdateUserResponse(activeUser);
     }
 }

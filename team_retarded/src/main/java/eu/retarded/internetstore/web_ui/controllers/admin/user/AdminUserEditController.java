@@ -24,7 +24,7 @@ public class AdminUserEditController {
 
 
     @GetMapping("/admin/user/edit/{id}")
-    public String main(@PathVariable String id,@RequestParam(name = "error", required = false) String error,
+    public String main(@PathVariable String id, @RequestParam(name = "error", required = false) String error,
                        ModelMap modelMap) {
         long idLong = Integer.parseInt(id);
         User user = getUserByIdService.execute(new GetUserByIdRequest(idLong)).getUser();
@@ -35,15 +35,14 @@ public class AdminUserEditController {
 
     @PostMapping("/admin/user/save")
     public String editUser(@RequestParam(value = "id") long id,
-                               @RequestParam(value = "username") String username,
-                               @RequestParam(value = "name") String name,
-                               @RequestParam(value = "surname") String surname,
-                               @RequestParam(value = "email") String email) {
+                           @RequestParam(value = "name") String name,
+                           @RequestParam(value = "surname") String surname,
+                           @RequestParam(value = "email") String email) {
         UpdateUserWithRoleRequest updateUserWithRoleRequest = new UpdateUserWithRoleRequest
-                (id, username, name, surname, email, new Long[]{1L});
+                (id, name, surname, email, new Long[]{1L});
         UpdateUserWithRoleResponse updateUserWithRoleResponse = updateUserWithRoleService.execute(updateUserWithRoleRequest);
         if (updateUserWithRoleResponse.hasErrors()) {
-            return "redirect:/admin/user/edit/"+id+"?error";
+            return "redirect:/admin/user/edit/" + id + "?error";
         }
         return "redirect:/admin/user";
     }

@@ -46,7 +46,7 @@
                         [['Hi, ' + ${active_user.name} + '!']]
                     </a>
                     <div class="dropdown-menu" aria-labelledby="profile_navbar">
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="/user/profile">Profile</a>
                         <a class="dropdown-item" href="/user/order">Orders</a>
                         <a class="dropdown-item" href="/admin" th:if="${is_admin}">Admin panel</a>
                         <div class="dropdown-divider"></div>
@@ -91,7 +91,7 @@
                 <div class="form-group row">
                     <label for="clientAddress" class="col-sm-2 col-form-label">Your address</label>
                     <div class="col-sm-10">
-                        <input type="text" name="address" class="form-control" id="clientAddress" required>
+                        <input type="text" name="client_address" class="form-control" id="clientAddress" required>
                     </div>
                 </div>
 
