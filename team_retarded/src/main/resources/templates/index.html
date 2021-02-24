@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 
 
-            <form class="form-inline my-2 my-lg-0">
+            <form class="form-inline my-2 my-lg-0" method="get" action="/search">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-search" type="submit">Search</button>
             </form>
@@ -106,9 +106,13 @@
     <div class="row">
         <div class="col-3">
             <div class="list-group">
-                <a th:each="category : ${categories}" th:href="'/category/' + ${category.id}" th:text="${category.name}"
-                   class="list-group-item list-group-item-action"></a>
-
+                <div th:each="category : ${categories}">
+                    <a th:if="${category.id} == ${selected_category}" th:href="'/category/' + ${category.id}"
+                       th:text="${category.name}"
+                       class="list-group-item list-group-item-action active" aria-current="true"></a>
+                    <a th:unless="${category.id} == ${selected_category}" th:href="'/category/' + ${category.id}"
+                       th:text="${category.name}" class="list-group-item list-group-item-action"></a>
+                </div>
             </div>
         </div>
         <div class="col-9">

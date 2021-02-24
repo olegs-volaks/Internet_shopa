@@ -60,6 +60,7 @@ public class MainController {
         }
         modelMap.addAttribute("products", productPage);
         modelMap.addAttribute("categories", categoryList);
+        modelMap.addAttribute("selected_category", 0);
         modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("logout", logout != null);
         modelMap.addAttribute("active_user", activeUser);
