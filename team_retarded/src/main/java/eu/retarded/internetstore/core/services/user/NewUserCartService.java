@@ -8,6 +8,9 @@ import eu.retarded.internetstore.core.responses.user.NewUserCartResponse;
 import eu.retarded.internetstore.core.services.cart.AddCartService;
 import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +30,8 @@ public class NewUserCartService {
         Cart newCart = addCartService.execute(new AddCartRequest()).getCart();
         user.setCart(newCart);
         userRepository.save(user);
+        Authentication authentication = new PreAuthenticatedAuthenticationToken(user, user.getPassword(), user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         return new NewUserCartResponse(oldCart);
     }
 }

@@ -34,13 +34,13 @@ public class UpdateUserWithRoleService {
         if (!errors.isEmpty()) {
             return new UpdateUserWithRoleResponse(errors);
         }
-        User activeUser = userRepository.getOne(request.getId());
-        activeUser.setName(request.getName());
-        activeUser.setSurname(request.getSurname());
-        activeUser.setEmail(request.getEmail());
+        User user = userRepository.getOne(request.getId());
+        user.setName(request.getName());
+        user.setSurname(request.getSurname());
+        user.setEmail(request.getEmail());
         List<Role> roleList = roleRepository.findAllById(Arrays.asList(request.getRolesId()));
-        activeUser.setRoles(new HashSet<>(roleList));
-        return new UpdateUserWithRoleResponse(activeUser);
+        user.setRoles(new HashSet<>(roleList));
+        return new UpdateUserWithRoleResponse(user);
     }
 }
 

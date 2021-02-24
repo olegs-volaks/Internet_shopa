@@ -13,14 +13,6 @@ public class UpdateUserRequest {
 
     private final long id;
 
-    @NotBlank(message = "Login must not be empty!")
-    @Length(min = 6, max = 32, message = "Login must be between 6 and 32 characters")
-    private final String login;
-
-    @NotBlank(message = "Password must not be empty!")
-    @Length(min = 6, max = 32, message = "Password must be between 6 and 32 characters")
-    private final String password;
-
     @NotBlank(message = "Name must not be empty!")
     @Length(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
     private final String name;

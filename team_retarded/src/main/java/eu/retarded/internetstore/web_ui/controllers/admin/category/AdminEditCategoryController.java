@@ -3,6 +3,7 @@ package eu.retarded.internetstore.web_ui.controllers.admin.category;
 import eu.retarded.internetstore.core.domain.Category;
 import eu.retarded.internetstore.core.requests.category.GetCategoryByIdRequest;
 import eu.retarded.internetstore.core.requests.category.UpdateCategoryRequest;
+import eu.retarded.internetstore.core.responses.category.UpdateCategoryResponse;
 import eu.retarded.internetstore.core.services.category.GetCategoryByIdService;
 import eu.retarded.internetstore.core.services.category.UpdateCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,11 @@ public class AdminEditCategoryController {
 
 
     @GetMapping("/admin/category/edit/{id}")
-    public String main(@PathVariable String id, ModelMap modelMap) {
+    public String main(@PathVariable String id,@RequestParam(name = "error", required = false) String error,
+                       ModelMap modelMap) {
         long idLong = Integer.parseInt(id);
         Category category = getCategoryByIdService.execute(new GetCategoryByIdRequest(idLong)).getCategory();
+        modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("category", category);
         return "/admin/category/edit";
     }
@@ -34,7 +37,10 @@ public class AdminEditCategoryController {
     public String editCategory(@RequestParam(value = "id") long id,
                                @RequestParam(value = "name") String name) {
         UpdateCategoryRequest updateCategoryRequest = new UpdateCategoryRequest(id, name);
-        updateCategoryService.execute(updateCategoryRequest);
-        return "redirect:/admin/category/edit/" + id;
+        UpdateCategoryResponse updateCategoryResponse = updateCategoryService.execute(updateCategoryRequest);
+        if (updateCategoryResponse.hasErrors()) {
+            return "redirect:/admin/category/edit/"+id+"?error";
+        }
+        return "redirect:/admin/category";
     }
 }

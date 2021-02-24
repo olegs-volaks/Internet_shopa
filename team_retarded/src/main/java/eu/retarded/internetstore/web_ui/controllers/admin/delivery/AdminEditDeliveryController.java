@@ -3,7 +3,7 @@ package eu.retarded.internetstore.web_ui.controllers.admin.delivery;
 import eu.retarded.internetstore.core.domain.Delivery;
 import eu.retarded.internetstore.core.requests.delivery.GetByIdDeliveryRequest;
 import eu.retarded.internetstore.core.requests.delivery.UpdateDeliveryRequest;
-
+import eu.retarded.internetstore.core.responses.delivery.UpdateDeliveryResponse;
 import eu.retarded.internetstore.core.services.delivery.GetByIdDeliveryService;
 import eu.retarded.internetstore.core.services.delivery.UpdateDeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +27,11 @@ public class AdminEditDeliveryController {
 
 
     @GetMapping("/admin/delivery/edit/{id}")
-    public String main(@PathVariable String id, ModelMap modelMap) {
+    public String main(@PathVariable String id,@RequestParam(name = "error", required = false) String error,
+                       ModelMap modelMap) {
         long idLong = Integer.parseInt(id);
         Delivery delivery = getByIdDeliveryService.execute(new GetByIdDeliveryRequest(idLong)).getDelivery();
+        modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("delivery", delivery);
         return "/admin/delivery/edit";
     }
@@ -40,8 +42,11 @@ public class AdminEditDeliveryController {
                                @RequestParam(value = "price") double price,
                                @RequestParam(value = "region") String region) {
         UpdateDeliveryRequest updateDeliveryRequest = new UpdateDeliveryRequest(id, title,region,price);
-        updateDeliveryService.execute(updateDeliveryRequest);
-        return "redirect:/admin/delivery/edit/" + id;
+        UpdateDeliveryResponse updateDeliveryResponse = updateDeliveryService.execute(updateDeliveryRequest);
+        if (updateDeliveryResponse.hasErrors()) {
+            return "redirect:/admin/delivery/edit/"+id+"?error";
+        }
+        return "redirect:/admin/delivery" ;
     }
 }
 

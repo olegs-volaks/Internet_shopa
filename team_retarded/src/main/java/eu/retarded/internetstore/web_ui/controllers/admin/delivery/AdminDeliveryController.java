@@ -3,6 +3,7 @@ package eu.retarded.internetstore.web_ui.controllers.admin.delivery;
 import eu.retarded.internetstore.core.domain.Delivery;
 import eu.retarded.internetstore.core.requests.delivery.AddDeliveryRequest;
 import eu.retarded.internetstore.core.requests.delivery.GetDeliveryListRequest;
+import eu.retarded.internetstore.core.responses.delivery.AddDeliveryResponse;
 import eu.retarded.internetstore.core.services.delivery.AddDeliveryService;
 import eu.retarded.internetstore.core.services.delivery.GetDeliveryListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,8 @@ public class AdminDeliveryController {
     private int pageSize;
 
     @GetMapping("/admin/delivery/{page}")
-    public String deliveryPage(@PathVariable String page, ModelMap modelMap) {  // productPage
+    public String deliveryPage(@PathVariable String page, @RequestParam(name = "error", required = false) String error,
+                               ModelMap modelMap) {  // productPage
         int pageInt = Integer.parseInt(page);
         Page<Delivery> deliveryPage = getDeliveryListService.execute(new GetDeliveryListRequest(
                 PageRequest.of(pageInt - 1, pageSize))).getDeliveriesPage();
@@ -37,6 +39,7 @@ public class AdminDeliveryController {
         if (totalPages < 1) {
             totalPages = 1;
         }
+        modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("deliveries", deliveryPage); // products
         modelMap.addAttribute("total_pages", totalPages);
         modelMap.addAttribute("current_page", pageInt);
@@ -53,8 +56,11 @@ public class AdminDeliveryController {
                               @RequestParam(value = "region") String region,
                               @RequestParam(value = "price") double price ) {
         AddDeliveryRequest addDeliveryRequest = new AddDeliveryRequest(title,region,price);
-        addDeliveryService.execute(addDeliveryRequest);
-        return "redirect:/admin/delivery/1";
+        AddDeliveryResponse addDeliveryResponse = addDeliveryService.execute(addDeliveryRequest);
+        if (addDeliveryResponse.hasErrors()) {
+            return "redirect:/admin/delivery/1?error";
+        }
+        return "redirect:/admin/delivery";
     }
 }
 

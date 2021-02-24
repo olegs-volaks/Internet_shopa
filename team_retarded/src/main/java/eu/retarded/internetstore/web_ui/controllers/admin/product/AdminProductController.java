@@ -61,6 +61,6 @@ public class AdminProductController {
         if (addProductResponse.hasErrors()) {
             return "redirect:/admin/product/1?error";
         }
-        return "redirect:/admin/product/1";
+        return "redirect:/admin/product";
     }
 }

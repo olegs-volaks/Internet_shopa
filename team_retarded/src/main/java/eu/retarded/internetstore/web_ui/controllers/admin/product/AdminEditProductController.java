@@ -7,6 +7,7 @@ import eu.retarded.internetstore.core.requests.product.AddProductToCategoryReque
 import eu.retarded.internetstore.core.requests.product.DeleteProductFromCategoryRequest;
 import eu.retarded.internetstore.core.requests.product.GetProductByIdRequest;
 import eu.retarded.internetstore.core.requests.product.UpdateProductRequest;
+import eu.retarded.internetstore.core.responses.product.UpdateProductResponse;
 import eu.retarded.internetstore.core.services.category.ShowAllCategoriesService;
 import eu.retarded.internetstore.core.services.product.AddProductToCategoryService;
 import eu.retarded.internetstore.core.services.product.DeleteProductFromCategoryService;
@@ -41,7 +42,8 @@ public class AdminEditProductController {
     private DeleteProductFromCategoryService deleteProductFromCategoryService;
 
     @GetMapping("/admin/product/edit/{id}")
-    public String main(@PathVariable String id, ModelMap modelMap) {
+    public String main(@PathVariable String id,@RequestParam(name = "error", required = false) String error,
+                       ModelMap modelMap) {
         long idLong = Integer.parseInt(id);
         Product product = getProductByIdService.execute(new GetProductByIdRequest(idLong)).getProduct();
         List<Category> categoryList = showAllCategoriesService.execute(new ShowAllCategoriesRequest()).getCategoriesList();
@@ -49,6 +51,7 @@ public class AdminEditProductController {
         if (product.getCategory() != null) {
             productCategoryId = product.getCategory().getId();
         }
+        modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("product", product);
         modelMap.addAttribute("categories", categoryList);
         modelMap.addAttribute("product_category_id", productCategoryId);
@@ -63,12 +66,15 @@ public class AdminEditProductController {
                               @RequestParam(value = "count") int count,
                               @RequestParam(value = "category-id") long categoryId) {
         UpdateProductRequest updateProductRequest = new UpdateProductRequest(id, name, description, price, count);
-        updateProductService.execute(updateProductRequest);
         if (categoryId > 0) {
             addProductToCategoryService.execute(new AddProductToCategoryRequest(categoryId, id));
         } else {
             deleteProductFromCategoryService.execute(new DeleteProductFromCategoryRequest(id));
         }
-        return "redirect:/admin/product/edit/" + id;
+        UpdateProductResponse updateProductResponse = updateProductService.execute(updateProductRequest);
+        if (updateProductResponse.hasErrors()) {
+            return "redirect:/admin/product/edit/"+id+"?error";
+        }
+        return "redirect:/admin/product";
     }
 }
