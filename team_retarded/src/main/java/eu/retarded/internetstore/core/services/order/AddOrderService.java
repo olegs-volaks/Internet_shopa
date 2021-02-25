@@ -55,6 +55,7 @@ public class AddOrderService {
         Delivery delivery = deliveryRepository.getOne(request.getDeliveryId());
         order.setDelivery(delivery);
         order.setTotalPrice(orderCart.getTotalPrice().add(delivery.getPrice()));
+        order.setUser(activeUser);
         order.setStatus(1);
         Map<Product, Integer> products = orderCart.getProducts();
         for (Map.Entry<Product, Integer> entry : products.entrySet()) {

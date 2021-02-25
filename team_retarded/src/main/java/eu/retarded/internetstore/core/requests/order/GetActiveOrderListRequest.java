@@ -1,15 +1,21 @@
 package eu.retarded.internetstore.core.requests.order;
 
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class GetActiveOrderListRequest {
+
+    private Long Id;
     private Pageable pageable;
-    private  Long Id;
+
+    public GetActiveOrderListRequest(Long id) {
+        Id = id;
+    }
+
+    public GetActiveOrderListRequest(Long id, Pageable pageable) {
+        Id = id;
+        this.pageable = pageable;
+    }
 }

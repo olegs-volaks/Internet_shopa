@@ -99,7 +99,7 @@
                                         <span th:if="${order.status} == 2" class="badge badge-info">The order is being collected</span>
                                         <span th:if="${order.status} == 3" class="badge badge-info">Transferred for delivery</span>
                                     </td>
-                                    <td><a th:href="'/user/order/order/' + ${order.id}" class="btn btn-edit">Open</a>
+                                    <td><a th:href="'/user/order/info/' + ${order.id}" class="btn btn-edit">Open</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -138,7 +138,7 @@
                                         <span th:if="${order.status} == 0" class="badge badge-danger">Canceled</span>
                                         <span th:if="${order.status} == 4" class="badge badge-success">Delivered</span>
                                     </td>
-                                    <td><a th:href="'/user/order/order/' + ${order.id}" class="btn btn-edit">Open</a>
+                                    <td><a th:href="'/user/order/info/' + ${order.id}" class="btn btn-edit">Open</a>
                                     </td>
                                 </tr>
                                 </tbody>

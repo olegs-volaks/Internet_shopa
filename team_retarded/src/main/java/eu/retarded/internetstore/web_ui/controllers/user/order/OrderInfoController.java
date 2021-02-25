@@ -4,53 +4,44 @@ import eu.retarded.internetstore.core.domain.Order;
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.cart.GetProductInCartRequest;
-import eu.retarded.internetstore.core.requests.order.GetActiveOrderListRequest;
-import eu.retarded.internetstore.core.requests.order.GetClosedOrderListRequest;
+import eu.retarded.internetstore.core.requests.order.GetByIdOrderRequest;
 import eu.retarded.internetstore.core.services.cart.GetProductInCartService;
-import eu.retarded.internetstore.core.services.order.GetActiveOrderListService;
-import eu.retarded.internetstore.core.services.order.GetClosedOrderListService;
+import eu.retarded.internetstore.core.services.order.GetByIdOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
 import java.util.Map;
 
 @Controller
-public class OrderController {
-
-    @Autowired
-    private GetActiveOrderListService getActiveOrderListService;
-
-    @Autowired
-    private GetClosedOrderListService getClosedOrderListService;
+public class OrderInfoController {
 
     @Autowired
     private GetProductInCartService getProductInCartService;
 
-    @GetMapping("/user/order")
-    public String main(@RequestParam(name = "success", required = false) String success,
+    @Autowired
+    private GetByIdOrderService getByIdOrderService;
+
+    @GetMapping("/user/order/info/{id}")
+    public String main(@PathVariable String id,
                        @AuthenticationPrincipal User activeUser,
                        ModelMap modelMap) {
+        long idLong = Long.parseLong(id);
         boolean isActiveUserAdmin = activeUser.getRoles().stream().anyMatch(role -> role.getName().equals("ROLE_ADMIN"));
         Map<Product, Integer> productMap = getProductInCartService.execute(new GetProductInCartRequest(activeUser.getCart().getId())).getProducts();
         int productInCartCount = productMap.size();
-
-        List<Order> activeOrders = getActiveOrderListService.execute(new GetActiveOrderListRequest(activeUser.getId())).getOrdersList();
-        List<Order> closedOrders = getClosedOrderListService.execute(new GetClosedOrderListRequest(activeUser.getId())).getOrdersList();
-
+        Order order = getByIdOrderService.execute(new GetByIdOrderRequest(idLong)).getOrder();
+        Map<Product, Integer> productInOrder = getProductInCartService.execute(new GetProductInCartRequest(order.getCart().getId())).getProducts();
         modelMap.addAttribute("active_user", activeUser);
         modelMap.addAttribute("is_logged", true);
         modelMap.addAttribute("is_admin", isActiveUserAdmin);
         modelMap.addAttribute("product_in_cart_count", productInCartCount);
-        modelMap.addAttribute("active_orders", activeOrders);
-        modelMap.addAttribute("closed_orders", closedOrders);
-        modelMap.addAttribute("success", success);
+        modelMap.addAttribute("order", order);
+        modelMap.addAttribute("product_in_order", productInOrder);
 
-        return "/user/order/index";
+        return "/user/order/info";
     }
-
 }
