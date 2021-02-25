@@ -72,6 +72,9 @@ public class SearchController {
     @GetMapping("/search")
     public String main(@RequestParam(name = "keyword") String keyword,
                        ModelMap modelMap) {
+        if (keyword.isBlank()) {
+            return "redirect:/";
+        }
         return "redirect:/search/1?keyword=" + keyword;
     }
 }
