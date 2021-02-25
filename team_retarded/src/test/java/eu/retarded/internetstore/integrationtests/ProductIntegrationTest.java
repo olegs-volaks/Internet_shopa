@@ -4,9 +4,11 @@ import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.AddProductRequest;
 import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
 import eu.retarded.internetstore.core.requests.product.GetProductByIdRequest;
+import eu.retarded.internetstore.core.requests.product.UpdateProductRequest;
 import eu.retarded.internetstore.core.services.product.AddProductService;
 import eu.retarded.internetstore.core.services.product.DeleteProductService;
 import eu.retarded.internetstore.core.services.product.GetProductByIdService;
+import eu.retarded.internetstore.core.services.product.UpdateProductService;
 import eu.retarded.internetstore.database.CartRepository;
 import eu.retarded.internetstore.database.OrderRepository;
 import eu.retarded.internetstore.database.ProductRepository;
@@ -16,6 +18,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+
+import java.math.BigDecimal;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -83,11 +87,6 @@ public class ProductIntegrationTest {
     }
 
     @Test
-    void show_all_product_request() {
-
-    }
-
-    @Test
     void get_product_by_id_request() {
         AddProductService addProductService = context.getBean(AddProductService.class);
         GetProductByIdService getProductByIdService = context.getBean(GetProductByIdService.class);
@@ -112,7 +111,24 @@ public class ProductIntegrationTest {
         assertThat(productRepository.existsById(id4.getId())).isTrue();
         assertThat(productRepository.existsById(id5.getId())).isTrue();
 
-
     }
 
+    @Test
+    void update_product_request() {
+        AddProductService addProductService = context.getBean(AddProductService.class);
+        UpdateProductService updateProductService = context.getBean(UpdateProductService.class);
+        Product id = addProductService.execute(new AddProductRequest("Apple","Iphone XS Max Pro 12, 240GB,Black Silver color",
+                1500.0,15)).getProduct();
+        updateProductService.execute(new UpdateProductRequest(id.getId(),"Apple12","IPHONE 12214444444GB silver black one,best phone ever",
+                1200.00,145)).getProduct();
+        Product result = productRepository.findById(id.getId()).get();
+        Product expecting = new Product();
+        expecting.setId(id.getId());
+        expecting.setName("Apple12");
+        expecting.setDescription("IPHONE 12214444444GB silver black one,best phone ever");
+        expecting.setPrice(new BigDecimal("1200.00"));
+        expecting.setCount(145);
+        expecting.setStatus(1);
+        assertThat(result).isEqualTo(expecting);
+    }
 }
