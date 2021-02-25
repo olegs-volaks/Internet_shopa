@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
+@Controller
 public class SearchController {
+
     @Autowired
     private SearchProductService searchProductService;
 
@@ -31,16 +34,14 @@ public class SearchController {
     @Autowired
     private ShowAllCategoriesService showAllCategoriesService;
 
-    @Value("${product.page-size}")
+    @Value("${search.page-size}")
     private int pageSize;
 
     @GetMapping("/search/{page}")
     public String main(@PathVariable(name = "page") String page,
-                       @RequestParam(value = "error", required = false) String error,
                        @RequestParam(name = "keyword") String keyword,
                        @AuthenticationPrincipal User activeUser,
                        ModelMap modelMap) {
-         String keywordString =keyword;
         int pageInt = Integer.parseInt(page);
         boolean isLogged = activeUser != null;
         boolean isActiveUserAdmin = false;
@@ -51,27 +52,26 @@ public class SearchController {
         }
         List<Category> categoryList = showAllCategoriesService.execute(new ShowAllCategoriesRequest()).getCategoriesList();
         Page<Product> productPage = searchProductService
-                .execute(new SearchProductRequest(keywordString, PageRequest.of(pageInt - 1, pageSize))).getProductsPage();
+                .execute(new SearchProductRequest(keyword, PageRequest.of(pageInt - 1, pageSize))).getProductsPage();
         int totalPages = productPage.getTotalPages();
         if (totalPages < 1) {
             totalPages = 1;
         }
-        modelMap.addAttribute("keyword", keywordString);
+        modelMap.addAttribute("keyword", keyword);
         modelMap.addAttribute("products", productPage);
         modelMap.addAttribute("categories", categoryList);
         modelMap.addAttribute("active_user", activeUser);
         modelMap.addAttribute("is_logged", isLogged);
         modelMap.addAttribute("is_admin", isActiveUserAdmin);
-        modelMap.addAttribute("error", error != null);
         modelMap.addAttribute("total_pages", totalPages);
         modelMap.addAttribute("current_page", pageInt);
         modelMap.addAttribute("product_in_cart_count", productInCart);
-        return "/index";
+        return "/search";
     }
 
-    @GetMapping("/search/{page}")
-    public String main(@PathVariable(name = "{page}") String page,
+    @GetMapping("/search")
+    public String main(@RequestParam(name = "keyword") String keyword,
                        ModelMap modelMap) {
-        return "redirect:/search/" + page ;
+        return "redirect:/search/1?keyword=" + keyword;
     }
 }

@@ -28,7 +28,8 @@
 
 
             <form class="form-inline my-2 my-lg-0" method="get" action="/search">
-                <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search"
+                       aria-label="Search" th:value="${keyword}">
                 <button class="btn btn-search" type="submit">Search</button>
             </form>
 
@@ -129,21 +130,23 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination">
                     <li class="page-item">
-                        <a class="page-link" th:if="${current_page} > 1" th:href="@{${current_page} - 1}"
+                        <a class="page-link" th:if="${current_page} > 1"
+                           th:href="@{${current_page} - 1 + '?keyword=' + ${keyword}}"
                            aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                     <div th:each="page: ${#numbers.sequence(1, total_pages)}">
                         <li class="page-item active" aria-current="page" th:if="${page} == ${current_page}"><a
-                                class="page-link" th:href="@{${page}}" th:text="${page}"></a></li>
+                                class="page-link" th:href="@{${page} + '?keyword=' + ${keyword}}" th:text="${page}"></a>
+                        </li>
                         <li class="page-item" th:unless="${page} == ${current_page}"><a class="page-link"
-                                                                                        th:href="@{${page}}"
+                                                                                        th:href="@{${page} + '?keyword=' + ${keyword}}"
                                                                                         th:text="${page}"></a></li>
                     </div>
                     <li class="page-item">
                         <a class="page-link" th:if="${current_page} < ${total_pages}"
-                           th:href="@{${current_page} + 1}"
+                           th:href="@{${current_page} + 1 + '?keyword=' + ${keyword}}"
                            aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
