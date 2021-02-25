@@ -1,40 +1,40 @@
 package eu.retarded.internetstore.core.services.cart;
 
 import eu.retarded.internetstore.core.domain.Cart;
+import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.cart.UpdateCartRequest;
 import eu.retarded.internetstore.core.responses.cart.UpdateCartResponse;
 import eu.retarded.internetstore.database.CartRepository;
-import eu.retarded.internetstore.database.UserRepository;
+import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.Set;
 
-@Component
+@Service
 public class UpdateCartService {
 
     @Autowired
     private CartRepository cartRepository;
 
     @Autowired
-    private Validator validator;
+    private ProductRepository productRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private Validator validator;
 
+    @Transactional
     public UpdateCartResponse execute(UpdateCartRequest request) {
         Set<ConstraintViolation<UpdateCartRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new UpdateCartResponse(errors);
         }
-
-        long id = request.getId();
-        Cart oldCart = cartRepository.findById(id).get();
-        Cart result = new Cart();
-        result.setId(id);
-        result.setStatus(oldCart.getStatus());
-        return new UpdateCartResponse(cartRepository.save(result));
+        Product product = productRepository.getOne(request.getProductId());
+        Cart cart = cartRepository.getOne(request.getId());
+        cart.getProducts().replace(productRepository.getOne(request.getProductId()), request.getCount());
+        return new UpdateCartResponse(cart);
     }
 }

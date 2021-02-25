@@ -12,10 +12,10 @@ import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,22 +38,23 @@ public class AddUserService {
     @Autowired
     private AddCartService addCartService;
 
+    @Transactional
     public AddUserResponse execute(AddUserRequest request) {
         Set<ConstraintViolation<AddUserRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {
             return new AddUserResponse(errors);
         }
-        if (userRepository.existsByUserName(request.getUserName())) {
+        if (userRepository.existsByUsername(request.getUserName())) {
             return new AddUserResponse(errors);
         }
         Cart cart = addCartService.execute(new AddCartRequest()).getCart();
         User user = new User();
-        user.setUserName(request.getUserName());
+        user.setUsername(request.getUserName());
         user.setPassword(encoder.encode(request.getPassword()));
         user.setName(request.getName());
         user.setSurname(request.getSurname());
         user.setEmail(request.getEmail());
-        List<Role> roleList = roleRepository.findAllById(Arrays.asList(request.getRolesId()));
+        List<Role> roleList = roleRepository.findAllById(request.getRolesId());
         user.setRoles(new HashSet<>(roleList));
         user.setCart(cart);
         user.setStatus(1);

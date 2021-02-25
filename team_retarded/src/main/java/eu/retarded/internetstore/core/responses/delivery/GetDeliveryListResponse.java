@@ -11,22 +11,23 @@ import java.util.Set;
 
 public class GetDeliveryListResponse extends CoreResponse<GetDeliveryListRequest> {
 
-    private Page <Delivery> deliveriesPage;
+    private Page<Delivery> deliveriesPage;
     private List<Delivery> deliveriesList;
 
     public GetDeliveryListResponse(Set<ConstraintViolation<GetDeliveryListRequest>> errors) {
         super(errors);
     }
 
-    public GetDeliveryListResponse(Page <Delivery> deliveriesPage, List<Delivery> deliveriesList) {
+    public GetDeliveryListResponse(Page<Delivery> deliveriesPage, List<Delivery> deliveriesList) {
         this.deliveriesPage = deliveriesPage;
         this.deliveriesList = deliveriesList;
     }
 
-    public Page <Delivery> getDeliveriesPage() {
+    public Page<Delivery> getDeliveriesPage() {
         return deliveriesPage;
     }
-    public List <Delivery> getDeliveriesList() {
+
+    public List<Delivery> getDeliveriesList() {
         return deliveriesList;
     }
 }

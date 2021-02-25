@@ -28,12 +28,12 @@ public class ShowAllProductsInCategoryService {
             return new ShowAllProductsInCategoryResponse(errors);
         }
         List<Product> products;
-        if (request.getPageable()==null){
-            products = productRepository.findAll();
+        if (request.getPageable() == null) {
+            products = productRepository.findAllByCategory_Id(request.getCategoryId());
             return new ShowAllProductsInCategoryResponse(null, products);
         }
-        Page<Product> productPage=productRepository.findAllByCategory_Id(request.getCategoryId(),
+        Page<Product> productPage = productRepository.findAllByCategory_Id(request.getCategoryId(),
                 request.getPageable());
-        return new ShowAllProductsInCategoryResponse(productPage,productPage.toList() );
+        return new ShowAllProductsInCategoryResponse(productPage, productPage.toList());
     }
 }

@@ -11,20 +11,19 @@ import java.math.BigDecimal;
 public class Order {
 
 
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "client_name")
-    private String name;
+    private String clientName;
 
     @Column(name = "client_surname")
-    private String surname;
+    private String clientSurname;
 
     @Column(name = "client_address")
-    private String address;
+    private String clientAddress;
 
     @OneToOne
     @JoinColumn(name = "cart_id")
@@ -41,18 +40,8 @@ public class Order {
     @Column(name = "total_price")
     private BigDecimal totalPrice;
 
-    public Order(String name, String surname, String address, Cart cart, Delivery delivery, User user,
-                 BigDecimal totalPrice) {
-        this.name = name;
-        this.surname = surname;
-        this.address = address;
-        this.cart = cart;
-        this.delivery = delivery;
-        this.user = user;
-        this.totalPrice = totalPrice;
-    }
+    @Column(name = "status")
+    private int status;
 
-    public Order() {
-    }
 
 }

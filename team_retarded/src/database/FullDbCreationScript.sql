@@ -115,13 +115,13 @@ CREATE TABLE IF NOT EXISTS orders
 
 CREATE TABLE IF NOT EXISTS products_in_cart
 (
-    id         BIGINT NOT NULL AUTO_INCREMENT,
-    product_id BIGINT,
-    cart_id    BIGINT,
-    count      INT DEFAULT 0,
+    id            BIGINT        NOT NULL AUTO_INCREMENT,
+    cart_id       BIGINT        NOT NULL,
+    product_id    BIGINT        NOT NULL,
+    product_count INT DEFAULT 1 NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-    FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`)
+    FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`),
+    FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 1;
@@ -236,13 +236,13 @@ CREATE TABLE IF NOT EXISTS orders
 
 CREATE TABLE IF NOT EXISTS products_in_cart
 (
-    id         BIGINT NOT NULL AUTO_INCREMENT,
-    product_id BIGINT,
-    cart_id    BIGINT,
-    count      INT DEFAULT 0,
+    id            BIGINT        NOT NULL AUTO_INCREMENT,
+    cart_id       BIGINT        NOT NULL,
+    product_id    BIGINT        NOT NULL,
+    product_count INT DEFAULT 1 NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-    FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`)
+    FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`),
+    FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
 )
     ENGINE = InnoDB
     AUTO_INCREMENT = 1;

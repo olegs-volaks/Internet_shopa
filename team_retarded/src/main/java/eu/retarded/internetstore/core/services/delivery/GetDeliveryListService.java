@@ -29,12 +29,10 @@ public class GetDeliveryListService {
         if (!errors.isEmpty()) {
             return new GetDeliveryListResponse(errors);
         }
-
-
         List<Delivery> deliveries;
-        if (request.getPageable()==null){
-            deliveries =deliveryRepository.findAll();
-            return new GetDeliveryListResponse(null,deliveries);
+        if (request.getPageable() == null) {
+            deliveries = deliveryRepository.findAll();
+            return new GetDeliveryListResponse(null, deliveries);
         }
         Page<Delivery> deliveryPage = deliveryRepository.findAll(request.getPageable());
         return new GetDeliveryListResponse(deliveryPage, deliveryPage.toList());

@@ -19,7 +19,7 @@ import java.util.Set;
 public class SearchProductService {
 
     @Autowired
-    private ProductRepository productRepository ;
+    private ProductRepository productRepository;
     @Autowired
     private Validator validator;
 
@@ -30,7 +30,6 @@ public class SearchProductService {
     private boolean pagingEnabled;
 
 
-
     @Transactional
     public SearchProductResponse execute(SearchProductRequest request) {
         Set<ConstraintViolation<SearchProductRequest>> errors = validator.validate(request);
@@ -38,11 +37,11 @@ public class SearchProductService {
             return new SearchProductResponse(errors);
         }
         List<Product> products;
-        if (request.getPageable()==null){
-             products = productRepository.findByNameContaining(request.getKeyWord());
+        if (request.getPageable() == null) {
+            products = productRepository.findByNameContaining(request.getKeyWord());
             return new SearchProductResponse(null, products);
         }
-        Page <Product> productsPage = productRepository.findByNameContaining(request.getKeyWord(), request.getPageable());
-        return new SearchProductResponse( productsPage, productsPage.toList());
+        Page<Product> productsPage = productRepository.findByNameContaining(request.getKeyWord(), request.getPageable());
+        return new SearchProductResponse(productsPage, productsPage.toList());
     }
 }

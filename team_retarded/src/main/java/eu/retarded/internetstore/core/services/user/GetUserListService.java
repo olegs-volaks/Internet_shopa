@@ -7,6 +7,7 @@ import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -21,6 +22,7 @@ public class GetUserListService {
     @Autowired
     private Validator validator;
 
+    @Transactional
     public GetUserListResponse execute(GetUserListRequest request) {
         Set<ConstraintViolation<GetUserListRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {

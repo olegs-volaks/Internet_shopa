@@ -1,18 +1,20 @@
 package eu.retarded.internetstore.core.requests.product;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
 
 import javax.validation.constraints.NotBlank;
 
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class SearchProductRequest {
 
     @NotBlank(message = "The keyWord must not be empty!")
     private String keyWord;
 
-    private final Pageable pageable;
+    private Pageable pageable;
 
 }

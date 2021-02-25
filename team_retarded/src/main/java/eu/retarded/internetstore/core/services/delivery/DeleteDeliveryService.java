@@ -5,6 +5,7 @@ import eu.retarded.internetstore.core.responses.delivery.DeleteDeliveryResponse;
 import eu.retarded.internetstore.database.DeliveryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
@@ -19,6 +20,7 @@ public class DeleteDeliveryService {
     @Autowired
     private Validator validator;
 
+    @Transactional
     public DeleteDeliveryResponse execute(DeleteDeliveryRequest request) {
         Set<ConstraintViolation<DeleteDeliveryRequest>> errors = validator.validate(request);
         if (!errors.isEmpty()) {

@@ -26,7 +26,7 @@ public class AddCategoryService {
         if (!errors.isEmpty()) {
             return new AddCategoryResponse(errors);
         }
-        Category category= new Category(request.getName());
+        Category category = new Category(request.getName());
         return new AddCategoryResponse(categoryRepository.save(category));
     }
 }

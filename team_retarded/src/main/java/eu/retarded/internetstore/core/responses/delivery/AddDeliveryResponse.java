@@ -3,6 +3,7 @@ package eu.retarded.internetstore.core.responses.delivery;
 import eu.retarded.internetstore.core.domain.Delivery;
 import eu.retarded.internetstore.core.requests.delivery.AddDeliveryRequest;
 import eu.retarded.internetstore.core.responses.CoreResponse;
+
 import javax.validation.ConstraintViolation;
 import java.util.Set;
 

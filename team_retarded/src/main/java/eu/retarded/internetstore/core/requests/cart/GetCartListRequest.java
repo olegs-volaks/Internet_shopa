@@ -1,14 +1,16 @@
 package eu.retarded.internetstore.core.requests.cart;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;
 
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class GetCartListRequest {
 
 
-    private final Pageable pageable;
+    private Pageable pageable;
 
 }

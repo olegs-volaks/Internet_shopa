@@ -19,7 +19,7 @@ public class GetCartListResponse extends CoreResponse<GetCartListRequest> {
         super(errors);
     }
 
-    public GetCartListResponse( Page<Cart> cartPage, List<Cart> cartList) {
+    public GetCartListResponse(Page<Cart> cartPage, List<Cart> cartList) {
         this.cartPage = cartPage;
         this.cartList = cartList;
     }
@@ -27,6 +27,7 @@ public class GetCartListResponse extends CoreResponse<GetCartListRequest> {
     public Page<Cart> getCartPage() {
         return cartPage;
     }
+
     public List<Cart> getCartList() {
         return cartList;
     }
