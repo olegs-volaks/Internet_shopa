@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,7 +37,7 @@ public class UpdateUserWithRoleService {
         user.setName(request.getName());
         user.setSurname(request.getSurname());
         user.setEmail(request.getEmail());
-        List<Role> roleList = roleRepository.findAllById(Arrays.asList(request.getRolesId()));
+        List<Role> roleList = roleRepository.findAllById(request.getRolesId());
         user.setRoles(new HashSet<>(roleList));
         return new UpdateUserWithRoleResponse(user);
     }

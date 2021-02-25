@@ -58,7 +58,7 @@ public class OrderIntegrationTest {
     @Test
     void test1() {
         RegisterUserService registerUserService = context.getBean(RegisterUserService.class);
-        User user = registerUserService.execute(new RegisterUserRequest("Username", "1234567", "Name",
+        User user = registerUserService.execute(new RegisterUserRequest("Username", "1234567", "1234567", "Name",
                 "Surname", "user@mail.com")).getUser();
         AddProductService addProductService = context.getBean(AddProductService.class);
         Product product1 = addProductService

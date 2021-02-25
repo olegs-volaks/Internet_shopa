@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.util.Collections;
 import java.util.Set;
 
 @Service
@@ -32,7 +33,7 @@ public class RegisterUserService {
             return new RegisterUserResponse(errors);
         }
         AddUserRequest addUserRequest = new AddUserRequest(request.getUserName(), request.getPassword(), request.getPasswordConfirm(), request.getName(),
-                request.getSurname(), request.getEmail(), new Long[]{1L});
+                request.getSurname(), request.getEmail(), Collections.singleton(1L));
         User user = addUserService.execute(addUserRequest).getUser();
         return new RegisterUserResponse(userRepository.save(user));
     }

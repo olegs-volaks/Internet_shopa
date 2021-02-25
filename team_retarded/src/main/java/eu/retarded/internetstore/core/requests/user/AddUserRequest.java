@@ -9,6 +9,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Getter
 @RequiredArgsConstructor
@@ -41,5 +42,5 @@ public class AddUserRequest {
 
     @NotNull(message = "User must have at least one role")
     @Size(min = 1, message = "User must have at least one role")
-    private final Long[] rolesId;
+    private final Set<Long> rolesId;
 }

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collections;
+
 @Controller
 public class AdminUserEditController {
 
@@ -46,7 +48,7 @@ public class AdminUserEditController {
                            @RequestParam(value = "surname") String surname,
                            @RequestParam(value = "email") String email) {
         UpdateUserWithRoleRequest updateUserWithRoleRequest = new UpdateUserWithRoleRequest
-                (id, name, surname, email, new Long[]{1L});
+                (id, name, surname, email, Collections.singleton(1L));
         UpdateUserWithRoleResponse updateUserWithRoleResponse = updateUserWithRoleService.execute(updateUserWithRoleRequest);
         if (updateUserWithRoleResponse.hasErrors()) {
             return "redirect:/admin/user/edit/" + id + "?error";

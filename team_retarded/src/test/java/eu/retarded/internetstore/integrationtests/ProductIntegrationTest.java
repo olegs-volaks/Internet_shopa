@@ -7,7 +7,10 @@ import eu.retarded.internetstore.core.requests.product.GetProductByIdRequest;
 import eu.retarded.internetstore.core.services.product.AddProductService;
 import eu.retarded.internetstore.core.services.product.DeleteProductService;
 import eu.retarded.internetstore.core.services.product.GetProductByIdService;
+import eu.retarded.internetstore.database.CartRepository;
+import eu.retarded.internetstore.database.OrderRepository;
 import eu.retarded.internetstore.database.ProductRepository;
+import eu.retarded.internetstore.database.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +28,20 @@ public class ProductIntegrationTest {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private CartRepository cartRepository;
+
+    @Autowired
+    private OrderRepository orderRepository;
 
     @BeforeEach
     void setUp() {
+        orderRepository.deleteAll();
+        userRepository.deleteAll();
+        cartRepository.deleteAll();
         productRepository.deleteAll();
     }
 
