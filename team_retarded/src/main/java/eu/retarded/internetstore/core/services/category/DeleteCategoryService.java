@@ -4,14 +4,14 @@ import eu.retarded.internetstore.core.requests.category.DeleteCategoryRequest;
 import eu.retarded.internetstore.core.responses.category.DeleteCategoryResponse;
 import eu.retarded.internetstore.database.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.Set;
 
-@Component
+@Service
 public class DeleteCategoryService {
 
     @Autowired
