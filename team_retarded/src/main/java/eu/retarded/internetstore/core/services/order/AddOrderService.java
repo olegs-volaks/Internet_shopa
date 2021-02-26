@@ -10,7 +10,7 @@ import eu.retarded.internetstore.database.OrderRepository;
 import eu.retarded.internetstore.database.ProductRepository;
 import eu.retarded.internetstore.database.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
@@ -18,7 +18,7 @@ import javax.validation.Validator;
 import java.util.Map;
 import java.util.Set;
 
-@Component
+@Service
 public class AddOrderService {
 
     @Autowired
