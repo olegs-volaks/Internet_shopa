@@ -1,14 +1,8 @@
 package eu.retarded.internetstore.integrationtests;
 
 import eu.retarded.internetstore.core.domain.Product;
-import eu.retarded.internetstore.core.requests.product.AddProductRequest;
-import eu.retarded.internetstore.core.requests.product.DeleteProductRequest;
-import eu.retarded.internetstore.core.requests.product.GetProductByIdRequest;
-import eu.retarded.internetstore.core.requests.product.UpdateProductRequest;
-import eu.retarded.internetstore.core.services.product.AddProductService;
-import eu.retarded.internetstore.core.services.product.DeleteProductService;
-import eu.retarded.internetstore.core.services.product.GetProductByIdService;
-import eu.retarded.internetstore.core.services.product.UpdateProductService;
+import eu.retarded.internetstore.core.requests.product.*;
+import eu.retarded.internetstore.core.services.product.*;
 import eu.retarded.internetstore.database.CartRepository;
 import eu.retarded.internetstore.database.OrderRepository;
 import eu.retarded.internetstore.database.ProductRepository;
@@ -130,5 +124,28 @@ public class ProductIntegrationTest {
         expecting.setCount(145);
         expecting.setStatus(1);
         assertThat(result).isEqualTo(expecting);
+    }
+
+  /*  @Test
+    void add_product_validator_request() {
+        AddProductService addProductService = context.getBean(AddProductService.class);
+        AddProductRequest request = new AddProductRequest()
+    } */
+
+    @Test
+    void clear_all_product_request() {
+        AddProductService addProductService = context.getBean(AddProductService.class);
+        ClearAllProductsService clearAllProductsService = context.getBean(ClearAllProductsService.class);
+        AddProductRequest request = new AddProductRequest("Huawei","mobile-phone",450.0,12);
+        AddProductRequest request1 = new AddProductRequest("Apple","mobile-phone",750.0,10);
+        AddProductRequest request2 = new AddProductRequest("Nokia","mobile-phone",350.0,125);
+        AddProductRequest request3 = new AddProductRequest("Sony","mobile-phone",250.0,5);
+        addProductService.execute(request);
+        addProductService.execute(request1);
+        addProductService.execute(request2);
+        addProductService.execute(request3);
+        clearAllProductsService.execute();
+        assertThat(productRepository.findAll().size()).isEqualTo(0);
+
     }
 }
