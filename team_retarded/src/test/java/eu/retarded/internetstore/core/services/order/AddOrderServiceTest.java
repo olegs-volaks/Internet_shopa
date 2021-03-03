@@ -4,7 +4,6 @@ import eu.retarded.internetstore.core.domain.*;
 import eu.retarded.internetstore.core.requests.order.AddOrderRequest;
 import eu.retarded.internetstore.core.requests.user.NewUserCartRequest;
 import eu.retarded.internetstore.core.responses.order.AddOrderResponse;
-import eu.retarded.internetstore.core.services.cart.AddCartService;
 import eu.retarded.internetstore.core.services.user.NewUserCartService;
 import eu.retarded.internetstore.database.DeliveryRepository;
 import eu.retarded.internetstore.database.OrderRepository;
@@ -42,14 +41,10 @@ class AddOrderServiceTest {
     private ProductRepository productRepository;
 
     @Mock
-    private AddCartService addCartService;
-
-    @Mock
     private Validator validator;
     @InjectMocks
     private AddOrderService subject;
-    @InjectMocks
-    private NewUserCartService subject0;
+
 
 
     @Test
@@ -59,6 +54,7 @@ class AddOrderServiceTest {
         Mockito.when(validator.validate(request)).thenReturn(new HashSet<ConstraintViolation<AddOrderRequest>>());
         Order order = new Order();
         User user= new User();
+        user.setId(1L);
         Cart cart =new Cart();
         Product product= new Product();
         Delivery delivery= new Delivery();
@@ -66,7 +62,7 @@ class AddOrderServiceTest {
         Mockito.when(deliveryRepository.getOne(request.getDeliveryId())).thenReturn(delivery);
         Mockito.when(productRepository.getOne(1L)).thenReturn(product);
         NewUserCartRequest userCartRequest=new NewUserCartRequest(request.getUserId());
-        Mockito.when(subject0.execute(userCartRequest).getOldCart()).thenReturn(cart);
+        Mockito.when(newUserCartService.execute(userCartRequest).getOldCart()).thenReturn(cart);
         order.setClientName(request.getClientName());
         order.setClientSurname(request.getClientSurname());
         order.setClientAddress(request.getClientAddress());
