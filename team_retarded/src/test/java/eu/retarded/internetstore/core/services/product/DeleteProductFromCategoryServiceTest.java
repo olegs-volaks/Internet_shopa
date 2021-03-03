@@ -28,7 +28,7 @@ class DeleteProductFromCategoryServiceTest {
     private DeleteProductFromCategoryService subject;
 
     @Test
-    void delete_product_to_category_success() {
+    void delete_product_from_category_success() {
         DeleteProductFromCategoryRequest request = new DeleteProductFromCategoryRequest(1L);
         Mockito.when(validator.validate(request))
                 .thenReturn(new HashSet<ConstraintViolation<DeleteProductFromCategoryRequest>>());

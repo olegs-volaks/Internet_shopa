@@ -22,7 +22,7 @@ class ClearAllProductsServiceTest {
     private ClearAllProductsService subject;
 
     @Test
-    void add_product_success() {
+    void clear_all_product_success() {
         ClearAllProductsRequest request = new ClearAllProductsRequest();
 
         Product product1 = new Product("Igor12345", "1234567890qwertyuiopasdfghjklzxcvbnm1234567890",
