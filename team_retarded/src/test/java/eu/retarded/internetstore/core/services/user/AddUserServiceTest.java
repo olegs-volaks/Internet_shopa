@@ -3,12 +3,10 @@ package eu.retarded.internetstore.core.services.user;
 import eu.retarded.internetstore.core.domain.Cart;
 import eu.retarded.internetstore.core.domain.Role;
 import eu.retarded.internetstore.core.domain.User;
-import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
 import eu.retarded.internetstore.core.requests.user.AddUserRequest;
 import eu.retarded.internetstore.core.responses.cart.AddCartResponse;
 import eu.retarded.internetstore.core.responses.user.AddUserResponse;
 import eu.retarded.internetstore.core.services.cart.AddCartService;
-import eu.retarded.internetstore.database.CartRepository;
 import eu.retarded.internetstore.database.RoleRepository;
 import eu.retarded.internetstore.database.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -21,7 +19,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -44,9 +45,6 @@ class AddUserServiceTest {
     @Mock
     private AddCartService addCartService;
 
-    @Mock
-    private CartRepository cartRepository;
-
     @InjectMocks
     private AddUserService subject;
 
@@ -62,15 +60,34 @@ class AddUserServiceTest {
         Cart cart = new Cart();
         cart.setId(1L);
         User user = new User();
+        user.setUsername(request.getUserName());
+        user.setName(request.getName());
+        user.setSurname(request.getSurname());
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
+        user.setRoles(new HashSet<>(roleList));
+        user.setCart(cart);
+        user.setStatus(1);
+
         User result = new User();
-        AddCartRequest addCartRequest=new AddCartRequest();
+        result.setId(1L);
+        result.setUsername("Igor12345");
+        result.setPassword("1234567890");
+        result.setCart(cart);
+        result.setName("Ivan12345");
+        result.setSurname("Ivanko123");
+        result.setEmail("jupiter@lmr.lv");
+        result.setCart(cart);
+        result.setRoles(new HashSet<>(roleList));
+        result.setStatus(1);
+
         Mockito.when(encoder.encode(request.getPassword())).thenReturn("1234567890");
-       //Mockito.when(cartRepository.getOne(1L)).thenReturn(cart);
         Mockito.when(addCartService.execute(any())).thenReturn(new AddCartResponse(cart));
-        Mockito.when(userRepository.save(user)).thenReturn(user);
         Mockito.when(roleRepository.findAllById(request.getRolesId())).thenReturn(roleList);
+        Mockito.when(userRepository.save(user)).thenReturn(result);
+
         AddUserResponse addUserResponse = subject.execute(request);
         assertThat(addUserResponse.getUser()).isEqualTo(result);
-        //Mockito.verify(productRepository).save(product);
+        Mockito.verify(userRepository).save(user);
     }
 }
