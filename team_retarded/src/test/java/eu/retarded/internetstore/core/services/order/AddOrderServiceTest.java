@@ -18,7 +18,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -42,6 +44,7 @@ class AddOrderServiceTest {
 
     @Mock
     private Validator validator;
+
     @InjectMocks
     private AddOrderService subject;
 
@@ -50,27 +53,33 @@ class AddOrderServiceTest {
     @Test
     void add_order_success() {
         AddOrderRequest request = new AddOrderRequest("Vasja", "Ivanov",
-                "novogrjazevo1234567890",1L,2L);
+                "novogrjazevo1234567890",1L,1L);
         Mockito.when(validator.validate(request)).thenReturn(new HashSet<ConstraintViolation<AddOrderRequest>>());
         Order order = new Order();
         User user= new User();
         user.setId(1L);
-        Cart cart =new Cart();
         Product product= new Product();
+        Cart cart =new Cart();
+        Cart cart0 =new Cart();
+        cart.setId(1L);
+        Map<Product, Integer> products= new HashMap<>();
+        products.put(product,5);
+        cart.setProducts(products);
         Delivery delivery= new Delivery();
         Mockito.when(userRepository.getOne(request.getUserId())).thenReturn(user);
         Mockito.when(deliveryRepository.getOne(request.getDeliveryId())).thenReturn(delivery);
         Mockito.when(productRepository.getOne(1L)).thenReturn(product);
-        NewUserCartRequest userCartRequest=new NewUserCartRequest(request.getUserId());
-        Mockito.when(newUserCartService.execute(userCartRequest).getOldCart()).thenReturn(cart);
+        NewUserCartRequest newUserCartRequest=new NewUserCartRequest(1L);
+        //Mockito.when(newUserCartService.execute()).thenReturn(cart);
+
         order.setClientName(request.getClientName());
         order.setClientSurname(request.getClientSurname());
         order.setClientAddress(request.getClientAddress());
         order.setUser(user);
         order.setDelivery(delivery);
-        order.setCart(cart);
-        Order result = new Order();
+        order.setCart(cart0);
 
+        Order result = new Order();
         result.setClientName("Vasja");
         result.setClientSurname("Ivanov");
         result.setClientAddress("novogrjazevo1234567890");
@@ -79,7 +88,7 @@ class AddOrderServiceTest {
         result.setCart(cart);
         result.setId(1L);
         result.setStatus(1);
-        Mockito.when(orderRepository.save(order)).thenReturn(result);
+        Mockito.when(orderRepository.save(order)).thenReturn(order);
         AddOrderResponse addOrderResponse = subject.execute(request);
         assertThat(addOrderResponse.getOrder()).isEqualTo(result);
         Mockito.verify(orderRepository).save(order);

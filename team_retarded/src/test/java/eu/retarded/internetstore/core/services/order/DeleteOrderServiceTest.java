@@ -30,10 +30,10 @@ class DeleteOrderServiceTest {
         DeleteOrderRequest request = new DeleteOrderRequest(2l);
         Mockito.when(validator.validate(request)).thenReturn(new HashSet<ConstraintViolation<DeleteOrderRequest>>());
 
-        Mockito.when(orderRepository.existsById(2l)).thenReturn(false);
+        Mockito.when(orderRepository.existsById(2L)).thenReturn(false);
         DeleteOrderResponse deleteOrderResponse = subject.execute(request);
         assertThat(deleteOrderResponse.isOrderDeleted()).isEqualTo(true);
-        Mockito.verify(orderRepository).deleteById(2l);
+        Mockito.verify(orderRepository).deleteById(2L);
     }
 
 }

@@ -30,16 +30,16 @@ class AddProductServiceTest {
     @Test
     void add_product_success() {
         AddProductRequest request = new AddProductRequest("Igor12345",
-                "1234567890qwertyuiopasdfghjklzxcvbnm1234567890", 345,5);
+                "1234567890qwertyuiopasdfghjklzxcvbnm1234567890", 345.25,5);
        Mockito.when(validator.validate(request)).thenReturn(new HashSet<ConstraintViolation<AddProductRequest>>());
         Product product = new Product("Igor12345", "1234567890qwertyuiopasdfghjklzxcvbnm1234567890",
-                345,5);
-
+                345.25,5);
+        //product.setId(1L);
         product.setStatus(1);
         Product result = new Product();
         result.setName("Igor12345");
         result.setDescription("1234567890qwertyuiopasdfghjklzxcvbnm1234567890");
-        result.setPrice(BigDecimal.valueOf(345));
+        result.setPrice(BigDecimal.valueOf(345.25));
         result.setCount(5);
         result.setId(1L);
         result.setStatus(1);

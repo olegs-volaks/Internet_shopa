@@ -32,20 +32,22 @@ class GetByIdOrderServiceTest {
 
     @Test
     void get_order_success() {
-        GetByIdOrderRequest request = new GetByIdOrderRequest(3l);
+        GetByIdOrderRequest request = new GetByIdOrderRequest(3L);
         Mockito.when(validator.validate(request)).thenReturn(new HashSet<ConstraintViolation<GetByIdOrderRequest>>());
         Order order = new Order();
         User user= new User();
         Cart cart =new Cart();
         Delivery delivery= new Delivery();
+        order.setId(3L);
         order.setClientName("Ivan");
         order.setClientSurname("Ivanov");
         order.setClientAddress("Novogrjazevo 1234567890");
         order.setUser(user);
         order.setDelivery(delivery);
         order.setCart(cart);
-        Order result = new Order();
+        order.setStatus(1);
 
+        Order result = new Order();
         result.setClientName("Ivan");
         result.setClientSurname("Ivanov");
         result.setClientAddress("Novogrjazevo 1234567890");
@@ -54,9 +56,9 @@ class GetByIdOrderServiceTest {
         result.setCart(cart);
         result.setId(3L);
         result.setStatus(1);
-        Mockito.when(orderRepository.findById(3l)).thenReturn(Optional.of(result));
+        Mockito.when(orderRepository.findById(3L)).thenReturn(Optional.of(order));
         GetByIdOrderResponse getByIdOrderResponse = subject.execute(request);
         assertThat(getByIdOrderResponse.getOrder()).isEqualTo(result);
-        Mockito.verify(orderRepository).findById(3l);
+        Mockito.verify(orderRepository).findById(3L);
     }
 }

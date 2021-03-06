@@ -33,19 +33,19 @@ class GetProductByIdServiceTest {
         GetProductByIdRequest request = new GetProductByIdRequest(3l);
         Mockito.when(validator.validate(request)).thenReturn(new HashSet<ConstraintViolation<GetProductByIdRequest>>());
         Product product = new Product("Igor12345", "1234567890qwertyuiopasdfghjklzxcvbnm1234567890",
-                345,5);
-
+                345.25,5);
+        product.setId(3L);
         product.setStatus(1);
         Product result = new Product();
         result.setName("Igor12345");
         result.setDescription("1234567890qwertyuiopasdfghjklzxcvbnm1234567890");
-        result.setPrice(BigDecimal.valueOf(345));
+        result.setPrice(BigDecimal.valueOf(345.25));
         result.setCount(5);
         result.setId(3L);
         result.setStatus(1);
-        Mockito.when(productRepository.findById(3l)).thenReturn(Optional.of(result));
+        Mockito.when(productRepository.findById(3L)).thenReturn(Optional.of(product));
         GetProductByIdResponse getProductByIdResponse = subject.execute(request);
         assertThat(getProductByIdResponse.getProduct()).isEqualTo(result);
-        Mockito.verify(productRepository).findById(3l);
+        Mockito.verify(productRepository).findById(3L);
     }
 }
