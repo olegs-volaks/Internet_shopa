@@ -2,8 +2,8 @@ package eu.retarded.internetstore.core.services.user;
 
 import eu.retarded.internetstore.core.domain.Cart;
 import eu.retarded.internetstore.core.domain.User;
-import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
 import eu.retarded.internetstore.core.requests.user.NewUserCartRequest;
+import eu.retarded.internetstore.core.responses.cart.AddCartResponse;
 import eu.retarded.internetstore.core.responses.user.NewUserCartResponse;
 import eu.retarded.internetstore.core.services.cart.AddCartService;
 import eu.retarded.internetstore.database.UserRepository;
@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class NewUserCartServiceTest {
@@ -28,15 +29,17 @@ class NewUserCartServiceTest {
     private NewUserCartService subject;
 
     @Test
-    void show_user_list_success(){
+    void new_user_cart_success(){
         NewUserCartRequest request = new NewUserCartRequest(1L );
-        User user= new User();
         Cart cart= new Cart();
-        AddCartRequest request1=new AddCartRequest();
+        User user= new User();
+        user.setId(1L);
+        user.setCart(cart);
+
         Mockito.when(userRepository.getOne(request.getUserId())).thenReturn(user);
-        Mockito.when(addCartService.execute(request1).getCart()).thenReturn(cart);
+        Mockito.when(addCartService.execute(any())).thenReturn(new AddCartResponse(cart));
         NewUserCartResponse newUserCartResponse = subject.execute(request);
-        assertThat(newUserCartResponse.getOldCart()).isEqualTo(user);
+        assertThat(newUserCartResponse.getOldCart()).isEqualTo(cart);
         Mockito.verify(userRepository).save(user);
     }
 
