@@ -5,6 +5,7 @@ import eu.retarded.internetstore.core.domain.Role;
 import eu.retarded.internetstore.core.domain.User;
 import eu.retarded.internetstore.core.requests.cart.AddCartRequest;
 import eu.retarded.internetstore.core.requests.user.AddUserRequest;
+import eu.retarded.internetstore.core.responses.cart.AddCartResponse;
 import eu.retarded.internetstore.core.responses.user.AddUserResponse;
 import eu.retarded.internetstore.core.services.cart.AddCartService;
 import eu.retarded.internetstore.database.CartRepository;
@@ -23,6 +24,7 @@ import javax.validation.Validator;
 import java.util.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -63,9 +65,9 @@ class AddUserServiceTest {
         User result = new User();
         AddCartRequest addCartRequest=new AddCartRequest();
         Mockito.when(encoder.encode(request.getPassword())).thenReturn("1234567890");
-        Mockito.when(cartRepository.getOne(1L)).thenReturn(cart);
-        Mockito.when(addCartService.execute(addCartRequest).getCart()).thenReturn(cart);
-        Mockito.when(userRepository.save(user)).thenReturn(result);
+       //Mockito.when(cartRepository.getOne(1L)).thenReturn(cart);
+        Mockito.when(addCartService.execute(any())).thenReturn(new AddCartResponse(cart));
+        Mockito.when(userRepository.save(user)).thenReturn(user);
         Mockito.when(roleRepository.findAllById(request.getRolesId())).thenReturn(roleList);
         AddUserResponse addUserResponse = subject.execute(request);
         assertThat(addUserResponse.getUser()).isEqualTo(result);

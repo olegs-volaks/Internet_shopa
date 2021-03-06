@@ -30,7 +30,7 @@ class GetProductByIdServiceTest {
 
     @Test
     void get_product_success() {
-        GetProductByIdRequest request = new GetProductByIdRequest(3l);
+        GetProductByIdRequest request = new GetProductByIdRequest(3L);
         Mockito.when(validator.validate(request)).thenReturn(new HashSet<ConstraintViolation<GetProductByIdRequest>>());
         Product product = new Product("Igor12345", "1234567890qwertyuiopasdfghjklzxcvbnm1234567890",
                 345.25,5);

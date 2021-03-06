@@ -27,7 +27,7 @@ class UpdateProductServiceTest {
     private UpdateProductService subject;
 
     @Test
-    void add_product_success() {
+    void update_product_success() {
         UpdateProductRequest request = new UpdateProductRequest(10L, "audi",
                 "1234567890qwertyuiopasdfghjklzxcvbnm1234567890", 345.0,5);
         Mockito.when(validator.validate(request)).thenReturn(new HashSet<ConstraintViolation<UpdateProductRequest>>());
