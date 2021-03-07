@@ -3,22 +3,20 @@ package eu.retarded.internetstore.core.services.product;
 import eu.retarded.internetstore.core.domain.Product;
 import eu.retarded.internetstore.core.requests.product.DeleteProductFromCategoryRequest;
 import eu.retarded.internetstore.core.responses.product.DeleteProductFromCategoryResponse;
-import eu.retarded.internetstore.database.CategoryRepository;
 import eu.retarded.internetstore.database.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.Set;
 
-@Component
+@Service
 public class DeleteProductFromCategoryService {
     @Autowired
     private ProductRepository productRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
+
     @Autowired
     private Validator validator;
 
