@@ -10,8 +10,8 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
 
-    Page<Order> findOrderByUserIdAndStatusEqualsOrStatusEquals(long id, int status1, int status2, Pageable pageable);
-    List<Order> findOrderByUserIdAndStatusEqualsOrStatusEquals(long id, int status1, int status2);
+    Page<Order> findOrderByUserIdAndStatusOrUserIdAndStatus(long id1, int status1, long id2, int status2, Pageable pageable);
+    List<Order> findOrderByUserIdAndStatusOrUserIdAndStatus(long id1, int status1, long id2, int status2);
     Page<Order> findOrderByUserIdAndStatusBetween(long id, int status1, int status2, Pageable pageable);
     List<Order> findOrderByUserIdAndStatusBetween(long id, int status1, int status2);
 

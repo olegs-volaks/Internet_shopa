@@ -34,12 +34,12 @@ public class GetClosedOrderListService {
         }
         List<Order> orders;
         if (request.getPageable() == null) {
-            orders = orderRepository.findOrderByUserIdAndStatusEqualsOrStatusEquals
-                    (request.getId(),0,4);
+            orders = orderRepository.findOrderByUserIdAndStatusOrUserIdAndStatus
+                    (request.getId(),0,request.getId(),4);
             return new GetClosedOrderListResponse(null, orders);
         }
-        Page<Order> ordersPage = orderRepository.findOrderByUserIdAndStatusEqualsOrStatusEquals
-                (request.getId(),0,4,request.getPageable());
+        Page<Order> ordersPage = orderRepository.findOrderByUserIdAndStatusOrUserIdAndStatus
+                (request.getId(),0,request.getId(),4,request.getPageable());
         return new GetClosedOrderListResponse(ordersPage, ordersPage.toList());
     }
 }

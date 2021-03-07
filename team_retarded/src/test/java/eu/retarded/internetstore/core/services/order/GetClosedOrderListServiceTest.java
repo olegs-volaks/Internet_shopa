@@ -70,11 +70,11 @@ class GetClosedOrderListServiceTest {
         Page<Order> resultPage =new PageImpl<>(resultList);
 
 
-        Mockito.when(orderRepository.findOrderByUserIdAndStatusEqualsOrStatusEquals(3L,0,4,pageable)).thenReturn(resultPage);
+        Mockito.when(orderRepository.findOrderByUserIdAndStatusOrUserIdAndStatus(3L,0,3L,4,pageable)).thenReturn(resultPage);
         GetClosedOrderListResponse getClosedOrderListResponse = subject.execute(request);
         assertThat(getClosedOrderListResponse.getOrdersList()).isEqualTo( resultList);
         assertThat(getClosedOrderListResponse.getOrdersPage()).isEqualTo( resultPage);
-        Mockito.verify(orderRepository).findOrderByUserIdAndStatusEqualsOrStatusEquals(3L,0,4,pageable);
+        Mockito.verify(orderRepository).findOrderByUserIdAndStatusOrUserIdAndStatus(3L,0,3L,4,pageable);
     }
 
 }
